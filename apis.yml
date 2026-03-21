@@ -1,0 +1,156 @@
+aid: rapidapi
+url: https://raw.githubusercontent.com/api-evangelist/rapidapi/refs/heads/main/apis.yml
+apis:
+  - aid: rapidapi:rest-platform-api
+    name: RapidAPI REST Platform API
+    tags:
+      - API Management
+      - Platform
+      - Administration
+      - Marketplace
+      - Enterprise
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://platform.rapidapi.com
+    humanURL: https://docs.rapidapi.com/docs/platform-api-overview
+    properties:
+      - url: https://docs.rapidapi.com/docs/platform-api-overview
+        type: Documentation
+      - url: openapi/rapidapi-rest-platform-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      The RapidAPI REST Platform API allows developers and administrators to
+      programmatically manage their API hub configurations through RESTful
+      endpoints. It provides CRUD operations for organizations, categories,
+      tags, collections, transactions, subscriptions, and users. This API
+      enables automation of tasks normally performed through the Enterprise Hub
+      Admin Panel, making it possible to integrate hub management into CI/CD
+      pipelines and custom workflows.
+  - aid: rapidapi:graphql-platform-api
+    name: RapidAPI GraphQL Platform API
+    tags:
+      - GraphQL
+      - Platform
+      - API Management
+      - Enterprise
+      - Administration
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://platform.rapidapi.com
+    humanURL: https://docs.rapidapi.com/docs/graphql-platform-api-overview
+    properties:
+      - url: https://docs.rapidapi.com/docs/graphql-platform-api-overview
+        type: Documentation
+      - url: openapi/rapidapi-graphql-platform-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      The RapidAPI GraphQL Platform API exposes the same queries and mutations
+      that RapidAPI uses internally, providing enterprise users with a powerful
+      interface for managing their API hub. It supports creating and updating
+      APIs, managing collections, and configuring hub settings through GraphQL
+      queries and mutations. Developers can use this API to automate API
+      lifecycle management, including integration with GitHub Actions for
+      continuous deployment of API configurations.
+  - aid: rapidapi:hub-api
+    name: RapidAPI Hub API
+    tags:
+      - API Discovery
+      - API Marketplace
+      - API Testing
+      - Integration
+      - Search
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://rapidapi.com
+    humanURL: https://docs.rapidapi.com/docs/consumer-quick-start-guide
+    properties:
+      - url: https://docs.rapidapi.com/docs/consumer-quick-start-guide
+        type: Documentation
+      - url: openapi/rapidapi-hub-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      The RapidAPI Hub is the world's largest API marketplace, enabling
+      developers to discover, test, and connect to thousands of APIs using a
+      single API key. The hub provides a unified interface for browsing APIs
+      across categories such as weather, social media, e-commerce, and finance.
+      Developers can test endpoints directly in the browser, view auto-generated
+      code snippets in multiple programming languages, and manage subscriptions
+      and usage analytics from a single dashboard.
+  - aid: rapidapi:api-testing
+    name: RapidAPI Testing API
+    tags:
+      - API Testing
+      - Monitoring
+      - Quality Assurance
+      - Automation
+      - CI/CD
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://api.example.com
+    humanURL: https://docs.rapidapi.com/docs/testing-getting-started
+    properties:
+      - url: https://docs.rapidapi.com/docs/testing-getting-started
+        type: Documentation
+      - url: openapi/rapidapi-testing-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      RapidAPI Testing provides a comprehensive API testing and monitoring
+      solution that supports REST, SOAP, and GraphQL APIs. It offers an
+      intuitive interface for creating and running functional tests, performance
+      tests, and automated monitoring checks. The testing platform integrates
+      with CI/CD pipelines, enabling teams to verify API behavior as part of
+      their development workflow. Tests can be scheduled to run periodically to
+      monitor API health and detect regressions.
+  - aid: rapidapi:studio-api
+    name: RapidAPI Studio API
+    tags:
+      - API Design
+      - API Development
+      - OpenAPI
+      - Studio
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://api.example.com
+    humanURL: https://docs.rapidapi.com/docs/studio-overview
+    properties:
+      - url: https://docs.rapidapi.com/docs/studio-overview
+        type: Documentation
+      - url: openapi/rapidapi-studio-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      RapidAPI Studio is an API design and development environment that enables
+      teams to design, build, and document APIs collaboratively. It supports
+      importing and editing OpenAPI specifications, providing a visual interface
+      for defining endpoints, parameters, and response schemas. Studio
+      integrates with the broader RapidAPI platform, allowing developers to
+      publish designed APIs directly to the hub and generate documentation
+      automatically from API definitions.
+  - aid: rapidapi:gateway-api
+    name: RapidAPI Gateway API
+    tags:
+      - API Gateway
+      - Traffic Management
+      - Security
+      - Enterprise
+      - Routing
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://api.example.com
+    humanURL: https://docs.rapidapi.com/docs/gateway-configuration
+    properties:
+      - url: https://docs.rapidapi.com/docs/gateway-configuration
+        type: Documentation
+      - url: openapi/rapidapi-gateway-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      The RapidAPI Gateway provides enterprise-grade API gateway capabilities
+      for managing API traffic, security, and routing. It enables organizations
+      to configure custom gateways that handle authentication, rate limiting,
+      and request routing for their APIs. The gateway supports multiple
+      deployment models and can be configured to work with existing
+      infrastructure, providing a centralized point of control for all API
+      traffic flowing through the RapidAPI platform.
+common:
+  - type: JSON-LD
+    url: json-ld/rapidapi-context.jsonld
+  - type: JSONSchema
+    url: json-schema/rapidapi-api-listing-schema.json
+  - type: JSONSchema
+    url: json-schema/rapidapi-test-schema.json
+  - type: JSONSchema
+    url: json-schema/rapidapi-gateway-config-schema.json
+modified: '2026-03-20'

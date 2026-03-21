@@ -1,0 +1,922 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway API
+  description: >-
+    The RapidAPI Gateway provides enterprise-grade API gateway capabilities
+    for managing API traffic, security, and routing. It enables organizations
+    to configure custom gateways that handle authentication, rate limiting,
+    and request routing for their APIs. The gateway supports multiple
+    deployment models and can be configured to work with existing
+    infrastructure, providing a centralized point of control for all API
+    traffic flowing through the RapidAPI platform. The Rapid Runtime proxies
+    requests between consumers and providers, adding authentication
+    verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration
+servers:
+  - url: https://gateway.rapidapi.com/v1
+    description: Production Server
+tags:
+  - name: Gateways
+    description: >-
+      Endpoints for managing gateway instances, including creating,
+      configuring, and monitoring custom API gateways.
+  - name: Routes
+    description: >-
+      Endpoints for configuring request routing rules that determine how
+      incoming API requests are forwarded to backend services.
+  - name: Authentication
+    description: >-
+      Endpoints for configuring authentication schemes on gateways, including
+      OAuth2, API key, header-based, and basic authentication.
+  - name: Rate Limiting
+    description: >-
+      Endpoints for configuring rate limiting policies to protect APIs from
+      overuse, including request limits, quota management, and request size
+      limits.
+  - name: Security
+    description: >-
+      Endpoints for configuring security policies such as IP allow and deny
+      lists, CORS settings, and proxy secret validation.
+  - name: Analytics
+    description: >-
+      Endpoints for retrieving gateway traffic analytics, including request
+      counts, response times, error rates, and usage patterns.
+security:
+  - rapidApiKey: []
+paths:
+  /gateways:
+    get:
+      operationId: listGateways
+      summary: List gateways
+      description: >-
+        Retrieves all gateway instances configured for the organization,
+        including their status, deployment model, and associated APIs.
+      tags:
+        - Gateways
+      responses:
+        '200':
+          description: A list of gateways
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  gateways:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Gateway'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createGateway
+      summary: Create a gateway
+      description: >-
+        Creates a new gateway instance with the specified deployment model and
+        configuration. The gateway will begin routing traffic once activated.
+      tags:
+        - Gateways
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GatewayInput'
+      responses:
+        '201':
+          description: Gateway created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+        '400':
+          description: Bad request - invalid gateway configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /gateways/{gatewayId}:
+    get:
+      operationId: getGateway
+      summary: Get a gateway
+      description: >-
+        Retrieves the detailed configuration and status of a specific gateway
+        instance.
+      tags:
+        - Gateways
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+      responses:
+        '200':
+          description: Gateway details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+    put:
+      operationId: updateGateway
+      summary: Update a gateway
+      description: >-
+        Updates the configuration of an existing gateway instance, including
+        its name, deployment model, and associated settings.
+      tags:
+        - Gateways
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GatewayInput'
+      responses:
+        '200':
+          description: Gateway updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+        '400':
+          description: Bad request - invalid gateway configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+    delete:
+      operationId: deleteGateway
+      summary: Delete a gateway
+      description: >-
+        Deletes a gateway instance and all associated routing and policy
+        configurations.
+      tags:
+        - Gateways
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+      responses:
+        '204':
+          description: Gateway deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+  /gateways/{gatewayId}/routes:
+    get:
+      operationId: listRoutes
+      summary: List routes
+      description: >-
+        Retrieves all routing rules configured for a gateway, including path
+        patterns, target backends, and transformation rules.
+      tags:
+        - Routes
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+      responses:
+        '200':
+          description: A list of routes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  routes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Route'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+    post:
+      operationId: createRoute
+      summary: Create a route
+      description: >-
+        Creates a new routing rule for the gateway, specifying how incoming
+        requests matching a path pattern are forwarded to a backend service.
+      tags:
+        - Routes
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteInput'
+      responses:
+        '201':
+          description: Route created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '400':
+          description: Bad request - invalid route configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+  /gateways/{gatewayId}/routes/{routeId}:
+    put:
+      operationId: updateRoute
+      summary: Update a route
+      description: >-
+        Updates an existing routing rule's path pattern, backend target, or
+        transformation settings.
+      tags:
+        - Routes
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+        - $ref: '#/components/parameters/routeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteInput'
+      responses:
+        '200':
+          description: Route updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '400':
+          description: Bad request - invalid route configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Route not found
+    delete:
+      operationId: deleteRoute
+      summary: Delete a route
+      description: >-
+        Deletes a routing rule from the gateway. Requests matching this route
+        will no longer be forwarded.
+      tags:
+        - Routes
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+        - $ref: '#/components/parameters/routeId'
+      responses:
+        '204':
+          description: Route deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Route not found
+  /gateways/{gatewayId}/authentication:
+    get:
+      operationId: getAuthenticationConfig
+      summary: Get authentication configuration
+      description: >-
+        Retrieves the authentication configuration for a gateway, including
+        the authentication scheme, required headers, and OAuth2 settings.
+      tags:
+        - Authentication
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+      responses:
+        '200':
+          description: Authentication configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationConfig'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+    put:
+      operationId: updateAuthenticationConfig
+      summary: Update authentication configuration
+      description: >-
+        Updates the authentication configuration for a gateway. Supports
+        RapidAPI default auth, OAuth2, header-based, query parameter, and
+        basic authentication schemes. Multiple authentication layers can be
+        configured.
+      tags:
+        - Authentication
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationConfigInput'
+      responses:
+        '200':
+          description: Authentication configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationConfig'
+        '400':
+          description: Bad request - invalid authentication configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+  /gateways/{gatewayId}/rate-limiting:
+    get:
+      operationId: getRateLimitConfig
+      summary: Get rate limiting configuration
+      description: >-
+        Retrieves the rate limiting policies configured for a gateway,
+        including request limits, quota settings, and request size limits.
+      tags:
+        - Rate Limiting
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+      responses:
+        '200':
+          description: Rate limiting configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitConfig'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+    put:
+      operationId: updateRateLimitConfig
+      summary: Update rate limiting configuration
+      description: >-
+        Updates the rate limiting policies for a gateway, including per-user
+        request limits, global quotas, and maximum request size constraints.
+      tags:
+        - Rate Limiting
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateLimitConfigInput'
+      responses:
+        '200':
+          description: Rate limiting configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitConfig'
+        '400':
+          description: Bad request - invalid rate limit configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+  /gateways/{gatewayId}/security:
+    get:
+      operationId: getSecurityConfig
+      summary: Get security configuration
+      description: >-
+        Retrieves the security policies configured for a gateway, including
+        IP allow and deny lists, CORS settings, and proxy secret validation.
+      tags:
+        - Security
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+      responses:
+        '200':
+          description: Security configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityConfig'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+    put:
+      operationId: updateSecurityConfig
+      summary: Update security configuration
+      description: >-
+        Updates the security policies for a gateway, including IP filtering,
+        CORS, and request validation settings.
+      tags:
+        - Security
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityConfigInput'
+      responses:
+        '200':
+          description: Security configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityConfig'
+        '400':
+          description: Bad request - invalid security configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+  /gateways/{gatewayId}/analytics:
+    get:
+      operationId: getGatewayAnalytics
+      summary: Get gateway analytics
+      description: >-
+        Retrieves traffic analytics for a gateway over a specified time
+        period, including request counts, response times, error rates, and
+        top endpoints by usage.
+      tags:
+        - Analytics
+      parameters:
+        - $ref: '#/components/parameters/gatewayId'
+        - name: startDate
+          in: query
+          required: true
+          description: Start date for the analytics period
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: true
+          description: End date for the analytics period
+          schema:
+            type: string
+            format: date
+        - name: granularity
+          in: query
+          required: false
+          description: Time granularity for the analytics data
+          schema:
+            type: string
+            enum:
+              - hour
+              - day
+              - week
+              - month
+            default: day
+      responses:
+        '200':
+          description: Gateway analytics data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayAnalytics'
+        '400':
+          description: Bad request - invalid date range or parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+components:
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: >-
+        RapidAPI key used for authenticating requests to the Gateway API.
+  parameters:
+    gatewayId:
+      name: gatewayId
+      in: path
+      required: true
+      description: The unique identifier of the gateway
+      schema:
+        type: string
+    routeId:
+      name: routeId
+      in: path
+      required: true
+      description: The unique identifier of the route
+      schema:
+        type: string
+  schemas:
+    Gateway:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the gateway
+        name:
+          type: string
+          description: Gateway display name
+        description:
+          type: string
+          description: Description of the gateway's purpose
+        deploymentModel:
+          type: string
+          enum:
+            - cloud
+            - on-premise
+            - hybrid
+          description: How the gateway is deployed
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+            - provisioning
+          description: Current gateway status
+        baseUrl:
+          type: string
+          format: uri
+          description: The base URL for the gateway
+        proxySecret:
+          type: string
+          description: >-
+            Unique proxy secret added as X-RapidAPI-Proxy-Secret header to
+            verify requests originate from the Rapid Runtime
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the gateway was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the gateway was last updated
+    GatewayInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Gateway display name
+        description:
+          type: string
+          description: Description of the gateway's purpose
+        deploymentModel:
+          type: string
+          enum:
+            - cloud
+            - on-premise
+            - hybrid
+          description: How the gateway should be deployed
+        baseUrl:
+          type: string
+          format: uri
+          description: The base URL for the gateway
+    Route:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the route
+        gatewayId:
+          type: string
+          description: The gateway this route belongs to
+        pathPattern:
+          type: string
+          description: URL path pattern to match incoming requests
+        targetUrl:
+          type: string
+          format: uri
+          description: Backend service URL to forward matching requests to
+        methods:
+          type: array
+          items:
+            type: string
+            enum:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+          description: HTTP methods this route handles
+        stripPrefix:
+          type: boolean
+          description: Whether to strip the matched path prefix before forwarding
+        priority:
+          type: integer
+          description: Route priority for matching order
+        enabled:
+          type: boolean
+          description: Whether this route is currently active
+    RouteInput:
+      type: object
+      required:
+        - pathPattern
+        - targetUrl
+      properties:
+        pathPattern:
+          type: string
+          description: URL path pattern to match incoming requests
+        targetUrl:
+          type: string
+          format: uri
+          description: Backend service URL to forward matching requests to
+        methods:
+          type: array
+          items:
+            type: string
+            enum:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+          description: HTTP methods this route handles
+        stripPrefix:
+          type: boolean
+          default: false
+          description: Whether to strip the matched path prefix before forwarding
+        priority:
+          type: integer
+          default: 0
+          description: Route priority for matching order
+        enabled:
+          type: boolean
+          default: true
+          description: Whether this route should be active
+    AuthenticationConfig:
+      type: object
+      properties:
+        gatewayId:
+          type: string
+          description: The gateway this configuration belongs to
+        scheme:
+          type: string
+          enum:
+            - rapidapi_default
+            - oauth2
+            - header
+            - query
+            - basic
+          description: The primary authentication scheme
+        requireRapidApiKey:
+          type: boolean
+          description: >-
+            Whether the X-RapidAPI-Key header is required for all requests
+        oauth2Config:
+          type: object
+          properties:
+            authorizationUrl:
+              type: string
+              format: uri
+              description: OAuth2 authorization endpoint
+            tokenUrl:
+              type: string
+              format: uri
+              description: OAuth2 token endpoint
+            scopes:
+              type: array
+              items:
+                type: string
+              description: Available OAuth2 scopes
+          description: OAuth2 configuration when scheme is oauth2
+        headerConfig:
+          type: object
+          properties:
+            headerName:
+              type: string
+              description: Custom header name for authentication
+          description: Header authentication configuration
+    AuthenticationConfigInput:
+      type: object
+      required:
+        - scheme
+      properties:
+        scheme:
+          type: string
+          enum:
+            - rapidapi_default
+            - oauth2
+            - header
+            - query
+            - basic
+          description: The primary authentication scheme
+        requireRapidApiKey:
+          type: boolean
+          default: true
+          description: Whether the X-RapidAPI-Key header is required
+        oauth2Config:
+          type: object
+          properties:
+            authorizationUrl:
+              type: string
+              format: uri
+              description: OAuth2 authorization endpoint
+            tokenUrl:
+              type: string
+              format: uri
+              description: OAuth2 token endpoint
+            scopes:
+              type: array
+              items:
+                type: string
+              description: Available OAuth2 scopes
+          description: OAuth2 configuration
+        headerConfig:
+          type: object
+          properties:
+            headerName:
+              type: string
+              description: Custom header name for authentication
+          description: Header authentication configuration
+    RateLimitConfig:
+      type: object
+      properties:
+        gatewayId:
+          type: string
+          description: The gateway this configuration belongs to
+        requestsPerSecond:
+          type: integer
+          description: Maximum requests per second per consumer
+        requestsPerMinute:
+          type: integer
+          description: Maximum requests per minute per consumer
+        requestsPerDay:
+          type: integer
+          description: Maximum requests per day per consumer
+        maxRequestSizeBytes:
+          type: integer
+          description: Maximum request body size in bytes
+        burstLimit:
+          type: integer
+          description: Maximum burst of requests allowed
+    RateLimitConfigInput:
+      type: object
+      properties:
+        requestsPerSecond:
+          type: integer
+          minimum: 1
+          description: Maximum requests per second per consumer
+        requestsPerMinute:
+          type: integer
+          minimum: 1
+          description: Maximum requests per minute per consumer
+        requestsPerDay:
+          type: integer
+          minimum: 1
+          description: Maximum requests per day per consumer
+        maxRequestSizeBytes:
+          type: integer
+          minimum: 1024
+          description: Maximum request body size in bytes
+        burstLimit:
+          type: integer
+          minimum: 1
+          description: Maximum burst of requests allowed
+    SecurityConfig:
+      type: object
+      properties:
+        gatewayId:
+          type: string
+          description: The gateway this configuration belongs to
+        ipAllowList:
+          type: array
+          items:
+            type: string
+          description: List of allowed IP addresses or CIDR ranges
+        ipDenyList:
+          type: array
+          items:
+            type: string
+          description: List of denied IP addresses or CIDR ranges
+        corsEnabled:
+          type: boolean
+          description: Whether CORS is enabled
+        corsConfig:
+          type: object
+          properties:
+            allowedOrigins:
+              type: array
+              items:
+                type: string
+              description: Allowed CORS origins
+            allowedMethods:
+              type: array
+              items:
+                type: string
+              description: Allowed HTTP methods for CORS
+            allowedHeaders:
+              type: array
+              items:
+                type: string
+              description: Allowed request headers for CORS
+            maxAge:
+              type: integer
+              description: CORS preflight cache duration in seconds
+          description: CORS configuration details
+        validateProxySecret:
+          type: boolean
+          description: >-
+            Whether to validate the X-RapidAPI-Proxy-Secret header on
+            incoming requests
+    SecurityConfigInput:
+      type: object
+      properties:
+        ipAllowList:
+          type: array
+          items:
+            type: string
+          description: List of allowed IP addresses or CIDR ranges
+        ipDenyList:
+          type: array
+          items:
+            type: string
+          description: List of denied IP addresses or CIDR ranges
+        corsEnabled:
+          type: boolean
+          description: Whether to enable CORS
+        corsConfig:
+          type: object
+          properties:
+            allowedOrigins:
+              type: array
+              items:
+                type: string
+              description: Allowed CORS origins
+            allowedMethods:
+              type: array
+              items:
+                type: string
+              description: Allowed HTTP methods
+            allowedHeaders:
+              type: array
+              items:
+                type: string
+              description: Allowed request headers
+            maxAge:
+              type: integer
+              description: CORS preflight cache duration in seconds
+          description: CORS configuration
+        validateProxySecret:
+          type: boolean
+          default: true
+          description: Whether to validate the proxy secret header
+    GatewayAnalytics:
+      type: object
+      properties:
+        gatewayId:
+          type: string
+          description: The gateway the analytics are for
+        period:
+          type: object
+          properties:
+            startDate:
+              type: string
+              format: date
+              description: Start of the analytics period
+            endDate:
+              type: string
+              format: date
+              description: End of the analytics period
+          description: The time period for the analytics
+        totalRequests:
+          type: integer
+          description: Total number of requests in the period
+        totalErrors:
+          type: integer
+          description: Total number of error responses
+        averageResponseTime:
+          type: number
+          format: double
+          description: Average response time in milliseconds
+        dataPoints:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+                description: The time bucket for this data point
+              requests:
+                type: integer
+                description: Number of requests in this time bucket
+              errors:
+                type: integer
+                description: Number of errors in this time bucket
+              averageResponseTime:
+                type: number
+                format: double
+                description: Average response time in milliseconds
+          description: Time-series analytics data points
+        topEndpoints:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+                description: Endpoint path
+              requestCount:
+                type: integer
+                description: Number of requests to this endpoint
+              averageResponseTime:
+                type: number
+                format: double
+                description: Average response time for this endpoint
+          description: Top endpoints by request volume

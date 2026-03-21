@@ -1,0 +1,739 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Studio API
+  description: >-
+    RapidAPI Studio is an API design and development environment that enables
+    teams to design, build, and document APIs collaboratively. It supports
+    importing and editing OpenAPI specifications and Postman Collections,
+    providing a visual interface for defining endpoints, parameters, and
+    response schemas. Studio integrates with the broader RapidAPI platform,
+    allowing developers to publish designed APIs directly to the hub and
+    generate documentation automatically from API definitions.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+externalDocs:
+  description: RapidAPI Studio Documentation
+  url: https://docs.rapidapi.com/docs/studio-overview
+servers:
+  - url: https://studio.rapidapi.com/v1
+    description: Production Server
+tags:
+  - name: Projects
+    description: >-
+      Endpoints for managing API projects within Studio, including creating,
+      listing, updating, and deleting projects.
+  - name: Definitions
+    description: >-
+      Endpoints for importing, exporting, and managing API definitions such as
+      OpenAPI specifications and Postman Collections.
+  - name: Endpoints
+    description: >-
+      Endpoints for managing API endpoint configurations within a project,
+      including creating, updating, and organizing endpoint groups.
+  - name: Requests
+    description: >-
+      Endpoints for managing saved API requests within a project, including
+      importing from spec files and organizing into groups.
+  - name: Documentation
+    description: >-
+      Endpoints for generating and managing API documentation from project
+      definitions and endpoint configurations.
+security:
+  - rapidApiKey: []
+paths:
+  /projects:
+    get:
+      operationId: listProjects
+      summary: List all projects
+      description: >-
+        Retrieves a list of all API projects in the Studio workspace, including
+        project names, statuses, and last modified dates.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of projects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projects:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Project'
+                  totalCount:
+                    type: integer
+                    description: Total number of projects
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createProject
+      summary: Create a project
+      description: >-
+        Creates a new API project in Studio. A project serves as the workspace
+        for designing and configuring an API before publishing it to the hub.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectInput'
+      responses:
+        '201':
+          description: Project created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Bad request - invalid project configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /projects/{projectId}:
+    get:
+      operationId: getProject
+      summary: Get a project
+      description: >-
+        Retrieves the full details of a specific project, including its
+        configuration, endpoints, and definition status.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+    put:
+      operationId: updateProject
+      summary: Update a project
+      description: >-
+        Updates the configuration and settings of an existing API project.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectInput'
+      responses:
+        '200':
+          description: Project updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Bad request - invalid project configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+    delete:
+      operationId: deleteProject
+      summary: Delete a project
+      description: >-
+        Deletes a project and all its associated definitions, endpoints, and
+        requests from Studio.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '204':
+          description: Project deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+  /projects/{projectId}/definitions:
+    get:
+      operationId: listDefinitions
+      summary: List definitions
+      description: >-
+        Retrieves all API definitions associated with a project, including
+        imported OpenAPI specifications and Postman Collections.
+      tags:
+        - Definitions
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: A list of definitions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  definitions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Definition'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+    post:
+      operationId: importDefinition
+      summary: Import a definition
+      description: >-
+        Imports an API definition into the project from a file upload, remote
+        URL, or text input. Supports OpenAPI 3.0.3 and Postman Collection
+        formats. Importing a definition automatically populates the project's
+        endpoints.
+      tags:
+        - Definitions
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: >-
+                    API definition file in JSON, YAML, or X-YAML format
+                url:
+                  type: string
+                  format: uri
+                  description: Remote URL to fetch the definition from
+                text:
+                  type: string
+                  description: Raw API definition text
+                format:
+                  type: string
+                  enum:
+                    - openapi
+                    - postman
+                  description: The format of the definition being imported
+      responses:
+        '201':
+          description: Definition imported successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Definition'
+        '400':
+          description: Bad request - invalid definition format
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+  /projects/{projectId}/definitions/{definitionId}:
+    get:
+      operationId: getDefinition
+      summary: Get a definition
+      description: >-
+        Retrieves the full content and metadata of a specific API definition.
+      tags:
+        - Definitions
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/definitionId'
+      responses:
+        '200':
+          description: Definition details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Definition'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Definition not found
+    delete:
+      operationId: deleteDefinition
+      summary: Delete a definition
+      description: >-
+        Deletes an imported API definition from the project. Associated
+        endpoints remain but lose their definition binding.
+      tags:
+        - Definitions
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/definitionId'
+      responses:
+        '204':
+          description: Definition deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Definition not found
+  /projects/{projectId}/definitions/{definitionId}/export:
+    get:
+      operationId: exportDefinition
+      summary: Export a definition
+      description: >-
+        Exports the API definition in the specified format, allowing
+        developers to download the spec for use in other tools or CI/CD
+        pipelines.
+      tags:
+        - Definitions
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/definitionId'
+        - name: format
+          in: query
+          required: false
+          description: The output format for the exported definition
+          schema:
+            type: string
+            enum:
+              - json
+              - yaml
+            default: yaml
+      responses:
+        '200':
+          description: Exported API definition
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The API definition in JSON format
+            application/x-yaml:
+              schema:
+                type: string
+                description: The API definition in YAML format
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Definition not found
+  /projects/{projectId}/endpoints:
+    get:
+      operationId: listEndpoints
+      summary: List endpoints
+      description: >-
+        Retrieves all endpoints configured in a project, organized by endpoint
+        groups. Each endpoint includes its HTTP method, path, parameters, and
+        response definitions.
+      tags:
+        - Endpoints
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: A list of endpoints
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  endpoints:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Endpoint'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+    post:
+      operationId: createEndpoint
+      summary: Create an endpoint
+      description: >-
+        Creates a new endpoint in the project with the specified HTTP method,
+        path, parameters, and response configuration.
+      tags:
+        - Endpoints
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EndpointInput'
+      responses:
+        '201':
+          description: Endpoint created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Endpoint'
+        '400':
+          description: Bad request - invalid endpoint configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+  /projects/{projectId}/endpoints/{endpointId}:
+    put:
+      operationId: updateEndpoint
+      summary: Update an endpoint
+      description: >-
+        Updates the configuration of an existing endpoint in the project.
+      tags:
+        - Endpoints
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/endpointId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EndpointInput'
+      responses:
+        '200':
+          description: Endpoint updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Endpoint'
+        '400':
+          description: Bad request - invalid endpoint configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Endpoint not found
+    delete:
+      operationId: deleteEndpoint
+      summary: Delete an endpoint
+      description: >-
+        Deletes an endpoint from the project.
+      tags:
+        - Endpoints
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/endpointId'
+      responses:
+        '204':
+          description: Endpoint deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Endpoint not found
+  /projects/{projectId}/requests:
+    get:
+      operationId: listRequests
+      summary: List saved requests
+      description: >-
+        Retrieves all saved API requests within a project, organized into
+        groups. Requests are used for testing and documentation.
+      tags:
+        - Requests
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: A list of saved requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  requests:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SavedRequest'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+  /projects/{projectId}/publish:
+    post:
+      operationId: publishProject
+      summary: Publish to hub
+      description: >-
+        Publishes the API project to the RapidAPI Hub, making it available for
+        discovery and consumption. The project's endpoints and documentation
+        are automatically generated from the API definition.
+      tags:
+        - Documentation
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                visibility:
+                  type: string
+                  enum:
+                    - public
+                    - private
+                    - internal
+                  description: Visibility level for the published API
+                category:
+                  type: string
+                  description: Category to list the API under on the hub
+      responses:
+        '200':
+          description: Project published successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiId:
+                    type: string
+                    description: The identifier of the published API on the hub
+                  hubUrl:
+                    type: string
+                    format: uri
+                    description: URL to the API listing on the hub
+        '400':
+          description: Bad request - project not ready for publishing
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+components:
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: >-
+        RapidAPI key used for authenticating requests to the Studio API.
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project
+      schema:
+        type: string
+    definitionId:
+      name: definitionId
+      in: path
+      required: true
+      description: The unique identifier of the API definition
+      schema:
+        type: string
+    endpointId:
+      name: endpointId
+      in: path
+      required: true
+      description: The unique identifier of the endpoint
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+  schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project
+        name:
+          type: string
+          description: Project name
+        description:
+          type: string
+          description: Project description
+        status:
+          type: string
+          enum:
+            - draft
+            - published
+            - archived
+          description: Current project status
+        apiType:
+          type: string
+          enum:
+            - rest
+            - graphql
+            - soap
+          description: The type of API being designed
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the project was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the project was last updated
+    ProjectInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Project name
+        description:
+          type: string
+          description: Project description
+        apiType:
+          type: string
+          enum:
+            - rest
+            - graphql
+            - soap
+          description: The type of API being designed
+    Definition:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the definition
+        projectId:
+          type: string
+          description: The project this definition belongs to
+        format:
+          type: string
+          enum:
+            - openapi
+            - postman
+          description: The format of the definition
+        version:
+          type: string
+          description: The specification version
+        title:
+          type: string
+          description: Title from the imported definition
+        importedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the definition was imported
+    Endpoint:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the endpoint
+        name:
+          type: string
+          description: Display name of the endpoint
+        method:
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+          description: HTTP method
+        path:
+          type: string
+          description: URL path for the endpoint
+        group:
+          type: string
+          description: The endpoint group this belongs to
+        description:
+          type: string
+          description: Description of the endpoint
+        parameters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Parameter name
+              location:
+                type: string
+                enum:
+                  - query
+                  - path
+                  - header
+                  - body
+                description: Where the parameter is sent
+              type:
+                type: string
+                description: Data type
+              required:
+                type: boolean
+                description: Whether required
+              description:
+                type: string
+                description: Parameter description
+          description: Endpoint parameters
+    EndpointInput:
+      type: object
+      required:
+        - name
+        - method
+        - path
+      properties:
+        name:
+          type: string
+          description: Display name of the endpoint
+        method:
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+          description: HTTP method
+        path:
+          type: string
+          description: URL path for the endpoint
+        group:
+          type: string
+          description: The endpoint group to organize under
+        description:
+          type: string
+          description: Description of the endpoint
+    SavedRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the saved request
+        name:
+          type: string
+          description: Request name
+        method:
+          type: string
+          description: HTTP method
+        url:
+          type: string
+          format: uri
+          description: Request URL
+        group:
+          type: string
+          description: Request group name
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: Request headers
+        body:
+          type: string
+          description: Request body content

@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rapidapi.com/schemas/rapidapi/gateway-config.json",
+  "title": "RapidAPI Gateway Configuration",
+  "description": "Schema representing a RapidAPI Gateway configuration, including routing rules, authentication, rate limiting, security policies, and deployment settings.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the gateway instance"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name for the gateway",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the gateway's purpose and configuration"
+    },
+    "deploymentModel": {
+      "type": "string",
+      "enum": ["cloud", "on-premise", "hybrid"],
+      "description": "How the gateway is deployed within the infrastructure"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "provisioning"],
+      "description": "Current operational status of the gateway"
+    },
+    "baseUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The base URL where the gateway accepts incoming requests"
+    },
+    "proxySecret": {
+      "type": "string",
+      "description": "Unique secret added as X-RapidAPI-Proxy-Secret header to verify requests come from Rapid Runtime"
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Route"
+      },
+      "description": "Routing rules that determine how requests are forwarded to backend services"
+    },
+    "authentication": {
+      "$ref": "#/$defs/AuthenticationConfig",
+      "description": "Authentication scheme and configuration for the gateway"
+    },
+    "rateLimiting": {
+      "$ref": "#/$defs/RateLimitConfig",
+      "description": "Rate limiting policies to control API usage"
+    },
+    "security": {
+      "$ref": "#/$defs/SecurityConfig",
+      "description": "Security policies including IP filtering and CORS"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the gateway was created"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the gateway was last modified"
+    }
+  },
+  "$defs": {
+    "Route": {
+      "type": "object",
+      "required": ["pathPattern", "targetUrl"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the route"
+        },
+        "pathPattern": {
+          "type": "string",
+          "description": "URL path pattern to match incoming requests, supports wildcards"
+        },
+        "targetUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Backend service URL to forward matching requests to"
+        },
+        "methods": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"]
+          },
+          "description": "HTTP methods this route handles, empty means all methods"
+        },
+        "stripPrefix": {
+          "type": "boolean",
+          "description": "Whether to strip the matched path prefix before forwarding"
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Route priority for matching order, higher values match first"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether this route is currently active"
+        }
+      },
+      "description": "A routing rule that forwards matching requests to a backend service"
+    },
+    "AuthenticationConfig": {
+      "type": "object",
+      "required": ["scheme"],
+      "properties": {
+        "scheme": {
+          "type": "string",
+          "enum": ["rapidapi_default", "oauth2", "header", "query", "basic"],
+          "description": "The primary authentication scheme used by the gateway"
+        },
+        "requireRapidApiKey": {
+          "type": "boolean",
+          "description": "Whether the X-RapidAPI-Key header is required for all requests"
+        },
+        "oauth2Config": {
+          "type": "object",
+          "properties": {
+            "authorizationUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "OAuth2 authorization endpoint URL"
+            },
+            "tokenUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "OAuth2 token endpoint URL"
+            },
+            "scopes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Available OAuth2 scopes"
+            }
+          },
+          "description": "OAuth2 configuration when scheme is oauth2"
+        },
+        "headerConfig": {
+          "type": "object",
+          "properties": {
+            "headerName": {
+              "type": "string",
+              "description": "Custom header name for authentication"
+            }
+          },
+          "description": "Header-based authentication configuration"
+        }
+      },
+      "description": "Gateway authentication configuration"
+    },
+    "RateLimitConfig": {
+      "type": "object",
+      "properties": {
+        "requestsPerSecond": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum requests per second per consumer"
+        },
+        "requestsPerMinute": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum requests per minute per consumer"
+        },
+        "requestsPerDay": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum requests per day per consumer"
+        },
+        "maxRequestSizeBytes": {
+          "type": "integer",
+          "minimum": 1024,
+          "description": "Maximum request body size in bytes to prevent misuse"
+        },
+        "burstLimit": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum burst of concurrent requests allowed"
+        }
+      },
+      "description": "Rate limiting configuration to protect APIs from overuse"
+    },
+    "SecurityConfig": {
+      "type": "object",
+      "properties": {
+        "ipAllowList": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "IP address or CIDR range"
+          },
+          "description": "List of allowed IP addresses or CIDR ranges"
+        },
+        "ipDenyList": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "IP address or CIDR range"
+          },
+          "description": "List of denied IP addresses or CIDR ranges"
+        },
+        "corsEnabled": {
+          "type": "boolean",
+          "description": "Whether CORS is enabled for cross-origin requests"
+        },
+        "corsConfig": {
+          "type": "object",
+          "properties": {
+            "allowedOrigins": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Allowed CORS origins"
+            },
+            "allowedMethods": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Allowed HTTP methods for CORS preflight"
+            },
+            "allowedHeaders": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Allowed request headers for CORS"
+            },
+            "maxAge": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "CORS preflight response cache duration in seconds"
+            }
+          },
+          "description": "CORS configuration details"
+        },
+        "validateProxySecret": {
+          "type": "boolean",
+          "description": "Whether to validate the X-RapidAPI-Proxy-Secret header on incoming requests"
+        }
+      },
+      "description": "Security policies for the gateway"
+    }
+  }
+}

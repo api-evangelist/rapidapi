@@ -1,0 +1,295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rapidapi.com/schemas/rapidapi/test.json",
+  "title": "RapidAPI Test",
+  "description": "Schema representing an API test configuration in RapidAPI Testing, including test steps, assertions, schedules, and execution results.",
+  "type": "object",
+  "required": ["name", "steps"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the test"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the test",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of what the test validates"
+    },
+    "apiId": {
+      "type": "string",
+      "description": "The API this test is associated with on the RapidAPI Hub"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["functional", "performance"],
+      "description": "The type of test to execute"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "draft", "archived"],
+      "description": "Current status of the test configuration"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/TestStep"
+      },
+      "minItems": 1,
+      "description": "Ordered list of test steps that execute sequentially"
+    },
+    "schedule": {
+      "$ref": "#/$defs/Schedule",
+      "description": "Optional schedule for automated test execution"
+    },
+    "environment": {
+      "$ref": "#/$defs/Environment",
+      "description": "Environment variables used during test execution"
+    },
+    "lastExecution": {
+      "$ref": "#/$defs/ExecutionResult",
+      "description": "Result of the most recent test execution"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the test was created"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the test was last modified"
+    }
+  },
+  "$defs": {
+    "TestStep": {
+      "type": "object",
+      "required": ["name", "method", "url"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the step"
+        },
+        "name": {
+          "type": "string",
+          "description": "Step name for identification in results"
+        },
+        "method": {
+          "type": "string",
+          "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"],
+          "description": "HTTP method for the API call"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The endpoint URL to call, may include environment variable references"
+        },
+        "headers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "HTTP headers to include in the request"
+        },
+        "body": {
+          "type": "string",
+          "description": "Request body content, supports variable interpolation from previous steps"
+        },
+        "assertions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Assertion"
+          },
+          "description": "Assertions to validate the response"
+        },
+        "variableExtractions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/VariableExtraction"
+          },
+          "description": "Variables to extract from the response for use in subsequent steps"
+        }
+      },
+      "description": "A single step in a test flow that makes an API call and validates the response"
+    },
+    "Assertion": {
+      "type": "object",
+      "required": ["target", "comparison"],
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "The response element to assert on, such as status_code, response_time, or a JSONPath expression"
+        },
+        "comparison": {
+          "type": "string",
+          "enum": ["equals", "not_equals", "contains", "not_contains", "greater_than", "less_than", "exists", "not_exists"],
+          "description": "The comparison operator to apply"
+        },
+        "value": {
+          "type": "string",
+          "description": "The expected value to compare against"
+        }
+      },
+      "description": "An assertion that validates a specific aspect of an API response"
+    },
+    "VariableExtraction": {
+      "type": "object",
+      "required": ["name", "source"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Variable name to store the extracted value as"
+        },
+        "source": {
+          "type": "string",
+          "description": "JSONPath or header expression to extract the value from"
+        }
+      },
+      "description": "Extraction rule for chaining data between test steps"
+    },
+    "Schedule": {
+      "type": "object",
+      "required": ["frequency", "locationIds"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the schedule"
+        },
+        "frequency": {
+          "type": "string",
+          "enum": ["5m", "15m", "30m", "1h", "6h", "12h", "24h"],
+          "description": "How often the test should run"
+        },
+        "locationIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "description": "AWS regions or custom locations to run the test from"
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "The environment to use for scheduled runs"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether the schedule is currently active"
+        }
+      },
+      "description": "Configuration for automated periodic test execution"
+    },
+    "Environment": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the environment"
+        },
+        "name": {
+          "type": "string",
+          "description": "Environment name such as development, staging, or production"
+        },
+        "variables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Key-value pairs of environment variables"
+        }
+      },
+      "description": "A set of variables representing a deployment environment"
+    },
+    "ExecutionResult": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the execution"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["passed", "failed", "running", "error"],
+          "description": "Overall execution result status"
+        },
+        "duration": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total execution time in milliseconds"
+        },
+        "location": {
+          "type": "string",
+          "description": "The monitoring location where the test ran"
+        },
+        "stepResults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/StepResult"
+          },
+          "description": "Per-step execution results"
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the execution started"
+        },
+        "completedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the execution completed"
+        }
+      },
+      "description": "The result of a single test execution"
+    },
+    "StepResult": {
+      "type": "object",
+      "properties": {
+        "stepId": {
+          "type": "string",
+          "description": "The step that was executed"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["passed", "failed", "error", "skipped"],
+          "description": "Step execution result"
+        },
+        "responseTime": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Response time in milliseconds"
+        },
+        "statusCode": {
+          "type": "integer",
+          "description": "HTTP status code returned"
+        },
+        "assertionResults": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "passed": {
+                "type": "boolean",
+                "description": "Whether the assertion passed"
+              },
+              "expected": {
+                "type": "string",
+                "description": "The expected value"
+              },
+              "actual": {
+                "type": "string",
+                "description": "The actual value received"
+              }
+            }
+          },
+          "description": "Results for each assertion in this step"
+        }
+      },
+      "description": "The result of executing a single test step"
+    }
+  }
+}

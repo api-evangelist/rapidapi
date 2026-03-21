@@ -1,0 +1,1245 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI REST Platform API
+  description: >-
+    The RapidAPI REST Platform API allows Enterprise Hub administrators to
+    programmatically manage their API hub configurations through RESTful
+    endpoints. It provides CRUD operations for organizations, categories, tags,
+    collections, transactions, subscriptions, users, APIs, and applications.
+    This API enables automation of tasks normally performed through the
+    Enterprise Hub Admin Panel, making it possible to integrate hub management
+    into CI/CD pipelines and custom workflows.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+externalDocs:
+  description: RapidAPI REST Platform API Documentation
+  url: https://docs.rapidapi.com/docs/platform-api-overview
+servers:
+  - url: https://platform.rapidapi.com/v1
+    description: Production Server
+tags:
+  - name: APIs
+    description: >-
+      Endpoints for creating, reading, updating, and deleting APIs within the
+      Enterprise Hub, including managing API versions and configurations.
+  - name: Organizations
+    description: >-
+      Endpoints for managing organizations within the Enterprise Hub, including
+      listing, creating, and updating organization configurations.
+  - name: Categories
+    description: >-
+      Endpoints for managing API categories used to organize and discover APIs
+      within the Enterprise Hub.
+  - name: Tags
+    description: >-
+      Endpoints for managing custom tags that can be applied to APIs to enable
+      search, filtering, and categorization.
+  - name: Collections
+    description: >-
+      Endpoints for managing API collections, which are curated groups of APIs
+      with similar characteristics or use cases.
+  - name: Users
+    description: >-
+      Endpoints for managing users within the Enterprise Hub, including user
+      roles, permissions, and account configurations.
+  - name: Subscriptions
+    description: >-
+      Endpoints for managing API subscriptions, including viewing and modifying
+      subscription plans and subscriber details.
+  - name: Transactions
+    description: >-
+      Endpoints for viewing and managing API transaction records, including
+      usage data and billing information.
+  - name: Applications
+    description: >-
+      Endpoints for creating, updating, and deleting applications and their
+      associated authorizations within the Enterprise Hub.
+security:
+  - rapidApiKey: []
+paths:
+  /apis:
+    get:
+      operationId: listApis
+      summary: List all APIs
+      description: >-
+        Retrieves a list of all APIs available in the Enterprise Hub. Supports
+        filtering and pagination to narrow down results.
+      tags:
+        - APIs
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of APIs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apis:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Api'
+                  totalCount:
+                    type: integer
+                    description: Total number of APIs available
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '403':
+          description: Forbidden - insufficient permissions
+    post:
+      operationId: createApi
+      summary: Create an API
+      description: >-
+        Creates a new API listing in the Enterprise Hub. Requires providing the
+        API name, description, category, and other configuration details.
+      tags:
+        - APIs
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ApiCreateInput'
+      responses:
+        '201':
+          description: API created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Api'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '403':
+          description: Forbidden - insufficient permissions
+  /apis/{apiId}:
+    get:
+      operationId: getApi
+      summary: Get an API
+      description: >-
+        Retrieves the details of a specific API by its unique identifier,
+        including its configuration, versions, and metadata.
+      tags:
+        - APIs
+      parameters:
+        - $ref: '#/components/parameters/apiId'
+      responses:
+        '200':
+          description: API details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Api'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API not found
+    put:
+      operationId: updateApi
+      summary: Update an API
+      description: >-
+        Updates the configuration and metadata of an existing API in the
+        Enterprise Hub.
+      tags:
+        - APIs
+      parameters:
+        - $ref: '#/components/parameters/apiId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ApiUpdateInput'
+      responses:
+        '200':
+          description: API updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Api'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API not found
+    delete:
+      operationId: deleteApi
+      summary: Delete an API
+      description: >-
+        Deletes an API listing from the Enterprise Hub. This action is
+        irreversible and removes all associated versions and configurations.
+      tags:
+        - APIs
+      parameters:
+        - $ref: '#/components/parameters/apiId'
+      responses:
+        '204':
+          description: API deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API not found
+  /apis/{apiId}/versions:
+    get:
+      operationId: listApiVersions
+      summary: List API versions
+      description: >-
+        Retrieves all versions of a specific API, including version names,
+        statuses, and configuration details.
+      tags:
+        - APIs
+      parameters:
+        - $ref: '#/components/parameters/apiId'
+      responses:
+        '200':
+          description: A list of API versions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  versions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiVersion'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API not found
+  /apis/{apiId}/versions/{versionId}:
+    put:
+      operationId: updateApiVersion
+      summary: Update an API version
+      description: >-
+        Updates the configuration of a specific version of an API, including
+        its endpoints, description, and settings.
+      tags:
+        - APIs
+      parameters:
+        - $ref: '#/components/parameters/apiId'
+        - $ref: '#/components/parameters/versionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVersionUpdateInput'
+      responses:
+        '200':
+          description: API version updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiVersion'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API version not found
+  /organizations:
+    get:
+      operationId: listOrganizations
+      summary: List all organizations
+      description: >-
+        Retrieves a list of all organizations in the Enterprise Hub. Each
+        organization represents a distinct entity that can own and manage APIs.
+      tags:
+        - Organizations
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of organizations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  organizations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Organization'
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /organizations/{organizationId}:
+    get:
+      operationId: getOrganization
+      summary: Get an organization
+      description: >-
+        Retrieves the details of a specific organization by its unique
+        identifier, including its name, settings, and associated users.
+      tags:
+        - Organizations
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+      responses:
+        '200':
+          description: Organization details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Organization not found
+    put:
+      operationId: updateOrganization
+      summary: Update an organization
+      description: >-
+        Updates the configuration and settings of an existing organization in
+        the Enterprise Hub.
+      tags:
+        - Organizations
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationUpdateInput'
+      responses:
+        '200':
+          description: Organization updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Organization not found
+  /categories:
+    get:
+      operationId: listCategories
+      summary: List all categories
+      description: >-
+        Retrieves all API categories configured in the Enterprise Hub.
+        Categories are used to organize and group APIs for discovery.
+      tags:
+        - Categories
+      responses:
+        '200':
+          description: A list of categories
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categories:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createCategory
+      summary: Create a category
+      description: >-
+        Creates a new API category in the Enterprise Hub for organizing APIs.
+      tags:
+        - Categories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryInput'
+      responses:
+        '201':
+          description: Category created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /categories/{categoryId}:
+    put:
+      operationId: updateCategory
+      summary: Update a category
+      description: >-
+        Updates an existing API category in the Enterprise Hub.
+      tags:
+        - Categories
+      parameters:
+        - $ref: '#/components/parameters/categoryId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryInput'
+      responses:
+        '200':
+          description: Category updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Category not found
+    delete:
+      operationId: deleteCategory
+      summary: Delete a category
+      description: >-
+        Deletes an API category from the Enterprise Hub. APIs in this category
+        will need to be reassigned.
+      tags:
+        - Categories
+      parameters:
+        - $ref: '#/components/parameters/categoryId'
+      responses:
+        '204':
+          description: Category deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Category not found
+  /tags:
+    get:
+      operationId: listTags
+      summary: List all tags
+      description: >-
+        Retrieves all custom tags configured in the Enterprise Hub. Tags are
+        used to add metadata to APIs for filtering and search.
+      tags:
+        - Tags
+      responses:
+        '200':
+          description: A list of tags
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tags:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Tag'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createTag
+      summary: Create a tag
+      description: >-
+        Creates a new custom tag in the Enterprise Hub for categorizing APIs.
+      tags:
+        - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagInput'
+      responses:
+        '201':
+          description: Tag created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /tags/{tagId}:
+    delete:
+      operationId: deleteTag
+      summary: Delete a tag
+      description: >-
+        Deletes a custom tag from the Enterprise Hub.
+      tags:
+        - Tags
+      parameters:
+        - $ref: '#/components/parameters/tagId'
+      responses:
+        '204':
+          description: Tag deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Tag not found
+  /collections:
+    get:
+      operationId: listCollections
+      summary: List all collections
+      description: >-
+        Retrieves all API collections in the Enterprise Hub. Collections are
+        curated groups of APIs organized around themes or use cases.
+      tags:
+        - Collections
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of collections
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  collections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Collection'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createCollection
+      summary: Create a collection
+      description: >-
+        Creates a new API collection in the Enterprise Hub for grouping related
+        APIs together.
+      tags:
+        - Collections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionInput'
+      responses:
+        '201':
+          description: Collection created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /collections/{collectionId}:
+    get:
+      operationId: getCollection
+      summary: Get a collection
+      description: >-
+        Retrieves the details of a specific collection by its unique
+        identifier, including the APIs it contains.
+      tags:
+        - Collections
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: Collection details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Collection not found
+    put:
+      operationId: updateCollection
+      summary: Update a collection
+      description: >-
+        Updates an existing API collection in the Enterprise Hub, including its
+        name, description, and associated APIs.
+      tags:
+        - Collections
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionInput'
+      responses:
+        '200':
+          description: Collection updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Collection not found
+    delete:
+      operationId: deleteCollection
+      summary: Delete a collection
+      description: >-
+        Deletes a collection from the Enterprise Hub. The APIs within the
+        collection are not deleted.
+      tags:
+        - Collections
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '204':
+          description: Collection deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Collection not found
+  /users:
+    get:
+      operationId: listUsers
+      summary: List all users
+      description: >-
+        Retrieves a list of all users in the Enterprise Hub, including their
+        roles, email addresses, and account statuses.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  totalCount:
+                    type: integer
+                    description: Total number of users
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /users/{userId}:
+    get:
+      operationId: getUser
+      summary: Get a user
+      description: >-
+        Retrieves the details of a specific user by their unique identifier,
+        including their profile, roles, and subscription information.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/userId'
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: User not found
+  /subscriptions:
+    get:
+      operationId: listSubscriptions
+      summary: List all subscriptions
+      description: >-
+        Retrieves a list of all API subscriptions in the Enterprise Hub,
+        including subscriber details and plan information.
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of subscriptions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  subscriptions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Subscription'
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /transactions:
+    get:
+      operationId: listTransactions
+      summary: List all transactions
+      description: >-
+        Retrieves a list of API transaction records, including usage data,
+        billing information, and timestamps.
+      tags:
+        - Transactions
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of transactions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transactions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Transaction'
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /applications:
+    get:
+      operationId: listApplications
+      summary: List all applications
+      description: >-
+        Retrieves a list of all applications registered in the Enterprise Hub,
+        including their API keys and authorization configurations.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of applications
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  applications:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Application'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createApplication
+      summary: Create an application
+      description: >-
+        Creates a new application in the Enterprise Hub with associated API
+        key and authorization settings.
+      tags:
+        - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationInput'
+      responses:
+        '201':
+          description: Application created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /applications/{applicationId}:
+    put:
+      operationId: updateApplication
+      summary: Update an application
+      description: >-
+        Updates an existing application's configuration and authorization
+        settings in the Enterprise Hub.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationInput'
+      responses:
+        '200':
+          description: Application updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Application not found
+    delete:
+      operationId: deleteApplication
+      summary: Delete an application
+      description: >-
+        Deletes an application and its associated API keys from the Enterprise
+        Hub.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+      responses:
+        '204':
+          description: Application deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Application not found
+components:
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: >-
+        RapidAPI key used for authenticating requests to the Platform API.
+        Obtained from the Enterprise Hub Admin Panel.
+  parameters:
+    apiId:
+      name: apiId
+      in: path
+      required: true
+      description: The unique identifier of the API
+      schema:
+        type: string
+    versionId:
+      name: versionId
+      in: path
+      required: true
+      description: The unique identifier of the API version
+      schema:
+        type: string
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The unique identifier of the organization
+      schema:
+        type: string
+    categoryId:
+      name: categoryId
+      in: path
+      required: true
+      description: The unique identifier of the category
+      schema:
+        type: string
+    tagId:
+      name: tagId
+      in: path
+      required: true
+      description: The unique identifier of the tag
+      schema:
+        type: string
+    collectionId:
+      name: collectionId
+      in: path
+      required: true
+      description: The unique identifier of the collection
+      schema:
+        type: string
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: The unique identifier of the user
+      schema:
+        type: string
+    applicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: The unique identifier of the application
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+  schemas:
+    Api:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the API
+        name:
+          type: string
+          description: Display name of the API
+        description:
+          type: string
+          description: Short description of the API
+        longDescription:
+          type: string
+          description: Detailed description of the API and its use cases
+        category:
+          type: string
+          description: The category the API belongs to
+        websiteUrl:
+          type: string
+          format: uri
+          description: URL to the website providing the API
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the API icon image
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+            - deprecated
+          description: Current status of the API
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the API was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the API was last updated
+    ApiCreateInput:
+      type: object
+      required:
+        - name
+        - description
+        - category
+      properties:
+        name:
+          type: string
+          description: Display name of the API
+        description:
+          type: string
+          description: Short description of the API
+        longDescription:
+          type: string
+          description: Detailed description of the API and its use cases
+        category:
+          type: string
+          description: The category to assign the API to
+        websiteUrl:
+          type: string
+          format: uri
+          description: URL to the website providing the API
+        imageFile:
+          type: string
+          format: binary
+          description: API icon image file in PNG or JPG format, recommended 500x500 px
+    ApiUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated display name of the API
+        description:
+          type: string
+          description: Updated short description of the API
+        longDescription:
+          type: string
+          description: Updated detailed description
+        category:
+          type: string
+          description: Updated category assignment
+        websiteUrl:
+          type: string
+          format: uri
+          description: Updated website URL
+        imageFile:
+          type: string
+          format: binary
+          description: Updated API icon image file
+    ApiVersion:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the API version
+        apiId:
+          type: string
+          description: The API this version belongs to
+        name:
+          type: string
+          description: Version name or label
+        status:
+          type: string
+          enum:
+            - active
+            - deprecated
+            - draft
+          description: Current status of the version
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the version was created
+    ApiVersionUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated version name
+        description:
+          type: string
+          description: Updated version description
+        status:
+          type: string
+          enum:
+            - active
+            - deprecated
+            - draft
+          description: Updated version status
+    Organization:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the organization
+        name:
+          type: string
+          description: Name of the organization
+        description:
+          type: string
+          description: Description of the organization
+        thumbnail:
+          type: string
+          format: uri
+          description: URL to the organization's thumbnail image
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the organization was created
+    OrganizationUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated organization name
+        description:
+          type: string
+          description: Updated organization description
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the category
+        name:
+          type: string
+          description: Display name of the category
+        slugifiedName:
+          type: string
+          description: URL-friendly slug for the category
+    CategoryInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Display name of the category
+    Tag:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the tag
+        name:
+          type: string
+          description: Tag name
+        status:
+          type: string
+          description: Current status of the tag
+    TagInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Tag name
+    Collection:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the collection
+        title:
+          type: string
+          description: Display title of the collection
+        description:
+          type: string
+          description: Description of the collection
+        apis:
+          type: array
+          items:
+            type: string
+          description: List of API identifiers in this collection
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the collection was created
+    CollectionInput:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          description: Display title of the collection
+        description:
+          type: string
+          description: Description of the collection
+        apis:
+          type: array
+          items:
+            type: string
+          description: List of API identifiers to include in the collection
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the user
+        email:
+          type: string
+          format: email
+          description: User's email address
+        name:
+          type: string
+          description: User's display name
+        role:
+          type: string
+          enum:
+            - admin
+            - user
+            - provider
+          description: User's role in the Enterprise Hub
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+            - pending
+          description: Current account status
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the user account was created
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the subscription
+        apiId:
+          type: string
+          description: The API being subscribed to
+        userId:
+          type: string
+          description: The subscribing user
+        plan:
+          type: string
+          description: Name of the subscription plan
+        status:
+          type: string
+          enum:
+            - active
+            - cancelled
+            - expired
+          description: Current subscription status
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the subscription was created
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the transaction
+        apiId:
+          type: string
+          description: The API the transaction is associated with
+        userId:
+          type: string
+          description: The user who made the transaction
+        amount:
+          type: number
+          format: double
+          description: Transaction amount
+        currency:
+          type: string
+          description: Currency code for the transaction amount
+        status:
+          type: string
+          enum:
+            - completed
+            - pending
+            - failed
+          description: Current transaction status
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the transaction occurred
+    Application:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the application
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description
+        apiKey:
+          type: string
+          description: API key associated with this application
+        status:
+          type: string
+          enum:
+            - active
+            - inactive
+          description: Current application status
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the application was created
+    ApplicationInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description

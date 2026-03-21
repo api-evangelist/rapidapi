@@ -1,0 +1,699 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Hub API
+  description: >-
+    The RapidAPI Hub API enables developers to discover, search, test, and
+    connect to thousands of APIs through the world's largest API marketplace.
+    Using a single API key, developers can browse APIs across categories such
+    as weather, social media, e-commerce, and finance, test endpoints directly,
+    view auto-generated code snippets in multiple programming languages, and
+    manage subscriptions and usage analytics from a single dashboard.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+externalDocs:
+  description: RapidAPI Hub Consumer Quick Start Guide
+  url: https://docs.rapidapi.com/docs/consumer-quick-start-guide
+servers:
+  - url: https://rapidapi.com
+    description: Production Server
+tags:
+  - name: Search
+    description: >-
+      Endpoints for searching and discovering APIs by keyword, category,
+      collection, or advanced filters across the RapidAPI marketplace.
+  - name: Categories
+    description: >-
+      Endpoints for browsing API categories available on the marketplace,
+      including Data, Sports, Finance, Travel, and Entertainment.
+  - name: Collections
+    description: >-
+      Endpoints for browsing curated API collections organized around themes
+      such as Top Meme APIs, Top Geocoding APIs, and other groupings.
+  - name: APIs
+    description: >-
+      Endpoints for retrieving detailed information about specific APIs listed
+      on the marketplace, including endpoints, pricing, and documentation.
+  - name: Subscriptions
+    description: >-
+      Endpoints for managing API subscriptions, including subscribing to API
+      plans, viewing active subscriptions, and usage analytics.
+  - name: Snippets
+    description: >-
+      Endpoints for generating code snippets for API calls in multiple
+      programming languages and libraries.
+security:
+  - rapidApiKey: []
+paths:
+  /search/apis:
+    get:
+      operationId: searchApis
+      summary: Search APIs
+      description: >-
+        Searches the RapidAPI marketplace for APIs matching the provided query
+        string. Supports filtering by category, collection, API type, and
+        verification status. Returns paginated results with API summaries.
+      tags:
+        - Search
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: Search query string to match against API names and descriptions
+          schema:
+            type: string
+            minLength: 1
+        - name: category
+          in: query
+          required: false
+          description: Filter results by category slug
+          schema:
+            type: string
+        - name: collection
+          in: query
+          required: false
+          description: Filter results by collection identifier
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: false
+          description: Filter by API type
+          schema:
+            type: string
+            enum:
+              - rest
+              - graphql
+              - kafka
+        - name: verified
+          in: query
+          required: false
+          description: Filter to only show verified APIs
+          schema:
+            type: boolean
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: Search results with matching APIs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiSummary'
+                  totalCount:
+                    type: integer
+                    description: Total number of matching APIs
+        '400':
+          description: Bad request - invalid search parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /categories:
+    get:
+      operationId: listHubCategories
+      summary: List marketplace categories
+      description: >-
+        Retrieves all API categories available on the RapidAPI marketplace,
+        including category names, slugs, and the number of APIs in each.
+      tags:
+        - Categories
+      responses:
+        '200':
+          description: A list of marketplace categories
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categories:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HubCategory'
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /categories/{categorySlug}/apis:
+    get:
+      operationId: listApisByCategory
+      summary: List APIs in a category
+      description: >-
+        Retrieves all APIs within a specific category on the RapidAPI
+        marketplace, sorted by popularity or relevance.
+      tags:
+        - Categories
+      parameters:
+        - name: categorySlug
+          in: path
+          required: true
+          description: The URL-friendly slug of the category
+          schema:
+            type: string
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: APIs in the specified category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apis:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiSummary'
+                  totalCount:
+                    type: integer
+                    description: Total number of APIs in this category
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Category not found
+  /collections:
+    get:
+      operationId: listHubCollections
+      summary: List curated collections
+      description: >-
+        Retrieves all curated API collections on the RapidAPI marketplace.
+        Collections group APIs with similar characteristics or themes.
+      tags:
+        - Collections
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of curated collections
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  collections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HubCollection'
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /collections/{collectionId}/apis:
+    get:
+      operationId: listApisInCollection
+      summary: List APIs in a collection
+      description: >-
+        Retrieves all APIs within a specific curated collection on the RapidAPI
+        marketplace.
+      tags:
+        - Collections
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          description: The unique identifier of the collection
+          schema:
+            type: string
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: APIs in the specified collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apis:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiSummary'
+                  totalCount:
+                    type: integer
+                    description: Total number of APIs in this collection
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Collection not found
+  /apis/{apiSlug}:
+    get:
+      operationId: getApiDetails
+      summary: Get API details
+      description: >-
+        Retrieves detailed information about a specific API on the marketplace,
+        including its description, endpoints, pricing plans, ratings, and
+        provider information.
+      tags:
+        - APIs
+      parameters:
+        - name: apiSlug
+          in: path
+          required: true
+          description: The URL-friendly slug or identifier of the API
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detailed API information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDetails'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API not found
+  /apis/{apiSlug}/endpoints:
+    get:
+      operationId: listApiEndpoints
+      summary: List API endpoints
+      description: >-
+        Retrieves the list of available endpoints for a specific API, including
+        HTTP methods, paths, parameters, and response schemas.
+      tags:
+        - APIs
+      parameters:
+        - name: apiSlug
+          in: path
+          required: true
+          description: The URL-friendly slug or identifier of the API
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of API endpoints
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  endpoints:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiEndpoint'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API not found
+  /subscriptions:
+    get:
+      operationId: listMySubscriptions
+      summary: List my subscriptions
+      description: >-
+        Retrieves the authenticated user's active API subscriptions, including
+        plan details and usage statistics.
+      tags:
+        - Subscriptions
+      responses:
+        '200':
+          description: List of active subscriptions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  subscriptions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HubSubscription'
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /apis/{apiSlug}/subscribe:
+    post:
+      operationId: subscribeToApi
+      summary: Subscribe to an API
+      description: >-
+        Subscribes the authenticated user to a specific API plan on the
+        marketplace. After subscribing, the user can make API calls using
+        their RapidAPI key.
+      tags:
+        - Subscriptions
+      parameters:
+        - name: apiSlug
+          in: path
+          required: true
+          description: The URL-friendly slug or identifier of the API
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - planId
+              properties:
+                planId:
+                  type: string
+                  description: The identifier of the pricing plan to subscribe to
+      responses:
+        '201':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HubSubscription'
+        '400':
+          description: Bad request - invalid plan or already subscribed
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API or plan not found
+  /apis/{apiSlug}/snippets:
+    get:
+      operationId: getCodeSnippets
+      summary: Get code snippets
+      description: >-
+        Generates code snippets for calling a specific API endpoint in various
+        programming languages and libraries, including JavaScript, Python,
+        PHP, Ruby, Java, and more.
+      tags:
+        - Snippets
+      parameters:
+        - name: apiSlug
+          in: path
+          required: true
+          description: The URL-friendly slug or identifier of the API
+          schema:
+            type: string
+        - name: endpointId
+          in: query
+          required: true
+          description: The identifier of the specific endpoint
+          schema:
+            type: string
+        - name: language
+          in: query
+          required: false
+          description: The programming language for the code snippet
+          schema:
+            type: string
+            enum:
+              - javascript
+              - python
+              - php
+              - ruby
+              - java
+              - csharp
+              - go
+              - swift
+              - kotlin
+              - shell
+      responses:
+        '200':
+          description: Code snippets for the requested endpoint
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  snippets:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CodeSnippet'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API or endpoint not found
+components:
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: >-
+        RapidAPI key used for authenticating all requests to the Hub API.
+        Available from the developer dashboard after registration.
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+  schemas:
+    ApiSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the API
+        name:
+          type: string
+          description: Display name of the API
+        slug:
+          type: string
+          description: URL-friendly slug for the API
+        description:
+          type: string
+          description: Short description of the API
+        category:
+          type: string
+          description: Category the API belongs to
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the API icon or logo
+        averageRating:
+          type: number
+          format: float
+          description: Average user rating for the API
+        popularity:
+          type: number
+          format: float
+          description: Popularity score based on usage and subscriptions
+        isVerified:
+          type: boolean
+          description: Whether the API provider is verified
+        provider:
+          type: string
+          description: Name of the API provider
+    ApiDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the API
+        name:
+          type: string
+          description: Display name of the API
+        slug:
+          type: string
+          description: URL-friendly slug for the API
+        description:
+          type: string
+          description: Short description of the API
+        longDescription:
+          type: string
+          description: Detailed description with use cases and examples
+        category:
+          type: string
+          description: Category the API belongs to
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the API icon or logo
+        websiteUrl:
+          type: string
+          format: uri
+          description: URL to the API provider's website
+        termsOfServiceUrl:
+          type: string
+          format: uri
+          description: URL to the API's terms of service
+        averageRating:
+          type: number
+          format: float
+          description: Average user rating
+        totalRatings:
+          type: integer
+          description: Total number of ratings
+        isVerified:
+          type: boolean
+          description: Whether the API provider is verified
+        provider:
+          type: string
+          description: Name of the API provider
+        plans:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingPlan'
+          description: Available subscription plans
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags associated with the API
+    ApiEndpoint:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the endpoint
+        name:
+          type: string
+          description: Display name of the endpoint
+        method:
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+          description: HTTP method for the endpoint
+        path:
+          type: string
+          description: The URL path for the endpoint
+        description:
+          type: string
+          description: Description of what the endpoint does
+        group:
+          type: string
+          description: The endpoint group this endpoint belongs to
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/EndpointParameter'
+          description: Parameters accepted by this endpoint
+    EndpointParameter:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name
+        type:
+          type: string
+          description: Data type of the parameter
+        required:
+          type: boolean
+          description: Whether the parameter is required
+        description:
+          type: string
+          description: Description of the parameter
+        defaultValue:
+          type: string
+          description: Default value for the parameter if not provided
+        location:
+          type: string
+          enum:
+            - query
+            - path
+            - header
+            - body
+          description: Where the parameter is sent in the request
+    PricingPlan:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the plan
+        name:
+          type: string
+          description: Plan name such as Basic, Pro, or Ultra
+        price:
+          type: number
+          format: double
+          description: Monthly price in USD
+        rateLimit:
+          type: integer
+          description: Maximum number of requests allowed per month
+        features:
+          type: array
+          items:
+            type: string
+          description: List of features included in this plan
+    HubCategory:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the category
+        name:
+          type: string
+          description: Category display name
+        slug:
+          type: string
+          description: URL-friendly category slug
+        apiCount:
+          type: integer
+          description: Number of APIs in this category
+    HubCollection:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the collection
+        title:
+          type: string
+          description: Collection title
+        description:
+          type: string
+          description: Description of the collection
+        apiCount:
+          type: integer
+          description: Number of APIs in this collection
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the collection image
+    HubSubscription:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique subscription identifier
+        apiId:
+          type: string
+          description: The subscribed API identifier
+        apiName:
+          type: string
+          description: Name of the subscribed API
+        planName:
+          type: string
+          description: Name of the subscription plan
+        status:
+          type: string
+          enum:
+            - active
+            - cancelled
+            - expired
+          description: Current subscription status
+        usageCount:
+          type: integer
+          description: Number of API calls made in the current period
+        usageLimit:
+          type: integer
+          description: Maximum API calls allowed in the current period
+        subscribedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the subscription was created
+    CodeSnippet:
+      type: object
+      properties:
+        language:
+          type: string
+          description: Programming language name
+        library:
+          type: string
+          description: HTTP library or framework used
+        code:
+          type: string
+          description: The generated code snippet

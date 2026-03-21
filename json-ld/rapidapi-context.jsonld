@@ -1,0 +1,196 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "rapidapi": "https://rapidapi.com/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "ApiListing": {
+      "@id": "rapidapi:ApiListing",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "slug": "rapidapi:slug",
+        "longDescription": "rapidapi:longDescription",
+        "category": "schema:category",
+        "tags": "schema:keywords",
+        "websiteUrl": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "imageUrl": {
+          "@id": "schema:image",
+          "@type": "@id"
+        },
+        "status": "rapidapi:status",
+        "isVerified": "rapidapi:isVerified",
+        "provider": "schema:provider",
+        "averageRating": "schema:aggregateRating",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "ApiEndpoint": {
+      "@id": "rapidapi:ApiEndpoint",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "method": "rapidapi:httpMethod",
+        "path": "rapidapi:urlPath",
+        "group": "rapidapi:endpointGroup",
+        "parameters": {
+          "@id": "rapidapi:parameters",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "PricingPlan": {
+      "@id": "rapidapi:PricingPlan",
+      "@context": {
+        "name": "schema:name",
+        "price": "schema:price",
+        "rateLimit": "rapidapi:rateLimit",
+        "features": {
+          "@id": "rapidapi:features",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Organization": {
+      "@id": "schema:Organization",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "thumbnail": {
+          "@id": "schema:thumbnailUrl",
+          "@type": "@id"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "User": {
+      "@id": "schema:Person",
+      "@context": {
+        "name": "schema:name",
+        "email": "schema:email",
+        "role": "rapidapi:role",
+        "status": "rapidapi:accountStatus",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Subscription": {
+      "@id": "rapidapi:Subscription",
+      "@context": {
+        "apiId": "rapidapi:subscribedApi",
+        "planName": "rapidapi:planName",
+        "status": "rapidapi:subscriptionStatus",
+        "usageCount": "rapidapi:usageCount",
+        "usageLimit": "rapidapi:usageLimit",
+        "subscribedAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Collection": {
+      "@id": "rapidapi:Collection",
+      "@context": {
+        "title": "schema:name",
+        "description": "schema:description",
+        "apis": {
+          "@id": "rapidapi:containsApi",
+          "@container": "@set"
+        },
+        "imageUrl": {
+          "@id": "schema:image",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Category": {
+      "@id": "rapidapi:Category",
+      "@context": {
+        "name": "schema:name",
+        "slugifiedName": "rapidapi:slug",
+        "apiCount": "rapidapi:apiCount"
+      }
+    },
+
+    "Gateway": {
+      "@id": "rapidapi:Gateway",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "deploymentModel": "rapidapi:deploymentModel",
+        "status": "rapidapi:gatewayStatus",
+        "baseUrl": {
+          "@id": "rapidapi:baseUrl",
+          "@type": "@id"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Test": {
+      "@id": "rapidapi:Test",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "type": "rapidapi:testType",
+        "status": "rapidapi:testStatus",
+        "steps": {
+          "@id": "rapidapi:testSteps",
+          "@container": "@list"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Application": {
+      "@id": "schema:SoftwareApplication",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "status": "rapidapi:applicationStatus",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}

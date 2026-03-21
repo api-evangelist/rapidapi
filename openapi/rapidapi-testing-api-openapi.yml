@@ -1,0 +1,1111 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Testing API
+  description: >-
+    RapidAPI Testing provides a comprehensive API testing and monitoring
+    solution that supports REST, SOAP, and GraphQL APIs. It offers an
+    intuitive interface for creating and running functional tests, performance
+    tests, and automated monitoring checks. The testing platform integrates
+    with CI/CD pipelines, enabling teams to verify API behavior as part of
+    their development workflow. Tests can be scheduled to run periodically
+    across 9 AWS regions to monitor API health and detect regressions.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+externalDocs:
+  description: RapidAPI Testing Documentation
+  url: https://docs.rapidapi.com/docs/testing-getting-started
+servers:
+  - url: https://testing.rapidapi.com/v1
+    description: Production Server
+tags:
+  - name: Tests
+    description: >-
+      Endpoints for creating, reading, updating, deleting, and executing API
+      tests, including functional and performance test flows.
+  - name: Schedules
+    description: >-
+      Endpoints for managing test schedules, including frequency, environment,
+      and location settings for automated monitoring.
+  - name: Executions
+    description: >-
+      Endpoints for viewing test execution results, including pass/fail
+      statuses, response times, and detailed assertion outcomes.
+  - name: Environments
+    description: >-
+      Endpoints for managing test environments with variable sets that can be
+      used across tests for different deployment stages.
+  - name: Alerts
+    description: >-
+      Endpoints for configuring alert notifications when tests fail, including
+      integrations with PagerDuty, Slack, and Twilio.
+  - name: Locations
+    description: >-
+      Endpoints for listing available monitoring locations across global AWS
+      regions where tests can be executed.
+security:
+  - rapidApiKey: []
+paths:
+  /tests:
+    get:
+      operationId: listTests
+      summary: List all tests
+      description: >-
+        Retrieves a list of all API tests in the account, including test names,
+        types, statuses, and associated APIs.
+      tags:
+        - Tests
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - name: apiId
+          in: query
+          required: false
+          description: Filter tests by associated API identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of tests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tests:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Test'
+                  totalCount:
+                    type: integer
+                    description: Total number of tests
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createTest
+      summary: Create a test
+      description: >-
+        Creates a new API test with defined steps, assertions, and
+        configuration. Tests can call multiple API endpoints and chain data
+        between them to mimic real application behavior.
+      tags:
+        - Tests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestCreateInput'
+      responses:
+        '201':
+          description: Test created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Test'
+        '400':
+          description: Bad request - invalid test configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /tests/{testId}:
+    get:
+      operationId: getTest
+      summary: Get a test
+      description: >-
+        Retrieves the full details of a specific test, including all steps,
+        assertions, and configuration settings.
+      tags:
+        - Tests
+      parameters:
+        - $ref: '#/components/parameters/testId'
+      responses:
+        '200':
+          description: Test details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Test'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Test not found
+    put:
+      operationId: updateTest
+      summary: Update a test
+      description: >-
+        Updates the configuration, steps, and assertions of an existing API
+        test.
+      tags:
+        - Tests
+      parameters:
+        - $ref: '#/components/parameters/testId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestUpdateInput'
+      responses:
+        '200':
+          description: Test updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Test'
+        '400':
+          description: Bad request - invalid test configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Test not found
+    delete:
+      operationId: deleteTest
+      summary: Delete a test
+      description: >-
+        Deletes an API test and all associated execution history and schedules.
+      tags:
+        - Tests
+      parameters:
+        - $ref: '#/components/parameters/testId'
+      responses:
+        '204':
+          description: Test deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Test not found
+  /tests/{testId}/run:
+    post:
+      operationId: runTest
+      summary: Run a test
+      description: >-
+        Triggers an immediate execution of a specific test. The test runs
+        against the configured environment and location, and results are
+        available through the executions endpoint.
+      tags:
+        - Tests
+      parameters:
+        - $ref: '#/components/parameters/testId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                environmentId:
+                  type: string
+                  description: Override the default environment for this run
+                locationId:
+                  type: string
+                  description: Override the default location for this run
+      responses:
+        '202':
+          description: Test execution started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Execution'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Test not found
+  /schedules:
+    get:
+      operationId: listSchedules
+      summary: List all schedules
+      description: >-
+        Retrieves all configured test schedules, including their frequency,
+        associated test, environment, and monitoring locations.
+      tags:
+        - Schedules
+      responses:
+        '200':
+          description: A list of schedules
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schedules:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Schedule'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createSchedule
+      summary: Create a schedule
+      description: >-
+        Creates a new test schedule that runs a test at a specified frequency
+        from one or more monitoring locations. Frequency options include
+        intervals ranging from every 5 minutes to every 24 hours.
+      tags:
+        - Schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleInput'
+      responses:
+        '201':
+          description: Schedule created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '400':
+          description: Bad request - invalid schedule configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /schedules/{scheduleId}:
+    put:
+      operationId: updateSchedule
+      summary: Update a schedule
+      description: >-
+        Updates the frequency, environment, or location settings of an
+        existing test schedule.
+      tags:
+        - Schedules
+      parameters:
+        - $ref: '#/components/parameters/scheduleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleInput'
+      responses:
+        '200':
+          description: Schedule updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '400':
+          description: Bad request - invalid schedule configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Schedule not found
+    delete:
+      operationId: deleteSchedule
+      summary: Delete a schedule
+      description: >-
+        Deletes a test schedule. The associated test is not deleted.
+      tags:
+        - Schedules
+      parameters:
+        - $ref: '#/components/parameters/scheduleId'
+      responses:
+        '204':
+          description: Schedule deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Schedule not found
+  /executions:
+    get:
+      operationId: listExecutions
+      summary: List test executions
+      description: >-
+        Retrieves a list of test execution results, optionally filtered by
+        test identifier, status, or date range.
+      tags:
+        - Executions
+      parameters:
+        - name: testId
+          in: query
+          required: false
+          description: Filter executions by test identifier
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          description: Filter executions by result status
+          schema:
+            type: string
+            enum:
+              - passed
+              - failed
+              - running
+              - error
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of test executions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  executions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Execution'
+                  totalCount:
+                    type: integer
+                    description: Total number of executions
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /executions/{executionId}:
+    get:
+      operationId: getExecution
+      summary: Get execution details
+      description: >-
+        Retrieves the detailed results of a specific test execution, including
+        per-step results, response times, assertion outcomes, and any errors.
+      tags:
+        - Executions
+      parameters:
+        - $ref: '#/components/parameters/executionId'
+      responses:
+        '200':
+          description: Execution details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionDetail'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Execution not found
+  /environments:
+    get:
+      operationId: listEnvironments
+      summary: List environments
+      description: >-
+        Retrieves all test environments with their variable configurations.
+        Environments allow defining different variable sets for development,
+        staging, and production.
+      tags:
+        - Environments
+      responses:
+        '200':
+          description: A list of environments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  environments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Environment'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createEnvironment
+      summary: Create an environment
+      description: >-
+        Creates a new test environment with a set of variables that can be
+        used across test configurations.
+      tags:
+        - Environments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentInput'
+      responses:
+        '201':
+          description: Environment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '400':
+          description: Bad request - invalid environment configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /environments/{environmentId}:
+    put:
+      operationId: updateEnvironment
+      summary: Update an environment
+      description: >-
+        Updates an existing test environment's name and variable set.
+      tags:
+        - Environments
+      parameters:
+        - $ref: '#/components/parameters/environmentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentInput'
+      responses:
+        '200':
+          description: Environment updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '400':
+          description: Bad request - invalid environment configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Environment not found
+    delete:
+      operationId: deleteEnvironment
+      summary: Delete an environment
+      description: >-
+        Deletes a test environment. Tests using this environment will need to
+        be reconfigured.
+      tags:
+        - Environments
+      parameters:
+        - $ref: '#/components/parameters/environmentId'
+      responses:
+        '204':
+          description: Environment deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Environment not found
+  /alerts:
+    get:
+      operationId: listAlerts
+      summary: List alert configurations
+      description: >-
+        Retrieves all configured alert notifications for test failures,
+        including integration settings for PagerDuty, Slack, and Twilio.
+      tags:
+        - Alerts
+      responses:
+        '200':
+          description: A list of alert configurations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Alert'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createAlert
+      summary: Create an alert
+      description: >-
+        Creates a new alert configuration that sends notifications when a
+        specified test fails. Supports integration with PagerDuty, Slack,
+        Twilio, and email.
+      tags:
+        - Alerts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertInput'
+      responses:
+        '201':
+          description: Alert created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert'
+        '400':
+          description: Bad request - invalid alert configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /alerts/{alertId}:
+    delete:
+      operationId: deleteAlert
+      summary: Delete an alert
+      description: >-
+        Deletes an alert configuration. Notifications will no longer be sent
+        for the associated test failures.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/alertId'
+      responses:
+        '204':
+          description: Alert deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Alert not found
+  /locations:
+    get:
+      operationId: listLocations
+      summary: List monitoring locations
+      description: >-
+        Retrieves the list of available global monitoring locations where
+        tests can be executed. Includes AWS regions and any custom locations.
+      tags:
+        - Locations
+      responses:
+        '200':
+          description: A list of available monitoring locations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Location'
+        '401':
+          description: Unauthorized - invalid or missing API key
+components:
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: >-
+        RapidAPI key used for authenticating requests to the Testing API.
+  parameters:
+    testId:
+      name: testId
+      in: path
+      required: true
+      description: The unique identifier of the test
+      schema:
+        type: string
+    scheduleId:
+      name: scheduleId
+      in: path
+      required: true
+      description: The unique identifier of the schedule
+      schema:
+        type: string
+    executionId:
+      name: executionId
+      in: path
+      required: true
+      description: The unique identifier of the test execution
+      schema:
+        type: string
+    environmentId:
+      name: environmentId
+      in: path
+      required: true
+      description: The unique identifier of the environment
+      schema:
+        type: string
+    alertId:
+      name: alertId
+      in: path
+      required: true
+      description: The unique identifier of the alert
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+  schemas:
+    Test:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the test
+        name:
+          type: string
+          description: Display name of the test
+        description:
+          type: string
+          description: Description of what the test validates
+        apiId:
+          type: string
+          description: The API this test is associated with
+        type:
+          type: string
+          enum:
+            - functional
+            - performance
+          description: The type of test
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestStep'
+          description: Ordered list of test steps
+        status:
+          type: string
+          enum:
+            - active
+            - draft
+            - archived
+          description: Current status of the test
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the test was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the test was last updated
+    TestCreateInput:
+      type: object
+      required:
+        - name
+        - steps
+      properties:
+        name:
+          type: string
+          description: Display name of the test
+        description:
+          type: string
+          description: Description of what the test validates
+        apiId:
+          type: string
+          description: The API to associate this test with
+        type:
+          type: string
+          enum:
+            - functional
+            - performance
+          description: The type of test
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestStepInput'
+          description: Ordered list of test steps
+    TestUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated test name
+        description:
+          type: string
+          description: Updated test description
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestStepInput'
+          description: Updated list of test steps
+    TestStep:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the step
+        name:
+          type: string
+          description: Step name
+        method:
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+          description: HTTP method for the API call
+        url:
+          type: string
+          format: uri
+          description: The endpoint URL to call
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: HTTP headers to include in the request
+        body:
+          type: string
+          description: Request body content
+        assertions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Assertion'
+          description: Assertions to validate the response
+    TestStepInput:
+      type: object
+      required:
+        - name
+        - method
+        - url
+      properties:
+        name:
+          type: string
+          description: Step name
+        method:
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+          description: HTTP method for the API call
+        url:
+          type: string
+          format: uri
+          description: The endpoint URL to call
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: HTTP headers to include
+        body:
+          type: string
+          description: Request body content
+        assertions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssertionInput'
+          description: Assertions to validate the response
+    Assertion:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the assertion
+        target:
+          type: string
+          description: >-
+            The response element to assert on, such as status_code,
+            response_time, or a JSONPath expression
+        comparison:
+          type: string
+          enum:
+            - equals
+            - not_equals
+            - contains
+            - not_contains
+            - greater_than
+            - less_than
+            - exists
+            - not_exists
+          description: The comparison operator
+        value:
+          type: string
+          description: The expected value to compare against
+    AssertionInput:
+      type: object
+      required:
+        - target
+        - comparison
+      properties:
+        target:
+          type: string
+          description: The response element to assert on
+        comparison:
+          type: string
+          enum:
+            - equals
+            - not_equals
+            - contains
+            - not_contains
+            - greater_than
+            - less_than
+            - exists
+            - not_exists
+          description: The comparison operator
+        value:
+          type: string
+          description: The expected value to compare against
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the schedule
+        testId:
+          type: string
+          description: The test to run on this schedule
+        frequency:
+          type: string
+          enum:
+            - 5m
+            - 15m
+            - 30m
+            - 1h
+            - 6h
+            - 12h
+            - 24h
+          description: How often the test should run
+        environmentId:
+          type: string
+          description: The environment to use for scheduled runs
+        locationIds:
+          type: array
+          items:
+            type: string
+          description: Monitoring locations to run the test from
+        enabled:
+          type: boolean
+          description: Whether the schedule is currently active
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the schedule was created
+    ScheduleInput:
+      type: object
+      required:
+        - testId
+        - frequency
+        - locationIds
+      properties:
+        testId:
+          type: string
+          description: The test to run on this schedule
+        frequency:
+          type: string
+          enum:
+            - 5m
+            - 15m
+            - 30m
+            - 1h
+            - 6h
+            - 12h
+            - 24h
+          description: How often the test should run
+        environmentId:
+          type: string
+          description: The environment to use for scheduled runs
+        locationIds:
+          type: array
+          items:
+            type: string
+          description: Monitoring locations to run the test from
+        enabled:
+          type: boolean
+          default: true
+          description: Whether the schedule should be active
+    Execution:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the execution
+        testId:
+          type: string
+          description: The test that was executed
+        status:
+          type: string
+          enum:
+            - passed
+            - failed
+            - running
+            - error
+          description: Overall execution result status
+        duration:
+          type: integer
+          description: Total execution time in milliseconds
+        location:
+          type: string
+          description: The monitoring location where the test ran
+        startedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the execution started
+        completedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the execution completed
+    ExecutionDetail:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the execution
+        testId:
+          type: string
+          description: The test that was executed
+        testName:
+          type: string
+          description: Name of the test
+        status:
+          type: string
+          enum:
+            - passed
+            - failed
+            - running
+            - error
+          description: Overall execution result status
+        duration:
+          type: integer
+          description: Total execution time in milliseconds
+        location:
+          type: string
+          description: The monitoring location where the test ran
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/StepResult'
+          description: Per-step execution results
+        startedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the execution started
+        completedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the execution completed
+    StepResult:
+      type: object
+      properties:
+        stepId:
+          type: string
+          description: The step that was executed
+        stepName:
+          type: string
+          description: Name of the step
+        status:
+          type: string
+          enum:
+            - passed
+            - failed
+            - error
+            - skipped
+          description: Step execution result
+        responseTime:
+          type: integer
+          description: Response time in milliseconds
+        statusCode:
+          type: integer
+          description: HTTP status code returned
+        assertions:
+          type: array
+          items:
+            type: object
+            properties:
+              target:
+                type: string
+                description: The assertion target
+              passed:
+                type: boolean
+                description: Whether the assertion passed
+              expected:
+                type: string
+                description: The expected value
+              actual:
+                type: string
+                description: The actual value received
+          description: Per-assertion results
+    Environment:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the environment
+        name:
+          type: string
+          description: Environment name
+        variables:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value pairs of environment variables
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the environment was created
+    EnvironmentInput:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Environment name
+        variables:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value pairs of environment variables
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the alert
+        testId:
+          type: string
+          description: The test to monitor for failures
+        channel:
+          type: string
+          enum:
+            - email
+            - slack
+            - pagerduty
+            - twilio
+          description: Notification channel
+        configuration:
+          type: object
+          additionalProperties: true
+          description: Channel-specific configuration such as webhook URLs or email addresses
+        enabled:
+          type: boolean
+          description: Whether the alert is currently active
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the alert was created
+    AlertInput:
+      type: object
+      required:
+        - testId
+        - channel
+        - configuration
+      properties:
+        testId:
+          type: string
+          description: The test to monitor for failures
+        channel:
+          type: string
+          enum:
+            - email
+            - slack
+            - pagerduty
+            - twilio
+          description: Notification channel
+        configuration:
+          type: object
+          additionalProperties: true
+          description: Channel-specific configuration
+        enabled:
+          type: boolean
+          default: true
+          description: Whether the alert should be active
+    Location:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the location
+        name:
+          type: string
+          description: Location display name
+        region:
+          type: string
+          description: AWS region identifier
+        provider:
+          type: string
+          enum:
+            - aws
+            - azure
+            - custom
+          description: Cloud provider hosting this location

@@ -1,0 +1,269 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rapidapi.com/schemas/rapidapi/api-listing.json",
+  "title": "RapidAPI API Listing",
+  "description": "Schema representing an API listing on the RapidAPI platform, including metadata, versioning, endpoint definitions, and pricing plans.",
+  "type": "object",
+  "required": ["name", "description", "category"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the API listing on the platform"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the API as shown on the marketplace",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug used in the API's marketplace URL",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of the API displayed on the endpoints tab",
+      "maxLength": 500
+    },
+    "longDescription": {
+      "type": "string",
+      "description": "Detailed description with use cases and documentation, displayed on the about tab"
+    },
+    "category": {
+      "type": "string",
+      "description": "The category the API is listed under for organization and discovery"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Custom tags applied to the API for filtering and search"
+    },
+    "websiteUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the website providing the API, shown on the about tab"
+    },
+    "imageUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the API icon image, recommended 500x500 px in PNG or JPG format"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "deprecated"],
+      "description": "Current publication status of the API listing"
+    },
+    "isVerified": {
+      "type": "boolean",
+      "description": "Whether the API provider has been verified by RapidAPI"
+    },
+    "provider": {
+      "$ref": "#/$defs/Provider",
+      "description": "Information about the organization or user providing the API"
+    },
+    "versions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ApiVersion"
+      },
+      "description": "Available versions of the API"
+    },
+    "endpoints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ApiEndpoint"
+      },
+      "description": "Endpoint definitions for the current active version"
+    },
+    "plans": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/PricingPlan"
+      },
+      "description": "Subscription pricing plans available for this API"
+    },
+    "averageRating": {
+      "type": "number",
+      "format": "float",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average user rating on a scale of 0 to 5"
+    },
+    "totalRatings": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of user ratings"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the API listing was first created"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the API listing was last modified"
+    }
+  },
+  "$defs": {
+    "Provider": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the API provider"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the API provider"
+        },
+        "organizationId": {
+          "type": "string",
+          "description": "Organization the provider belongs to, if applicable"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "description": "Whether the provider has been verified"
+        }
+      },
+      "description": "Information about an API provider on the platform"
+    },
+    "ApiVersion": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the version"
+        },
+        "name": {
+          "type": "string",
+          "description": "Version name or label"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "deprecated", "draft"],
+          "description": "Current status of the version"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the version was created"
+        }
+      },
+      "description": "A version of an API listing"
+    },
+    "ApiEndpoint": {
+      "type": "object",
+      "required": ["name", "method", "path"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the endpoint"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the endpoint"
+        },
+        "method": {
+          "type": "string",
+          "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"],
+          "description": "HTTP method for the endpoint"
+        },
+        "path": {
+          "type": "string",
+          "description": "URL path for the endpoint"
+        },
+        "group": {
+          "type": "string",
+          "description": "Endpoint group for organizational purposes"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of what the endpoint does"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EndpointParameter"
+          },
+          "description": "Parameters accepted by this endpoint"
+        }
+      },
+      "description": "An individual endpoint within an API"
+    },
+    "EndpointParameter": {
+      "type": "object",
+      "required": ["name", "location"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Parameter name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Data type of the parameter"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether the parameter is required"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the parameter"
+        },
+        "defaultValue": {
+          "type": "string",
+          "description": "Default value if not provided"
+        },
+        "location": {
+          "type": "string",
+          "enum": ["query", "path", "header", "body"],
+          "description": "Where the parameter is sent in the request"
+        }
+      },
+      "description": "A parameter accepted by an API endpoint"
+    },
+    "PricingPlan": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the plan"
+        },
+        "name": {
+          "type": "string",
+          "description": "Plan name such as Basic, Pro, or Ultra"
+        },
+        "price": {
+          "type": "number",
+          "format": "double",
+          "minimum": 0,
+          "description": "Monthly price in USD, 0 for free tier"
+        },
+        "rateLimit": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum number of requests allowed per month"
+        },
+        "quotaType": {
+          "type": "string",
+          "enum": ["hard", "soft"],
+          "description": "Whether exceeding the limit blocks requests or incurs overage charges"
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Features included in this plan"
+        }
+      },
+      "description": "A subscription pricing plan for an API"
+    }
+  }
+}
