@@ -20,10 +20,6 @@ servers:
   - url: https://rapidapi.com
     description: Production Server
 tags:
-  - name: Search
-    description: >-
-      Endpoints for searching and discovering APIs by keyword, category,
-      collection, or advanced filters across the RapidAPI marketplace.
   - name: Categories
     description: >-
       Endpoints for browsing API categories available on the marketplace,
@@ -32,18 +28,18 @@ tags:
     description: >-
       Endpoints for browsing curated API collections organized around themes
       such as Top Meme APIs, Top Geocoding APIs, and other groupings.
-  - name: APIs
+  - name: Search
     description: >-
-      Endpoints for retrieving detailed information about specific APIs listed
-      on the marketplace, including endpoints, pricing, and documentation.
-  - name: Subscriptions
-    description: >-
-      Endpoints for managing API subscriptions, including subscribing to API
-      plans, viewing active subscriptions, and usage analytics.
+      Endpoints for searching and discovering APIs by keyword, category,
+      collection, or advanced filters across the RapidAPI marketplace.
   - name: Snippets
     description: >-
       Endpoints for generating code snippets for API calls in multiple
       programming languages and libraries.
+  - name: Subscriptions
+    description: >-
+      Endpoints for managing API subscriptions, including subscribing to API
+      plans, viewing active subscriptions, and usage analytics.
 security:
   - rapidApiKey: []
 paths:
@@ -245,8 +241,7 @@ paths:
         Retrieves detailed information about a specific API on the marketplace,
         including its description, endpoints, pricing plans, ratings, and
         provider information.
-      tags:
-        - APIs
+      tags: []
       parameters:
         - name: apiSlug
           in: path
@@ -272,8 +267,7 @@ paths:
       description: >-
         Retrieves the list of available endpoints for a specific API, including
         HTTP methods, paths, parameters, and response schemas.
-      tags:
-        - APIs
+      tags: []
       parameters:
         - name: apiSlug
           in: path

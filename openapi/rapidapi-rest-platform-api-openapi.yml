@@ -21,30 +21,22 @@ servers:
   - url: https://platform.rapidapi.com/v1
     description: Production Server
 tags:
-  - name: APIs
+  - name: Applications
     description: >-
-      Endpoints for creating, reading, updating, and deleting APIs within the
-      Enterprise Hub, including managing API versions and configurations.
-  - name: Organizations
-    description: >-
-      Endpoints for managing organizations within the Enterprise Hub, including
-      listing, creating, and updating organization configurations.
+      Endpoints for creating, updating, and deleting applications and their
+      associated authorizations within the Enterprise Hub.
   - name: Categories
     description: >-
       Endpoints for managing API categories used to organize and discover APIs
       within the Enterprise Hub.
-  - name: Tags
-    description: >-
-      Endpoints for managing custom tags that can be applied to APIs to enable
-      search, filtering, and categorization.
   - name: Collections
     description: >-
       Endpoints for managing API collections, which are curated groups of APIs
       with similar characteristics or use cases.
-  - name: Users
+  - name: Organizations
     description: >-
-      Endpoints for managing users within the Enterprise Hub, including user
-      roles, permissions, and account configurations.
+      Endpoints for managing organizations within the Enterprise Hub, including
+      listing, creating, and updating organization configurations.
   - name: Subscriptions
     description: >-
       Endpoints for managing API subscriptions, including viewing and modifying
@@ -53,10 +45,10 @@ tags:
     description: >-
       Endpoints for viewing and managing API transaction records, including
       usage data and billing information.
-  - name: Applications
+  - name: Users
     description: >-
-      Endpoints for creating, updating, and deleting applications and their
-      associated authorizations within the Enterprise Hub.
+      Endpoints for managing users within the Enterprise Hub, including user
+      roles, permissions, and account configurations.
 security:
   - rapidApiKey: []
 paths:
@@ -67,8 +59,7 @@ paths:
       description: >-
         Retrieves a list of all APIs available in the Enterprise Hub. Supports
         filtering and pagination to narrow down results.
-      tags:
-        - APIs
+      tags: []
       parameters:
         - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
@@ -97,8 +88,7 @@ paths:
       description: >-
         Creates a new API listing in the Enterprise Hub. Requires providing the
         API name, description, category, and other configuration details.
-      tags:
-        - APIs
+      tags: []
       requestBody:
         required: true
         content:
@@ -125,8 +115,7 @@ paths:
       description: >-
         Retrieves the details of a specific API by its unique identifier,
         including its configuration, versions, and metadata.
-      tags:
-        - APIs
+      tags: []
       parameters:
         - $ref: '#/components/parameters/apiId'
       responses:
@@ -146,8 +135,7 @@ paths:
       description: >-
         Updates the configuration and metadata of an existing API in the
         Enterprise Hub.
-      tags:
-        - APIs
+      tags: []
       parameters:
         - $ref: '#/components/parameters/apiId'
       requestBody:
@@ -175,8 +163,7 @@ paths:
       description: >-
         Deletes an API listing from the Enterprise Hub. This action is
         irreversible and removes all associated versions and configurations.
-      tags:
-        - APIs
+      tags: []
       parameters:
         - $ref: '#/components/parameters/apiId'
       responses:
@@ -193,8 +180,7 @@ paths:
       description: >-
         Retrieves all versions of a specific API, including version names,
         statuses, and configuration details.
-      tags:
-        - APIs
+      tags: []
       parameters:
         - $ref: '#/components/parameters/apiId'
       responses:
@@ -220,8 +206,7 @@ paths:
       description: >-
         Updates the configuration of a specific version of an API, including
         its endpoints, description, and settings.
-      tags:
-        - APIs
+      tags: []
       parameters:
         - $ref: '#/components/parameters/apiId'
         - $ref: '#/components/parameters/versionId'
@@ -421,8 +406,7 @@ paths:
       description: >-
         Retrieves all custom tags configured in the Enterprise Hub. Tags are
         used to add metadata to APIs for filtering and search.
-      tags:
-        - Tags
+      tags: []
       responses:
         '200':
           description: A list of tags
@@ -442,8 +426,7 @@ paths:
       summary: Create a tag
       description: >-
         Creates a new custom tag in the Enterprise Hub for categorizing APIs.
-      tags:
-        - Tags
+      tags: []
       requestBody:
         required: true
         content:
@@ -467,8 +450,7 @@ paths:
       summary: Delete a tag
       description: >-
         Deletes a custom tag from the Enterprise Hub.
-      tags:
-        - Tags
+      tags: []
       parameters:
         - $ref: '#/components/parameters/tagId'
       responses:

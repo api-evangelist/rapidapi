@@ -23,31 +23,31 @@ servers:
   - url: https://gateway.rapidapi.com/v1
     description: Production Server
 tags:
-  - name: Gateways
+  - name: Analytics
     description: >-
-      Endpoints for managing gateway instances, including creating,
-      configuring, and monitoring custom API gateways.
-  - name: Routes
-    description: >-
-      Endpoints for configuring request routing rules that determine how
-      incoming API requests are forwarded to backend services.
+      Endpoints for retrieving gateway traffic analytics, including request
+      counts, response times, error rates, and usage patterns.
   - name: Authentication
     description: >-
       Endpoints for configuring authentication schemes on gateways, including
       OAuth2, API key, header-based, and basic authentication.
+  - name: Gateways
+    description: >-
+      Endpoints for managing gateway instances, including creating,
+      configuring, and monitoring custom API gateways.
   - name: Rate Limiting
     description: >-
       Endpoints for configuring rate limiting policies to protect APIs from
       overuse, including request limits, quota management, and request size
       limits.
+  - name: Routes
+    description: >-
+      Endpoints for configuring request routing rules that determine how
+      incoming API requests are forwarded to backend services.
   - name: Security
     description: >-
       Endpoints for configuring security policies such as IP allow and deny
       lists, CORS settings, and proxy secret validation.
-  - name: Analytics
-    description: >-
-      Endpoints for retrieving gateway traffic analytics, including request
-      counts, response times, error rates, and usage patterns.
 security:
   - rapidApiKey: []
 paths:

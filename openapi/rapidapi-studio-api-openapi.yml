@@ -21,26 +21,26 @@ servers:
   - url: https://studio.rapidapi.com/v1
     description: Production Server
 tags:
-  - name: Projects
-    description: >-
-      Endpoints for managing API projects within Studio, including creating,
-      listing, updating, and deleting projects.
   - name: Definitions
     description: >-
       Endpoints for importing, exporting, and managing API definitions such as
       OpenAPI specifications and Postman Collections.
-  - name: Endpoints
-    description: >-
-      Endpoints for managing API endpoint configurations within a project,
-      including creating, updating, and organizing endpoint groups.
-  - name: Requests
-    description: >-
-      Endpoints for managing saved API requests within a project, including
-      importing from spec files and organizing into groups.
   - name: Documentation
     description: >-
       Endpoints for generating and managing API documentation from project
       definitions and endpoint configurations.
+  - name: Endpoints
+    description: >-
+      Endpoints for managing API endpoint configurations within a project,
+      including creating, updating, and organizing endpoint groups.
+  - name: Projects
+    description: >-
+      Endpoints for managing API projects within Studio, including creating,
+      listing, updating, and deleting projects.
+  - name: Requests
+    description: >-
+      Endpoints for managing saved API requests within a project, including
+      importing from spec files and organizing into groups.
 security:
   - rapidApiKey: []
 paths:

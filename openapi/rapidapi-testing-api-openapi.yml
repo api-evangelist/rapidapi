@@ -21,30 +21,30 @@ servers:
   - url: https://testing.rapidapi.com/v1
     description: Production Server
 tags:
-  - name: Tests
-    description: >-
-      Endpoints for creating, reading, updating, deleting, and executing API
-      tests, including functional and performance test flows.
-  - name: Schedules
-    description: >-
-      Endpoints for managing test schedules, including frequency, environment,
-      and location settings for automated monitoring.
-  - name: Executions
-    description: >-
-      Endpoints for viewing test execution results, including pass/fail
-      statuses, response times, and detailed assertion outcomes.
-  - name: Environments
-    description: >-
-      Endpoints for managing test environments with variable sets that can be
-      used across tests for different deployment stages.
   - name: Alerts
     description: >-
       Endpoints for configuring alert notifications when tests fail, including
       integrations with PagerDuty, Slack, and Twilio.
+  - name: Environments
+    description: >-
+      Endpoints for managing test environments with variable sets that can be
+      used across tests for different deployment stages.
+  - name: Executions
+    description: >-
+      Endpoints for viewing test execution results, including pass/fail
+      statuses, response times, and detailed assertion outcomes.
   - name: Locations
     description: >-
       Endpoints for listing available monitoring locations across global AWS
       regions where tests can be executed.
+  - name: Schedules
+    description: >-
+      Endpoints for managing test schedules, including frequency, environment,
+      and location settings for automated monitoring.
+  - name: Tests
+    description: >-
+      Endpoints for creating, reading, updating, deleting, and executing API
+      tests, including functional and performance test flows.
 security:
   - rapidApiKey: []
 paths:
