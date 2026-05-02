@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://platform.rapidapi.com/v1/apis",
+    "headers": {
+      "X-RapidAPI-Key": "{rapidapi_key}",
+      "Content-Type": "application/json"
+    },
+    "queryParameters": {
+      "offset": 0,
+      "limit": 20
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "apis": [
+        {
+          "id": "api_abc123",
+          "name": "Weather API",
+          "description": "Real-time weather data for any location.",
+          "categoryId": "weather",
+          "ownerId": "org_xyz789",
+          "rating": 4.8,
+          "subscribers": 15230
+        },
+        {
+          "id": "api_def456",
+          "name": "IP Geolocation API",
+          "description": "Locate and identify website visitors by IP address.",
+          "categoryId": "data",
+          "ownerId": "org_uvw321",
+          "rating": 4.6,
+          "subscribers": 8901
+        }
+      ],
+      "totalCount": 40000
+    }
+  }
+}

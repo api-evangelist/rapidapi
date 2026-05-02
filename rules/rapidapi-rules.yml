@@ -1,0 +1,75 @@
+extends: spectral:oas
+rules:
+  rapidapi-operation-ids-camel-case:
+    description: All operationIds must use camelCase to match the RapidAPI Platform API convention.
+    message: "OperationId '{{value}}' must be camelCase (e.g., listApis, createTest)."
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  rapidapi-tags-title-case:
+    description: All tags must use Title Case.
+    message: "Tag '{{value}}' must use Title Case."
+    severity: warn
+    given: "$.paths[*][*].tags[*]"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z ]*$"
+
+  rapidapi-apikey-security-defined:
+    description: All RapidAPI platform endpoints should use the rapidApiKey security scheme.
+    message: "RapidAPI platform operations should specify rapidApiKey security."
+    severity: warn
+    given: "$.components.securitySchemes"
+    then:
+      field: rapidApiKey
+      function: truthy
+
+  rapidapi-pagination-support:
+    description: List operations should support offset and limit pagination.
+    message: "List operation should support 'offset' and 'limit' parameters."
+    severity: hint
+    given: "$.paths[*].get"
+    then:
+      function: truthy
+
+  rapidapi-no-trailing-slashes:
+    description: API paths must not end with a trailing slash.
+    message: "Path '{{path}}' must not end with a trailing slash."
+    severity: error
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"
+
+  rapidapi-delete-returns-204:
+    description: DELETE operations should return 204 No Content.
+    message: "DELETE operation at '{{path}}' should define a 204 response."
+    severity: warn
+    given: "$.paths[*].delete.responses"
+    then:
+      field: 204
+      function: truthy
+
+  rapidapi-responses-include-401:
+    description: Operations requiring authentication should define a 401 response.
+    message: "Authenticated operation should define a 401 Unauthorized response."
+    severity: warn
+    given: "$.paths[*][*].responses"
+    then:
+      field: 401
+      function: truthy
+
+  rapidapi-request-body-required:
+    description: POST and PUT operations should define a request body.
+    message: "POST/PUT operation at '{{path}}' should define a requestBody."
+    severity: warn
+    given: "$.paths[*][post,put]"
+    then:
+      field: requestBody
+      function: truthy

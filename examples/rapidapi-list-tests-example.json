@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://testing.rapidapi.com/v1/tests",
+    "headers": {
+      "X-RapidAPI-Key": "{rapidapi_key}",
+      "Content-Type": "application/json"
+    },
+    "queryParameters": {
+      "offset": 0,
+      "limit": 10
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "tests": [
+        {
+          "id": "test_g7h8i9",
+          "name": "Weather API Health Check",
+          "type": "functional",
+          "status": "passing",
+          "apiId": "api_abc123",
+          "lastRunAt": "2026-05-02T08:00:00Z"
+        },
+        {
+          "id": "test_j1k2l3",
+          "name": "Geolocation API Performance",
+          "type": "performance",
+          "status": "passing",
+          "apiId": "api_def456",
+          "lastRunAt": "2026-05-02T07:30:00Z"
+        }
+      ],
+      "totalCount": 12
+    }
+  }
+}

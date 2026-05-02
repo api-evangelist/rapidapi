@@ -1,0 +1,12 @@
+{
+  "name": "Subscription",
+  "description": "An API subscription representing a user's or application's access to an API on RapidAPI.",
+  "fields": [
+    { "name": "id", "type": "string", "required": false, "description": "Unique subscription identifier." },
+    { "name": "userId", "type": "string", "required": false, "description": "Subscribing user identifier." },
+    { "name": "apiId", "type": "string", "required": false, "description": "Subscribed API identifier." },
+    { "name": "planId", "type": "string", "required": false, "description": "Pricing plan identifier." },
+    { "name": "status", "type": "string (enum)", "required": false, "description": "active, cancelled, or expired." },
+    { "name": "createdAt", "type": "string (date-time)", "required": false, "description": "Subscription creation timestamp." }
+  ]
+}

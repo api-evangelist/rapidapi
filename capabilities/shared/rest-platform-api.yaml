@@ -1,0 +1,181 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "RapidAPI REST Platform API"
+  description: >-
+    The RapidAPI REST Platform API allows Enterprise Hub administrators to
+    programmatically manage their API hub: organizations, APIs, categories,
+    collections, subscriptions, transactions, and users.
+  tags:
+    - API Management
+    - Platform
+    - Administration
+    - Enterprise
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RAPIDAPI_PLATFORM_KEY: RAPIDAPI_PLATFORM_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: rapidapi-platform
+      baseUri: https://platform.rapidapi.com/v1
+      description: "RapidAPI Enterprise Hub REST Platform API."
+      authentication:
+        type: apikey
+        key: X-RapidAPI-Key
+        value: "{{RAPIDAPI_PLATFORM_KEY}}"
+        placement: header
+      resources:
+        - name: apis
+          path: /apis
+          description: "API listings in the Enterprise Hub."
+          operations:
+            - name: list-apis
+              method: GET
+              description: "List all APIs in the hub."
+              inputParameters:
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Pagination offset."
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page size."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-api
+              method: POST
+              description: "Create a new API listing."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+
+        - name: api
+          path: /apis/{apiId}
+          description: "Single API listing."
+          operations:
+            - name: get-api
+              method: GET
+              description: "Get API details by ID."
+              inputParameters:
+                - name: apiId
+                  in: path
+                  type: string
+                  required: true
+                  description: "API identifier."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-api
+              method: PUT
+              description: "Update an API listing."
+              inputParameters:
+                - name: apiId
+                  in: path
+                  type: string
+                  required: true
+                  description: "API identifier."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-api
+              method: DELETE
+              description: "Delete an API listing."
+              inputParameters:
+                - name: apiId
+                  in: path
+                  type: string
+                  required: true
+                  description: "API identifier."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: organizations
+          path: /organizations
+          description: "Organizations in the Enterprise Hub."
+          operations:
+            - name: list-organizations
+              method: GET
+              description: "List all organizations."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: subscriptions
+          path: /subscriptions
+          description: "API subscriptions."
+          operations:
+            - name: list-subscriptions
+              method: GET
+              description: "List all subscriptions."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: users
+          path: /users
+          description: "Enterprise Hub users."
+          operations:
+            - name: list-users
+              method: GET
+              description: "List all users."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: rapidapi-platform-rest
+      resources:
+        - path: /v1/apis
+          name: apis
+          operations:
+            - method: GET
+              name: list-apis
+              description: "List all APIs."
+
+    - type: mcp
+      port: 9100
+      namespace: rapidapi-platform-mcp
+      transport: http
+      tools:
+        - name: list-apis
+          description: "List all API listings in the RapidAPI Enterprise Hub."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rapidapi-platform.list-apis"
+          outputParameters:
+            - type: object
+              mapping: "$."

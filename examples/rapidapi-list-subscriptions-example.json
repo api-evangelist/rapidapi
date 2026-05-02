@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://platform.rapidapi.com/v1/subscriptions",
+    "headers": {
+      "X-RapidAPI-Key": "{rapidapi_key}",
+      "Content-Type": "application/json"
+    },
+    "queryParameters": {
+      "offset": 0,
+      "limit": 10
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "subscriptions": [
+        {
+          "id": "sub_m4n5o6",
+          "userId": "user_p7q8r9",
+          "apiId": "api_abc123",
+          "planId": "plan_basic",
+          "status": "active",
+          "createdAt": "2026-01-15T10:00:00Z"
+        },
+        {
+          "id": "sub_s1t2u3",
+          "userId": "user_v4w5x6",
+          "apiId": "api_def456",
+          "planId": "plan_pro",
+          "status": "active",
+          "createdAt": "2026-02-20T14:30:00Z"
+        }
+      ],
+      "totalCount": 450
+    }
+  }
+}

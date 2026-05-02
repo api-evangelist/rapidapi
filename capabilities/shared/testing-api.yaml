@@ -1,0 +1,134 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "RapidAPI Testing API"
+  description: >-
+    RapidAPI Testing API for creating, managing, and executing functional and
+    performance API tests with scheduling and multi-region monitoring.
+  tags:
+    - API Testing
+    - Monitoring
+    - Quality Assurance
+    - Automation
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RAPIDAPI_PLATFORM_KEY: RAPIDAPI_PLATFORM_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: rapidapi-testing
+      baseUri: https://testing.rapidapi.com/v1
+      description: "RapidAPI Testing API for test management and execution."
+      authentication:
+        type: apikey
+        key: X-RapidAPI-Key
+        value: "{{RAPIDAPI_PLATFORM_KEY}}"
+        placement: header
+      resources:
+        - name: tests
+          path: /tests
+          description: "API tests."
+          operations:
+            - name: list-tests
+              method: GET
+              description: "List all API tests."
+              inputParameters:
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Pagination offset."
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page size."
+                - name: apiId
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by API ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-test
+              method: POST
+              description: "Create a new API test."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: executions
+          path: /executions
+          description: "Test execution results."
+          operations:
+            - name: list-executions
+              method: GET
+              description: "List test execution results."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: environments
+          path: /environments
+          description: "Test environments."
+          operations:
+            - name: list-environments
+              method: GET
+              description: "List test environments."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: schedules
+          path: /schedules
+          description: "Test schedules."
+          operations:
+            - name: list-schedules
+              method: GET
+              description: "List test schedules."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: rapidapi-testing-rest
+      resources:
+        - path: /v1/tests
+          name: tests
+          operations:
+            - method: GET
+              name: list-tests
+              description: "List all tests."
+
+    - type: mcp
+      port: 9101
+      namespace: rapidapi-testing-mcp
+      transport: http
+      tools:
+        - name: list-tests
+          description: "List all API tests."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rapidapi-testing.list-tests"
+          outputParameters:
+            - type: object
+              mapping: "$."

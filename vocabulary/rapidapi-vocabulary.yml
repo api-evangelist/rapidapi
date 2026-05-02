@@ -1,0 +1,167 @@
+---
+name: RapidAPI Vocabulary
+description: >-
+  Domain vocabulary for the RapidAPI platform, covering API marketplace, enterprise
+  hub management, API testing, gateway configuration, and API design with Studio.
+created: "2026-05-02"
+modified: "2026-05-02"
+tags:
+  - API Marketplace
+  - API Management
+  - API Testing
+  - API Gateway
+
+terms:
+  - term: API Hub
+    definition: >-
+      A RapidAPI Enterprise Hub is a branded, private API marketplace deployed for
+      an organization. Enterprise Hubs allow companies to curate and publish internal
+      or external APIs to their teams, partners, and customers.
+    synonyms:
+      - Enterprise Hub
+      - API Marketplace
+    related:
+      - API Listing
+      - Organization
+
+  - term: API Listing
+    definition: >-
+      An API published on the RapidAPI Hub marketplace. A listing includes the API name,
+      description, category, endpoints, pricing plans, and versioning information.
+      Listings can be public, private, or restricted to specific organizations.
+    synonyms:
+      - API
+      - Hub API
+    related:
+      - Pricing Plan
+      - Organization
+      - Subscription
+
+  - term: Subscription
+    definition: >-
+      A subscription represents a user's or application's access to a specific API
+      on RapidAPI under a selected pricing plan. Subscriptions track usage against
+      rate limits and quotas.
+    related:
+      - Pricing Plan
+      - API Listing
+      - User
+
+  - term: Pricing Plan
+    definition: >-
+      A tier of access to a RapidAPI Hub API that defines the price, request quota,
+      rate limits, and included features. Common plan types include Free, Basic, Pro,
+      and Ultra. Plans may be hard-limited (requests blocked at quota) or soft-limited
+      (overage charges apply).
+    synonyms:
+      - Plan
+      - Tier
+    related:
+      - Subscription
+      - API Listing
+
+  - term: Organization
+    definition: >-
+      An organizational entity within an Enterprise Hub. Organizations own API listings,
+      have members (users), and can have separate access controls. Multiple organizations
+      can coexist in a single Enterprise Hub.
+    related:
+      - API Listing
+      - User
+
+  - term: API Key
+    definition: >-
+      A credential (X-RapidAPI-Key header) that authenticates API calls made through
+      the RapidAPI Hub. A single RapidAPI key provides access to all APIs a user is
+      subscribed to.
+    related:
+      - Subscription
+      - Authentication
+
+  - term: Test
+    definition: >-
+      An automated API test in RapidAPI Testing. Tests consist of one or more steps,
+      each making an HTTP request and validating the response through assertions.
+      Tests can be functional (correctness) or performance (response time).
+    synonyms:
+      - API Test
+      - Test Flow
+    related:
+      - Test Step
+      - Schedule
+      - Environment
+
+  - term: Test Step
+    definition: >-
+      A single HTTP request within an API test. Steps include the method, URL, headers,
+      body, assertions, and variable extractions for chaining data between steps.
+    related:
+      - Test
+      - Assertion
+
+  - term: Assertion
+    definition: >-
+      A validation rule within a test step that checks the API response. Assertions
+      can target status codes, response times, header values, or JSON body fields
+      using operators like equals, contains, greater_than, and exists.
+    related:
+      - Test Step
+      - Execution
+
+  - term: Schedule
+    definition: >-
+      A configuration that runs a RapidAPI test automatically at a defined frequency
+      (5m, 15m, 30m, 1h, etc.) from one or more monitoring locations (AWS regions).
+      Schedules enable ongoing API health monitoring.
+    related:
+      - Test
+      - Environment
+      - Location
+
+  - term: Environment
+    definition: >-
+      A named set of variables in RapidAPI Testing used to parameterize tests for
+      different deployment stages (development, staging, production). Variables are
+      injected at runtime and can hold base URLs, API keys, and test data.
+    related:
+      - Test
+      - Schedule
+
+  - term: Execution
+    definition: >-
+      A single run of a RapidAPI test, triggered manually or by a schedule. Each
+      execution records the pass/fail status, response times, and assertion results
+      for every step.
+    related:
+      - Test
+      - Schedule
+      - Location
+
+  - term: Gateway
+    definition: >-
+      The RapidAPI Gateway is an enterprise API gateway that sits in front of backend
+      services to handle authentication, rate limiting, request routing, and traffic
+      management. Organizations can configure custom gateways for their API traffic.
+    related:
+      - API Hub
+      - Authentication
+
+  - term: Studio
+    definition: >-
+      RapidAPI Studio is a visual API design and development environment for creating,
+      editing, and documenting APIs. It supports importing OpenAPI specifications and
+      Postman Collections, with direct publishing to the RapidAPI Hub.
+    synonyms:
+      - API Studio
+    related:
+      - API Listing
+      - OpenAPI
+
+  - term: GraphQL Platform API
+    definition: >-
+      The RapidAPI GraphQL Platform API exposes the same queries and mutations that
+      RapidAPI uses internally, providing enterprise users with a powerful interface
+      for managing hub configuration through GraphQL operations.
+    related:
+      - API Hub
+      - REST Platform API

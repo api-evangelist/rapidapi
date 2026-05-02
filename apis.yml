@@ -18,7 +18,7 @@ tags:
   - API Design
   - Enterprise
 created: '2026-03-20'
-modified: '2026-04-28'
+modified: '2026-05-02'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/rapidapi/refs/heads/main/apis.yml
 specificationVersion: '0.19'
@@ -45,6 +45,16 @@ apis:
         url: https://docs.rapidapi.com/docs/platform-api-overview
       - type: OpenAPI
         url: openapi/rapidapi-rest-platform-api-openapi.yml
+      - type: JSONStructure
+        url: json-structure/rapidapi-subscription-structure.json
+      - type: Example
+        url: examples/rapidapi-list-apis-example.json
+      - type: Example
+        url: examples/rapidapi-list-subscriptions-example.json
+      - type: SpectralRules
+        url: rules/rapidapi-rules.yml
+      - type: NaftikoCapabilities
+        url: capabilities/hub-management.yaml
   - aid: rapidapi:rapidapi-graphql-platform-api
     name: RapidAPI GraphQL Platform API
     description: >-
@@ -110,6 +120,12 @@ apis:
         url: openapi/rapidapi-testing-api-openapi.yml
       - type: JSONSchema
         url: json-schema/rapidapi-test-schema.json
+      - type: JSONStructure
+        url: json-structure/rapidapi-test-structure.json
+      - type: Example
+        url: examples/rapidapi-list-tests-example.json
+      - type: NaftikoCapabilities
+        url: capabilities/api-quality-assurance.yaml
   - aid: rapidapi:rapidapi-studio-api
     name: RapidAPI Studio API
     description: >-
@@ -132,6 +148,8 @@ apis:
         url: openapi/rapidapi-studio-api-openapi.yml
       - type: JSONSchema
         url: json-schema/rapidapi-api-listing-schema.json
+      - type: JSONStructure
+        url: json-structure/rapidapi-api-listing-structure.json
   - aid: rapidapi:rapidapi-gateway-api
     name: RapidAPI Gateway API
     description: >-
@@ -173,6 +191,8 @@ common:
     url: https://rapidapi.com/auth/sign-up
   - type: JSONLD
     url: json-ld/rapidapi-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/rapidapi-vocabulary.yml
 maintainers:
   - FN: API Evangelist
     email: info@apievangelist.com

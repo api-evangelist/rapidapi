@@ -1,0 +1,26 @@
+{
+  "name": "Test",
+  "description": "An API test configuration in RapidAPI Testing.",
+  "fields": [
+    { "name": "id", "type": "string", "required": false, "description": "Unique test identifier." },
+    { "name": "name", "type": "string", "required": true, "description": "Test display name." },
+    { "name": "description", "type": "string", "required": false, "description": "What the test validates." },
+    { "name": "apiId", "type": "string", "required": false, "description": "Associated API on the hub." },
+    { "name": "type", "type": "string (enum)", "required": false, "description": "functional or performance." },
+    { "name": "status", "type": "string (enum)", "required": false, "description": "active, draft, or archived." },
+    {
+      "name": "steps",
+      "type": "array<TestStep>",
+      "required": true,
+      "description": "Ordered list of HTTP call + assertion steps.",
+      "fields": [
+        { "name": "name", "type": "string", "required": true, "description": "Step name." },
+        { "name": "method", "type": "string (enum)", "required": true, "description": "GET, POST, PUT, PATCH, DELETE." },
+        { "name": "url", "type": "string (uri)", "required": true, "description": "Endpoint URL." },
+        { "name": "assertions", "type": "array<Assertion>", "required": false, "description": "Validation assertions." }
+      ]
+    },
+    { "name": "schedule", "type": "Schedule", "required": false, "description": "Automated run schedule." },
+    { "name": "lastExecution", "type": "ExecutionResult", "required": false, "description": "Most recent run result." }
+  ]
+}
