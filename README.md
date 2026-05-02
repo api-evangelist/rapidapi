@@ -16,7 +16,7 @@ RapidAPI operates the world's largest API marketplace, connecting developers to 
 ## Timestamps
 
 - **Created:** 2026-03-20
-- **Modified:** 2026-03-20
+- **Modified:** 2026-04-28
 
 ## APIs
 
@@ -79,6 +79,7 @@ RapidAPI Testing provides a comprehensive API testing and monitoring solution th
 
 - [Documentation](https://docs.rapidapi.com/docs/testing-getting-started)
 - [OpenAPI](openapi/rapidapi-testing-api-openapi.yml)
+- [JSONSchema](json-schema/rapidapi-test-schema.json)
 
 ### RapidAPI Studio API
 RapidAPI Studio is an API design and development environment that enables teams to design, build, and document APIs collaboratively. It supports importing and editing OpenAPI specifications, providing a visual interface for defining endpoints, parameters, and response schemas. Studio integrates with the broader RapidAPI platform, allowing developers to publish designed APIs directly to the hub and generate documentation automatically from API definitions.
@@ -94,6 +95,7 @@ RapidAPI Studio is an API design and development environment that enables teams 
 
 - [Documentation](https://docs.rapidapi.com/docs/studio-overview)
 - [OpenAPI](openapi/rapidapi-studio-api-openapi.yml)
+- [JSONSchema](json-schema/rapidapi-api-listing-schema.json)
 
 ### RapidAPI Gateway API
 The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform.
@@ -109,6 +111,7 @@ The RapidAPI Gateway provides enterprise-grade API gateway capabilities for mana
 
 - [Documentation](https://docs.rapidapi.com/docs/gateway-configuration)
 - [OpenAPI](openapi/rapidapi-gateway-api-openapi.yml)
+- [JSONSchema](json-schema/rapidapi-gateway-config-schema.json)
 
 ## Common Properties
 
@@ -119,7 +122,8 @@ The RapidAPI Gateway provides enterprise-grade API gateway capabilities for mana
 - [TermsOfService](https://rapidapi.com/terms-of-service/)
 - [Support](https://rapidapi.com/support/)
 - [Blog](https://rapidapi.com/blog/)
-- [Login](https://rapidapi.com/auth/sign-up)
+- [SignUp](https://rapidapi.com/auth/sign-up)
+- [JSONLD](json-ld/rapidapi-context.jsonld)
 
 ## Maintainers
 
