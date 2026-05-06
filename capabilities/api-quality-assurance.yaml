@@ -1,153 +1,219 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "RapidAPI API Quality Assurance"
-  description: >-
-    Workflow capability for API quality engineering teams to create, run, and
-    monitor API tests across environments and global regions using RapidAPI Testing.
-    Enables automated quality gates in CI/CD pipelines, multi-region monitoring,
+  label: RapidAPI API Quality Assurance
+  description: Workflow capability for API quality engineering teams to create, run, and monitor API tests across environments
+    and global regions using RapidAPI Testing. Enables automated quality gates in CI/CD pipelines, multi-region monitoring,
     and alert management for API health.
   tags:
-    - API Testing
-    - Monitoring
-    - Quality Assurance
-    - CI/CD
-    - Automation
-    - RapidAPI
-  created: "2026-05-02"
-  modified: "2026-05-02"
-
+  - API Testing
+  - Monitoring
+  - Quality Assurance
+  - CI/CD
+  - Automation
+  - RapidAPI
+  created: '2026-05-02'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      RAPIDAPI_PLATFORM_KEY: RAPIDAPI_PLATFORM_KEY
-
+- namespace: env
+  keys:
+    RAPIDAPI_PLATFORM_KEY: RAPIDAPI_PLATFORM_KEY
 capability:
   consumes:
-    - import: rapidapi-testing
-      location: ./shared/testing-api.yaml
-
+  - type: http
+    namespace: rapidapi-testing
+    baseUri: https://testing.rapidapi.com/v1
+    description: RapidAPI Testing API for test management and execution.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{RAPIDAPI_PLATFORM_KEY}}'
+      placement: header
+    resources:
+    - name: tests
+      path: /tests
+      description: API tests.
+      operations:
+      - name: list-tests
+        method: GET
+        description: List all API tests.
+        inputParameters:
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Pagination offset.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Page size.
+        - name: apiId
+          in: query
+          type: string
+          required: false
+          description: Filter by API ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-test
+        method: POST
+        description: Create a new API test.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: executions
+      path: /executions
+      description: Test execution results.
+      operations:
+      - name: list-executions
+        method: GET
+        description: List test execution results.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: environments
+      path: /environments
+      description: Test environments.
+      operations:
+      - name: list-environments
+        method: GET
+        description: List test environments.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: schedules
+      path: /schedules
+      description: Test schedules.
+      operations:
+      - name: list-schedules
+        method: GET
+        description: List test schedules.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8081
-      namespace: rapidapi-qa-api
-      description: "Unified REST API for API quality assurance with RapidAPI Testing."
-      resources:
-        - path: /v1/tests
-          name: tests
-          description: "API test configurations."
-          operations:
-            - method: GET
-              name: list-tests
-              description: "List all tests."
-              call: "rapidapi-testing.list-tests"
-              with:
-                offset: "rest.offset"
-                limit: "rest.limit"
-                apiId: "rest.apiId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-test
-              description: "Create a new test."
-              call: "rapidapi-testing.create-test"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/executions
-          name: executions
-          description: "Test execution results."
-          operations:
-            - method: GET
-              name: list-executions
-              description: "List test execution history."
-              call: "rapidapi-testing.list-executions"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/environments
-          name: environments
-          description: "Test environments."
-          operations:
-            - method: GET
-              name: list-environments
-              description: "List test environments."
-              call: "rapidapi-testing.list-environments"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/schedules
-          name: schedules
-          description: "Automated test schedules."
-          operations:
-            - method: GET
-              name: list-schedules
-              description: "List test schedules."
-              call: "rapidapi-testing.list-schedules"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9081
-      namespace: rapidapi-qa-mcp
-      transport: http
-      description: "MCP server for AI-assisted API quality assurance using RapidAPI Testing."
-      tools:
-        - name: list-tests
-          description: "List all API tests. Filter by API ID to see tests for a specific API."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rapidapi-testing.list-tests"
-          with:
-            apiId: "tools.apiId"
-            offset: "tools.offset"
-            limit: "tools.limit"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: create-test
-          description: "Create a new functional or performance API test with steps and assertions."
-          hints:
-            readOnly: false
-            destructive: false
-          call: "rapidapi-testing.create-test"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-executions
-          description: "List API test execution results to review pass/fail history and response times."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rapidapi-testing.list-executions"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-environments
-          description: "List test environments with variable sets for development, staging, and production."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rapidapi-testing.list-environments"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-schedules
-          description: "List scheduled test runs for automated monitoring across global regions."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rapidapi-testing.list-schedules"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8081
+    namespace: rapidapi-qa-api
+    description: Unified REST API for API quality assurance with RapidAPI Testing.
+    resources:
+    - path: /v1/tests
+      name: tests
+      description: API test configurations.
+      operations:
+      - method: GET
+        name: list-tests
+        description: List all tests.
+        call: rapidapi-testing.list-tests
+        with:
+          offset: rest.offset
+          limit: rest.limit
+          apiId: rest.apiId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-test
+        description: Create a new test.
+        call: rapidapi-testing.create-test
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/executions
+      name: executions
+      description: Test execution results.
+      operations:
+      - method: GET
+        name: list-executions
+        description: List test execution history.
+        call: rapidapi-testing.list-executions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/environments
+      name: environments
+      description: Test environments.
+      operations:
+      - method: GET
+        name: list-environments
+        description: List test environments.
+        call: rapidapi-testing.list-environments
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/schedules
+      name: schedules
+      description: Automated test schedules.
+      operations:
+      - method: GET
+        name: list-schedules
+        description: List test schedules.
+        call: rapidapi-testing.list-schedules
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9081
+    namespace: rapidapi-qa-mcp
+    transport: http
+    description: MCP server for AI-assisted API quality assurance using RapidAPI Testing.
+    tools:
+    - name: list-tests
+      description: List all API tests. Filter by API ID to see tests for a specific API.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rapidapi-testing.list-tests
+      with:
+        apiId: tools.apiId
+        offset: tools.offset
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-test
+      description: Create a new functional or performance API test with steps and assertions.
+      hints:
+        readOnly: false
+        destructive: false
+      call: rapidapi-testing.create-test
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-executions
+      description: List API test execution results to review pass/fail history and response times.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rapidapi-testing.list-executions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-environments
+      description: List test environments with variable sets for development, staging, and production.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rapidapi-testing.list-environments
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-schedules
+      description: List scheduled test runs for automated monitoring across global regions.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rapidapi-testing.list-schedules
+      outputParameters:
+      - type: object
+        mapping: $.

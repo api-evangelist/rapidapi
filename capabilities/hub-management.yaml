@@ -1,222 +1,328 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "RapidAPI Hub Management"
-  description: >-
-    Workflow capability for Enterprise Hub administrators to manage their API
-    marketplace: publishing and updating API listings, managing organizations,
-    controlling subscriptions, and monitoring API usage. Uses the RapidAPI
-    REST Platform API to automate hub administration tasks normally performed
-    through the Enterprise Hub Admin Panel.
+  label: RapidAPI Hub Management
+  description: 'Workflow capability for Enterprise Hub administrators to manage their API marketplace: publishing and updating
+    API listings, managing organizations, controlling subscriptions, and monitoring API usage. Uses the RapidAPI REST Platform
+    API to automate hub administration tasks normally performed through the Enterprise Hub Admin Panel.'
   tags:
-    - API Management
-    - Platform
-    - Administration
-    - Marketplace
-    - Enterprise
-    - RapidAPI
-  created: "2026-05-02"
-  modified: "2026-05-02"
-
+  - API Management
+  - Platform
+  - Administration
+  - Marketplace
+  - Enterprise
+  - RapidAPI
+  created: '2026-05-02'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      RAPIDAPI_PLATFORM_KEY: RAPIDAPI_PLATFORM_KEY
-
+- namespace: env
+  keys:
+    RAPIDAPI_PLATFORM_KEY: RAPIDAPI_PLATFORM_KEY
 capability:
   consumes:
-    - import: rapidapi-platform
-      location: ./shared/rest-platform-api.yaml
-
+  - type: http
+    namespace: rapidapi-platform
+    baseUri: https://platform.rapidapi.com/v1
+    description: RapidAPI Enterprise Hub REST Platform API.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{RAPIDAPI_PLATFORM_KEY}}'
+      placement: header
+    resources:
+    - name: apis
+      path: /apis
+      description: API listings in the Enterprise Hub.
+      operations:
+      - name: list-apis
+        method: GET
+        description: List all APIs in the hub.
+        inputParameters:
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Pagination offset.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Page size.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-api
+        method: POST
+        description: Create a new API listing.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+    - name: api
+      path: /apis/{apiId}
+      description: Single API listing.
+      operations:
+      - name: get-api
+        method: GET
+        description: Get API details by ID.
+        inputParameters:
+        - name: apiId
+          in: path
+          type: string
+          required: true
+          description: API identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-api
+        method: PUT
+        description: Update an API listing.
+        inputParameters:
+        - name: apiId
+          in: path
+          type: string
+          required: true
+          description: API identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-api
+        method: DELETE
+        description: Delete an API listing.
+        inputParameters:
+        - name: apiId
+          in: path
+          type: string
+          required: true
+          description: API identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: organizations
+      path: /organizations
+      description: Organizations in the Enterprise Hub.
+      operations:
+      - name: list-organizations
+        method: GET
+        description: List all organizations.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions
+      path: /subscriptions
+      description: API subscriptions.
+      operations:
+      - name: list-subscriptions
+        method: GET
+        description: List all subscriptions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users
+      path: /users
+      description: Enterprise Hub users.
+      operations:
+      - name: list-users
+        method: GET
+        description: List all users.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: rapidapi-hub-management-api
-      description: "Unified REST API for RapidAPI Enterprise Hub management."
-      resources:
-        - path: /v1/apis
-          name: apis
-          description: "API listings in the Enterprise Hub."
-          operations:
-            - method: GET
-              name: list-apis
-              description: "List all APIs in the hub."
-              call: "rapidapi-platform.list-apis"
-              with:
-                offset: "rest.offset"
-                limit: "rest.limit"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-api
-              description: "Create a new API listing."
-              call: "rapidapi-platform.create-api"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/apis/{apiId}
-          name: api
-          description: "Single API listing."
-          operations:
-            - method: GET
-              name: get-api
-              description: "Get API details."
-              call: "rapidapi-platform.get-api"
-              with:
-                apiId: "rest.apiId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: PUT
-              name: update-api
-              description: "Update an API listing."
-              call: "rapidapi-platform.update-api"
-              with:
-                apiId: "rest.apiId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-api
-              description: "Delete an API listing."
-              call: "rapidapi-platform.delete-api"
-              with:
-                apiId: "rest.apiId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/organizations
-          name: organizations
-          description: "Hub organizations."
-          operations:
-            - method: GET
-              name: list-organizations
-              description: "List all organizations."
-              call: "rapidapi-platform.list-organizations"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/subscriptions
-          name: subscriptions
-          description: "API subscriptions."
-          operations:
-            - method: GET
-              name: list-subscriptions
-              description: "List all subscriptions."
-              call: "rapidapi-platform.list-subscriptions"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/users
-          name: users
-          description: "Hub users."
-          operations:
-            - method: GET
-              name: list-users
-              description: "List all users."
-              call: "rapidapi-platform.list-users"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9080
-      namespace: rapidapi-hub-management-mcp
-      transport: http
-      description: "MCP server for AI-assisted RapidAPI Enterprise Hub management."
-      tools:
-        - name: list-apis
-          description: "List all API listings in the RapidAPI Enterprise Hub. Use to audit, discover, or report on available APIs."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rapidapi-platform.list-apis"
-          with:
-            offset: "tools.offset"
-            limit: "tools.limit"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-api
-          description: "Retrieve details for a specific API listing including versions, endpoints, and pricing plans."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "rapidapi-platform.get-api"
-          with:
-            apiId: "tools.apiId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: create-api
-          description: "Publish a new API listing to the Enterprise Hub marketplace."
-          hints:
-            readOnly: false
-            destructive: false
-          call: "rapidapi-platform.create-api"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: update-api
-          description: "Update an existing API listing configuration, description, or settings."
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "rapidapi-platform.update-api"
-          with:
-            apiId: "tools.apiId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: delete-api
-          description: "Remove an API listing from the Enterprise Hub. This action is irreversible."
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "rapidapi-platform.delete-api"
-          with:
-            apiId: "tools.apiId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-organizations
-          description: "List all organizations in the Enterprise Hub."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rapidapi-platform.list-organizations"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-subscriptions
-          description: "List all API subscriptions to monitor adoption and revenue."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rapidapi-platform.list-subscriptions"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-users
-          description: "List all users in the Enterprise Hub to manage access and roles."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "rapidapi-platform.list-users"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: rapidapi-hub-management-api
+    description: Unified REST API for RapidAPI Enterprise Hub management.
+    resources:
+    - path: /v1/apis
+      name: apis
+      description: API listings in the Enterprise Hub.
+      operations:
+      - method: GET
+        name: list-apis
+        description: List all APIs in the hub.
+        call: rapidapi-platform.list-apis
+        with:
+          offset: rest.offset
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-api
+        description: Create a new API listing.
+        call: rapidapi-platform.create-api
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{apiId}
+      name: api
+      description: Single API listing.
+      operations:
+      - method: GET
+        name: get-api
+        description: Get API details.
+        call: rapidapi-platform.get-api
+        with:
+          apiId: rest.apiId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: update-api
+        description: Update an API listing.
+        call: rapidapi-platform.update-api
+        with:
+          apiId: rest.apiId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-api
+        description: Delete an API listing.
+        call: rapidapi-platform.delete-api
+        with:
+          apiId: rest.apiId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/organizations
+      name: organizations
+      description: Hub organizations.
+      operations:
+      - method: GET
+        name: list-organizations
+        description: List all organizations.
+        call: rapidapi-platform.list-organizations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions
+      name: subscriptions
+      description: API subscriptions.
+      operations:
+      - method: GET
+        name: list-subscriptions
+        description: List all subscriptions.
+        call: rapidapi-platform.list-subscriptions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users
+      name: users
+      description: Hub users.
+      operations:
+      - method: GET
+        name: list-users
+        description: List all users.
+        call: rapidapi-platform.list-users
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9080
+    namespace: rapidapi-hub-management-mcp
+    transport: http
+    description: MCP server for AI-assisted RapidAPI Enterprise Hub management.
+    tools:
+    - name: list-apis
+      description: List all API listings in the RapidAPI Enterprise Hub. Use to audit, discover, or report on available APIs.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rapidapi-platform.list-apis
+      with:
+        offset: tools.offset
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-api
+      description: Retrieve details for a specific API listing including versions, endpoints, and pricing plans.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: rapidapi-platform.get-api
+      with:
+        apiId: tools.apiId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-api
+      description: Publish a new API listing to the Enterprise Hub marketplace.
+      hints:
+        readOnly: false
+        destructive: false
+      call: rapidapi-platform.create-api
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-api
+      description: Update an existing API listing configuration, description, or settings.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rapidapi-platform.update-api
+      with:
+        apiId: tools.apiId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-api
+      description: Remove an API listing from the Enterprise Hub. This action is irreversible.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rapidapi-platform.delete-api
+      with:
+        apiId: tools.apiId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-organizations
+      description: List all organizations in the Enterprise Hub.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rapidapi-platform.list-organizations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-subscriptions
+      description: List all API subscriptions to monitor adoption and revenue.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rapidapi-platform.list-subscriptions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-users
+      description: List all users in the Enterprise Hub to manage access and roles.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: rapidapi-platform.list-users
+      outputParameters:
+      - type: object
+        mapping: $.
