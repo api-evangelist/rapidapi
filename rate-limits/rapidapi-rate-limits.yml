@@ -4,112 +4,39 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: RapidAPI
 providerId: rapidapi
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - API Marketplace
   - API Management
-  - API Testing
-  - API Gateway
-  - API Design
   - Enterprise
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the RapidAPI API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: RapidAPI does not publish a single platform-wide rate limit. Each API on the marketplace
+  has its own per-listing quota and burst settings configured by its publisher; Enterprise Hub
+  customers configure gateway throttling per their own deployment. Limits below are gated and
+  resolved at contract or per-listing level rather than via a public docs page.
+sources:
+  - https://rapidapi.com/products/enterprise-hub
+notes: Public rate-limit documentation is not available; throttling parameters are set per-listing
+  by API publishers or per-deployment by Enterprise Hub administrators.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
+  - name: Per-listing quota
     scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - RapidAPI REST Platform API
-      - RapidAPI GraphQL Platform API
-      - RapidAPI Hub API
-      - RapidAPI Testing API
-      - RapidAPI Studio API
-      - RapidAPI Gateway API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - RapidAPI REST Platform API
-      - RapidAPI GraphQL Platform API
-      - RapidAPI Hub API
-      - RapidAPI Testing API
-      - RapidAPI Studio API
-      - RapidAPI Gateway API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - RapidAPI REST Platform API
-      - RapidAPI GraphQL Platform API
-      - RapidAPI Hub API
-      - RapidAPI Testing API
-      - RapidAPI Studio API
-      - RapidAPI Gateway API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - RapidAPI REST Platform API
-      - RapidAPI GraphQL Platform API
-      - RapidAPI Hub API
-      - RapidAPI Testing API
-      - RapidAPI Studio API
-      - RapidAPI Gateway API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
+    metric: varies
+    limit: 'set per-listing by API publisher; see each API page on rapidapi.com'
+  - name: Enterprise Hub deployment throttling
     scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - RapidAPI REST Platform API
-      - RapidAPI GraphQL Platform API
-      - RapidAPI Hub API
-      - RapidAPI Testing API
-      - RapidAPI Studio API
-      - RapidAPI Gateway API
+    metric: varies
+    limit: 'configured per-deployment by Enterprise Hub administrator'
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Per-listing Configuration
+    description: On the public marketplace each API publisher sets their own quotas, burst, and
+      overage behavior; consumers see those values on the API's pricing tab on rapidapi.com.
+  - name: Enterprise Self-service
+    description: Enterprise Hub customers control gateway throttling and quota tiers via their
+      own admin console; there is no shared platform-wide limit to publish.
 maintainers:
   - FN: API Evangelist
     email: info@apievangelist.com

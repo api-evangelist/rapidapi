@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,177 +9,54 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: RapidAPI
 providerId: rapidapi
-publisherName: RapidAPI
-serviceCategory: API
+publisherName: RapidAPI (Nokia)
+serviceCategory: API Management
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - API Marketplace
   - API Management
-  - API Testing
-  - API Gateway
-  - API Design
-  - Enterprise
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the RapidAPI API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: FOCUS-aligned FinOps shape for RapidAPI Enterprise Hub. Commercial terms are negotiated;
+  no public price list, so meters and unit economics below are placeholders to be confirmed at
+  contract time.
+sources:
+  - https://rapidapi.com/products/enterprise-hub
+notes: RapidAPI Enterprise Hub is contact-sales; no usage/billing API is publicly documented for
+  reconciliation, so meter list is intentionally minimal and FOCUS columns reflect the assumed
+  enterprise contract structure rather than a fetched billing surface.
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Subscription
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
-  ServiceName: RapidAPI
-  ServiceCategory: Developer Tools / API
+  ServiceName: RapidAPI Enterprise Hub
+  ServiceCategory: API Management
   ProviderName: RapidAPI
-  PublisherName: RapidAPI
-  InvoiceIssuerName: RapidAPI
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: RapidAPI (Nokia)
+  InvoiceIssuerName: RapidAPI (Nokia)
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: enterprise_subscription
+    description: Annual contract fee for RapidAPI Enterprise Hub
+    unit: contract
     aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: RapidAPI REST Platform API
-    baseURL: ''
-    tags:
-      - API Management
-      - Platform
-      - Administration
-      - Marketplace
-      - Enterprise
-    serviceName: RapidAPI REST Platform API
-    serviceCategory: API
-  - name: RapidAPI GraphQL Platform API
-    baseURL: ''
-    tags:
-      - GraphQL
-      - Platform
-      - API Management
-      - Enterprise
-      - Administration
-    serviceName: RapidAPI GraphQL Platform API
-    serviceCategory: API
-  - name: RapidAPI Hub API
-    baseURL: ''
-    tags:
-      - API Discovery
-      - API Marketplace
-      - API Testing
-      - Integration
-      - Search
-    serviceName: RapidAPI Hub API
-    serviceCategory: API
-  - name: RapidAPI Testing API
-    baseURL: ''
-    tags:
-      - API Testing
-      - Monitoring
-      - Quality Assurance
-      - Automation
-      - CI/CD
-    serviceName: RapidAPI Testing API
-    serviceCategory: API
-  - name: RapidAPI Studio API
-    baseURL: ''
-    tags:
-      - API Design
-      - API Development
-      - OpenAPI
-      - Studio
-    serviceName: RapidAPI Studio API
-    serviceCategory: API
-  - name: RapidAPI Gateway API
-    baseURL: ''
-    tags:
-      - API Gateway
-      - Traffic Management
-      - Security
-      - Enterprise
-      - Routing
-    serviceName: RapidAPI Gateway API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+principles:
+  - name: Visibility
+    description: Until a contract is signed, no usage telemetry is exposed; once provisioned,
+      Enterprise Hub admins can pull traffic analytics from the in-product dashboard.
+  - name: Allocation
+    description: Allocate by API key and consumer team within the Enterprise Hub admin console.
+  - name: Optimization
+    description: Negotiate volume tiers, on-prem vs SaaS, and hub consolidation at renewal; no
+      public discount schedule.
+  - name: Accountability
+    description: Procurement and platform team co-own the Enterprise Hub contract; cost is fixed
+      annual rather than usage-driven.
 maintainers:
   - FN: API Evangelist
     email: info@apievangelist.com
