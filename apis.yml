@@ -6,7 +6,7 @@ description: >-
   provides tools for API discovery, testing, management, design, and gateway
   configuration, enabling both individual developers and enterprises to build,
   consume, and manage APIs at scale.
-type: Contract
+kind: contract
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
