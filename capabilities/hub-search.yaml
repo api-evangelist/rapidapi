@@ -1,0 +1,106 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI Hub API — Search
+  description: 'RapidAPI Hub API — Search. 1 operations. Lead operation: Search APIs. Self-contained Naftiko capability covering
+    one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Search
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: hub-search
+    baseUri: https://rapidapi.com
+    description: RapidAPI Hub API — Search business capability. Self-contained, no shared references.
+    resources:
+    - name: search-apis
+      path: /search/apis
+      operations:
+      - name: searchapis
+        method: GET
+        description: Search APIs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          description: Search query string to match against API names and descriptions
+          required: true
+        - name: category
+          in: query
+          type: string
+          description: Filter results by category slug
+        - name: collection
+          in: query
+          type: string
+          description: Filter results by collection identifier
+        - name: type
+          in: query
+          type: string
+          description: Filter by API type
+        - name: verified
+          in: query
+          type: boolean
+          description: Filter to only show verified APIs
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: hub-search-rest
+    port: 8080
+    description: REST adapter for RapidAPI Hub API — Search. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/search/apis
+      name: search-apis
+      description: REST surface for search-apis.
+      operations:
+      - method: GET
+        name: searchapis
+        description: Search APIs
+        call: hub-search.searchapis
+        with:
+          query: rest.query
+          category: rest.category
+          collection: rest.collection
+          type: rest.type
+          verified: rest.verified
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: hub-search-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI Hub API — Search. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: search-apis
+      description: Search APIs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hub-search.searchapis
+      with:
+        query: tools.query
+        category: tools.category
+        collection: tools.collection
+        type: tools.type
+        verified: tools.verified
+      outputParameters:
+      - type: object
+        mapping: $.

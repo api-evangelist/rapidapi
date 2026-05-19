@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI Studio API — Projects
+  description: 'RapidAPI Studio API — Projects. 5 operations. Lead operation: List all projects. Self-contained Naftiko capability
+    covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Projects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: studio-projects
+    baseUri: https://studio.rapidapi.com/v1
+    description: RapidAPI Studio API — Projects business capability. Self-contained, no shared references.
+    resources:
+    - name: projects
+      path: /projects
+      operations:
+      - name: listprojects
+        method: GET
+        description: List all projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createproject
+        method: POST
+        description: Create a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projects-projectId
+      path: /projects/{projectId}
+      operations:
+      - name: getproject
+        method: GET
+        description: Get a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateproject
+        method: PUT
+        description: Update a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteproject
+        method: DELETE
+        description: Delete a project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: studio-projects-rest
+    port: 8080
+    description: REST adapter for RapidAPI Studio API — Projects. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/projects
+      name: projects
+      description: REST surface for projects.
+      operations:
+      - method: GET
+        name: listprojects
+        description: List all projects
+        call: studio-projects.listprojects
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createproject
+        description: Create a project
+        call: studio-projects.createproject
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}
+      name: projects-projectid
+      description: REST surface for projects-projectId.
+      operations:
+      - method: GET
+        name: getproject
+        description: Get a project
+        call: studio-projects.getproject
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateproject
+        description: Update a project
+        call: studio-projects.updateproject
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteproject
+        description: Delete a project
+        call: studio-projects.deleteproject
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: studio-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI Studio API — Projects. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-all-projects
+      description: List all projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: studio-projects.listprojects
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-project
+      description: Create a project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: studio-projects.createproject
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-project
+      description: Get a project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: studio-projects.getproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-project
+      description: Update a project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: studio-projects.updateproject
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-project
+      description: Delete a project
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: studio-projects.deleteproject
+      outputParameters:
+      - type: object
+        mapping: $.

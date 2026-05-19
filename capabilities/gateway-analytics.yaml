@@ -1,0 +1,95 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI Gateway API — Analytics
+  description: 'RapidAPI Gateway API — Analytics. 1 operations. Lead operation: Get gateway analytics. Self-contained Naftiko
+    capability covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Analytics
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gateway-analytics
+    baseUri: https://gateway.rapidapi.com/v1
+    description: RapidAPI Gateway API — Analytics business capability. Self-contained, no shared references.
+    resources:
+    - name: gateways-gatewayId-analytics
+      path: /gateways/{gatewayId}/analytics
+      operations:
+      - name: getgatewayanalytics
+        method: GET
+        description: Get gateway analytics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+          description: Start date for the analytics period
+          required: true
+        - name: endDate
+          in: query
+          type: string
+          description: End date for the analytics period
+          required: true
+        - name: granularity
+          in: query
+          type: string
+          description: Time granularity for the analytics data
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: gateway-analytics-rest
+    port: 8080
+    description: REST adapter for RapidAPI Gateway API — Analytics. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/gateways/{gatewayid}/analytics
+      name: gateways-gatewayid-analytics
+      description: REST surface for gateways-gatewayId-analytics.
+      operations:
+      - method: GET
+        name: getgatewayanalytics
+        description: Get gateway analytics
+        call: gateway-analytics.getgatewayanalytics
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          granularity: rest.granularity
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gateway-analytics-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI Gateway API — Analytics. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-gateway-analytics
+      description: Get gateway analytics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-analytics.getgatewayanalytics
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        granularity: tools.granularity
+      outputParameters:
+      - type: object
+        mapping: $.

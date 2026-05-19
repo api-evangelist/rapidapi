@@ -1,0 +1,123 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI Hub API
+  description: 'RapidAPI Hub API. 2 operations. Lead operation: Get API details. Self-contained Naftiko capability covering
+    one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: hub-general
+    baseUri: https://rapidapi.com
+    description: RapidAPI Hub API business capability. Self-contained, no shared references.
+    resources:
+    - name: apis-apiSlug
+      path: /apis/{apiSlug}
+      operations:
+      - name: getapidetails
+        method: GET
+        description: Get API details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiSlug
+          in: path
+          type: string
+          description: The URL-friendly slug or identifier of the API
+          required: true
+    - name: apis-apiSlug-endpoints
+      path: /apis/{apiSlug}/endpoints
+      operations:
+      - name: listapiendpoints
+        method: GET
+        description: List API endpoints
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiSlug
+          in: path
+          type: string
+          description: The URL-friendly slug or identifier of the API
+          required: true
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: hub-general-rest
+    port: 8080
+    description: REST adapter for RapidAPI Hub API. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/apis/{apislug}
+      name: apis-apislug
+      description: REST surface for apis-apiSlug.
+      operations:
+      - method: GET
+        name: getapidetails
+        description: Get API details
+        call: hub-general.getapidetails
+        with:
+          apiSlug: rest.apiSlug
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apis/{apislug}/endpoints
+      name: apis-apislug-endpoints
+      description: REST surface for apis-apiSlug-endpoints.
+      operations:
+      - method: GET
+        name: listapiendpoints
+        description: List API endpoints
+        call: hub-general.listapiendpoints
+        with:
+          apiSlug: rest.apiSlug
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: hub-general-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI Hub API. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-api-details
+      description: Get API details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hub-general.getapidetails
+      with:
+        apiSlug: tools.apiSlug
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-api-endpoints
+      description: List API endpoints
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hub-general.listapiendpoints
+      with:
+        apiSlug: tools.apiSlug
+      outputParameters:
+      - type: object
+        mapping: $.

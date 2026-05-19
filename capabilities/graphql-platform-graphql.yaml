@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI GraphQL Platform API — GraphQL
+  description: 'RapidAPI GraphQL Platform API — GraphQL. 1 operations. Lead operation: Execute a GraphQL query or mutation.
+    Self-contained Naftiko capability covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - GraphQL
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: graphql-platform-graphql
+    baseUri: https://platform.rapidapi.com
+    description: RapidAPI GraphQL Platform API — GraphQL business capability. Self-contained, no shared references.
+    resources:
+    - name: graphql
+      path: /graphql
+      operations:
+      - name: executegraphql
+        method: POST
+        description: Execute a GraphQL query or mutation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: graphql-platform-graphql-rest
+    port: 8080
+    description: REST adapter for RapidAPI GraphQL Platform API — GraphQL. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/graphql
+      name: graphql
+      description: REST surface for graphql.
+      operations:
+      - method: POST
+        name: executegraphql
+        description: Execute a GraphQL query or mutation
+        call: graphql-platform-graphql.executegraphql
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: graphql-platform-graphql-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI GraphQL Platform API — GraphQL. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: execute-graphql-query-mutation
+      description: Execute a GraphQL query or mutation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: graphql-platform-graphql.executegraphql
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

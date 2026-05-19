@@ -1,0 +1,205 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI Studio API — Definitions
+  description: 'RapidAPI Studio API — Definitions. 5 operations. Lead operation: List definitions. Self-contained Naftiko
+    capability covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Definitions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: studio-definitions
+    baseUri: https://studio.rapidapi.com/v1
+    description: RapidAPI Studio API — Definitions business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectId-definitions
+      path: /projects/{projectId}/definitions
+      operations:
+      - name: listdefinitions
+        method: GET
+        description: List definitions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: importdefinition
+        method: POST
+        description: Import a definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projects-projectId-definitions-definitionId
+      path: /projects/{projectId}/definitions/{definitionId}
+      operations:
+      - name: getdefinition
+        method: GET
+        description: Get a definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletedefinition
+        method: DELETE
+        description: Delete a definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: projects-projectId-definitions-definitionId-export
+      path: /projects/{projectId}/definitions/{definitionId}/export
+      operations:
+      - name: exportdefinition
+        method: GET
+        description: Export a definition
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: format
+          in: query
+          type: string
+          description: The output format for the exported definition
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: studio-definitions-rest
+    port: 8080
+    description: REST adapter for RapidAPI Studio API — Definitions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/projects/{projectid}/definitions
+      name: projects-projectid-definitions
+      description: REST surface for projects-projectId-definitions.
+      operations:
+      - method: GET
+        name: listdefinitions
+        description: List definitions
+        call: studio-definitions.listdefinitions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: importdefinition
+        description: Import a definition
+        call: studio-definitions.importdefinition
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}/definitions/{definitionid}
+      name: projects-projectid-definitions-definitionid
+      description: REST surface for projects-projectId-definitions-definitionId.
+      operations:
+      - method: GET
+        name: getdefinition
+        description: Get a definition
+        call: studio-definitions.getdefinition
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedefinition
+        description: Delete a definition
+        call: studio-definitions.deletedefinition
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}/definitions/{definitionid}/export
+      name: projects-projectid-definitions-definitionid-export
+      description: REST surface for projects-projectId-definitions-definitionId-export.
+      operations:
+      - method: GET
+        name: exportdefinition
+        description: Export a definition
+        call: studio-definitions.exportdefinition
+        with:
+          format: rest.format
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: studio-definitions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI Studio API — Definitions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-definitions
+      description: List definitions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: studio-definitions.listdefinitions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-definition
+      description: Import a definition
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: studio-definitions.importdefinition
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-definition
+      description: Get a definition
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: studio-definitions.getdefinition
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-definition
+      description: Delete a definition
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: studio-definitions.deletedefinition
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-definition
+      description: Export a definition
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: studio-definitions.exportdefinition
+      with:
+        format: tools.format
+      outputParameters:
+      - type: object
+        mapping: $.

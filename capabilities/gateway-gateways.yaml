@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI Gateway API — Gateways
+  description: 'RapidAPI Gateway API — Gateways. 5 operations. Lead operation: List gateways. Self-contained Naftiko capability
+    covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Gateways
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gateway-gateways
+    baseUri: https://gateway.rapidapi.com/v1
+    description: RapidAPI Gateway API — Gateways business capability. Self-contained, no shared references.
+    resources:
+    - name: gateways
+      path: /gateways
+      operations:
+      - name: listgateways
+        method: GET
+        description: List gateways
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: creategateway
+        method: POST
+        description: Create a gateway
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: gateways-gatewayId
+      path: /gateways/{gatewayId}
+      operations:
+      - name: getgateway
+        method: GET
+        description: Get a gateway
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updategateway
+        method: PUT
+        description: Update a gateway
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletegateway
+        method: DELETE
+        description: Delete a gateway
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: gateway-gateways-rest
+    port: 8080
+    description: REST adapter for RapidAPI Gateway API — Gateways. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/gateways
+      name: gateways
+      description: REST surface for gateways.
+      operations:
+      - method: GET
+        name: listgateways
+        description: List gateways
+        call: gateway-gateways.listgateways
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: creategateway
+        description: Create a gateway
+        call: gateway-gateways.creategateway
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/gateways/{gatewayid}
+      name: gateways-gatewayid
+      description: REST surface for gateways-gatewayId.
+      operations:
+      - method: GET
+        name: getgateway
+        description: Get a gateway
+        call: gateway-gateways.getgateway
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updategateway
+        description: Update a gateway
+        call: gateway-gateways.updategateway
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletegateway
+        description: Delete a gateway
+        call: gateway-gateways.deletegateway
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gateway-gateways-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI Gateway API — Gateways. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-gateways
+      description: List gateways
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-gateways.listgateways
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-gateway
+      description: Create a gateway
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: gateway-gateways.creategateway
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-gateway
+      description: Get a gateway
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-gateways.getgateway
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-gateway
+      description: Update a gateway
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: gateway-gateways.updategateway
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-gateway
+      description: Delete a gateway
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: gateway-gateways.deletegateway
+      outputParameters:
+      - type: object
+        mapping: $.

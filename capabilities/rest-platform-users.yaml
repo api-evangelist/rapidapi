@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI REST Platform API — Users
+  description: 'RapidAPI REST Platform API — Users. 2 operations. Lead operation: List all users. Self-contained Naftiko capability
+    covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-platform-users
+    baseUri: https://platform.rapidapi.com/v1
+    description: RapidAPI REST Platform API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: users
+      path: /users
+      operations:
+      - name: listusers
+        method: GET
+        description: List all users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users-userId
+      path: /users/{userId}
+      operations:
+      - name: getuser
+        method: GET
+        description: Get a user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rest-platform-users-rest
+    port: 8080
+    description: REST adapter for RapidAPI REST Platform API — Users. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/users
+      name: users
+      description: REST surface for users.
+      operations:
+      - method: GET
+        name: listusers
+        description: List all users
+        call: rest-platform-users.listusers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/{userid}
+      name: users-userid
+      description: REST surface for users-userId.
+      operations:
+      - method: GET
+        name: getuser
+        description: Get a user
+        call: rest-platform-users.getuser
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-platform-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI REST Platform API — Users. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-all-users
+      description: List all users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-platform-users.listusers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-user
+      description: Get a user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-platform-users.getuser
+      outputParameters:
+      - type: object
+        mapping: $.

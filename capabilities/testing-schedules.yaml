@@ -1,0 +1,174 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI Testing API — Schedules
+  description: 'RapidAPI Testing API — Schedules. 4 operations. Lead operation: List all schedules. Self-contained Naftiko
+    capability covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Schedules
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: testing-schedules
+    baseUri: https://testing.rapidapi.com/v1
+    description: RapidAPI Testing API — Schedules business capability. Self-contained, no shared references.
+    resources:
+    - name: schedules
+      path: /schedules
+      operations:
+      - name: listschedules
+        method: GET
+        description: List all schedules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createschedule
+        method: POST
+        description: Create a schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: schedules-scheduleId
+      path: /schedules/{scheduleId}
+      operations:
+      - name: updateschedule
+        method: PUT
+        description: Update a schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteschedule
+        method: DELETE
+        description: Delete a schedule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: testing-schedules-rest
+    port: 8080
+    description: REST adapter for RapidAPI Testing API — Schedules. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/schedules
+      name: schedules
+      description: REST surface for schedules.
+      operations:
+      - method: GET
+        name: listschedules
+        description: List all schedules
+        call: testing-schedules.listschedules
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createschedule
+        description: Create a schedule
+        call: testing-schedules.createschedule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/schedules/{scheduleid}
+      name: schedules-scheduleid
+      description: REST surface for schedules-scheduleId.
+      operations:
+      - method: PUT
+        name: updateschedule
+        description: Update a schedule
+        call: testing-schedules.updateschedule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteschedule
+        description: Delete a schedule
+        call: testing-schedules.deleteschedule
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: testing-schedules-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI Testing API — Schedules. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-all-schedules
+      description: List all schedules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: testing-schedules.listschedules
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-schedule
+      description: Create a schedule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: testing-schedules.createschedule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-schedule
+      description: Update a schedule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: testing-schedules.updateschedule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-schedule
+      description: Delete a schedule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: testing-schedules.deleteschedule
+      outputParameters:
+      - type: object
+        mapping: $.

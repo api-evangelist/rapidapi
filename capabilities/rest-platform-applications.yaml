@@ -1,0 +1,174 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI REST Platform API — Applications
+  description: 'RapidAPI REST Platform API — Applications. 4 operations. Lead operation: List all applications. Self-contained
+    Naftiko capability covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Applications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-platform-applications
+    baseUri: https://platform.rapidapi.com/v1
+    description: RapidAPI REST Platform API — Applications business capability. Self-contained, no shared references.
+    resources:
+    - name: applications
+      path: /applications
+      operations:
+      - name: listapplications
+        method: GET
+        description: List all applications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createapplication
+        method: POST
+        description: Create an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationId
+      path: /applications/{applicationId}
+      operations:
+      - name: updateapplication
+        method: PUT
+        description: Update an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteapplication
+        method: DELETE
+        description: Delete an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rest-platform-applications-rest
+    port: 8080
+    description: REST adapter for RapidAPI REST Platform API — Applications. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/applications
+      name: applications
+      description: REST surface for applications.
+      operations:
+      - method: GET
+        name: listapplications
+        description: List all applications
+        call: rest-platform-applications.listapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createapplication
+        description: Create an application
+        call: rest-platform-applications.createapplication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationid}
+      name: applications-applicationid
+      description: REST surface for applications-applicationId.
+      operations:
+      - method: PUT
+        name: updateapplication
+        description: Update an application
+        call: rest-platform-applications.updateapplication
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapplication
+        description: Delete an application
+        call: rest-platform-applications.deleteapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-platform-applications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI REST Platform API — Applications. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-all-applications
+      description: List all applications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-platform-applications.listapplications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-application
+      description: Create an application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-platform-applications.createapplication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-application
+      description: Update an application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-platform-applications.updateapplication
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-application
+      description: Delete an application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-platform-applications.deleteapplication
+      outputParameters:
+      - type: object
+        mapping: $.

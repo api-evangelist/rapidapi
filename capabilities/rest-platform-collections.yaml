@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI REST Platform API — Collections
+  description: 'RapidAPI REST Platform API — Collections. 5 operations. Lead operation: List all collections. Self-contained
+    Naftiko capability covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Collections
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-platform-collections
+    baseUri: https://platform.rapidapi.com/v1
+    description: RapidAPI REST Platform API — Collections business capability. Self-contained, no shared references.
+    resources:
+    - name: collections
+      path: /collections
+      operations:
+      - name: listcollections
+        method: GET
+        description: List all collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createcollection
+        method: POST
+        description: Create a collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: collections-collectionId
+      path: /collections/{collectionId}
+      operations:
+      - name: getcollection
+        method: GET
+        description: Get a collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecollection
+        method: PUT
+        description: Update a collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecollection
+        method: DELETE
+        description: Delete a collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rest-platform-collections-rest
+    port: 8080
+    description: REST adapter for RapidAPI REST Platform API — Collections. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/collections
+      name: collections
+      description: REST surface for collections.
+      operations:
+      - method: GET
+        name: listcollections
+        description: List all collections
+        call: rest-platform-collections.listcollections
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcollection
+        description: Create a collection
+        call: rest-platform-collections.createcollection
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/collections/{collectionid}
+      name: collections-collectionid
+      description: REST surface for collections-collectionId.
+      operations:
+      - method: GET
+        name: getcollection
+        description: Get a collection
+        call: rest-platform-collections.getcollection
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecollection
+        description: Update a collection
+        call: rest-platform-collections.updatecollection
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecollection
+        description: Delete a collection
+        call: rest-platform-collections.deletecollection
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-platform-collections-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI REST Platform API — Collections. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-all-collections
+      description: List all collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-platform-collections.listcollections
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-collection
+      description: Create a collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-platform-collections.createcollection
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-collection
+      description: Get a collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-platform-collections.getcollection
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-collection
+      description: Update a collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-platform-collections.updatecollection
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-collection
+      description: Delete a collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-platform-collections.deletecollection
+      outputParameters:
+      - type: object
+        mapping: $.

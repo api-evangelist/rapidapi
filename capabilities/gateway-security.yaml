@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI Gateway API — Security
+  description: 'RapidAPI Gateway API — Security. 2 operations. Lead operation: Get security configuration. Self-contained
+    Naftiko capability covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Security
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gateway-security
+    baseUri: https://gateway.rapidapi.com/v1
+    description: RapidAPI Gateway API — Security business capability. Self-contained, no shared references.
+    resources:
+    - name: gateways-gatewayId-security
+      path: /gateways/{gatewayId}/security
+      operations:
+      - name: getsecurityconfig
+        method: GET
+        description: Get security configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatesecurityconfig
+        method: PUT
+        description: Update security configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: gateway-security-rest
+    port: 8080
+    description: REST adapter for RapidAPI Gateway API — Security. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/gateways/{gatewayid}/security
+      name: gateways-gatewayid-security
+      description: REST surface for gateways-gatewayId-security.
+      operations:
+      - method: GET
+        name: getsecurityconfig
+        description: Get security configuration
+        call: gateway-security.getsecurityconfig
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatesecurityconfig
+        description: Update security configuration
+        call: gateway-security.updatesecurityconfig
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gateway-security-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI Gateway API — Security. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-security-configuration
+      description: Get security configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-security.getsecurityconfig
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-security-configuration
+      description: Update security configuration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: gateway-security.updatesecurityconfig
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

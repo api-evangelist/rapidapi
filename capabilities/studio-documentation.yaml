@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI Studio API — Documentation
+  description: 'RapidAPI Studio API — Documentation. 1 operations. Lead operation: Publish to hub. Self-contained Naftiko
+    capability covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Documentation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: studio-documentation
+    baseUri: https://studio.rapidapi.com/v1
+    description: RapidAPI Studio API — Documentation business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectId-publish
+      path: /projects/{projectId}/publish
+      operations:
+      - name: publishproject
+        method: POST
+        description: Publish to hub
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: studio-documentation-rest
+    port: 8080
+    description: REST adapter for RapidAPI Studio API — Documentation. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/projects/{projectid}/publish
+      name: projects-projectid-publish
+      description: REST surface for projects-projectId-publish.
+      operations:
+      - method: POST
+        name: publishproject
+        description: Publish to hub
+        call: studio-documentation.publishproject
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: studio-documentation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI Studio API — Documentation. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: publish-hub
+      description: Publish to hub
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: studio-documentation.publishproject
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

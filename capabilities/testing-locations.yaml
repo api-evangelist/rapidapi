@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI Testing API — Locations
+  description: 'RapidAPI Testing API — Locations. 1 operations. Lead operation: List monitoring locations. Self-contained
+    Naftiko capability covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Locations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: testing-locations
+    baseUri: https://testing.rapidapi.com/v1
+    description: RapidAPI Testing API — Locations business capability. Self-contained, no shared references.
+    resources:
+    - name: locations
+      path: /locations
+      operations:
+      - name: listlocations
+        method: GET
+        description: List monitoring locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: testing-locations-rest
+    port: 8080
+    description: REST adapter for RapidAPI Testing API — Locations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/locations
+      name: locations
+      description: REST surface for locations.
+      operations:
+      - method: GET
+        name: listlocations
+        description: List monitoring locations
+        call: testing-locations.listlocations
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: testing-locations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI Testing API — Locations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-monitoring-locations
+      description: List monitoring locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: testing-locations.listlocations
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,121 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI Hub API — Subscriptions
+  description: 'RapidAPI Hub API — Subscriptions. 2 operations. Lead operation: Subscribe to an API. Self-contained Naftiko
+    capability covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Subscriptions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: hub-subscriptions
+    baseUri: https://rapidapi.com
+    description: RapidAPI Hub API — Subscriptions business capability. Self-contained, no shared references.
+    resources:
+    - name: apis-apiSlug-subscribe
+      path: /apis/{apiSlug}/subscribe
+      operations:
+      - name: subscribetoapi
+        method: POST
+        description: Subscribe to an API
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiSlug
+          in: path
+          type: string
+          description: The URL-friendly slug or identifier of the API
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: subscriptions
+      path: /subscriptions
+      operations:
+      - name: listmysubscriptions
+        method: GET
+        description: List my subscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: hub-subscriptions-rest
+    port: 8080
+    description: REST adapter for RapidAPI Hub API — Subscriptions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/apis/{apislug}/subscribe
+      name: apis-apislug-subscribe
+      description: REST surface for apis-apiSlug-subscribe.
+      operations:
+      - method: POST
+        name: subscribetoapi
+        description: Subscribe to an API
+        call: hub-subscriptions.subscribetoapi
+        with:
+          apiSlug: rest.apiSlug
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions
+      name: subscriptions
+      description: REST surface for subscriptions.
+      operations:
+      - method: GET
+        name: listmysubscriptions
+        description: List my subscriptions
+        call: hub-subscriptions.listmysubscriptions
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: hub-subscriptions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI Hub API — Subscriptions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: subscribe-api
+      description: Subscribe to an API
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: hub-subscriptions.subscribetoapi
+      with:
+        apiSlug: tools.apiSlug
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-my-subscriptions
+      description: List my subscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hub-subscriptions.listmysubscriptions
+      outputParameters:
+      - type: object
+        mapping: $.

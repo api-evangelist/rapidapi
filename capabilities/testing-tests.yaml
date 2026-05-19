@@ -1,0 +1,250 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI Testing API — Tests
+  description: 'RapidAPI Testing API — Tests. 6 operations. Lead operation: List all tests. Self-contained Naftiko capability
+    covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Tests
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: testing-tests
+    baseUri: https://testing.rapidapi.com/v1
+    description: RapidAPI Testing API — Tests business capability. Self-contained, no shared references.
+    resources:
+    - name: tests
+      path: /tests
+      operations:
+      - name: listtests
+        method: GET
+        description: List all tests
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiId
+          in: query
+          type: string
+          description: Filter tests by associated API identifier
+      - name: createtest
+        method: POST
+        description: Create a test
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tests-testId
+      path: /tests/{testId}
+      operations:
+      - name: gettest
+        method: GET
+        description: Get a test
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatetest
+        method: PUT
+        description: Update a test
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletetest
+        method: DELETE
+        description: Delete a test
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tests-testId-run
+      path: /tests/{testId}/run
+      operations:
+      - name: runtest
+        method: POST
+        description: Run a test
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: testing-tests-rest
+    port: 8080
+    description: REST adapter for RapidAPI Testing API — Tests. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tests
+      name: tests
+      description: REST surface for tests.
+      operations:
+      - method: GET
+        name: listtests
+        description: List all tests
+        call: testing-tests.listtests
+        with:
+          apiId: rest.apiId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtest
+        description: Create a test
+        call: testing-tests.createtest
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tests/{testid}
+      name: tests-testid
+      description: REST surface for tests-testId.
+      operations:
+      - method: GET
+        name: gettest
+        description: Get a test
+        call: testing-tests.gettest
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatetest
+        description: Update a test
+        call: testing-tests.updatetest
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetest
+        description: Delete a test
+        call: testing-tests.deletetest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tests/{testid}/run
+      name: tests-testid-run
+      description: REST surface for tests-testId-run.
+      operations:
+      - method: POST
+        name: runtest
+        description: Run a test
+        call: testing-tests.runtest
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: testing-tests-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI Testing API — Tests. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-all-tests
+      description: List all tests
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: testing-tests.listtests
+      with:
+        apiId: tools.apiId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-test
+      description: Create a test
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: testing-tests.createtest
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-test
+      description: Get a test
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: testing-tests.gettest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-test
+      description: Update a test
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: testing-tests.updatetest
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-test
+      description: Delete a test
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: testing-tests.deletetest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: run-test
+      description: Run a test
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: testing-tests.runtest
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

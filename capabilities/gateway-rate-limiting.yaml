@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI Gateway API — Rate Limiting
+  description: 'RapidAPI Gateway API — Rate Limiting. 2 operations. Lead operation: Get rate limiting configuration. Self-contained
+    Naftiko capability covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Rate Limiting
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gateway-rate-limiting
+    baseUri: https://gateway.rapidapi.com/v1
+    description: RapidAPI Gateway API — Rate Limiting business capability. Self-contained, no shared references.
+    resources:
+    - name: gateways-gatewayId-rate-limiting
+      path: /gateways/{gatewayId}/rate-limiting
+      operations:
+      - name: getratelimitconfig
+        method: GET
+        description: Get rate limiting configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateratelimitconfig
+        method: PUT
+        description: Update rate limiting configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: gateway-rate-limiting-rest
+    port: 8080
+    description: REST adapter for RapidAPI Gateway API — Rate Limiting. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/gateways/{gatewayid}/rate-limiting
+      name: gateways-gatewayid-rate-limiting
+      description: REST surface for gateways-gatewayId-rate-limiting.
+      operations:
+      - method: GET
+        name: getratelimitconfig
+        description: Get rate limiting configuration
+        call: gateway-rate-limiting.getratelimitconfig
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateratelimitconfig
+        description: Update rate limiting configuration
+        call: gateway-rate-limiting.updateratelimitconfig
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gateway-rate-limiting-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI Gateway API — Rate Limiting. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-rate-limiting-configuration
+      description: Get rate limiting configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-rate-limiting.getratelimitconfig
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-rate-limiting-configuration
+      description: Update rate limiting configuration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: gateway-rate-limiting.updateratelimitconfig
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

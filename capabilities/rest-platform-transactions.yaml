@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: RapidAPI REST Platform API — Transactions
+  description: 'RapidAPI REST Platform API — Transactions. 1 operations. Lead operation: List all transactions. Self-contained
+    Naftiko capability covering one Rapidapi business surface.'
+  tags:
+  - Rapidapi
+  - Transactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RAPIDAPI_API_KEY: RAPIDAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-platform-transactions
+    baseUri: https://platform.rapidapi.com/v1
+    description: RapidAPI REST Platform API — Transactions business capability. Self-contained, no shared references.
+    resources:
+    - name: transactions
+      path: /transactions
+      operations:
+      - name: listtransactions
+        method: GET
+        description: List all transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.RAPIDAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rest-platform-transactions-rest
+    port: 8080
+    description: REST adapter for RapidAPI REST Platform API — Transactions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/transactions
+      name: transactions
+      description: REST surface for transactions.
+      operations:
+      - method: GET
+        name: listtransactions
+        description: List all transactions
+        call: rest-platform-transactions.listtransactions
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-platform-transactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for RapidAPI REST Platform API — Transactions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-all-transactions
+      description: List all transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-platform-transactions.listtransactions
+      outputParameters:
+      - type: object
+        mapping: $.
