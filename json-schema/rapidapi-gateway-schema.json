@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Gateway",
+  "title": "Gateway",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the gateway"
+    },
+    "name": {
+      "type": "string",
+      "description": "Gateway display name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the gateway's purpose"
+    },
+    "deploymentModel": {
+      "type": "string",
+      "enum": [
+        "cloud",
+        "on-premise",
+        "hybrid"
+      ],
+      "description": "How the gateway is deployed"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "provisioning"
+      ],
+      "description": "Current gateway status"
+    },
+    "baseUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The base URL for the gateway"
+    },
+    "proxySecret": {
+      "type": "string",
+      "description": "Unique proxy secret added as X-RapidAPI-Proxy-Secret header to verify requests originate from the Rapid Runtime"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the gateway was created"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the gateway was last updated"
+    }
+  }
+}

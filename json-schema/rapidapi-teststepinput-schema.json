@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TestStepInput",
+  "title": "TestStepInput",
+  "type": "object",
+  "required": [
+    "name",
+    "method",
+    "url"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Step name"
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ],
+      "description": "HTTP method for the API call"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The endpoint URL to call"
+    },
+    "headers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "HTTP headers to include"
+    },
+    "body": {
+      "type": "string",
+      "description": "Request body content"
+    },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AssertionInput"
+      },
+      "description": "Assertions to validate the response"
+    }
+  }
+}

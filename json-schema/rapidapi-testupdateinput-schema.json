@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TestUpdateInput",
+  "title": "TestUpdateInput",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated test name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Updated test description"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TestStepInput"
+      },
+      "description": "Updated list of test steps"
+    }
+  }
+}

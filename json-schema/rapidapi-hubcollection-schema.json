@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HubCollection",
+  "title": "HubCollection",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the collection"
+    },
+    "title": {
+      "type": "string",
+      "description": "Collection title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the collection"
+    },
+    "apiCount": {
+      "type": "integer",
+      "description": "Number of APIs in this collection"
+    },
+    "imageUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the collection image"
+    }
+  }
+}

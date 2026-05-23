@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiDetails",
+  "title": "ApiDetails",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the API"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the API"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug for the API"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of the API"
+    },
+    "longDescription": {
+      "type": "string",
+      "description": "Detailed description with use cases and examples"
+    },
+    "category": {
+      "type": "string",
+      "description": "Category the API belongs to"
+    },
+    "imageUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the API icon or logo"
+    },
+    "websiteUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the API provider's website"
+    },
+    "termsOfServiceUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the API's terms of service"
+    },
+    "averageRating": {
+      "type": "number",
+      "format": "float",
+      "description": "Average user rating"
+    },
+    "totalRatings": {
+      "type": "integer",
+      "description": "Total number of ratings"
+    },
+    "isVerified": {
+      "type": "boolean",
+      "description": "Whether the API provider is verified"
+    },
+    "provider": {
+      "type": "string",
+      "description": "Name of the API provider"
+    },
+    "plans": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PricingPlan"
+      },
+      "description": "Available subscription plans"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the API"
+    }
+  }
+}

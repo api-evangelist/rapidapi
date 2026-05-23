@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiCreateInput",
+  "title": "ApiCreateInput",
+  "type": "object",
+  "required": [
+    "name",
+    "description",
+    "category"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name of the API"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of the API"
+    },
+    "longDescription": {
+      "type": "string",
+      "description": "Detailed description of the API and its use cases"
+    },
+    "category": {
+      "type": "string",
+      "description": "The category to assign the API to"
+    },
+    "websiteUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the website providing the API"
+    },
+    "imageFile": {
+      "type": "string",
+      "format": "binary",
+      "description": "API icon image file in PNG or JPG format, recommended 500x500 px"
+    }
+  }
+}

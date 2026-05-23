@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiUpdateInput",
+  "title": "ApiUpdateInput",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated display name of the API"
+    },
+    "description": {
+      "type": "string",
+      "description": "Updated short description of the API"
+    },
+    "longDescription": {
+      "type": "string",
+      "description": "Updated detailed description"
+    },
+    "category": {
+      "type": "string",
+      "description": "Updated category assignment"
+    },
+    "websiteUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Updated website URL"
+    },
+    "imageFile": {
+      "type": "string",
+      "format": "binary",
+      "description": "Updated API icon image file"
+    }
+  }
+}

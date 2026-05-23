@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExecutionDetail",
+  "title": "ExecutionDetail",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the execution"
+    },
+    "testId": {
+      "type": "string",
+      "description": "The test that was executed"
+    },
+    "testName": {
+      "type": "string",
+      "description": "Name of the test"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "failed",
+        "running",
+        "error"
+      ],
+      "description": "Overall execution result status"
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Total execution time in milliseconds"
+    },
+    "location": {
+      "type": "string",
+      "description": "The monitoring location where the test ran"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/StepResult"
+      },
+      "description": "Per-step execution results"
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the execution started"
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the execution completed"
+    }
+  }
+}

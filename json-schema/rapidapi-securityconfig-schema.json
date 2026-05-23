@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SecurityConfig",
+  "title": "SecurityConfig",
+  "type": "object",
+  "properties": {
+    "gatewayId": {
+      "type": "string",
+      "description": "The gateway this configuration belongs to"
+    },
+    "ipAllowList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of allowed IP addresses or CIDR ranges"
+    },
+    "ipDenyList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of denied IP addresses or CIDR ranges"
+    },
+    "corsEnabled": {
+      "type": "boolean",
+      "description": "Whether CORS is enabled"
+    },
+    "corsConfig": {
+      "type": "object",
+      "properties": {
+        "allowedOrigins": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Allowed CORS origins"
+        },
+        "allowedMethods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Allowed HTTP methods for CORS"
+        },
+        "allowedHeaders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Allowed request headers for CORS"
+        },
+        "maxAge": {
+          "type": "integer",
+          "description": "CORS preflight cache duration in seconds"
+        }
+      },
+      "description": "CORS configuration details"
+    },
+    "validateProxySecret": {
+      "type": "boolean",
+      "description": "Whether to validate the X-RapidAPI-Proxy-Secret header on incoming requests"
+    }
+  }
+}

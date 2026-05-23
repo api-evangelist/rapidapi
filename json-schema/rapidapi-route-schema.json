@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Route",
+  "title": "Route",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the route"
+    },
+    "gatewayId": {
+      "type": "string",
+      "description": "The gateway this route belongs to"
+    },
+    "pathPattern": {
+      "type": "string",
+      "description": "URL path pattern to match incoming requests"
+    },
+    "targetUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Backend service URL to forward matching requests to"
+    },
+    "methods": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "GET",
+          "POST",
+          "PUT",
+          "PATCH",
+          "DELETE"
+        ]
+      },
+      "description": "HTTP methods this route handles"
+    },
+    "stripPrefix": {
+      "type": "boolean",
+      "description": "Whether to strip the matched path prefix before forwarding"
+    },
+    "priority": {
+      "type": "integer",
+      "description": "Route priority for matching order"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether this route is currently active"
+    }
+  }
+}

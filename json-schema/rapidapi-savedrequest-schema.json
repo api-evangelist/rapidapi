@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SavedRequest",
+  "title": "SavedRequest",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the saved request"
+    },
+    "name": {
+      "type": "string",
+      "description": "Request name"
+    },
+    "method": {
+      "type": "string",
+      "description": "HTTP method"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Request URL"
+    },
+    "group": {
+      "type": "string",
+      "description": "Request group name"
+    },
+    "headers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Request headers"
+    },
+    "body": {
+      "type": "string",
+      "description": "Request body content"
+    }
+  }
+}

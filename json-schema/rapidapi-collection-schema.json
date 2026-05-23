@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Collection",
+  "title": "Collection",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the collection"
+    },
+    "title": {
+      "type": "string",
+      "description": "Display title of the collection"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the collection"
+    },
+    "apis": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of API identifiers in this collection"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the collection was created"
+    }
+  }
+}

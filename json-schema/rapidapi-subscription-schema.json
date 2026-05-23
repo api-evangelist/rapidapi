@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Subscription",
+  "title": "Subscription",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the subscription"
+    },
+    "apiId": {
+      "type": "string",
+      "description": "The API being subscribed to"
+    },
+    "userId": {
+      "type": "string",
+      "description": "The subscribing user"
+    },
+    "plan": {
+      "type": "string",
+      "description": "Name of the subscription plan"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "cancelled",
+        "expired"
+      ],
+      "description": "Current subscription status"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the subscription was created"
+    }
+  }
+}

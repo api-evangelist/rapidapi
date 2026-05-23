@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GatewayAnalytics",
+  "title": "GatewayAnalytics",
+  "type": "object",
+  "properties": {
+    "gatewayId": {
+      "type": "string",
+      "description": "The gateway the analytics are for"
+    },
+    "period": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Start of the analytics period"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date",
+          "description": "End of the analytics period"
+        }
+      },
+      "description": "The time period for the analytics"
+    },
+    "totalRequests": {
+      "type": "integer",
+      "description": "Total number of requests in the period"
+    },
+    "totalErrors": {
+      "type": "integer",
+      "description": "Total number of error responses"
+    },
+    "averageResponseTime": {
+      "type": "number",
+      "format": "double",
+      "description": "Average response time in milliseconds"
+    },
+    "dataPoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The time bucket for this data point"
+          },
+          "requests": {
+            "type": "integer",
+            "description": "Number of requests in this time bucket"
+          },
+          "errors": {
+            "type": "integer",
+            "description": "Number of errors in this time bucket"
+          },
+          "averageResponseTime": {
+            "type": "number",
+            "format": "double",
+            "description": "Average response time in milliseconds"
+          }
+        }
+      },
+      "description": "Time-series analytics data points"
+    },
+    "topEndpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Endpoint path"
+          },
+          "requestCount": {
+            "type": "integer",
+            "description": "Number of requests to this endpoint"
+          },
+          "averageResponseTime": {
+            "type": "number",
+            "format": "double",
+            "description": "Average response time for this endpoint"
+          }
+        }
+      },
+      "description": "Top endpoints by request volume"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuthenticationConfigInput",
+  "title": "AuthenticationConfigInput",
+  "type": "object",
+  "required": [
+    "scheme"
+  ],
+  "properties": {
+    "scheme": {
+      "type": "string",
+      "enum": [
+        "rapidapi_default",
+        "oauth2",
+        "header",
+        "query",
+        "basic"
+      ],
+      "description": "The primary authentication scheme"
+    },
+    "requireRapidApiKey": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the X-RapidAPI-Key header is required"
+    },
+    "oauth2Config": {
+      "type": "object",
+      "properties": {
+        "authorizationUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "OAuth2 authorization endpoint"
+        },
+        "tokenUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "OAuth2 token endpoint"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Available OAuth2 scopes"
+        }
+      },
+      "description": "OAuth2 configuration"
+    },
+    "headerConfig": {
+      "type": "object",
+      "properties": {
+        "headerName": {
+          "type": "string",
+          "description": "Custom header name for authentication"
+        }
+      },
+      "description": "Header authentication configuration"
+    }
+  }
+}

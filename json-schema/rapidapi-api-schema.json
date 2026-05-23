@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Api",
+  "title": "Api",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the API"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the API"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of the API"
+    },
+    "longDescription": {
+      "type": "string",
+      "description": "Detailed description of the API and its use cases"
+    },
+    "category": {
+      "type": "string",
+      "description": "The category the API belongs to"
+    },
+    "websiteUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the website providing the API"
+    },
+    "imageUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the API icon image"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "deprecated"
+      ],
+      "description": "Current status of the API"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the API was created"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the API was last updated"
+    }
+  }
+}

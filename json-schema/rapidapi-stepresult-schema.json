@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StepResult",
+  "title": "StepResult",
+  "type": "object",
+  "properties": {
+    "stepId": {
+      "type": "string",
+      "description": "The step that was executed"
+    },
+    "stepName": {
+      "type": "string",
+      "description": "Name of the step"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "failed",
+        "error",
+        "skipped"
+      ],
+      "description": "Step execution result"
+    },
+    "responseTime": {
+      "type": "integer",
+      "description": "Response time in milliseconds"
+    },
+    "statusCode": {
+      "type": "integer",
+      "description": "HTTP status code returned"
+    },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "description": "The assertion target"
+          },
+          "passed": {
+            "type": "boolean",
+            "description": "Whether the assertion passed"
+          },
+          "expected": {
+            "type": "string",
+            "description": "The expected value"
+          },
+          "actual": {
+            "type": "string",
+            "description": "The actual value received"
+          }
+        }
+      },
+      "description": "Per-assertion results"
+    }
+  }
+}

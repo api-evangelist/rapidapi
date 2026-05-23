@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiVersionUpdateInput",
+  "title": "ApiVersionUpdateInput",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated version name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Updated version description"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "deprecated",
+        "draft"
+      ],
+      "description": "Updated version status"
+    }
+  }
+}

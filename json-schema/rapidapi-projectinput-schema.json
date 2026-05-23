@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProjectInput",
+  "title": "ProjectInput",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Project name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Project description"
+    },
+    "apiType": {
+      "type": "string",
+      "enum": [
+        "rest",
+        "graphql",
+        "soap"
+      ],
+      "description": "The type of API being designed"
+    }
+  }
+}

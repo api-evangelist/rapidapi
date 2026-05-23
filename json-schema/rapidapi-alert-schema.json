@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Alert",
+  "title": "Alert",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the alert"
+    },
+    "testId": {
+      "type": "string",
+      "description": "The test to monitor for failures"
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "email",
+        "slack",
+        "pagerduty",
+        "twilio"
+      ],
+      "description": "Notification channel"
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Channel-specific configuration such as webhook URLs or email addresses"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the alert is currently active"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the alert was created"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Assertion",
+  "title": "Assertion",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the assertion"
+    },
+    "target": {
+      "type": "string",
+      "description": "The response element to assert on, such as status_code, response_time, or a JSONPath expression"
+    },
+    "comparison": {
+      "type": "string",
+      "enum": [
+        "equals",
+        "not_equals",
+        "contains",
+        "not_contains",
+        "greater_than",
+        "less_than",
+        "exists",
+        "not_exists"
+      ],
+      "description": "The comparison operator"
+    },
+    "value": {
+      "type": "string",
+      "description": "The expected value to compare against"
+    }
+  }
+}

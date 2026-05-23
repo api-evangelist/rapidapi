@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiSummary",
+  "title": "ApiSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the API"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the API"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug for the API"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of the API"
+    },
+    "category": {
+      "type": "string",
+      "description": "Category the API belongs to"
+    },
+    "imageUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the API icon or logo"
+    },
+    "averageRating": {
+      "type": "number",
+      "format": "float",
+      "description": "Average user rating for the API"
+    },
+    "popularity": {
+      "type": "number",
+      "format": "float",
+      "description": "Popularity score based on usage and subscriptions"
+    },
+    "isVerified": {
+      "type": "boolean",
+      "description": "Whether the API provider is verified"
+    },
+    "provider": {
+      "type": "string",
+      "description": "Name of the API provider"
+    }
+  }
+}

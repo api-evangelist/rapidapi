@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GraphQLRequest",
+  "title": "GraphQLRequest",
+  "type": "object",
+  "required": [
+    "query"
+  ],
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The GraphQL query or mutation string to execute. Queries read data and mutations modify data in the Enterprise Hub."
+    },
+    "variables": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Optional variables to pass to the GraphQL query or mutation, matching the variable declarations in the query string."
+    },
+    "operationName": {
+      "type": "string",
+      "description": "The name of the operation to execute when the query contains multiple named operations."
+    }
+  }
+}

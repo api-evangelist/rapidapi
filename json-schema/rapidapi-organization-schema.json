@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Organization",
+  "title": "Organization",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the organization"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the organization"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the organization"
+    },
+    "thumbnail": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the organization's thumbnail image"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the organization was created"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GatewayInput",
+  "title": "GatewayInput",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Gateway display name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the gateway's purpose"
+    },
+    "deploymentModel": {
+      "type": "string",
+      "enum": [
+        "cloud",
+        "on-premise",
+        "hybrid"
+      ],
+      "description": "How the gateway should be deployed"
+    },
+    "baseUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The base URL for the gateway"
+    }
+  }
+}

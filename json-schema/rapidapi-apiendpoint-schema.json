@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiEndpoint",
+  "title": "ApiEndpoint",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the endpoint"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the endpoint"
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ],
+      "description": "HTTP method for the endpoint"
+    },
+    "path": {
+      "type": "string",
+      "description": "The URL path for the endpoint"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of what the endpoint does"
+    },
+    "group": {
+      "type": "string",
+      "description": "The endpoint group this endpoint belongs to"
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EndpointParameter"
+      },
+      "description": "Parameters accepted by this endpoint"
+    }
+  }
+}

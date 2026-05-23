@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Location",
+  "title": "Location",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the location"
+    },
+    "name": {
+      "type": "string",
+      "description": "Location display name"
+    },
+    "region": {
+      "type": "string",
+      "description": "AWS region identifier"
+    },
+    "provider": {
+      "type": "string",
+      "enum": [
+        "aws",
+        "azure",
+        "custom"
+      ],
+      "description": "Cloud provider hosting this location"
+    }
+  }
+}

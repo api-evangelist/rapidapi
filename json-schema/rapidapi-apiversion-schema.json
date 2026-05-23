@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiVersion",
+  "title": "ApiVersion",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the API version"
+    },
+    "apiId": {
+      "type": "string",
+      "description": "The API this version belongs to"
+    },
+    "name": {
+      "type": "string",
+      "description": "Version name or label"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "deprecated",
+        "draft"
+      ],
+      "description": "Current status of the version"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the version was created"
+    }
+  }
+}

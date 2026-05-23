@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GraphQLResponse",
+  "title": "GraphQLResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "The result of the GraphQL query or mutation. The structure matches the shape of the requested fields in the query."
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/GraphQLError"
+      },
+      "description": "An array of errors encountered during execution, if any. Errors may be returned alongside partial data."
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HubSubscription",
+  "title": "HubSubscription",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique subscription identifier"
+    },
+    "apiId": {
+      "type": "string",
+      "description": "The subscribed API identifier"
+    },
+    "apiName": {
+      "type": "string",
+      "description": "Name of the subscribed API"
+    },
+    "planName": {
+      "type": "string",
+      "description": "Name of the subscription plan"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "cancelled",
+        "expired"
+      ],
+      "description": "Current subscription status"
+    },
+    "usageCount": {
+      "type": "integer",
+      "description": "Number of API calls made in the current period"
+    },
+    "usageLimit": {
+      "type": "integer",
+      "description": "Maximum API calls allowed in the current period"
+    },
+    "subscribedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the subscription was created"
+    }
+  }
+}

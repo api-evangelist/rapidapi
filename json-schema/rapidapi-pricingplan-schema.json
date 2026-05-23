@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PricingPlan",
+  "title": "PricingPlan",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the plan"
+    },
+    "name": {
+      "type": "string",
+      "description": "Plan name such as Basic, Pro, or Ultra"
+    },
+    "price": {
+      "type": "number",
+      "format": "double",
+      "description": "Monthly price in USD"
+    },
+    "rateLimit": {
+      "type": "integer",
+      "description": "Maximum number of requests allowed per month"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of features included in this plan"
+    }
+  }
+}

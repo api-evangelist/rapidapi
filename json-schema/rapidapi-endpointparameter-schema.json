@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EndpointParameter",
+  "title": "EndpointParameter",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Parameter name"
+    },
+    "type": {
+      "type": "string",
+      "description": "Data type of the parameter"
+    },
+    "required": {
+      "type": "boolean",
+      "description": "Whether the parameter is required"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the parameter"
+    },
+    "defaultValue": {
+      "type": "string",
+      "description": "Default value for the parameter if not provided"
+    },
+    "location": {
+      "type": "string",
+      "enum": [
+        "query",
+        "path",
+        "header",
+        "body"
+      ],
+      "description": "Where the parameter is sent in the request"
+    }
+  }
+}

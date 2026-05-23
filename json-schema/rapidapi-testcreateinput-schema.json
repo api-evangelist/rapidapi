@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TestCreateInput",
+  "title": "TestCreateInput",
+  "type": "object",
+  "required": [
+    "name",
+    "steps"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name of the test"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of what the test validates"
+    },
+    "apiId": {
+      "type": "string",
+      "description": "The API to associate this test with"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "functional",
+        "performance"
+      ],
+      "description": "The type of test"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TestStepInput"
+      },
+      "description": "Ordered list of test steps"
+    }
+  }
+}

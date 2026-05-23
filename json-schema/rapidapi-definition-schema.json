@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Definition",
+  "title": "Definition",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the definition"
+    },
+    "projectId": {
+      "type": "string",
+      "description": "The project this definition belongs to"
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "openapi",
+        "postman"
+      ],
+      "description": "The format of the definition"
+    },
+    "version": {
+      "type": "string",
+      "description": "The specification version"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title from the imported definition"
+    },
+    "importedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the definition was imported"
+    }
+  }
+}

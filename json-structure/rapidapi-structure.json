@@ -1,0 +1,382 @@
+{
+  "provider": "RapidAPI",
+  "providerId": "rapidapi",
+  "kind": "json-structure",
+  "description": "Structural overview of the RapidAPI API surface; extracted from openapi/.",
+  "schemaCount": 18,
+  "operationCount": 30,
+  "schemas": [
+    {
+      "name": "Api",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "ApiCreateInput",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name",
+        "description",
+        "category"
+      ]
+    },
+    {
+      "name": "ApiUpdateInput",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ApiVersion",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ApiVersionUpdateInput",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Organization",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "OrganizationUpdateInput",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Category",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "CategoryInput",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "Tag",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "TagInput",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "Collection",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "CollectionInput",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "title"
+      ]
+    },
+    {
+      "name": "User",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Subscription",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Transaction",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Application",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ApplicationInput",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/apis",
+      "operationId": "listApis",
+      "summary": "List all APIs",
+      "tags": []
+    },
+    {
+      "method": "POST",
+      "path": "/apis",
+      "operationId": "createApi",
+      "summary": "Create an API",
+      "tags": []
+    },
+    {
+      "method": "GET",
+      "path": "/apis/{apiId}",
+      "operationId": "getApi",
+      "summary": "Get an API",
+      "tags": []
+    },
+    {
+      "method": "PUT",
+      "path": "/apis/{apiId}",
+      "operationId": "updateApi",
+      "summary": "Update an API",
+      "tags": []
+    },
+    {
+      "method": "DELETE",
+      "path": "/apis/{apiId}",
+      "operationId": "deleteApi",
+      "summary": "Delete an API",
+      "tags": []
+    },
+    {
+      "method": "GET",
+      "path": "/apis/{apiId}/versions",
+      "operationId": "listApiVersions",
+      "summary": "List API versions",
+      "tags": []
+    },
+    {
+      "method": "PUT",
+      "path": "/apis/{apiId}/versions/{versionId}",
+      "operationId": "updateApiVersion",
+      "summary": "Update an API version",
+      "tags": []
+    },
+    {
+      "method": "GET",
+      "path": "/organizations",
+      "operationId": "listOrganizations",
+      "summary": "List all organizations",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organizationId}",
+      "operationId": "getOrganization",
+      "summary": "Get an organization",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/organizations/{organizationId}",
+      "operationId": "updateOrganization",
+      "summary": "Update an organization",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/categories",
+      "operationId": "listCategories",
+      "summary": "List all categories",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/categories",
+      "operationId": "createCategory",
+      "summary": "Create a category",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/categories/{categoryId}",
+      "operationId": "updateCategory",
+      "summary": "Update a category",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/categories/{categoryId}",
+      "operationId": "deleteCategory",
+      "summary": "Delete a category",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/tags",
+      "operationId": "listTags",
+      "summary": "List all tags",
+      "tags": []
+    },
+    {
+      "method": "POST",
+      "path": "/tags",
+      "operationId": "createTag",
+      "summary": "Create a tag",
+      "tags": []
+    },
+    {
+      "method": "DELETE",
+      "path": "/tags/{tagId}",
+      "operationId": "deleteTag",
+      "summary": "Delete a tag",
+      "tags": []
+    },
+    {
+      "method": "GET",
+      "path": "/collections",
+      "operationId": "listCollections",
+      "summary": "List all collections",
+      "tags": [
+        "Collections"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/collections",
+      "operationId": "createCollection",
+      "summary": "Create a collection",
+      "tags": [
+        "Collections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/collections/{collectionId}",
+      "operationId": "getCollection",
+      "summary": "Get a collection",
+      "tags": [
+        "Collections"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/collections/{collectionId}",
+      "operationId": "updateCollection",
+      "summary": "Update a collection",
+      "tags": [
+        "Collections"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/collections/{collectionId}",
+      "operationId": "deleteCollection",
+      "summary": "Delete a collection",
+      "tags": [
+        "Collections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/users",
+      "operationId": "listUsers",
+      "summary": "List all users",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/users/{userId}",
+      "operationId": "getUser",
+      "summary": "Get a user",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/subscriptions",
+      "operationId": "listSubscriptions",
+      "summary": "List all subscriptions",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/transactions",
+      "operationId": "listTransactions",
+      "summary": "List all transactions",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications",
+      "operationId": "listApplications",
+      "summary": "List all applications",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications",
+      "operationId": "createApplication",
+      "summary": "Create an application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/applications/{applicationId}",
+      "operationId": "updateApplication",
+      "summary": "Update an application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/applications/{applicationId}",
+      "operationId": "deleteApplication",
+      "summary": "Delete an application",
+      "tags": [
+        "Applications"
+      ]
+    }
+  ]
+}

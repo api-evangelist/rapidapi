@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RateLimitConfig",
+  "title": "RateLimitConfig",
+  "type": "object",
+  "properties": {
+    "gatewayId": {
+      "type": "string",
+      "description": "The gateway this configuration belongs to"
+    },
+    "requestsPerSecond": {
+      "type": "integer",
+      "description": "Maximum requests per second per consumer"
+    },
+    "requestsPerMinute": {
+      "type": "integer",
+      "description": "Maximum requests per minute per consumer"
+    },
+    "requestsPerDay": {
+      "type": "integer",
+      "description": "Maximum requests per day per consumer"
+    },
+    "maxRequestSizeBytes": {
+      "type": "integer",
+      "description": "Maximum request body size in bytes"
+    },
+    "burstLimit": {
+      "type": "integer",
+      "description": "Maximum burst of requests allowed"
+    }
+  }
+}

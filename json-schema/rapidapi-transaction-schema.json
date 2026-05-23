@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Transaction",
+  "title": "Transaction",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the transaction"
+    },
+    "apiId": {
+      "type": "string",
+      "description": "The API the transaction is associated with"
+    },
+    "userId": {
+      "type": "string",
+      "description": "The user who made the transaction"
+    },
+    "amount": {
+      "type": "number",
+      "format": "double",
+      "description": "Transaction amount"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code for the transaction amount"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "pending",
+        "failed"
+      ],
+      "description": "Current transaction status"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the transaction occurred"
+    }
+  }
+}

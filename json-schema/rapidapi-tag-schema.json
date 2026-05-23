@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Tag",
+  "title": "Tag",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the tag"
+    },
+    "name": {
+      "type": "string",
+      "description": "Tag name"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the tag"
+    }
+  }
+}

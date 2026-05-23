@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SecurityConfigInput",
+  "title": "SecurityConfigInput",
+  "type": "object",
+  "properties": {
+    "ipAllowList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of allowed IP addresses or CIDR ranges"
+    },
+    "ipDenyList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of denied IP addresses or CIDR ranges"
+    },
+    "corsEnabled": {
+      "type": "boolean",
+      "description": "Whether to enable CORS"
+    },
+    "corsConfig": {
+      "type": "object",
+      "properties": {
+        "allowedOrigins": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Allowed CORS origins"
+        },
+        "allowedMethods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Allowed HTTP methods"
+        },
+        "allowedHeaders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Allowed request headers"
+        },
+        "maxAge": {
+          "type": "integer",
+          "description": "CORS preflight cache duration in seconds"
+        }
+      },
+      "description": "CORS configuration"
+    },
+    "validateProxySecret": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to validate the proxy secret header"
+    }
+  }
+}

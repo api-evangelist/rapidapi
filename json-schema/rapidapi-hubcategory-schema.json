@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HubCategory",
+  "title": "HubCategory",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the category"
+    },
+    "name": {
+      "type": "string",
+      "description": "Category display name"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly category slug"
+    },
+    "apiCount": {
+      "type": "integer",
+      "description": "Number of APIs in this category"
+    }
+  }
+}

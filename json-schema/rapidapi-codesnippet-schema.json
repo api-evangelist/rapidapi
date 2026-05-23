@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CodeSnippet",
+  "title": "CodeSnippet",
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "description": "Programming language name"
+    },
+    "library": {
+      "type": "string",
+      "description": "HTTP library or framework used"
+    },
+    "code": {
+      "type": "string",
+      "description": "The generated code snippet"
+    }
+  }
+}

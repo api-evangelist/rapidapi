@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Endpoint",
+  "title": "Endpoint",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the endpoint"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the endpoint"
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ],
+      "description": "HTTP method"
+    },
+    "path": {
+      "type": "string",
+      "description": "URL path for the endpoint"
+    },
+    "group": {
+      "type": "string",
+      "description": "The endpoint group this belongs to"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the endpoint"
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Parameter name"
+          },
+          "location": {
+            "type": "string",
+            "enum": [
+              "query",
+              "path",
+              "header",
+              "body"
+            ],
+            "description": "Where the parameter is sent"
+          },
+          "type": {
+            "type": "string",
+            "description": "Data type"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether required"
+          },
+          "description": {
+            "type": "string",
+            "description": "Parameter description"
+          }
+        }
+      },
+      "description": "Endpoint parameters"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RateLimitConfigInput",
+  "title": "RateLimitConfigInput",
+  "type": "object",
+  "properties": {
+    "requestsPerSecond": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum requests per second per consumer"
+    },
+    "requestsPerMinute": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum requests per minute per consumer"
+    },
+    "requestsPerDay": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum requests per day per consumer"
+    },
+    "maxRequestSizeBytes": {
+      "type": "integer",
+      "minimum": 1024,
+      "description": "Maximum request body size in bytes"
+    },
+    "burstLimit": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum burst of requests allowed"
+    }
+  }
+}

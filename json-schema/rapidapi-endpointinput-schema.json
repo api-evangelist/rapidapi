@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EndpointInput",
+  "title": "EndpointInput",
+  "type": "object",
+  "required": [
+    "name",
+    "method",
+    "path"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name of the endpoint"
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ],
+      "description": "HTTP method"
+    },
+    "path": {
+      "type": "string",
+      "description": "URL path for the endpoint"
+    },
+    "group": {
+      "type": "string",
+      "description": "The endpoint group to organize under"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the endpoint"
+    }
+  }
+}

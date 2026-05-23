@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrganizationUpdateInput",
+  "title": "OrganizationUpdateInput",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated organization name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Updated organization description"
+    }
+  }
+}
