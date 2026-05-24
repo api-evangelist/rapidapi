@@ -238,6 +238,8 @@ common:
     url: json-ld/rapidapi-context.jsonld
   - type: Vocabulary
     url: vocabulary/rapidapi-vocabulary.yml
+  - type: LLMsTxt
+    url: https://docs.rapidapi.com/llms.txt
 maintainers:
   - FN: API Evangelist
     email: info@apievangelist.com
