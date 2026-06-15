@@ -1,0 +1,688 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI REST Platform API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/apis",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all APIs available in the Enterprise Hub. Supports filtering and pagination to narrow down results."
+        },
+        {
+          "info": {
+            "name": "Create an API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://platform.rapidapi.com/v1/apis",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Creates a new API listing in the Enterprise Hub. Requires providing the API name, description, category, and other configuration details."
+        },
+        {
+          "info": {
+            "name": "Get an API",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/apis/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API"
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific API by its unique identifier, including its configuration, versions, and metadata."
+        },
+        {
+          "info": {
+            "name": "Update an API",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://platform.rapidapi.com/v1/apis/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Updates the configuration and metadata of an existing API in the Enterprise Hub."
+        },
+        {
+          "info": {
+            "name": "Delete an API",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://platform.rapidapi.com/v1/apis/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API"
+              }
+            ]
+          },
+          "docs": "Deletes an API listing from the Enterprise Hub. This action is irreversible and removes all associated versions and configurations."
+        },
+        {
+          "info": {
+            "name": "List API versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/apis/:apiId/versions",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API"
+              }
+            ]
+          },
+          "docs": "Retrieves all versions of a specific API, including version names, statuses, and configuration details."
+        },
+        {
+          "info": {
+            "name": "Update an API version",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://platform.rapidapi.com/v1/apis/:apiId/versions/:versionId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API"
+              },
+              {
+                "name": "versionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API version"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a specific version of an API, including its endpoints, description, and settings."
+        },
+        {
+          "info": {
+            "name": "List all tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/tags"
+          },
+          "docs": "Retrieves all custom tags configured in the Enterprise Hub. Tags are used to add metadata to APIs for filtering and search."
+        },
+        {
+          "info": {
+            "name": "Create a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://platform.rapidapi.com/v1/tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new custom tag in the Enterprise Hub for categorizing APIs."
+        },
+        {
+          "info": {
+            "name": "Delete a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://platform.rapidapi.com/v1/tags/:tagId",
+            "params": [
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the tag"
+              }
+            ]
+          },
+          "docs": "Deletes a custom tag from the Enterprise Hub."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/organizations",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all organizations in the Enterprise Hub. Each organization represents a distinct entity that can own and manage APIs."
+        },
+        {
+          "info": {
+            "name": "Get an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific organization by its unique identifier, including its name, settings, and associated users."
+        },
+        {
+          "info": {
+            "name": "Update an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://platform.rapidapi.com/v1/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the organization"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration and settings of an existing organization in the Enterprise Hub."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/categories"
+          },
+          "docs": "Retrieves all API categories configured in the Enterprise Hub. Categories are used to organize and group APIs for discovery."
+        },
+        {
+          "info": {
+            "name": "Create a category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://platform.rapidapi.com/v1/categories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API category in the Enterprise Hub for organizing APIs."
+        },
+        {
+          "info": {
+            "name": "Update a category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://platform.rapidapi.com/v1/categories/:categoryId",
+            "params": [
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the category"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing API category in the Enterprise Hub."
+        },
+        {
+          "info": {
+            "name": "Delete a category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://platform.rapidapi.com/v1/categories/:categoryId",
+            "params": [
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the category"
+              }
+            ]
+          },
+          "docs": "Deletes an API category from the Enterprise Hub. APIs in this category will need to be reassigned."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/collections",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves all API collections in the Enterprise Hub. Collections are curated groups of APIs organized around themes or use cases."
+        },
+        {
+          "info": {
+            "name": "Create a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://platform.rapidapi.com/v1/collections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API collection in the Enterprise Hub for grouping related APIs together."
+        },
+        {
+          "info": {
+            "name": "Get a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/collections/:collectionId",
+            "params": [
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the collection"
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific collection by its unique identifier, including the APIs it contains."
+        },
+        {
+          "info": {
+            "name": "Update a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://platform.rapidapi.com/v1/collections/:collectionId",
+            "params": [
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing API collection in the Enterprise Hub, including its name, description, and associated APIs."
+        },
+        {
+          "info": {
+            "name": "Delete a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://platform.rapidapi.com/v1/collections/:collectionId",
+            "params": [
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the collection"
+              }
+            ]
+          },
+          "docs": "Deletes a collection from the Enterprise Hub. The APIs within the collection are not deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/users",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all users in the Enterprise Hub, including their roles, email addresses, and account statuses."
+        },
+        {
+          "info": {
+            "name": "Get a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the user"
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific user by their unique identifier, including their profile, roles, and subscription information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/subscriptions",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all API subscriptions in the Enterprise Hub, including subscriber details and plan information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/transactions",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of API transaction records, including usage data, billing information, and timestamps."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.rapidapi.com/v1/applications",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all applications registered in the Enterprise Hub, including their API keys and authorization configurations."
+        },
+        {
+          "info": {
+            "name": "Create an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://platform.rapidapi.com/v1/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new application in the Enterprise Hub with associated API key and authorization settings."
+        },
+        {
+          "info": {
+            "name": "Update an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://platform.rapidapi.com/v1/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing application's configuration and authorization settings in the Enterprise Hub."
+        },
+        {
+          "info": {
+            "name": "Delete an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://platform.rapidapi.com/v1/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the application"
+              }
+            ]
+          },
+          "docs": "Deletes an application and its associated API keys from the Enterprise Hub."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

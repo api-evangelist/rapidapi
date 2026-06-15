@@ -1,0 +1,441 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Studio API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://studio.rapidapi.com/v1/projects",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all API projects in the Studio workspace, including project names, statuses, and last modified dates."
+        },
+        {
+          "info": {
+            "name": "Create a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://studio.rapidapi.com/v1/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API project in Studio. A project serves as the workspace for designing and configuring an API before publishing it to the hub."
+        },
+        {
+          "info": {
+            "name": "Get a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific project, including its configuration, endpoints, and definition status."
+        },
+        {
+          "info": {
+            "name": "Update a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration and settings of an existing API project."
+        },
+        {
+          "info": {
+            "name": "Delete a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              }
+            ]
+          },
+          "docs": "Deletes a project and all its associated definitions, endpoints, and requests from Studio."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Definitions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId/definitions",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              }
+            ]
+          },
+          "docs": "Retrieves all API definitions associated with a project, including imported OpenAPI specifications and Postman Collections."
+        },
+        {
+          "info": {
+            "name": "Import a definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId/definitions",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "url",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "text",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "format",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Imports an API definition into the project from a file upload, remote URL, or text input. Supports OpenAPI 3.0.3 and Postman Collection formats. Importing a definition automatically populates the project's endpoints."
+        },
+        {
+          "info": {
+            "name": "Get a definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId/definitions/:definitionId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              },
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API definition"
+              }
+            ]
+          },
+          "docs": "Retrieves the full content and metadata of a specific API definition."
+        },
+        {
+          "info": {
+            "name": "Delete a definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId/definitions/:definitionId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              },
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API definition"
+              }
+            ]
+          },
+          "docs": "Deletes an imported API definition from the project. Associated endpoints remain but lose their definition binding."
+        },
+        {
+          "info": {
+            "name": "Export a definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId/definitions/:definitionId/export",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              },
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API definition"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "The output format for the exported definition"
+              }
+            ]
+          },
+          "docs": "Exports the API definition in the specified format, allowing developers to download the spec for use in other tools or CI/CD pipelines."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId/endpoints",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              }
+            ]
+          },
+          "docs": "Retrieves all endpoints configured in a project, organized by endpoint groups. Each endpoint includes its HTTP method, path, parameters, and response definitions."
+        },
+        {
+          "info": {
+            "name": "Create an endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId/endpoints",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new endpoint in the project with the specified HTTP method, path, parameters, and response configuration."
+        },
+        {
+          "info": {
+            "name": "Update an endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId/endpoints/:endpointId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the endpoint"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing endpoint in the project."
+        },
+        {
+          "info": {
+            "name": "Delete an endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId/endpoints/:endpointId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the endpoint"
+              }
+            ]
+          },
+          "docs": "Deletes an endpoint from the project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List saved requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId/requests",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              }
+            ]
+          },
+          "docs": "Retrieves all saved API requests within a project, organized into groups. Requests are used for testing and documentation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documentation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Publish to hub",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://studio.rapidapi.com/v1/projects/:projectId/publish",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publishes the API project to the RapidAPI Hub, making it available for discovery and consumption. The project's endpoints and documentation are automatically generated from the API definition."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

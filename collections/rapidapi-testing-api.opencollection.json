@@ -1,0 +1,444 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Testing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all tests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://testing.rapidapi.com/v1/tests",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "query",
+                "description": "Filter tests by associated API identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all API tests in the account, including test names, types, statuses, and associated APIs."
+        },
+        {
+          "info": {
+            "name": "Create a test",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://testing.rapidapi.com/v1/tests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API test with defined steps, assertions, and configuration. Tests can call multiple API endpoints and chain data between them to mimic real application behavior."
+        },
+        {
+          "info": {
+            "name": "Get a test",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://testing.rapidapi.com/v1/tests/:testId",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the test"
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific test, including all steps, assertions, and configuration settings."
+        },
+        {
+          "info": {
+            "name": "Update a test",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://testing.rapidapi.com/v1/tests/:testId",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the test"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration, steps, and assertions of an existing API test."
+        },
+        {
+          "info": {
+            "name": "Delete a test",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://testing.rapidapi.com/v1/tests/:testId",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the test"
+              }
+            ]
+          },
+          "docs": "Deletes an API test and all associated execution history and schedules."
+        },
+        {
+          "info": {
+            "name": "Run a test",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://testing.rapidapi.com/v1/tests/:testId/run",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the test"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers an immediate execution of a specific test. The test runs against the configured environment and location, and results are available through the executions endpoint."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://testing.rapidapi.com/v1/schedules"
+          },
+          "docs": "Retrieves all configured test schedules, including their frequency, associated test, environment, and monitoring locations."
+        },
+        {
+          "info": {
+            "name": "Create a schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://testing.rapidapi.com/v1/schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new test schedule that runs a test at a specified frequency from one or more monitoring locations. Frequency options include intervals ranging from every 5 minutes to every 24 hours."
+        },
+        {
+          "info": {
+            "name": "Update a schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://testing.rapidapi.com/v1/schedules/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the schedule"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the frequency, environment, or location settings of an existing test schedule."
+        },
+        {
+          "info": {
+            "name": "Delete a schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://testing.rapidapi.com/v1/schedules/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the schedule"
+              }
+            ]
+          },
+          "docs": "Deletes a test schedule. The associated test is not deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List test executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://testing.rapidapi.com/v1/executions",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "query",
+                "description": "Filter executions by test identifier"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter executions by result status"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of test execution results, optionally filtered by test identifier, status, or date range."
+        },
+        {
+          "info": {
+            "name": "Get execution details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://testing.rapidapi.com/v1/executions/:executionId",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the test execution"
+              }
+            ]
+          },
+          "docs": "Retrieves the detailed results of a specific test execution, including per-step results, response times, assertion outcomes, and any errors."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Environments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://testing.rapidapi.com/v1/environments"
+          },
+          "docs": "Retrieves all test environments with their variable configurations. Environments allow defining different variable sets for development, staging, and production."
+        },
+        {
+          "info": {
+            "name": "Create an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://testing.rapidapi.com/v1/environments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new test environment with a set of variables that can be used across test configurations."
+        },
+        {
+          "info": {
+            "name": "Update an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://testing.rapidapi.com/v1/environments/:environmentId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the environment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing test environment's name and variable set."
+        },
+        {
+          "info": {
+            "name": "Delete an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://testing.rapidapi.com/v1/environments/:environmentId",
+            "params": [
+              {
+                "name": "environmentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the environment"
+              }
+            ]
+          },
+          "docs": "Deletes a test environment. Tests using this environment will need to be reconfigured."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List alert configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://testing.rapidapi.com/v1/alerts"
+          },
+          "docs": "Retrieves all configured alert notifications for test failures, including integration settings for PagerDuty, Slack, and Twilio."
+        },
+        {
+          "info": {
+            "name": "Create an alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://testing.rapidapi.com/v1/alerts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new alert configuration that sends notifications when a specified test fails. Supports integration with PagerDuty, Slack, Twilio, and email."
+        },
+        {
+          "info": {
+            "name": "Delete an alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://testing.rapidapi.com/v1/alerts/:alertId",
+            "params": [
+              {
+                "name": "alertId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the alert"
+              }
+            ]
+          },
+          "docs": "Deletes an alert configuration. Notifications will no longer be sent for the associated test failures."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List monitoring locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://testing.rapidapi.com/v1/locations"
+          },
+          "docs": "Retrieves the list of available global monitoring locations where tests can be executed. Includes AWS regions and any custom locations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

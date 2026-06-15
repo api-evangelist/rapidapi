@@ -1,0 +1,322 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Hub API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rapidapi.com/search/apis",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query string to match against API names and descriptions"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by category slug"
+              },
+              {
+                "name": "collection",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by collection identifier"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by API type"
+              },
+              {
+                "name": "verified",
+                "value": "",
+                "type": "query",
+                "description": "Filter to only show verified APIs"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Searches the RapidAPI marketplace for APIs matching the provided query string. Supports filtering by category, collection, API type, and verification status. Returns paginated results with API summaries."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List marketplace categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rapidapi.com/categories"
+          },
+          "docs": "Retrieves all API categories available on the RapidAPI marketplace, including category names, slugs, and the number of APIs in each."
+        },
+        {
+          "info": {
+            "name": "List APIs in a category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rapidapi.com/categories/:categorySlug/apis",
+            "params": [
+              {
+                "name": "categorySlug",
+                "value": "",
+                "type": "path",
+                "description": "The URL-friendly slug of the category"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves all APIs within a specific category on the RapidAPI marketplace, sorted by popularity or relevance."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List curated collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rapidapi.com/collections",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves all curated API collections on the RapidAPI marketplace. Collections group APIs with similar characteristics or themes."
+        },
+        {
+          "info": {
+            "name": "List APIs in a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rapidapi.com/collections/:collectionId/apis",
+            "params": [
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the collection"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves all APIs within a specific curated collection on the RapidAPI marketplace."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get API details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rapidapi.com/apis/:apiSlug",
+            "params": [
+              {
+                "name": "apiSlug",
+                "value": "",
+                "type": "path",
+                "description": "The URL-friendly slug or identifier of the API"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific API on the marketplace, including its description, endpoints, pricing plans, ratings, and provider information."
+        },
+        {
+          "info": {
+            "name": "List API endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rapidapi.com/apis/:apiSlug/endpoints",
+            "params": [
+              {
+                "name": "apiSlug",
+                "value": "",
+                "type": "path",
+                "description": "The URL-friendly slug or identifier of the API"
+              }
+            ]
+          },
+          "docs": "Retrieves the list of available endpoints for a specific API, including HTTP methods, paths, parameters, and response schemas."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List my subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rapidapi.com/subscriptions"
+          },
+          "docs": "Retrieves the authenticated user's active API subscriptions, including plan details and usage statistics."
+        },
+        {
+          "info": {
+            "name": "Subscribe to an API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rapidapi.com/apis/:apiSlug/subscribe",
+            "params": [
+              {
+                "name": "apiSlug",
+                "value": "",
+                "type": "path",
+                "description": "The URL-friendly slug or identifier of the API"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribes the authenticated user to a specific API plan on the marketplace. After subscribing, the user can make API calls using their RapidAPI key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Snippets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get code snippets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rapidapi.com/apis/:apiSlug/snippets",
+            "params": [
+              {
+                "name": "apiSlug",
+                "value": "",
+                "type": "path",
+                "description": "The URL-friendly slug or identifier of the API"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the specific endpoint"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "The programming language for the code snippet"
+              }
+            ]
+          },
+          "docs": "Generates code snippets for calling a specific API endpoint in various programming languages and libraries, including JavaScript, Python, PHP, Ruby, Java, and more."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
