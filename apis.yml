@@ -41,9 +41,9 @@ apis:
     url: openapi/rapidapi-rest-platform-api-openapi.yml
   - type: JSONStructure
     url: json-structure/rapidapi-subscription-structure.json
-  - type: Example
+  - type: Examples
     url: examples/rapidapi-list-apis-example.json
-  - type: Example
+  - type: Examples
     url: examples/rapidapi-list-subscriptions-example.json
   - type: SpectralRules
     url: rules/rapidapi-rules.yml
@@ -110,7 +110,7 @@ apis:
     url: json-schema/rapidapi-test-schema.json
   - type: JSONStructure
     url: json-structure/rapidapi-test-structure.json
-  - type: Example
+  - type: Examples
     url: examples/rapidapi-list-tests-example.json
 - aid: rapidapi:rapidapi-studio-api
   name: RapidAPI Studio API
@@ -174,13 +174,13 @@ common:
   url: https://rapidapi.com/support/
 - type: Blog
   url: https://rapidapi.com/blog/
-- type: SignUp
+- type: Signup
   url: https://rapidapi.com/auth/sign-up
 - type: JSONLD
   url: json-ld/rapidapi-context.jsonld
 - type: Vocabulary
   url: vocabulary/rapidapi-vocabulary.yml
-- type: LLMsTxt
+- type: LlmsText
   url: https://docs.rapidapi.com/llms.txt
 maintainers:
 - FN: API Evangelist

@@ -2,10 +2,11 @@
   "repo": "rapidapi",
   "feeds": [
     {
-      "source": "https://rapidapi.com/support/",
-      "error": "HTTPError"
+      "source": "https://rapidapi.com/blog/",
+      "saved": 0,
+      "error": "HTTP 404 on blog listing"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T13:04:24Z"
 }
