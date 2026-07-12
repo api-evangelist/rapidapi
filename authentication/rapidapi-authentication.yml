@@ -1,0 +1,31 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/rapidapi-gateway-api-openapi.yml, openapi/rapidapi-graphql-platform-api-openapi.yml,
+  openapi/rapidapi-hub-api-openapi.yml, openapi/rapidapi-rest-platform-api-openapi.yml, openapi/rapidapi-studio-api-openapi.yml,
+  openapi/rapidapi-testing-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: rapidApiKey
+  type: apiKey
+  in: header
+  parameter: X-RapidAPI-Key
+  description: RapidAPI key used for authenticating requests to the Gateway API.
+  sources:
+  - openapi/rapidapi-gateway-api-openapi.yml
+  - openapi/rapidapi-graphql-platform-api-openapi.yml
+  - openapi/rapidapi-hub-api-openapi.yml
+  - openapi/rapidapi-rest-platform-api-openapi.yml
+  - openapi/rapidapi-studio-api-openapi.yml
+  - openapi/rapidapi-testing-api-openapi.yml
+- name: rapidApiIdentityKey
+  type: apiKey
+  in: header
+  parameter: X-RapidAPI-Identity-Key
+  description: Identity key header required alongside the API key for authorization of GraphQL
+    Platform API requests.
+  sources:
+  - openapi/rapidapi-graphql-platform-api-openapi.yml

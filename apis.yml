@@ -156,6 +156,10 @@ apis:
   - type: JSONSchema
     url: json-schema/rapidapi-gateway-config-schema.json
 common:
+- type: DomainSecurity
+  url: security/rapidapi-domain-security.yml
+- type: Authentication
+  url: authentication/rapidapi-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/RapidAPI
 - type: LinkedIn
