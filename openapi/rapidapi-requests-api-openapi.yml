@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Requests API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Requests
+  description: Endpoints for managing saved API requests within a project, including importing from spec files and organizing into groups.
+paths:
+  /projects/{projectId}/requests:
+    get:
+      operationId: listRequests
+      summary: List saved requests
+      description: Retrieves all saved API requests within a project, organized into groups. Requests are used for testing and documentation.
+      tags:
+      - Requests
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: A list of saved requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  requests:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SavedRequest'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+components:
+  schemas:
+    SavedRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the saved request
+        name:
+          type: string
+          description: Request name
+        method:
+          type: string
+          description: HTTP method
+        url:
+          type: string
+          format: uri
+          description: Request URL
+        group:
+          type: string
+          description: Request group name
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: Request headers
+        body:
+          type: string
+          description: Request body content
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project
+      schema:
+        type: string
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

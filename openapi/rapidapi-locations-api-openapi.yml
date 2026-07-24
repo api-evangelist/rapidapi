@@ -1,0 +1,69 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Locations API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Locations
+  description: Endpoints for listing available monitoring locations across global AWS regions where tests can be executed.
+paths:
+  /locations:
+    get:
+      operationId: listLocations
+      summary: List monitoring locations
+      description: Retrieves the list of available global monitoring locations where tests can be executed. Includes AWS regions and any custom locations.
+      tags:
+      - Locations
+      responses:
+        '200':
+          description: A list of available monitoring locations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Location'
+        '401':
+          description: Unauthorized - invalid or missing API key
+components:
+  schemas:
+    Location:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the location
+        name:
+          type: string
+          description: Location display name
+        region:
+          type: string
+          description: AWS region identifier
+        provider:
+          type: string
+          enum:
+          - aws
+          - azure
+          - custom
+          description: Cloud provider hosting this location
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

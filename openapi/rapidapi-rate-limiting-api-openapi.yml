@@ -1,0 +1,128 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Rate Limiting API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Rate Limiting
+  description: Endpoints for configuring rate limiting policies to protect APIs from overuse, including request limits, quota management, and request size limits.
+paths:
+  /gateways/{gatewayId}/rate-limiting:
+    get:
+      operationId: getRateLimitConfig
+      summary: Get rate limiting configuration
+      description: Retrieves the rate limiting policies configured for a gateway, including request limits, quota settings, and request size limits.
+      tags:
+      - Rate Limiting
+      parameters:
+      - $ref: '#/components/parameters/gatewayId'
+      responses:
+        '200':
+          description: Rate limiting configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitConfig'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+    put:
+      operationId: updateRateLimitConfig
+      summary: Update rate limiting configuration
+      description: Updates the rate limiting policies for a gateway, including per-user request limits, global quotas, and maximum request size constraints.
+      tags:
+      - Rate Limiting
+      parameters:
+      - $ref: '#/components/parameters/gatewayId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateLimitConfigInput'
+      responses:
+        '200':
+          description: Rate limiting configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitConfig'
+        '400':
+          description: Bad request - invalid rate limit configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+components:
+  parameters:
+    gatewayId:
+      name: gatewayId
+      in: path
+      required: true
+      description: The unique identifier of the gateway
+      schema:
+        type: string
+  schemas:
+    RateLimitConfig:
+      type: object
+      properties:
+        gatewayId:
+          type: string
+          description: The gateway this configuration belongs to
+        requestsPerSecond:
+          type: integer
+          description: Maximum requests per second per consumer
+        requestsPerMinute:
+          type: integer
+          description: Maximum requests per minute per consumer
+        requestsPerDay:
+          type: integer
+          description: Maximum requests per day per consumer
+        maxRequestSizeBytes:
+          type: integer
+          description: Maximum request body size in bytes
+        burstLimit:
+          type: integer
+          description: Maximum burst of requests allowed
+    RateLimitConfigInput:
+      type: object
+      properties:
+        requestsPerSecond:
+          type: integer
+          minimum: 1
+          description: Maximum requests per second per consumer
+        requestsPerMinute:
+          type: integer
+          minimum: 1
+          description: Maximum requests per minute per consumer
+        requestsPerDay:
+          type: integer
+          minimum: 1
+          description: Maximum requests per day per consumer
+        maxRequestSizeBytes:
+          type: integer
+          minimum: 1024
+          description: Maximum request body size in bytes
+        burstLimit:
+          type: integer
+          minimum: 1
+          description: Maximum burst of requests allowed
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

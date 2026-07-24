@@ -1,0 +1,206 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Gateways API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Gateways
+  description: Endpoints for managing gateway instances, including creating, configuring, and monitoring custom API gateways.
+paths:
+  /gateways:
+    get:
+      operationId: listGateways
+      summary: List gateways
+      description: Retrieves all gateway instances configured for the organization, including their status, deployment model, and associated APIs.
+      tags:
+      - Gateways
+      responses:
+        '200':
+          description: A list of gateways
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  gateways:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Gateway'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createGateway
+      summary: Create a gateway
+      description: Creates a new gateway instance with the specified deployment model and configuration. The gateway will begin routing traffic once activated.
+      tags:
+      - Gateways
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GatewayInput'
+      responses:
+        '201':
+          description: Gateway created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+        '400':
+          description: Bad request - invalid gateway configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /gateways/{gatewayId}:
+    get:
+      operationId: getGateway
+      summary: Get a gateway
+      description: Retrieves the detailed configuration and status of a specific gateway instance.
+      tags:
+      - Gateways
+      parameters:
+      - $ref: '#/components/parameters/gatewayId'
+      responses:
+        '200':
+          description: Gateway details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+    put:
+      operationId: updateGateway
+      summary: Update a gateway
+      description: Updates the configuration of an existing gateway instance, including its name, deployment model, and associated settings.
+      tags:
+      - Gateways
+      parameters:
+      - $ref: '#/components/parameters/gatewayId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GatewayInput'
+      responses:
+        '200':
+          description: Gateway updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+        '400':
+          description: Bad request - invalid gateway configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+    delete:
+      operationId: deleteGateway
+      summary: Delete a gateway
+      description: Deletes a gateway instance and all associated routing and policy configurations.
+      tags:
+      - Gateways
+      parameters:
+      - $ref: '#/components/parameters/gatewayId'
+      responses:
+        '204':
+          description: Gateway deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+components:
+  parameters:
+    gatewayId:
+      name: gatewayId
+      in: path
+      required: true
+      description: The unique identifier of the gateway
+      schema:
+        type: string
+  schemas:
+    Gateway:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the gateway
+        name:
+          type: string
+          description: Gateway display name
+        description:
+          type: string
+          description: Description of the gateway's purpose
+        deploymentModel:
+          type: string
+          enum:
+          - cloud
+          - on-premise
+          - hybrid
+          description: How the gateway is deployed
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - provisioning
+          description: Current gateway status
+        baseUrl:
+          type: string
+          format: uri
+          description: The base URL for the gateway
+        proxySecret:
+          type: string
+          description: Unique proxy secret added as X-RapidAPI-Proxy-Secret header to verify requests originate from the Rapid Runtime
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the gateway was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the gateway was last updated
+    GatewayInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Gateway display name
+        description:
+          type: string
+          description: Description of the gateway's purpose
+        deploymentModel:
+          type: string
+          enum:
+          - cloud
+          - on-premise
+          - hybrid
+          description: How the gateway should be deployed
+        baseUrl:
+          type: string
+          format: uri
+          description: The base URL for the gateway
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

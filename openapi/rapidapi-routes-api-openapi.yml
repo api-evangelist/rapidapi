@@ -1,0 +1,213 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Routes API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Routes
+  description: Endpoints for configuring request routing rules that determine how incoming API requests are forwarded to backend services.
+paths:
+  /gateways/{gatewayId}/routes:
+    get:
+      operationId: listRoutes
+      summary: List routes
+      description: Retrieves all routing rules configured for a gateway, including path patterns, target backends, and transformation rules.
+      tags:
+      - Routes
+      parameters:
+      - $ref: '#/components/parameters/gatewayId'
+      responses:
+        '200':
+          description: A list of routes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  routes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Route'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+    post:
+      operationId: createRoute
+      summary: Create a route
+      description: Creates a new routing rule for the gateway, specifying how incoming requests matching a path pattern are forwarded to a backend service.
+      tags:
+      - Routes
+      parameters:
+      - $ref: '#/components/parameters/gatewayId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteInput'
+      responses:
+        '201':
+          description: Route created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '400':
+          description: Bad request - invalid route configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+  /gateways/{gatewayId}/routes/{routeId}:
+    put:
+      operationId: updateRoute
+      summary: Update a route
+      description: Updates an existing routing rule's path pattern, backend target, or transformation settings.
+      tags:
+      - Routes
+      parameters:
+      - $ref: '#/components/parameters/gatewayId'
+      - $ref: '#/components/parameters/routeId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteInput'
+      responses:
+        '200':
+          description: Route updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '400':
+          description: Bad request - invalid route configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Route not found
+    delete:
+      operationId: deleteRoute
+      summary: Delete a route
+      description: Deletes a routing rule from the gateway. Requests matching this route will no longer be forwarded.
+      tags:
+      - Routes
+      parameters:
+      - $ref: '#/components/parameters/gatewayId'
+      - $ref: '#/components/parameters/routeId'
+      responses:
+        '204':
+          description: Route deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Route not found
+components:
+  parameters:
+    routeId:
+      name: routeId
+      in: path
+      required: true
+      description: The unique identifier of the route
+      schema:
+        type: string
+    gatewayId:
+      name: gatewayId
+      in: path
+      required: true
+      description: The unique identifier of the gateway
+      schema:
+        type: string
+  schemas:
+    RouteInput:
+      type: object
+      required:
+      - pathPattern
+      - targetUrl
+      properties:
+        pathPattern:
+          type: string
+          description: URL path pattern to match incoming requests
+        targetUrl:
+          type: string
+          format: uri
+          description: Backend service URL to forward matching requests to
+        methods:
+          type: array
+          items:
+            type: string
+            enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+          description: HTTP methods this route handles
+        stripPrefix:
+          type: boolean
+          default: false
+          description: Whether to strip the matched path prefix before forwarding
+        priority:
+          type: integer
+          default: 0
+          description: Route priority for matching order
+        enabled:
+          type: boolean
+          default: true
+          description: Whether this route should be active
+    Route:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the route
+        gatewayId:
+          type: string
+          description: The gateway this route belongs to
+        pathPattern:
+          type: string
+          description: URL path pattern to match incoming requests
+        targetUrl:
+          type: string
+          format: uri
+          description: Backend service URL to forward matching requests to
+        methods:
+          type: array
+          items:
+            type: string
+            enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+          description: HTTP methods this route handles
+        stripPrefix:
+          type: boolean
+          description: Whether to strip the matched path prefix before forwarding
+        priority:
+          type: integer
+          description: Route priority for matching order
+        enabled:
+          type: boolean
+          description: Whether this route is currently active
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

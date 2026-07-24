@@ -1,0 +1,192 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Schedules API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Schedules
+  description: Endpoints for managing test schedules, including frequency, environment, and location settings for automated monitoring.
+paths:
+  /schedules:
+    get:
+      operationId: listSchedules
+      summary: List all schedules
+      description: Retrieves all configured test schedules, including their frequency, associated test, environment, and monitoring locations.
+      tags:
+      - Schedules
+      responses:
+        '200':
+          description: A list of schedules
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schedules:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Schedule'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createSchedule
+      summary: Create a schedule
+      description: Creates a new test schedule that runs a test at a specified frequency from one or more monitoring locations. Frequency options include intervals ranging from every 5 minutes to every 24 hours.
+      tags:
+      - Schedules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleInput'
+      responses:
+        '201':
+          description: Schedule created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '400':
+          description: Bad request - invalid schedule configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /schedules/{scheduleId}:
+    put:
+      operationId: updateSchedule
+      summary: Update a schedule
+      description: Updates the frequency, environment, or location settings of an existing test schedule.
+      tags:
+      - Schedules
+      parameters:
+      - $ref: '#/components/parameters/scheduleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleInput'
+      responses:
+        '200':
+          description: Schedule updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '400':
+          description: Bad request - invalid schedule configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Schedule not found
+    delete:
+      operationId: deleteSchedule
+      summary: Delete a schedule
+      description: Deletes a test schedule. The associated test is not deleted.
+      tags:
+      - Schedules
+      parameters:
+      - $ref: '#/components/parameters/scheduleId'
+      responses:
+        '204':
+          description: Schedule deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Schedule not found
+components:
+  schemas:
+    ScheduleInput:
+      type: object
+      required:
+      - testId
+      - frequency
+      - locationIds
+      properties:
+        testId:
+          type: string
+          description: The test to run on this schedule
+        frequency:
+          type: string
+          enum:
+          - 5m
+          - 15m
+          - 30m
+          - 1h
+          - 6h
+          - 12h
+          - 24h
+          description: How often the test should run
+        environmentId:
+          type: string
+          description: The environment to use for scheduled runs
+        locationIds:
+          type: array
+          items:
+            type: string
+          description: Monitoring locations to run the test from
+        enabled:
+          type: boolean
+          default: true
+          description: Whether the schedule should be active
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the schedule
+        testId:
+          type: string
+          description: The test to run on this schedule
+        frequency:
+          type: string
+          enum:
+          - 5m
+          - 15m
+          - 30m
+          - 1h
+          - 6h
+          - 12h
+          - 24h
+          description: How often the test should run
+        environmentId:
+          type: string
+          description: The environment to use for scheduled runs
+        locationIds:
+          type: array
+          items:
+            type: string
+          description: Monitoring locations to run the test from
+        enabled:
+          type: boolean
+          description: Whether the schedule is currently active
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the schedule was created
+  parameters:
+    scheduleId:
+      name: scheduleId
+      in: path
+      required: true
+      description: The unique identifier of the schedule
+      schema:
+        type: string
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

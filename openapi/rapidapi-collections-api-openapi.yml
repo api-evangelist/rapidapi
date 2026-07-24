@@ -1,0 +1,292 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Collections API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Collections
+  description: Endpoints for browsing curated API collections organized around themes such as Top Meme APIs, Top Geocoding APIs, and other groupings.
+paths:
+  /collections:
+    get:
+      operationId: listHubCollections
+      summary: List curated collections
+      description: Retrieves all curated API collections on the RapidAPI marketplace. Collections group APIs with similar characteristics or themes.
+      tags:
+      - Collections
+      parameters:
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of curated collections
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  collections:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HubCollection'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createCollection
+      summary: Create a collection
+      description: Creates a new API collection in the Enterprise Hub for grouping related APIs together.
+      tags:
+      - Collections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionInput'
+      responses:
+        '201':
+          description: Collection created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /collections/{collectionId}/apis:
+    get:
+      operationId: listApisInCollection
+      summary: List APIs in a collection
+      description: Retrieves all APIs within a specific curated collection on the RapidAPI marketplace.
+      tags:
+      - Collections
+      parameters:
+      - name: collectionId
+        in: path
+        required: true
+        description: The unique identifier of the collection
+        schema:
+          type: string
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: APIs in the specified collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apis:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiSummary'
+                  totalCount:
+                    type: integer
+                    description: Total number of APIs in this collection
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Collection not found
+  /collections/{collectionId}:
+    get:
+      operationId: getCollection
+      summary: Get a collection
+      description: Retrieves the details of a specific collection by its unique identifier, including the APIs it contains.
+      tags:
+      - Collections
+      parameters:
+      - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: Collection details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Collection not found
+    put:
+      operationId: updateCollection
+      summary: Update a collection
+      description: Updates an existing API collection in the Enterprise Hub, including its name, description, and associated APIs.
+      tags:
+      - Collections
+      parameters:
+      - $ref: '#/components/parameters/collectionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionInput'
+      responses:
+        '200':
+          description: Collection updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Collection not found
+    delete:
+      operationId: deleteCollection
+      summary: Delete a collection
+      description: Deletes a collection from the Enterprise Hub. The APIs within the collection are not deleted.
+      tags:
+      - Collections
+      parameters:
+      - $ref: '#/components/parameters/collectionId'
+      responses:
+        '204':
+          description: Collection deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Collection not found
+components:
+  parameters:
+    collectionId:
+      name: collectionId
+      in: path
+      required: true
+      description: The unique identifier of the collection
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  schemas:
+    CollectionInput:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          description: Display title of the collection
+        description:
+          type: string
+          description: Description of the collection
+        apis:
+          type: array
+          items:
+            type: string
+          description: List of API identifiers to include in the collection
+    HubCollection:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the collection
+        title:
+          type: string
+          description: Collection title
+        description:
+          type: string
+          description: Description of the collection
+        apiCount:
+          type: integer
+          description: Number of APIs in this collection
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the collection image
+    ApiSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the API
+        name:
+          type: string
+          description: Display name of the API
+        slug:
+          type: string
+          description: URL-friendly slug for the API
+        description:
+          type: string
+          description: Short description of the API
+        category:
+          type: string
+          description: Category the API belongs to
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the API icon or logo
+        averageRating:
+          type: number
+          format: float
+          description: Average user rating for the API
+        popularity:
+          type: number
+          format: float
+          description: Popularity score based on usage and subscriptions
+        isVerified:
+          type: boolean
+          description: Whether the API provider is verified
+        provider:
+          type: string
+          description: Name of the API provider
+    Collection:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the collection
+        title:
+          type: string
+          description: Display title of the collection
+        description:
+          type: string
+          description: Description of the collection
+        apis:
+          type: array
+          items:
+            type: string
+          description: List of API identifiers in this collection
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the collection was created
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

@@ -1,0 +1,222 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Endpoints API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Endpoints
+  description: Endpoints for managing API endpoint configurations within a project, including creating, updating, and organizing endpoint groups.
+paths:
+  /projects/{projectId}/endpoints:
+    get:
+      operationId: listEndpoints
+      summary: List endpoints
+      description: Retrieves all endpoints configured in a project, organized by endpoint groups. Each endpoint includes its HTTP method, path, parameters, and response definitions.
+      tags:
+      - Endpoints
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: A list of endpoints
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  endpoints:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Endpoint'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+    post:
+      operationId: createEndpoint
+      summary: Create an endpoint
+      description: Creates a new endpoint in the project with the specified HTTP method, path, parameters, and response configuration.
+      tags:
+      - Endpoints
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EndpointInput'
+      responses:
+        '201':
+          description: Endpoint created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Endpoint'
+        '400':
+          description: Bad request - invalid endpoint configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+  /projects/{projectId}/endpoints/{endpointId}:
+    put:
+      operationId: updateEndpoint
+      summary: Update an endpoint
+      description: Updates the configuration of an existing endpoint in the project.
+      tags:
+      - Endpoints
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/endpointId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EndpointInput'
+      responses:
+        '200':
+          description: Endpoint updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Endpoint'
+        '400':
+          description: Bad request - invalid endpoint configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Endpoint not found
+    delete:
+      operationId: deleteEndpoint
+      summary: Delete an endpoint
+      description: Deletes an endpoint from the project.
+      tags:
+      - Endpoints
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/endpointId'
+      responses:
+        '204':
+          description: Endpoint deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Endpoint not found
+components:
+  schemas:
+    Endpoint:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the endpoint
+        name:
+          type: string
+          description: Display name of the endpoint
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          description: HTTP method
+        path:
+          type: string
+          description: URL path for the endpoint
+        group:
+          type: string
+          description: The endpoint group this belongs to
+        description:
+          type: string
+          description: Description of the endpoint
+        parameters:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Parameter name
+              location:
+                type: string
+                enum:
+                - query
+                - path
+                - header
+                - body
+                description: Where the parameter is sent
+              type:
+                type: string
+                description: Data type
+              required:
+                type: boolean
+                description: Whether required
+              description:
+                type: string
+                description: Parameter description
+          description: Endpoint parameters
+    EndpointInput:
+      type: object
+      required:
+      - name
+      - method
+      - path
+      properties:
+        name:
+          type: string
+          description: Display name of the endpoint
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          description: HTTP method
+        path:
+          type: string
+          description: URL path for the endpoint
+        group:
+          type: string
+          description: The endpoint group to organize under
+        description:
+          type: string
+          description: Description of the endpoint
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project
+      schema:
+        type: string
+    endpointId:
+      name: endpointId
+      in: path
+      required: true
+      description: The unique identifier of the endpoint
+      schema:
+        type: string
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

@@ -1,0 +1,212 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Definitions API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Definitions
+  description: Endpoints for importing, exporting, and managing API definitions such as OpenAPI specifications and Postman Collections.
+paths:
+  /projects/{projectId}/definitions:
+    get:
+      operationId: listDefinitions
+      summary: List definitions
+      description: Retrieves all API definitions associated with a project, including imported OpenAPI specifications and Postman Collections.
+      tags:
+      - Definitions
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: A list of definitions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  definitions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Definition'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+    post:
+      operationId: importDefinition
+      summary: Import a definition
+      description: Imports an API definition into the project from a file upload, remote URL, or text input. Supports OpenAPI 3.0.3 and Postman Collection formats. Importing a definition automatically populates the project's endpoints.
+      tags:
+      - Definitions
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: API definition file in JSON, YAML, or X-YAML format
+                url:
+                  type: string
+                  format: uri
+                  description: Remote URL to fetch the definition from
+                text:
+                  type: string
+                  description: Raw API definition text
+                format:
+                  type: string
+                  enum:
+                  - openapi
+                  - postman
+                  description: The format of the definition being imported
+      responses:
+        '201':
+          description: Definition imported successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Definition'
+        '400':
+          description: Bad request - invalid definition format
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+  /projects/{projectId}/definitions/{definitionId}:
+    get:
+      operationId: getDefinition
+      summary: Get a definition
+      description: Retrieves the full content and metadata of a specific API definition.
+      tags:
+      - Definitions
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/definitionId'
+      responses:
+        '200':
+          description: Definition details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Definition'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Definition not found
+    delete:
+      operationId: deleteDefinition
+      summary: Delete a definition
+      description: Deletes an imported API definition from the project. Associated endpoints remain but lose their definition binding.
+      tags:
+      - Definitions
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/definitionId'
+      responses:
+        '204':
+          description: Definition deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Definition not found
+  /projects/{projectId}/definitions/{definitionId}/export:
+    get:
+      operationId: exportDefinition
+      summary: Export a definition
+      description: Exports the API definition in the specified format, allowing developers to download the spec for use in other tools or CI/CD pipelines.
+      tags:
+      - Definitions
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/definitionId'
+      - name: format
+        in: query
+        required: false
+        description: The output format for the exported definition
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+          default: yaml
+      responses:
+        '200':
+          description: Exported API definition
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The API definition in JSON format
+            application/x-yaml:
+              schema:
+                type: string
+                description: The API definition in YAML format
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Definition not found
+components:
+  schemas:
+    Definition:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the definition
+        projectId:
+          type: string
+          description: The project this definition belongs to
+        format:
+          type: string
+          enum:
+          - openapi
+          - postman
+          description: The format of the definition
+        version:
+          type: string
+          description: The specification version
+        title:
+          type: string
+          description: Title from the imported definition
+        importedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the definition was imported
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project
+      schema:
+        type: string
+    definitionId:
+      name: definitionId
+      in: path
+      required: true
+      description: The unique identifier of the API definition
+      schema:
+        type: string
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

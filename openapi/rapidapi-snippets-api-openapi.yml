@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Snippets API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Snippets
+  description: Endpoints for generating code snippets for API calls in multiple programming languages and libraries.
+paths:
+  /apis/{apiSlug}/snippets:
+    get:
+      operationId: getCodeSnippets
+      summary: Get code snippets
+      description: Generates code snippets for calling a specific API endpoint in various programming languages and libraries, including JavaScript, Python, PHP, Ruby, Java, and more.
+      tags:
+      - Snippets
+      parameters:
+      - name: apiSlug
+        in: path
+        required: true
+        description: The URL-friendly slug or identifier of the API
+        schema:
+          type: string
+      - name: endpointId
+        in: query
+        required: true
+        description: The identifier of the specific endpoint
+        schema:
+          type: string
+      - name: language
+        in: query
+        required: false
+        description: The programming language for the code snippet
+        schema:
+          type: string
+          enum:
+          - javascript
+          - python
+          - php
+          - ruby
+          - java
+          - csharp
+          - go
+          - swift
+          - kotlin
+          - shell
+      responses:
+        '200':
+          description: Code snippets for the requested endpoint
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  snippets:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CodeSnippet'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API or endpoint not found
+components:
+  schemas:
+    CodeSnippet:
+      type: object
+      properties:
+        language:
+          type: string
+          description: Programming language name
+        library:
+          type: string
+          description: HTTP library or framework used
+        code:
+          type: string
+          description: The generated code snippet
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

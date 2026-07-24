@@ -1,0 +1,438 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Tests API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Tests
+  description: Endpoints for creating, reading, updating, deleting, and executing API tests, including functional and performance test flows.
+paths:
+  /tests:
+    get:
+      operationId: listTests
+      summary: List all tests
+      description: Retrieves a list of all API tests in the account, including test names, types, statuses, and associated APIs.
+      tags:
+      - Tests
+      parameters:
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      - name: apiId
+        in: query
+        required: false
+        description: Filter tests by associated API identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of tests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tests:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Test'
+                  totalCount:
+                    type: integer
+                    description: Total number of tests
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createTest
+      summary: Create a test
+      description: Creates a new API test with defined steps, assertions, and configuration. Tests can call multiple API endpoints and chain data between them to mimic real application behavior.
+      tags:
+      - Tests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestCreateInput'
+      responses:
+        '201':
+          description: Test created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Test'
+        '400':
+          description: Bad request - invalid test configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /tests/{testId}:
+    get:
+      operationId: getTest
+      summary: Get a test
+      description: Retrieves the full details of a specific test, including all steps, assertions, and configuration settings.
+      tags:
+      - Tests
+      parameters:
+      - $ref: '#/components/parameters/testId'
+      responses:
+        '200':
+          description: Test details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Test'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Test not found
+    put:
+      operationId: updateTest
+      summary: Update a test
+      description: Updates the configuration, steps, and assertions of an existing API test.
+      tags:
+      - Tests
+      parameters:
+      - $ref: '#/components/parameters/testId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestUpdateInput'
+      responses:
+        '200':
+          description: Test updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Test'
+        '400':
+          description: Bad request - invalid test configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Test not found
+    delete:
+      operationId: deleteTest
+      summary: Delete a test
+      description: Deletes an API test and all associated execution history and schedules.
+      tags:
+      - Tests
+      parameters:
+      - $ref: '#/components/parameters/testId'
+      responses:
+        '204':
+          description: Test deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Test not found
+  /tests/{testId}/run:
+    post:
+      operationId: runTest
+      summary: Run a test
+      description: Triggers an immediate execution of a specific test. The test runs against the configured environment and location, and results are available through the executions endpoint.
+      tags:
+      - Tests
+      parameters:
+      - $ref: '#/components/parameters/testId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                environmentId:
+                  type: string
+                  description: Override the default environment for this run
+                locationId:
+                  type: string
+                  description: Override the default location for this run
+      responses:
+        '202':
+          description: Test execution started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Execution'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Test not found
+components:
+  schemas:
+    TestUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated test name
+        description:
+          type: string
+          description: Updated test description
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestStepInput'
+          description: Updated list of test steps
+    Execution:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the execution
+        testId:
+          type: string
+          description: The test that was executed
+        status:
+          type: string
+          enum:
+          - passed
+          - failed
+          - running
+          - error
+          description: Overall execution result status
+        duration:
+          type: integer
+          description: Total execution time in milliseconds
+        location:
+          type: string
+          description: The monitoring location where the test ran
+        startedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the execution started
+        completedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the execution completed
+    AssertionInput:
+      type: object
+      required:
+      - target
+      - comparison
+      properties:
+        target:
+          type: string
+          description: The response element to assert on
+        comparison:
+          type: string
+          enum:
+          - equals
+          - not_equals
+          - contains
+          - not_contains
+          - greater_than
+          - less_than
+          - exists
+          - not_exists
+          description: The comparison operator
+        value:
+          type: string
+          description: The expected value to compare against
+    Test:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the test
+        name:
+          type: string
+          description: Display name of the test
+        description:
+          type: string
+          description: Description of what the test validates
+        apiId:
+          type: string
+          description: The API this test is associated with
+        type:
+          type: string
+          enum:
+          - functional
+          - performance
+          description: The type of test
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestStep'
+          description: Ordered list of test steps
+        status:
+          type: string
+          enum:
+          - active
+          - draft
+          - archived
+          description: Current status of the test
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the test was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the test was last updated
+    TestStepInput:
+      type: object
+      required:
+      - name
+      - method
+      - url
+      properties:
+        name:
+          type: string
+          description: Step name
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          description: HTTP method for the API call
+        url:
+          type: string
+          format: uri
+          description: The endpoint URL to call
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: HTTP headers to include
+        body:
+          type: string
+          description: Request body content
+        assertions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssertionInput'
+          description: Assertions to validate the response
+    TestStep:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the step
+        name:
+          type: string
+          description: Step name
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          description: HTTP method for the API call
+        url:
+          type: string
+          format: uri
+          description: The endpoint URL to call
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: HTTP headers to include in the request
+        body:
+          type: string
+          description: Request body content
+        assertions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Assertion'
+          description: Assertions to validate the response
+    Assertion:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the assertion
+        target:
+          type: string
+          description: The response element to assert on, such as status_code, response_time, or a JSONPath expression
+        comparison:
+          type: string
+          enum:
+          - equals
+          - not_equals
+          - contains
+          - not_contains
+          - greater_than
+          - less_than
+          - exists
+          - not_exists
+          description: The comparison operator
+        value:
+          type: string
+          description: The expected value to compare against
+    TestCreateInput:
+      type: object
+      required:
+      - name
+      - steps
+      properties:
+        name:
+          type: string
+          description: Display name of the test
+        description:
+          type: string
+          description: Description of what the test validates
+        apiId:
+          type: string
+          description: The API to associate this test with
+        type:
+          type: string
+          enum:
+          - functional
+          - performance
+          description: The type of test
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestStepInput'
+          description: Ordered list of test steps
+  parameters:
+    testId:
+      name: testId
+      in: path
+      required: true
+      description: The unique identifier of the test
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

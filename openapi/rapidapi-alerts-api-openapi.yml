@@ -1,0 +1,151 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Alerts
+  description: Endpoints for configuring alert notifications when tests fail, including integrations with PagerDuty, Slack, and Twilio.
+paths:
+  /alerts:
+    get:
+      operationId: listAlerts
+      summary: List alert configurations
+      description: Retrieves all configured alert notifications for test failures, including integration settings for PagerDuty, Slack, and Twilio.
+      tags:
+      - Alerts
+      responses:
+        '200':
+          description: A list of alert configurations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alerts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Alert'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createAlert
+      summary: Create an alert
+      description: Creates a new alert configuration that sends notifications when a specified test fails. Supports integration with PagerDuty, Slack, Twilio, and email.
+      tags:
+      - Alerts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlertInput'
+      responses:
+        '201':
+          description: Alert created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert'
+        '400':
+          description: Bad request - invalid alert configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /alerts/{alertId}:
+    delete:
+      operationId: deleteAlert
+      summary: Delete an alert
+      description: Deletes an alert configuration. Notifications will no longer be sent for the associated test failures.
+      tags:
+      - Alerts
+      parameters:
+      - $ref: '#/components/parameters/alertId'
+      responses:
+        '204':
+          description: Alert deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Alert not found
+components:
+  parameters:
+    alertId:
+      name: alertId
+      in: path
+      required: true
+      description: The unique identifier of the alert
+      schema:
+        type: string
+  schemas:
+    AlertInput:
+      type: object
+      required:
+      - testId
+      - channel
+      - configuration
+      properties:
+        testId:
+          type: string
+          description: The test to monitor for failures
+        channel:
+          type: string
+          enum:
+          - email
+          - slack
+          - pagerduty
+          - twilio
+          description: Notification channel
+        configuration:
+          type: object
+          additionalProperties: true
+          description: Channel-specific configuration
+        enabled:
+          type: boolean
+          default: true
+          description: Whether the alert should be active
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the alert
+        testId:
+          type: string
+          description: The test to monitor for failures
+        channel:
+          type: string
+          enum:
+          - email
+          - slack
+          - pagerduty
+          - twilio
+          description: Notification channel
+        configuration:
+          type: object
+          additionalProperties: true
+          description: Channel-specific configuration such as webhook URLs or email addresses
+        enabled:
+          type: boolean
+          description: Whether the alert is currently active
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the alert was created
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

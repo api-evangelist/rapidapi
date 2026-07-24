@@ -1,0 +1,155 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Environments API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Environments
+  description: Endpoints for managing test environments with variable sets that can be used across tests for different deployment stages.
+paths:
+  /environments:
+    get:
+      operationId: listEnvironments
+      summary: List environments
+      description: Retrieves all test environments with their variable configurations. Environments allow defining different variable sets for development, staging, and production.
+      tags:
+      - Environments
+      responses:
+        '200':
+          description: A list of environments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  environments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Environment'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createEnvironment
+      summary: Create an environment
+      description: Creates a new test environment with a set of variables that can be used across test configurations.
+      tags:
+      - Environments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentInput'
+      responses:
+        '201':
+          description: Environment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '400':
+          description: Bad request - invalid environment configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /environments/{environmentId}:
+    put:
+      operationId: updateEnvironment
+      summary: Update an environment
+      description: Updates an existing test environment's name and variable set.
+      tags:
+      - Environments
+      parameters:
+      - $ref: '#/components/parameters/environmentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentInput'
+      responses:
+        '200':
+          description: Environment updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '400':
+          description: Bad request - invalid environment configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Environment not found
+    delete:
+      operationId: deleteEnvironment
+      summary: Delete an environment
+      description: Deletes a test environment. Tests using this environment will need to be reconfigured.
+      tags:
+      - Environments
+      parameters:
+      - $ref: '#/components/parameters/environmentId'
+      responses:
+        '204':
+          description: Environment deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Environment not found
+components:
+  schemas:
+    Environment:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the environment
+        name:
+          type: string
+          description: Environment name
+        variables:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value pairs of environment variables
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the environment was created
+    EnvironmentInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Environment name
+        variables:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value pairs of environment variables
+  parameters:
+    environmentId:
+      name: environmentId
+      in: path
+      required: true
+      description: The unique identifier of the environment
+      schema:
+        type: string
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

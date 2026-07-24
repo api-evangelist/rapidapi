@@ -1,0 +1,170 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Security API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Security
+  description: Endpoints for configuring security policies such as IP allow and deny lists, CORS settings, and proxy secret validation.
+paths:
+  /gateways/{gatewayId}/security:
+    get:
+      operationId: getSecurityConfig
+      summary: Get security configuration
+      description: Retrieves the security policies configured for a gateway, including IP allow and deny lists, CORS settings, and proxy secret validation.
+      tags:
+      - Security
+      parameters:
+      - $ref: '#/components/parameters/gatewayId'
+      responses:
+        '200':
+          description: Security configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityConfig'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+    put:
+      operationId: updateSecurityConfig
+      summary: Update security configuration
+      description: Updates the security policies for a gateway, including IP filtering, CORS, and request validation settings.
+      tags:
+      - Security
+      parameters:
+      - $ref: '#/components/parameters/gatewayId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityConfigInput'
+      responses:
+        '200':
+          description: Security configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityConfig'
+        '400':
+          description: Bad request - invalid security configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+components:
+  parameters:
+    gatewayId:
+      name: gatewayId
+      in: path
+      required: true
+      description: The unique identifier of the gateway
+      schema:
+        type: string
+  schemas:
+    SecurityConfig:
+      type: object
+      properties:
+        gatewayId:
+          type: string
+          description: The gateway this configuration belongs to
+        ipAllowList:
+          type: array
+          items:
+            type: string
+          description: List of allowed IP addresses or CIDR ranges
+        ipDenyList:
+          type: array
+          items:
+            type: string
+          description: List of denied IP addresses or CIDR ranges
+        corsEnabled:
+          type: boolean
+          description: Whether CORS is enabled
+        corsConfig:
+          type: object
+          properties:
+            allowedOrigins:
+              type: array
+              items:
+                type: string
+              description: Allowed CORS origins
+            allowedMethods:
+              type: array
+              items:
+                type: string
+              description: Allowed HTTP methods for CORS
+            allowedHeaders:
+              type: array
+              items:
+                type: string
+              description: Allowed request headers for CORS
+            maxAge:
+              type: integer
+              description: CORS preflight cache duration in seconds
+          description: CORS configuration details
+        validateProxySecret:
+          type: boolean
+          description: Whether to validate the X-RapidAPI-Proxy-Secret header on incoming requests
+    SecurityConfigInput:
+      type: object
+      properties:
+        ipAllowList:
+          type: array
+          items:
+            type: string
+          description: List of allowed IP addresses or CIDR ranges
+        ipDenyList:
+          type: array
+          items:
+            type: string
+          description: List of denied IP addresses or CIDR ranges
+        corsEnabled:
+          type: boolean
+          description: Whether to enable CORS
+        corsConfig:
+          type: object
+          properties:
+            allowedOrigins:
+              type: array
+              items:
+                type: string
+              description: Allowed CORS origins
+            allowedMethods:
+              type: array
+              items:
+                type: string
+              description: Allowed HTTP methods
+            allowedHeaders:
+              type: array
+              items:
+                type: string
+              description: Allowed request headers
+            maxAge:
+              type: integer
+              description: CORS preflight cache duration in seconds
+          description: CORS configuration
+        validateProxySecret:
+          type: boolean
+          default: true
+          description: Whether to validate the proxy secret header
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Documentation API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Documentation
+  description: Endpoints for generating and managing API documentation from project definitions and endpoint configurations.
+paths:
+  /projects/{projectId}/publish:
+    post:
+      operationId: publishProject
+      summary: Publish to hub
+      description: Publishes the API project to the RapidAPI Hub, making it available for discovery and consumption. The project's endpoints and documentation are automatically generated from the API definition.
+      tags:
+      - Documentation
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                visibility:
+                  type: string
+                  enum:
+                  - public
+                  - private
+                  - internal
+                  description: Visibility level for the published API
+                category:
+                  type: string
+                  description: Category to list the API under on the hub
+      responses:
+        '200':
+          description: Project published successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiId:
+                    type: string
+                    description: The identifier of the published API on the hub
+                  hubUrl:
+                    type: string
+                    format: uri
+                    description: URL to the API listing on the hub
+        '400':
+          description: Bad request - project not ready for publishing
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Project not found
+components:
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project
+      schema:
+        type: string
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

@@ -1,0 +1,249 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Categories API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Categories
+  description: Endpoints for browsing API categories available on the marketplace, including Data, Sports, Finance, Travel, and Entertainment.
+paths:
+  /categories:
+    get:
+      operationId: listHubCategories
+      summary: List marketplace categories
+      description: Retrieves all API categories available on the RapidAPI marketplace, including category names, slugs, and the number of APIs in each.
+      tags:
+      - Categories
+      responses:
+        '200':
+          description: A list of marketplace categories
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categories:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HubCategory'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createCategory
+      summary: Create a category
+      description: Creates a new API category in the Enterprise Hub for organizing APIs.
+      tags:
+      - Categories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryInput'
+      responses:
+        '201':
+          description: Category created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /categories/{categorySlug}/apis:
+    get:
+      operationId: listApisByCategory
+      summary: List APIs in a category
+      description: Retrieves all APIs within a specific category on the RapidAPI marketplace, sorted by popularity or relevance.
+      tags:
+      - Categories
+      parameters:
+      - name: categorySlug
+        in: path
+        required: true
+        description: The URL-friendly slug of the category
+        schema:
+          type: string
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: APIs in the specified category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apis:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiSummary'
+                  totalCount:
+                    type: integer
+                    description: Total number of APIs in this category
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Category not found
+  /categories/{categoryId}:
+    put:
+      operationId: updateCategory
+      summary: Update a category
+      description: Updates an existing API category in the Enterprise Hub.
+      tags:
+      - Categories
+      parameters:
+      - $ref: '#/components/parameters/categoryId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryInput'
+      responses:
+        '200':
+          description: Category updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Category not found
+    delete:
+      operationId: deleteCategory
+      summary: Delete a category
+      description: Deletes an API category from the Enterprise Hub. APIs in this category will need to be reassigned.
+      tags:
+      - Categories
+      parameters:
+      - $ref: '#/components/parameters/categoryId'
+      responses:
+        '204':
+          description: Category deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Category not found
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the category
+        name:
+          type: string
+          description: Display name of the category
+        slugifiedName:
+          type: string
+          description: URL-friendly slug for the category
+    CategoryInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Display name of the category
+    ApiSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the API
+        name:
+          type: string
+          description: Display name of the API
+        slug:
+          type: string
+          description: URL-friendly slug for the API
+        description:
+          type: string
+          description: Short description of the API
+        category:
+          type: string
+          description: Category the API belongs to
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the API icon or logo
+        averageRating:
+          type: number
+          format: float
+          description: Average user rating for the API
+        popularity:
+          type: number
+          format: float
+          description: Popularity score based on usage and subscriptions
+        isVerified:
+          type: boolean
+          description: Whether the API provider is verified
+        provider:
+          type: string
+          description: Name of the API provider
+    HubCategory:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the category
+        name:
+          type: string
+          description: Category display name
+        slug:
+          type: string
+          description: URL-friendly category slug
+        apiCount:
+          type: integer
+          description: Number of APIs in this category
+  parameters:
+    categoryId:
+      name: categoryId
+      in: path
+      required: true
+      description: The unique identifier of the category
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

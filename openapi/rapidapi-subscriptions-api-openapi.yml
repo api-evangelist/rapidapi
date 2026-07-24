@@ -1,0 +1,121 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Subscriptions API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Subscriptions
+  description: Endpoints for managing API subscriptions, including subscribing to API plans, viewing active subscriptions, and usage analytics.
+paths:
+  /subscriptions:
+    get:
+      operationId: listMySubscriptions
+      summary: List my subscriptions
+      description: Retrieves the authenticated user's active API subscriptions, including plan details and usage statistics.
+      tags:
+      - Subscriptions
+      responses:
+        '200':
+          description: List of active subscriptions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  subscriptions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HubSubscription'
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /apis/{apiSlug}/subscribe:
+    post:
+      operationId: subscribeToApi
+      summary: Subscribe to an API
+      description: Subscribes the authenticated user to a specific API plan on the marketplace. After subscribing, the user can make API calls using their RapidAPI key.
+      tags:
+      - Subscriptions
+      parameters:
+      - name: apiSlug
+        in: path
+        required: true
+        description: The URL-friendly slug or identifier of the API
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - planId
+              properties:
+                planId:
+                  type: string
+                  description: The identifier of the pricing plan to subscribe to
+      responses:
+        '201':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HubSubscription'
+        '400':
+          description: Bad request - invalid plan or already subscribed
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API or plan not found
+components:
+  schemas:
+    HubSubscription:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique subscription identifier
+        apiId:
+          type: string
+          description: The subscribed API identifier
+        apiName:
+          type: string
+          description: Name of the subscribed API
+        planName:
+          type: string
+          description: Name of the subscription plan
+        status:
+          type: string
+          enum:
+          - active
+          - cancelled
+          - expired
+          description: Current subscription status
+        usageCount:
+          type: integer
+          description: Number of API calls made in the current period
+        usageLimit:
+          type: integer
+          description: Maximum API calls allowed in the current period
+        subscribedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the subscription was created
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

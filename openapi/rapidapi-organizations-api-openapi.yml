@@ -1,0 +1,156 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Organizations API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Organizations
+  description: Endpoints for managing organizations within the Enterprise Hub, including listing, creating, and updating organization configurations.
+paths:
+  /organizations:
+    get:
+      operationId: listOrganizations
+      summary: List all organizations
+      description: Retrieves a list of all organizations in the Enterprise Hub. Each organization represents a distinct entity that can own and manage APIs.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of organizations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  organizations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Organization'
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /organizations/{organizationId}:
+    get:
+      operationId: getOrganization
+      summary: Get an organization
+      description: Retrieves the details of a specific organization by its unique identifier, including its name, settings, and associated users.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      responses:
+        '200':
+          description: Organization details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Organization not found
+    put:
+      operationId: updateOrganization
+      summary: Update an organization
+      description: Updates the configuration and settings of an existing organization in the Enterprise Hub.
+      tags:
+      - Organizations
+      parameters:
+      - $ref: '#/components/parameters/organizationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationUpdateInput'
+      responses:
+        '200':
+          description: Organization updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Organization not found
+components:
+  schemas:
+    OrganizationUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated organization name
+        description:
+          type: string
+          description: Updated organization description
+    Organization:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the organization
+        name:
+          type: string
+          description: Name of the organization
+        description:
+          type: string
+          description: Description of the organization
+        thumbnail:
+          type: string
+          format: uri
+          description: URL to the organization's thumbnail image
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the organization was created
+  parameters:
+    organizationId:
+      name: organizationId
+      in: path
+      required: true
+      description: The unique identifier of the organization
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

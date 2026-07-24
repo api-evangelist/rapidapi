@@ -1,0 +1,149 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Search API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Search
+  description: Endpoints for searching and discovering APIs by keyword, category, collection, or advanced filters across the RapidAPI marketplace.
+paths:
+  /search/apis:
+    get:
+      operationId: searchApis
+      summary: Search APIs
+      description: Searches the RapidAPI marketplace for APIs matching the provided query string. Supports filtering by category, collection, API type, and verification status. Returns paginated results with API summaries.
+      tags:
+      - Search
+      parameters:
+      - name: query
+        in: query
+        required: true
+        description: Search query string to match against API names and descriptions
+        schema:
+          type: string
+          minLength: 1
+      - name: category
+        in: query
+        required: false
+        description: Filter results by category slug
+        schema:
+          type: string
+      - name: collection
+        in: query
+        required: false
+        description: Filter results by collection identifier
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: false
+        description: Filter by API type
+        schema:
+          type: string
+          enum:
+          - rest
+          - graphql
+          - kafka
+      - name: verified
+        in: query
+        required: false
+        description: Filter to only show verified APIs
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: Search results with matching APIs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiSummary'
+                  totalCount:
+                    type: integer
+                    description: Total number of matching APIs
+        '400':
+          description: Bad request - invalid search parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  schemas:
+    ApiSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the API
+        name:
+          type: string
+          description: Display name of the API
+        slug:
+          type: string
+          description: URL-friendly slug for the API
+        description:
+          type: string
+          description: Short description of the API
+        category:
+          type: string
+          description: Category the API belongs to
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the API icon or logo
+        averageRating:
+          type: number
+          format: float
+          description: Average user rating for the API
+        popularity:
+          type: number
+          format: float
+          description: Popularity score based on usage and subscriptions
+        isVerified:
+          type: boolean
+          description: Whether the API provider is verified
+        provider:
+          type: string
+          description: Name of the API provider
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

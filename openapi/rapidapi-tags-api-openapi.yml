@@ -1,0 +1,116 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Tags API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Tags
+paths:
+  /tags:
+    get:
+      operationId: listTags
+      summary: List all tags
+      description: Retrieves all custom tags configured in the Enterprise Hub. Tags are used to add metadata to APIs for filtering and search.
+      tags:
+      - Tags
+      responses:
+        '200':
+          description: A list of tags
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tags:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Tag'
+        '401':
+          description: Unauthorized - invalid or missing API key
+    post:
+      operationId: createTag
+      summary: Create a tag
+      description: Creates a new custom tag in the Enterprise Hub for categorizing APIs.
+      tags:
+      - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagInput'
+      responses:
+        '201':
+          description: Tag created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+  /tags/{tagId}:
+    delete:
+      operationId: deleteTag
+      summary: Delete a tag
+      description: Deletes a custom tag from the Enterprise Hub.
+      tags:
+      - Tags
+      parameters:
+      - $ref: '#/components/parameters/tagId'
+      responses:
+        '204':
+          description: Tag deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Tag not found
+components:
+  parameters:
+    tagId:
+      name: tagId
+      in: path
+      required: true
+      description: The unique identifier of the tag
+      schema:
+        type: string
+  schemas:
+    Tag:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the tag
+        name:
+          type: string
+          description: Tag name
+        status:
+          type: string
+          description: Current status of the tag
+    TagInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Tag name
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

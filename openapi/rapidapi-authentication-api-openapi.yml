@@ -1,0 +1,168 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Authentication API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Authentication
+  description: Endpoints for configuring authentication schemes on gateways, including OAuth2, API key, header-based, and basic authentication.
+paths:
+  /gateways/{gatewayId}/authentication:
+    get:
+      operationId: getAuthenticationConfig
+      summary: Get authentication configuration
+      description: Retrieves the authentication configuration for a gateway, including the authentication scheme, required headers, and OAuth2 settings.
+      tags:
+      - Authentication
+      parameters:
+      - $ref: '#/components/parameters/gatewayId'
+      responses:
+        '200':
+          description: Authentication configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationConfig'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+    put:
+      operationId: updateAuthenticationConfig
+      summary: Update authentication configuration
+      description: Updates the authentication configuration for a gateway. Supports RapidAPI default auth, OAuth2, header-based, query parameter, and basic authentication schemes. Multiple authentication layers can be configured.
+      tags:
+      - Authentication
+      parameters:
+      - $ref: '#/components/parameters/gatewayId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationConfigInput'
+      responses:
+        '200':
+          description: Authentication configuration updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationConfig'
+        '400':
+          description: Bad request - invalid authentication configuration
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: Gateway not found
+components:
+  parameters:
+    gatewayId:
+      name: gatewayId
+      in: path
+      required: true
+      description: The unique identifier of the gateway
+      schema:
+        type: string
+  schemas:
+    AuthenticationConfig:
+      type: object
+      properties:
+        gatewayId:
+          type: string
+          description: The gateway this configuration belongs to
+        scheme:
+          type: string
+          enum:
+          - rapidapi_default
+          - oauth2
+          - header
+          - query
+          - basic
+          description: The primary authentication scheme
+        requireRapidApiKey:
+          type: boolean
+          description: Whether the X-RapidAPI-Key header is required for all requests
+        oauth2Config:
+          type: object
+          properties:
+            authorizationUrl:
+              type: string
+              format: uri
+              description: OAuth2 authorization endpoint
+            tokenUrl:
+              type: string
+              format: uri
+              description: OAuth2 token endpoint
+            scopes:
+              type: array
+              items:
+                type: string
+              description: Available OAuth2 scopes
+          description: OAuth2 configuration when scheme is oauth2
+        headerConfig:
+          type: object
+          properties:
+            headerName:
+              type: string
+              description: Custom header name for authentication
+          description: Header authentication configuration
+    AuthenticationConfigInput:
+      type: object
+      required:
+      - scheme
+      properties:
+        scheme:
+          type: string
+          enum:
+          - rapidapi_default
+          - oauth2
+          - header
+          - query
+          - basic
+          description: The primary authentication scheme
+        requireRapidApiKey:
+          type: boolean
+          default: true
+          description: Whether the X-RapidAPI-Key header is required
+        oauth2Config:
+          type: object
+          properties:
+            authorizationUrl:
+              type: string
+              format: uri
+              description: OAuth2 authorization endpoint
+            tokenUrl:
+              type: string
+              format: uri
+              description: OAuth2 token endpoint
+            scopes:
+              type: array
+              items:
+                type: string
+              description: Available OAuth2 scopes
+          description: OAuth2 configuration
+        headerConfig:
+          type: object
+          properties:
+            headerName:
+              type: string
+              description: Custom header name for authentication
+          description: Header authentication configuration
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration

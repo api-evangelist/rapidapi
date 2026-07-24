@@ -1,0 +1,552 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI Gateway Alerts Apis API
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+servers:
+- url: https://gateway.rapidapi.com/v1
+  description: Production Server
+security:
+- rapidApiKey: []
+tags:
+- name: Apis
+paths:
+  /apis/{apiSlug}:
+    get:
+      operationId: getApiDetails
+      summary: Get API details
+      description: Retrieves detailed information about a specific API on the marketplace, including its description, endpoints, pricing plans, ratings, and provider information.
+      tags:
+      - Apis
+      parameters:
+      - name: apiSlug
+        in: path
+        required: true
+        description: The URL-friendly slug or identifier of the API
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Detailed API information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiDetails'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API not found
+  /apis/{apiSlug}/endpoints:
+    get:
+      operationId: listApiEndpoints
+      summary: List API endpoints
+      description: Retrieves the list of available endpoints for a specific API, including HTTP methods, paths, parameters, and response schemas.
+      tags:
+      - Apis
+      parameters:
+      - name: apiSlug
+        in: path
+        required: true
+        description: The URL-friendly slug or identifier of the API
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of API endpoints
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  endpoints:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiEndpoint'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API not found
+  /apis:
+    get:
+      operationId: listApis
+      summary: List all APIs
+      description: Retrieves a list of all APIs available in the Enterprise Hub. Supports filtering and pagination to narrow down results.
+      tags:
+      - Apis
+      parameters:
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A list of APIs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apis:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Api'
+                  totalCount:
+                    type: integer
+                    description: Total number of APIs available
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '403':
+          description: Forbidden - insufficient permissions
+    post:
+      operationId: createApi
+      summary: Create an API
+      description: Creates a new API listing in the Enterprise Hub. Requires providing the API name, description, category, and other configuration details.
+      tags:
+      - Apis
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ApiCreateInput'
+      responses:
+        '201':
+          description: API created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Api'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '403':
+          description: Forbidden - insufficient permissions
+  /apis/{apiId}:
+    get:
+      operationId: getApi
+      summary: Get an API
+      description: Retrieves the details of a specific API by its unique identifier, including its configuration, versions, and metadata.
+      tags:
+      - Apis
+      parameters:
+      - $ref: '#/components/parameters/apiId'
+      responses:
+        '200':
+          description: API details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Api'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API not found
+    put:
+      operationId: updateApi
+      summary: Update an API
+      description: Updates the configuration and metadata of an existing API in the Enterprise Hub.
+      tags:
+      - Apis
+      parameters:
+      - $ref: '#/components/parameters/apiId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ApiUpdateInput'
+      responses:
+        '200':
+          description: API updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Api'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API not found
+    delete:
+      operationId: deleteApi
+      summary: Delete an API
+      description: Deletes an API listing from the Enterprise Hub. This action is irreversible and removes all associated versions and configurations.
+      tags:
+      - Apis
+      parameters:
+      - $ref: '#/components/parameters/apiId'
+      responses:
+        '204':
+          description: API deleted successfully
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API not found
+  /apis/{apiId}/versions:
+    get:
+      operationId: listApiVersions
+      summary: List API versions
+      description: Retrieves all versions of a specific API, including version names, statuses, and configuration details.
+      tags:
+      - Apis
+      parameters:
+      - $ref: '#/components/parameters/apiId'
+      responses:
+        '200':
+          description: A list of API versions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  versions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiVersion'
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API not found
+  /apis/{apiId}/versions/{versionId}:
+    put:
+      operationId: updateApiVersion
+      summary: Update an API version
+      description: Updates the configuration of a specific version of an API, including its endpoints, description, and settings.
+      tags:
+      - Apis
+      parameters:
+      - $ref: '#/components/parameters/apiId'
+      - $ref: '#/components/parameters/versionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiVersionUpdateInput'
+      responses:
+        '200':
+          description: API version updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiVersion'
+        '400':
+          description: Bad request - invalid input parameters
+        '401':
+          description: Unauthorized - invalid or missing API key
+        '404':
+          description: API version not found
+components:
+  schemas:
+    ApiUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated display name of the API
+        description:
+          type: string
+          description: Updated short description of the API
+        longDescription:
+          type: string
+          description: Updated detailed description
+        category:
+          type: string
+          description: Updated category assignment
+        websiteUrl:
+          type: string
+          format: uri
+          description: Updated website URL
+        imageFile:
+          type: string
+          format: binary
+          description: Updated API icon image file
+    ApiDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the API
+        name:
+          type: string
+          description: Display name of the API
+        slug:
+          type: string
+          description: URL-friendly slug for the API
+        description:
+          type: string
+          description: Short description of the API
+        longDescription:
+          type: string
+          description: Detailed description with use cases and examples
+        category:
+          type: string
+          description: Category the API belongs to
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the API icon or logo
+        websiteUrl:
+          type: string
+          format: uri
+          description: URL to the API provider's website
+        termsOfServiceUrl:
+          type: string
+          format: uri
+          description: URL to the API's terms of service
+        averageRating:
+          type: number
+          format: float
+          description: Average user rating
+        totalRatings:
+          type: integer
+          description: Total number of ratings
+        isVerified:
+          type: boolean
+          description: Whether the API provider is verified
+        provider:
+          type: string
+          description: Name of the API provider
+        plans:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingPlan'
+          description: Available subscription plans
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags associated with the API
+    ApiVersionUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated version name
+        description:
+          type: string
+          description: Updated version description
+        status:
+          type: string
+          enum:
+          - active
+          - deprecated
+          - draft
+          description: Updated version status
+    ApiCreateInput:
+      type: object
+      required:
+      - name
+      - description
+      - category
+      properties:
+        name:
+          type: string
+          description: Display name of the API
+        description:
+          type: string
+          description: Short description of the API
+        longDescription:
+          type: string
+          description: Detailed description of the API and its use cases
+        category:
+          type: string
+          description: The category to assign the API to
+        websiteUrl:
+          type: string
+          format: uri
+          description: URL to the website providing the API
+        imageFile:
+          type: string
+          format: binary
+          description: API icon image file in PNG or JPG format, recommended 500x500 px
+    Api:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the API
+        name:
+          type: string
+          description: Display name of the API
+        description:
+          type: string
+          description: Short description of the API
+        longDescription:
+          type: string
+          description: Detailed description of the API and its use cases
+        category:
+          type: string
+          description: The category the API belongs to
+        websiteUrl:
+          type: string
+          format: uri
+          description: URL to the website providing the API
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the API icon image
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - deprecated
+          description: Current status of the API
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the API was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the API was last updated
+    EndpointParameter:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name
+        type:
+          type: string
+          description: Data type of the parameter
+        required:
+          type: boolean
+          description: Whether the parameter is required
+        description:
+          type: string
+          description: Description of the parameter
+        defaultValue:
+          type: string
+          description: Default value for the parameter if not provided
+        location:
+          type: string
+          enum:
+          - query
+          - path
+          - header
+          - body
+          description: Where the parameter is sent in the request
+    PricingPlan:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the plan
+        name:
+          type: string
+          description: Plan name such as Basic, Pro, or Ultra
+        price:
+          type: number
+          format: double
+          description: Monthly price in USD
+        rateLimit:
+          type: integer
+          description: Maximum number of requests allowed per month
+        features:
+          type: array
+          items:
+            type: string
+          description: List of features included in this plan
+    ApiVersion:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the API version
+        apiId:
+          type: string
+          description: The API this version belongs to
+        name:
+          type: string
+          description: Version name or label
+        status:
+          type: string
+          enum:
+          - active
+          - deprecated
+          - draft
+          description: Current status of the version
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the version was created
+    ApiEndpoint:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the endpoint
+        name:
+          type: string
+          description: Display name of the endpoint
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          description: HTTP method for the endpoint
+        path:
+          type: string
+          description: The URL path for the endpoint
+        description:
+          type: string
+          description: Description of what the endpoint does
+        group:
+          type: string
+          description: The endpoint group this endpoint belongs to
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/EndpointParameter'
+          description: Parameters accepted by this endpoint
+  parameters:
+    apiId:
+      name: apiId
+      in: path
+      required: true
+      description: The unique identifier of the API
+      schema:
+        type: string
+    versionId:
+      name: versionId
+      in: path
+      required: true
+      description: The unique identifier of the API version
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: RapidAPI key used for authenticating requests to the Gateway API.
+externalDocs:
+  description: RapidAPI Gateway Configuration Documentation
+  url: https://docs.rapidapi.com/docs/gateway-configuration
