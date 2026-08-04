@@ -1,0 +1,148 @@
+openapi: 3.1.0
+info:
+  title: RapidAPI GraphQL Platform API
+  description: >-
+    The RapidAPI GraphQL Platform API exposes the same queries and mutations
+    that RapidAPI uses internally, providing enterprise users with a powerful
+    interface for managing their API hub. It supports creating and updating
+    APIs, managing collections, configuring hub settings, and automating API
+    lifecycle management through GraphQL queries and mutations. The API uses a
+    single POST endpoint and is the recommended approach for Enterprise Hub
+    administration over the REST Platform API.
+  version: '1.0'
+  contact:
+    name: RapidAPI Support
+    url: https://docs.rapidapi.com
+  termsOfService: https://rapidapi.com/terms
+externalDocs:
+  description: RapidAPI GraphQL Platform API Documentation
+  url: https://docs.rapidapi.com/docs/graphql-platform-api-overview
+servers:
+  - url: https://platform.rapidapi.com
+    description: Production Server
+tags:
+  - name: GraphQL
+    description: >-
+      The single GraphQL endpoint that accepts all queries and mutations for
+      managing the Enterprise Hub, including APIs, collections, organizations,
+      users, and hub configuration.
+security:
+  - rapidApiKey: []
+paths:
+  /graphql:
+    post:
+      operationId: executeGraphQL
+      summary: Execute a GraphQL query or mutation
+      description: >-
+        Executes a GraphQL query or mutation against the RapidAPI Platform API.
+        Queries are used to read data such as listing APIs, organizations,
+        users, and collections. Mutations are used to create, update, or delete
+        resources. The request body must contain a valid GraphQL query string
+        and optional variables. Mutation input types follow the naming
+        convention of CreateInput, UpdateInput, or DeleteInput. Queries support
+        where and orderBy arguments for filtering and sorting results.
+      tags:
+        - GraphQL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GraphQLRequest'
+      responses:
+        '200':
+          description: >-
+            GraphQL response containing the requested data or mutation result.
+            Errors are returned in the errors array alongside any partial data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphQLResponse'
+        '400':
+          description: Bad request - malformed GraphQL query
+        '401':
+          description: Unauthorized - invalid or missing API key or authorization header
+        '403':
+          description: Forbidden - insufficient permissions for the requested operation
+components:
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      name: X-RapidAPI-Key
+      in: header
+      description: >-
+        RapidAPI key used for authenticating requests to the GraphQL Platform
+        API. Obtained from the Enterprise Hub Admin Panel.
+    rapidApiIdentityKey:
+      type: apiKey
+      name: X-RapidAPI-Identity-Key
+      in: header
+      description: >-
+        Identity key header required alongside the API key for authorization
+        of GraphQL Platform API requests.
+  schemas:
+    GraphQLRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: >-
+            The GraphQL query or mutation string to execute. Queries read data
+            and mutations modify data in the Enterprise Hub.
+        variables:
+          type: object
+          additionalProperties: true
+          description: >-
+            Optional variables to pass to the GraphQL query or mutation,
+            matching the variable declarations in the query string.
+        operationName:
+          type: string
+          description: >-
+            The name of the operation to execute when the query contains
+            multiple named operations.
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+          description: >-
+            The result of the GraphQL query or mutation. The structure matches
+            the shape of the requested fields in the query.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GraphQLError'
+          description: >-
+            An array of errors encountered during execution, if any. Errors
+            may be returned alongside partial data.
+    GraphQLError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A human-readable description of the error
+        locations:
+          type: array
+          items:
+            type: object
+            properties:
+              line:
+                type: integer
+                description: The line number in the query where the error occurred
+              column:
+                type: integer
+                description: The column number where the error occurred
+          description: The locations in the query where the error occurred
+        path:
+          type: array
+          items:
+            type: string
+          description: >-
+            The path to the field that caused the error in the response data
+        extensions:
+          type: object
+          additionalProperties: true
+          description: Additional error metadata provided by the server
