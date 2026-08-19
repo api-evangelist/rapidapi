@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Endpoints API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/projects/:projectId/endpoints",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              }
+            ]
+          },
+          "docs": "Retrieves all endpoints configured in a project, organized by endpoint groups. Each endpoint includes its HTTP method, path, parameters, and response definitions."
+        },
+        {
+          "info": {
+            "name": "Create an endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.rapidapi.com/v1/projects/:projectId/endpoints",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new endpoint in the project with the specified HTTP method, path, parameters, and response configuration."
+        },
+        {
+          "info": {
+            "name": "Update an endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.rapidapi.com/v1/projects/:projectId/endpoints/:endpointId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the endpoint"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing endpoint in the project."
+        },
+        {
+          "info": {
+            "name": "Delete an endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.rapidapi.com/v1/projects/:projectId/endpoints/:endpointId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the endpoint"
+              }
+            ]
+          },
+          "docs": "Deletes an endpoint from the project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

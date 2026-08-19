@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Requests API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List saved requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/projects/:projectId/requests",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the project"
+              }
+            ]
+          },
+          "docs": "Retrieves all saved API requests within a project, organized into groups. Requests are used for testing and documentation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

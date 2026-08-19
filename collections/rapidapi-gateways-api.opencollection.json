@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Gateways API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gateways",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List gateways",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/gateways"
+          },
+          "docs": "Retrieves all gateway instances configured for the organization, including their status, deployment model, and associated APIs."
+        },
+        {
+          "info": {
+            "name": "Create a gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.rapidapi.com/v1/gateways",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new gateway instance with the specified deployment model and configuration. The gateway will begin routing traffic once activated."
+        },
+        {
+          "info": {
+            "name": "Get a gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/gateways/:gatewayId",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the gateway"
+              }
+            ]
+          },
+          "docs": "Retrieves the detailed configuration and status of a specific gateway instance."
+        },
+        {
+          "info": {
+            "name": "Update a gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.rapidapi.com/v1/gateways/:gatewayId",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the gateway"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing gateway instance, including its name, deployment model, and associated settings."
+        },
+        {
+          "info": {
+            "name": "Delete a gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.rapidapi.com/v1/gateways/:gatewayId",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the gateway"
+              }
+            ]
+          },
+          "docs": "Deletes a gateway instance and all associated routing and policy configurations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Security API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get security configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/gateways/:gatewayId/security",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the gateway"
+              }
+            ]
+          },
+          "docs": "Retrieves the security policies configured for a gateway, including IP allow and deny lists, CORS settings, and proxy secret validation."
+        },
+        {
+          "info": {
+            "name": "Update security configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.rapidapi.com/v1/gateways/:gatewayId/security",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the gateway"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the security policies for a gateway, including IP filtering, CORS, and request validation settings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

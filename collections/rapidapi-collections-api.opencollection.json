@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Collections API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List curated collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/collections",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves all curated API collections on the RapidAPI marketplace. Collections group APIs with similar characteristics or themes."
+        },
+        {
+          "info": {
+            "name": "Create a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.rapidapi.com/v1/collections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API collection in the Enterprise Hub for grouping related APIs together."
+        },
+        {
+          "info": {
+            "name": "List APIs in a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/collections/:collectionId/apis",
+            "params": [
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the collection"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves all APIs within a specific curated collection on the RapidAPI marketplace."
+        },
+        {
+          "info": {
+            "name": "Get a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/collections/:collectionId",
+            "params": [
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the collection"
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific collection by its unique identifier, including the APIs it contains."
+        },
+        {
+          "info": {
+            "name": "Update a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.rapidapi.com/v1/collections/:collectionId",
+            "params": [
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing API collection in the Enterprise Hub, including its name, description, and associated APIs."
+        },
+        {
+          "info": {
+            "name": "Delete a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.rapidapi.com/v1/collections/:collectionId",
+            "params": [
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the collection"
+              }
+            ]
+          },
+          "docs": "Deletes a collection from the Enterprise Hub. The APIs within the collection are not deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,213 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Apis API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Apis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get API details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/apis/:apiSlug",
+            "params": [
+              {
+                "name": "apiSlug",
+                "value": "",
+                "type": "path",
+                "description": "The URL-friendly slug or identifier of the API"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific API on the marketplace, including its description, endpoints, pricing plans, ratings, and provider information."
+        },
+        {
+          "info": {
+            "name": "List API endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/apis/:apiSlug/endpoints",
+            "params": [
+              {
+                "name": "apiSlug",
+                "value": "",
+                "type": "path",
+                "description": "The URL-friendly slug or identifier of the API"
+              }
+            ]
+          },
+          "docs": "Retrieves the list of available endpoints for a specific API, including HTTP methods, paths, parameters, and response schemas."
+        },
+        {
+          "info": {
+            "name": "List all APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/apis",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all APIs available in the Enterprise Hub. Supports filtering and pagination to narrow down results."
+        },
+        {
+          "info": {
+            "name": "Create an API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.rapidapi.com/v1/apis",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Creates a new API listing in the Enterprise Hub. Requires providing the API name, description, category, and other configuration details."
+        },
+        {
+          "info": {
+            "name": "Get an API",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/apis/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API"
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific API by its unique identifier, including its configuration, versions, and metadata."
+        },
+        {
+          "info": {
+            "name": "Update an API",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.rapidapi.com/v1/apis/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Updates the configuration and metadata of an existing API in the Enterprise Hub."
+        },
+        {
+          "info": {
+            "name": "Delete an API",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.rapidapi.com/v1/apis/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API"
+              }
+            ]
+          },
+          "docs": "Deletes an API listing from the Enterprise Hub. This action is irreversible and removes all associated versions and configurations."
+        },
+        {
+          "info": {
+            "name": "List API versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/apis/:apiId/versions",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API"
+              }
+            ]
+          },
+          "docs": "Retrieves all versions of a specific API, including version names, statuses, and configuration details."
+        },
+        {
+          "info": {
+            "name": "Update an API version",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.rapidapi.com/v1/apis/:apiId/versions/:versionId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API"
+              },
+              {
+                "name": "versionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the API version"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a specific version of an API, including its endpoints, description, and settings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

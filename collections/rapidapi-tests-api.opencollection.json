@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Tests API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all tests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/tests",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              },
+              {
+                "name": "apiId",
+                "value": "",
+                "type": "query",
+                "description": "Filter tests by associated API identifier"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all API tests in the account, including test names, types, statuses, and associated APIs."
+        },
+        {
+          "info": {
+            "name": "Create a test",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.rapidapi.com/v1/tests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API test with defined steps, assertions, and configuration. Tests can call multiple API endpoints and chain data between them to mimic real application behavior."
+        },
+        {
+          "info": {
+            "name": "Get a test",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/tests/:testId",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the test"
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific test, including all steps, assertions, and configuration settings."
+        },
+        {
+          "info": {
+            "name": "Update a test",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.rapidapi.com/v1/tests/:testId",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the test"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration, steps, and assertions of an existing API test."
+        },
+        {
+          "info": {
+            "name": "Delete a test",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.rapidapi.com/v1/tests/:testId",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the test"
+              }
+            ]
+          },
+          "docs": "Deletes an API test and all associated execution history and schedules."
+        },
+        {
+          "info": {
+            "name": "Run a test",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.rapidapi.com/v1/tests/:testId/run",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the test"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers an immediate execution of a specific test. The test runs against the configured environment and location, and results are available through the executions endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

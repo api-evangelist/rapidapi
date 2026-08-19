@@ -1,0 +1,236 @@
+# RapidAPI Documentation
+
+> Documentation for RapidAPI
+
+## Guides
+- [Navigating this Documentation](https://docs.rapidapi.com/docs/navigating-this-documentation.md)
+- [About the Enterprise Hub](https://docs.rapidapi.com/docs/enterprise-overview.md)
+- [Use Cases](https://docs.rapidapi.com/docs/use-cases.md)
+- [User Personas](https://docs.rapidapi.com/docs/user-personas.md)
+- [Architecture Overview and Deployment Options](https://docs.rapidapi.com/docs/architecture-overview-and-deployment-options.md)
+- [Gateway Integrations Overview](https://docs.rapidapi.com/docs/gateway-integrations-overview.md)
+- [What is rapidapi.com?](https://docs.rapidapi.com/docs/what-is-rapidapi.md): Welcome to the world's largest API hub.
+- [rapidapi.com Account Creation and Management](https://docs.rapidapi.com/docs/account-creation-and-settings.md)
+- [FAQs - rapidapi.com API Hub](https://docs.rapidapi.com/docs/faqs.md): Frequently asked questions about the rapidapi.com Hub
+- [Header Links and Icons](https://docs.rapidapi.com/docs/header-links-and-icons.md)
+- [Authenticating with Email and Password](https://docs.rapidapi.com/docs/authenticating-with-email-and-password.md)
+- [Emails Sent to Users](https://docs.rapidapi.com/docs/email-notifications.md)
+- [API Hub Consumer Quick Start Guide](https://docs.rapidapi.com/docs/consumer-quick-start-guide.md): Learn how to use the API Hub to make your first API call and quickly integrate APIs into your application.
+- [API Listing Overview](https://docs.rapidapi.com/docs/api-listing-overview.md)
+- [Connecting to an API](https://docs.rapidapi.com/docs/connecting-to-an-api.md)
+- [API Keys / Key Rotation](https://docs.rapidapi.com/docs/keys-and-key-rotation.md): How to find, create, and reset Rapid API keys. How to use external API keys.
+- [Advanced Searching & Filtering](https://docs.rapidapi.com/docs/advanced-searching-filtering.md)
+- [Response Headers](https://docs.rapidapi.com/docs/response-headers.md): Headers added by the Rapid Runtime to API responses.
+- [Developer Dashboard](https://docs.rapidapi.com/docs/developer-dashboard.md)
+- [Add a New App](https://docs.rapidapi.com/docs/add-a-new-app.md): How to add a new application to track analytics
+- [App Analytics](https://docs.rapidapi.com/docs/app-analytics.md): How to view analytics for your applications
+- [Approvals](https://docs.rapidapi.com/docs/developer-dashboard-approvals.md)
+- [Inbox](https://docs.rapidapi.com/docs/inbox.md): Contact API providers and see announcements from APIs you subscribe to.
+- [Subscriptions & Usage](https://docs.rapidapi.com/docs/subscriptions-usage.md)
+- [Billing](https://docs.rapidapi.com/docs/billing.md): How to update your credit card details, view transaction history, request a custom invoice, and see quota usage
+- [Consuming GraphQL APIs](https://docs.rapidapi.com/docs/consuming-graphql-apis.md): Execute GraphQL API queries from the API listing.
+- [Consuming Kafka APIs (Beta)](https://docs.rapidapi.com/docs/consuming-kafka-apis-beta.md)
+- [API Access Provisioning](https://docs.rapidapi.com/docs/api-access-provisioning.md): Configure an App to store and retrieve authorization credentials.
+- [API Access Provisioning Approvals (Preview)](https://docs.rapidapi.com/docs/api-access-provisioning-approvals.md)
+- [Consume APIs using AI ](https://docs.rapidapi.com/docs/consume-apis-using-ai.md): LLM-ready in minutes: No custom adapters—your REST becomes MCP tools directly.
+- [Rapid Console](https://docs.rapidapi.com/docs/rapid-console.md)
+- [Studio - Overview](https://docs.rapidapi.com/docs/studio-overview.md): Build, test, publish, and manage high-quality APIs.
+- [Studio - Settings](https://docs.rapidapi.com/docs/studio-settings.md): Transfer or delete the API project.
+- [Studio - My APIs Approvals](https://docs.rapidapi.com/docs/studio-my-apis-approvals.md): Approve consumer requests to use your API's plans, and view the status of requests to make your APIs public.
+- [Studio - My APIs Inbox](https://docs.rapidapi.com/docs/my-apis-inbox.md): View and manage direct messages, discussions, and announcements between you an your API consumers.
+- [Adding APIs - Getting Started](https://docs.rapidapi.com/docs/add-api-getting-started.md)
+- [Hub Listing - Overview](https://docs.rapidapi.com/docs/hub-listing-overview.md)
+- [Hub Listing - General Tab](https://docs.rapidapi.com/docs/hub-listing-general-tab.md)
+- [Hub Listing - Definitions Tab](https://docs.rapidapi.com/docs/hub-listing-definitions-tab.md)
+- [Configuring API Security](https://docs.rapidapi.com/docs/configuring-api-security.md): Configure additional API security (authorization) mechanisms used by your API.
+- [Hub Listing - Request and Response Transformations (Definitions Tab)](https://docs.rapidapi.com/docs/hub-listing-request-and-response-transformations.md): Transformations allow you to **add**, **remap**, or **remove** headers, query parameters, or bodies in API requests and API responses.
+- [Hub Listing - Docs Tab](https://docs.rapidapi.com/docs/hub-listing-docs-tab.md)
+- [Hub Listing - Gateway Tab](https://docs.rapidapi.com/docs/hub-listing-gateway-tab.md): Configure Rapid Runtime behavior for an API.
+- [Hub Listing - Request and Response Transformations (Gateway Tab)](https://docs.rapidapi.com/docs/hub-listing-request-and-response-transformations-gateway-tab.md): Transformations allow you to **add**, **remap**, or **remove** headers, query parameters, or bodies in API requests and API responses.
+- [Additional Request Headers](https://docs.rapidapi.com/docs/additional-request-headers.md): Headers added by the Rapid Runtime to API requests.
+- [Custom Tokens](https://docs.rapidapi.com/docs/custom-tokens.md)
+- [Hub Listing - Assets Tab](https://docs.rapidapi.com/docs/hub-listing-assets-tab.md): API providers can upload assets of any type for use by API consumers.
+- [Hub Listing - Community Tab](https://docs.rapidapi.com/docs/hub-listing-community-tab.md): View subscribers to your API and send invitations for private APIs
+- [Hub Listing - Monetize Tab](https://docs.rapidapi.com/docs/hub-listing-monetize-tab.md)
+- [Monetizing Your API on rapidapi.com](https://docs.rapidapi.com/docs/monetizing-your-api-on-rapidapicom.md)
+- [Marketing Your API](https://docs.rapidapi.com/docs/ive-added-my-api-to-rapidapi-now-what.md): Thanks for adding your API to RapidAPI! Check out some next steps you can take to promote your API.
+- [Optimize Your Website](https://docs.rapidapi.com/docs/optimize-your-website.md)
+- [Officially Launch Your API](https://docs.rapidapi.com/docs/officially-launch-your-api.md)
+- [Own Your Niche](https://docs.rapidapi.com/docs/pick-and-own-your-niche.md)
+- [Payouts and Finance](https://docs.rapidapi.com/docs/payouts-and-finance.md): Rapid's processes on payouts to API providers and invoicing.
+- [Intellectual Property Issues](https://docs.rapidapi.com/docs/intellectual-property-issues.md)
+- [Rapid GDPR Information](https://docs.rapidapi.com/docs/gdpr-information.md)
+- [Hub Listing - Versioning an API](https://docs.rapidapi.com/docs/hub-listing-versioning-an-api.md): Create a new version of your API while still supporting older versions.
+- [GraphQL APIs](https://docs.rapidapi.com/docs/graphql-apis.md)
+- [Kafka APIs (Beta)](https://docs.rapidapi.com/docs/kafka-apis-studio.md)
+- [SOAP APIs](https://docs.rapidapi.com/docs/soap-apis.md)
+- [Documenting Your API](https://docs.rapidapi.com/docs/documenting-your-api.md)
+- [Spotlights](https://docs.rapidapi.com/docs/spotlights.md): Link to web pages or upload files that API consumers view on the API listing's About tab.
+- [Tutorials](https://docs.rapidapi.com/docs/tutorials.md): Enter tutorial information for your API that is hosted by Rapid and viewed by API consumers on the API listing's Tutorials tab.
+- [Adding and Updating OpenAPI Documents](https://docs.rapidapi.com/docs/adding-and-updating-openapi-documents.md)
+- [Analytics Overview](https://docs.rapidapi.com/docs/analytics-overview.md): Breakdown of the relevant **personas**, **features**, and **tools** used for analytics in Rapid.
+- [Statistics & Aggregations](https://docs.rapidapi.com/docs/analytics-statistics-aggregations.md): Explains the types of aggregations available on analytics pages for each of the main dimensions (volume/error/latency), and how they are calculated.
+- [Analytics Time Periods](https://docs.rapidapi.com/docs/analytics-time-periods.md): Analytics can be analyzed for different time periods and resolutions depending on the subscription level.
+- [Analytics by Persona](https://docs.rapidapi.com/docs/analytics-by-persona.md)
+- [Admin Analytics](https://docs.rapidapi.com/docs/admin-analytics.md)
+- [Provider Analytics](https://docs.rapidapi.com/docs/provider-analytics.md): Use the insights provided by consumer API calls to improve your API experience. Understand your API traffic by endpoint or consumer, monitor for errors, alert on latency spikes, and more.
+- [Consumer Analytics](https://docs.rapidapi.com/docs/consumer-analytics.md): So you have come to Rapid to discover and consume APIs? Great! You can view and analyze all your API call history going back up to 1 year! You can break down traffic by App, API, Endpoint, and time directly in the platform, or export the raw logs.
+- [Analytics in the GraphQL Platform API](https://docs.rapidapi.com/docs/analytics-platform-api.md): Use the GraphQL Platform API to obtain analytics
+- [Platform Analytics API](https://docs.rapidapi.com/docs/platform-analytics-api.md): Populate Studio (My APIs) and the Developer Dashboard (Apps) analytics for APIs that don't use the Rapid Runtime.
+- [Analytics Gateway Integrations](https://docs.rapidapi.com/docs/analytics-gateway-integrations.md): Gateway integrations provide ready-made solutions and code snippets to get API logs from your favorite gateway to Rapid.
+- [Amazon API Gateway Analytics Integration](https://docs.rapidapi.com/docs/amazon-api-gateway-analytics-integration.md)
+- [Apigee Analytics Integration](https://docs.rapidapi.com/docs/apigee-integration.md)
+- [Azure API Management Analytics Integration](https://docs.rapidapi.com/docs/azure-api-management-analytics-integration.md)
+- [API Requests - Overview](https://docs.rapidapi.com/docs/api-requests-overview.md)
+- [API Requests - Getting Started](https://docs.rapidapi.com/docs/api-requests-getting-started.md)
+- [Branches](https://docs.rapidapi.com/docs/branches.md)
+- [Sessions](https://docs.rapidapi.com/docs/sessions.md)
+- [Groups and Environments](https://docs.rapidapi.com/docs/environments-and-environments-groups.md)
+- [Requests](https://docs.rapidapi.com/docs/requests.md)
+- [Configuring a Request](https://docs.rapidapi.com/docs/configuring-a-request.md)
+- [Inserting Embeddable Values](https://docs.rapidapi.com/docs/inserting-embeddable-values.md)
+- [Preview](https://docs.rapidapi.com/docs/preview.md)
+- [Results Panel](https://docs.rapidapi.com/docs/results-panel.md)
+- [Info](https://docs.rapidapi.com/docs/info.md)
+- [Request](https://docs.rapidapi.com/docs/request.md)
+- [Response](https://docs.rapidapi.com/docs/response.md)
+- [API Testing - Getting Started](https://docs.rapidapi.com/docs/testing-getting-started.md)
+- [Creating a Test](https://docs.rapidapi.com/docs/creating-test-flows.md)
+- [Steps](https://docs.rapidapi.com/docs/steps.md)
+- [Data Fetch](https://docs.rapidapi.com/docs/data-fetch.md)
+- [Assert](https://docs.rapidapi.com/docs/assert.md)
+- [Flow Control](https://docs.rapidapi.com/docs/flow-control.md)
+- [Dynamic Values](https://docs.rapidapi.com/docs/dynamic-values.md)
+- [Environments](https://docs.rapidapi.com/docs/requests-environments.md): Use variables in your requests.
+- [Variables](https://docs.rapidapi.com/docs/variables.md)
+- [Environment Variables](https://docs.rapidapi.com/docs/environment-variables.md)
+- [Test Variables](https://docs.rapidapi.com/docs/test-variables.md)
+- [Request Generator](https://docs.rapidapi.com/docs/request-generator.md)
+- [Visual Editor](https://docs.rapidapi.com/docs/visual-editor.md)
+- [Code Editor](https://docs.rapidapi.com/docs/code-editor.md)
+- [Test Settings](https://docs.rapidapi.com/docs/test-settings.md)
+- [Locations](https://docs.rapidapi.com/docs/locations.md)
+- [Executing Your Rapid Tests Locally](https://docs.rapidapi.com/docs/executing-your-rapidapi-tests-locally.md)
+- [Creating Advanced Tests](https://docs.rapidapi.com/docs/creating-advanced-tests.md)
+- [JSON Schema Validation](https://docs.rapidapi.com/docs/json-schema-validation.md)
+- [Chaining Requests](https://docs.rapidapi.com/docs/chaining-requests.md)
+- [Looping Over Results](https://docs.rapidapi.com/docs/looping-over-results.md)
+- [Executing Code in Tests](https://docs.rapidapi.com/docs/executing-code-in-tests.md)
+- [Using JSON Web Tokens (JWT)](https://docs.rapidapi.com/docs/using-json-web-tokens-jwt.md)
+- [Creating Fake Data in Tests](https://docs.rapidapi.com/docs/creating-fake-data-in-tests.md)
+- [Using Child Tests](https://docs.rapidapi.com/docs/using-child-tests.md): A child test is a method of defining a set of steps once and executing those steps in other tests.
+- [Using a Test to Call All of the Tests in Your API Project](https://docs.rapidapi.com/docs/using-a-test-to-call-all-of-the-tests-in-your-api-project.md)
+- [Using a Test to Verify the Number of Public APIs on Your Hub](https://docs.rapidapi.com/docs/using-a-test-to-verify-the-number-of-public-apis-on-your-hub.md)
+- [Monitoring Overview](https://docs.rapidapi.com/docs/monitoring-overview.md)
+- [Schedule Tests](https://docs.rapidapi.com/docs/schedule-tests.md)
+- [Daily Email Summary](https://docs.rapidapi.com/docs/daily-email-summary.md)
+- [Failures and Alerts](https://docs.rapidapi.com/docs/failures-and-alerts.md)
+- [Email Alerts](https://docs.rapidapi.com/docs/email-alerts.md)
+- [SMS Alerts](https://docs.rapidapi.com/docs/sms-alerts.md)
+- [Webhook Alerts](https://docs.rapidapi.com/docs/webhook-alerts.md)
+- [CI/CD Integration](https://docs.rapidapi.com/docs/cicd-integration.md)
+- [Testing Analytics](https://docs.rapidapi.com/docs/testing-analytics.md)
+- [Test Analytics](https://docs.rapidapi.com/docs/test-analytics.md)
+- [Test Results](https://docs.rapidapi.com/docs/test-results.md)
+- [Testing Dashboard](https://docs.rapidapi.com/docs/testing-dashboard.md)
+- [Testing Performance](https://docs.rapidapi.com/docs/testing-performance.md)
+- [Organizations Overview](https://docs.rapidapi.com/docs/organizations-overview.md)
+- [What is API Hub for Teams?](https://docs.rapidapi.com/docs/what-is-api-hub-for-teams.md)
+- [FAQs - RapidAPI for Teams](https://docs.rapidapi.com/docs/faqs-rapidapi-for-teams.md): Frequently asked questions about RapidAPI for Teams.
+- [Getting Started with RapidAPI for Teams](https://docs.rapidapi.com/docs/getting-started-with-rapidapi-for-teams.md)
+- [Switching Between a Team & a Personal Account](https://docs.rapidapi.com/docs/switching-between-a-teams-account-and-personal-account.md)
+- [Organization Homepage](https://docs.rapidapi.com/docs/organization-homepage.md)
+- [Manually Creating & Managing an Organization](https://docs.rapidapi.com/docs/manually-creating-an-organization.md)
+- [Organization Dashboard](https://docs.rapidapi.com/docs/organization-dashboard.md)
+- [Manage Teammates](https://docs.rapidapi.com/docs/manage-teammates.md)
+- [Manage Teams](https://docs.rapidapi.com/docs/manage-teams.md)
+- [Organization Homepage Administration](https://docs.rapidapi.com/docs/organization-homepage-admin.md)
+- [Subscriptions & Usage](https://docs.rapidapi.com/docs/subscriptions-and-usage.md): View your organization's teams API subscriptions, and view usage graphs for those APIs.
+- [Transactions (Org Dashboard)](https://docs.rapidapi.com/docs/transactions-org-dashboard.md): View outgoing and incoming charges for your organization.
+- [Org Approvals](https://docs.rapidapi.com/docs/org-approvals.md)
+- [Inbox (Organization Dashboard)](https://docs.rapidapi.com/docs/org-dashboard-inbox.md): View messages from external API providers for APIs that the organization subscribes to.
+- [Organization Settings](https://docs.rapidapi.com/docs/organization-settings.md)
+- [Audit Trails (Org Dashboard)](https://docs.rapidapi.com/docs/org-audit-trails.md)
+- [Join Organizations](https://docs.rapidapi.com/docs/join-organizations.md)
+- [Admin Panel Overview](https://docs.rapidapi.com/docs/admin-panel-overview.md): Configure, manage, and monitor your RapidAPI Enterprise Hub.
+- [Dashboard](https://docs.rapidapi.com/docs/dashboard.md): View comprehensive usage data for your API Hub.
+- [Managing APIs](https://docs.rapidapi.com/docs/managing-apis.md): Search for, view details of, and manage APIs.
+- [Admin Panel Approvals](https://docs.rapidapi.com/docs/admin-panel-approvals.md): Approve access for new users of your Enterprise Hub.
+- [Admin Panel Audit Trails](https://docs.rapidapi.com/docs/admin-panel-audit-trails.md): View audit logs of changes made by environment admins in the Admin Panel
+- [Events / Webhooks](https://docs.rapidapi.com/docs/events.md): Send POST requests to external systems when events occur in the API Hub.
+- [User Management](https://docs.rapidapi.com/docs/user-management.md)
+- [Organizations](https://docs.rapidapi.com/docs/organizations.md): View organization information using the Organizations tab of the Admin Panel.
+- [Subscriptions](https://docs.rapidapi.com/docs/subscriptions.md): Search for subscriptions to APIs owned by users or teams.
+- [Collections](https://docs.rapidapi.com/docs/collections.md): Create groups of public APIs to display on the API Hub page.
+- [Categories](https://docs.rapidapi.com/docs/categories.md)
+- [Tags](https://docs.rapidapi.com/docs/tags.md)
+- [Theming and Language](https://docs.rapidapi.com/docs/theming-and-language.md): Use custom styling, text, links, and images in your API Hub.
+- [API Gateways](https://docs.rapidapi.com/docs/gateway-configuration.md): Configure one or more API gateways that do not use the hosted Rapid Runtime.
+- [Setting up CORS on Amazon API Gateway](https://docs.rapidapi.com/docs/setting-up-cors-on-amazon-api-gateway.md)
+- [SEO (Search Engine Optimization)](https://docs.rapidapi.com/docs/seo-search-engine-optimization.md): Customize page titles and other HTML tags on your API Hub pages.
+- [Billing (Enterprise Hub)](https://docs.rapidapi.com/docs/billing-enterprise-hub.md): Optionally monetize API usage in your Enterprise Hub using invoice billing and/or your own Stripe account.
+- [Roles and Permissions](https://docs.rapidapi.com/docs/roles-and-permissions.md)
+- [Login Options](https://docs.rapidapi.com/docs/login-options.md): Configure one or more ways for users to log into your Enterprise Hub.
+- [Extensions](https://docs.rapidapi.com/docs/custom-extensions.md): Add custom capabilities to the API Hub by adding tabs to an API.
+- [Set Up a Custom Domain](https://docs.rapidapi.com/docs/set-up-a-custom-domain.md): Change the URL of your API hub to your domain.
+- [Entity Diagram on API Hub](https://docs.rapidapi.com/docs/entity-diagram-on-api-hub.md)
+- [Localization and Translations](https://docs.rapidapi.com/docs/using-browser-based-translators.md)
+- [GQL Platform API Overview](https://docs.rapidapi.com/docs/graphql-platform-api-overview.md)
+- [Getting Started with the GQL Platform API](https://docs.rapidapi.com/docs/getting-started-with-the-graphql-platform-api.md)
+- [Examples (GQL Platform API)](https://docs.rapidapi.com/docs/gql-papi-examples.md)
+- [Reading API Information (GQL PAPI)](https://docs.rapidapi.com/docs/papi-gql-examples-reading-api-information.md)
+- [REST APIs (GQL PAPI)](https://docs.rapidapi.com/docs/papi-gql-examples-rest-apis.md): Create, update, and delete REST APIs using the GraphQL Platform API.
+- [Example: Creating and Updating an API Using GitHub Actions (GQL Platform API)](https://docs.rapidapi.com/docs/example-creating-and-updating-an-api-using-github-actions-gql-platform-api.md)
+- [GraphQL APIs (GQL PAPI)](https://docs.rapidapi.com/docs/papi-gql-examples-graphql-apis.md)
+- [SOAP APIs (GQL PAPI)](https://docs.rapidapi.com/docs/papi-gql-examples-soap-apis.md)
+- [API Documentation (GQL PAPI)](https://docs.rapidapi.com/docs/papi-gql-examples-api-documentation.md): Manage ReadMe information, Spotlights, Tutorials and/or Assets to your API.
+- [Example: Updating an API's Documentation Using GitLab (GQL Platform API)](https://docs.rapidapi.com/docs/example-updating-an-apis-documentation-using-gitlab-gql-platform-api.md): Automatically update an API's documentation in Rapid when a README.md file is updated in a GitLab repository.
+- [Versioning APIs (GQL PAPI)](https://docs.rapidapi.com/docs/papi-gql-examples-versioning-apis.md)
+- [External Custom API IDs](https://docs.rapidapi.com/docs/external-custom-api-ids.md): Associate your company's ID with a Rapid API ID.
+- [API Subscriptions (GQL)](https://docs.rapidapi.com/docs/api-subscriptions-gql-platform-api.md)
+- [Exporting API Consumer Billing Data](https://docs.rapidapi.com/docs/exporting-api-consumer-billing-data.md): Export usage data to bill API consumers using your enterprise's billing platform.
+- [API Followers (GQL)](https://docs.rapidapi.com/docs/api-followers-gql-platform-api.md)
+- [API Announcements (GQL)](https://docs.rapidapi.com/docs/api-announcements-gql-platform-api.md)
+- [API Authentication (GQL)](https://docs.rapidapi.com/docs/api-authentication-gql-platform-api.md): Read, create, or update an API's authentication set.
+- [Apps and Authorizations (GQL)](https://docs.rapidapi.com/docs/apps-and-authorizations.md)
+- [Example: Reading a User's Apps and Authorizations (GraphQL)](https://docs.rapidapi.com/docs/example-reading-a-users-apps-and-authorizations-graphql.md)
+- [Example: Creating and Deleting Apps (GraphQL)](https://docs.rapidapi.com/docs/example-creating-and-deleting-apps.md)
+- [Example: Creating and Deleting Authorizations (GraphQL)](https://docs.rapidapi.com/docs/example-creating-and-deleting-authorizations.md)
+- [Users, Teams, and Roles (GQL)](https://docs.rapidapi.com/docs/graphql-platform-api-examples-users-teams-and-roles.md)
+- [Organizations (GQL)](https://docs.rapidapi.com/docs/organizations-gql-platform-api.md)
+- [Categories, Tags, and Collections (GQL)](https://docs.rapidapi.com/docs/graphql-platform-api-examples-categories-tags-and-collections.md): Programmatically create, read, update, and delete categories, tags, and collections using the GraphQL Platform API.
+- [API Gateways (GQL)](https://docs.rapidapi.com/docs/api-gateways-gql-platform-api.md): Programmatically create, read, update, and delete API gateways and templates using the GraphQL Platform API.
+- [API Traffic Analytics (GQL)](https://docs.rapidapi.com/docs/traffic-analytics-api.md): Obtain single API and aggregate API request analytics from API consumer, API provider, and/or admin perspectives.
+- [API Traffic Logs](https://docs.rapidapi.com/docs/api-traffic-logs.md): Obtain request/response logs and payloads.
+- [Hub Usage Metrics (GQL)](https://docs.rapidapi.com/docs/hub-usage-metrics-gql-papi.md)
+- [Administration (GQL)](https://docs.rapidapi.com/docs/graphql-platform-api-examples-administration.md)
+- [Concepts (GQL Platform API)](https://docs.rapidapi.com/docs/concepts-gql-platform-api.md)
+- [Authorization (GQL)](https://docs.rapidapi.com/docs/graphql-platform-api-authorization.md)
+- [Pagination (GQL)](https://docs.rapidapi.com/docs/graphql-platform-api-pagination.md): Work with queries that return multiple items.
+- [Arguments (GQL)](https://docs.rapidapi.com/docs/graphql-platform-api-arguments.md): Use arguments to narrow searches and order results
+- [Release Notes (GQL Platform API)](https://docs.rapidapi.com/docs/graphql-platform-api-release-notes.md)
+- [REST Platform API Overview](https://docs.rapidapi.com/docs/platform-api-overview.md): Learn about the REST Platform API and how to assign Enterprise Access to the API.
+- [Using the REST Platform API [Basics]](https://docs.rapidapi.com/docs/using-the-platform-api-basics.md): An introduction to the Platform API endpoint listing
+- [Managing APIs via the REST Platform API](https://docs.rapidapi.com/docs/creating-updating-apis.md): How to use the Platform API to create and update APIs in your Enterprise Hub
+- [Managing Collections via the REST Platform API](https://docs.rapidapi.com/docs/managing-collections.md)
+- ["On-behalf-of"](https://docs.rapidapi.com/docs/on-behalf-of.md): Make REST Platform API requests for specific users and teams.
+- [Example: Obtaining Apps and Keys for Users and Teams](https://docs.rapidapi.com/docs/example-obtaining-apps-and-keys-for-users-and-teams.md)
+- [Example: Reading a User's Apps and Authorizations](https://docs.rapidapi.com/docs/example-view-apps-and-authorizations.md)
+- [Example: Creating, Updating, and Deleting Apps and Authorizations](https://docs.rapidapi.com/docs/example-creating-updating-and-deleting-apps-and-authorizations.md)
+- [Example Using the REST Platform API: Listing all APIs](https://docs.rapidapi.com/docs/example-using-the-rest-platform-api-listing-all-apis.md)
+- [Release Notes (June 2025)](https://docs.rapidapi.com/docs/release-notes-june-2025.md)
+- [Release Notes (Mar 2024)](https://docs.rapidapi.com/docs/release-notes-mar-2024.md)
+- [Release Notes (Feb 2024)](https://docs.rapidapi.com/docs/release-notes-feb-2024.md)
+- [Release Notes (Jan 2024)](https://docs.rapidapi.com/docs/release-notes-jan-2024.md)
+- [Release Notes (Dec 2023)](https://docs.rapidapi.com/docs/release-notes-december-2023.md)
+- [Release Notes (Nov 2023)](https://docs.rapidapi.com/docs/release-notes-november-2023.md)
+- [Release Notes (Oct 2023)](https://docs.rapidapi.com/docs/release-notes-october-2023.md)
+- [Release Notes (Sep 2023)](https://docs.rapidapi.com/docs/release-notes-september-2023.md)
+- [Release Notes (Aug 2023)](https://docs.rapidapi.com/docs/release-notes-august-2023.md)
+- [Release Notes (July 2023)](https://docs.rapidapi.com/docs/release-notes-july-2023.md)
+- [Release Notes (June 2023)](https://docs.rapidapi.com/docs/release-notes-june-2023.md)
+- [Release Notes (May 2023)](https://docs.rapidapi.com/docs/release-notes-may-2023.md)
+- [Release Notes (Mar 2023)](https://docs.rapidapi.com/docs/release-notes-mar-2023.md)
+- [Release Notes (Feb 2023)](https://docs.rapidapi.com/docs/release-notes-feb-2023.md)
+- [Release Notes (Jan 2023)](https://docs.rapidapi.com/docs/release-notes-jan-2023.md)
+- [Release Notes (Dec 2022)](https://docs.rapidapi.com/docs/202212-release-notes.md)

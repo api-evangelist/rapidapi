@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Routes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Routes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/gateways/:gatewayId/routes",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the gateway"
+              }
+            ]
+          },
+          "docs": "Retrieves all routing rules configured for a gateway, including path patterns, target backends, and transformation rules."
+        },
+        {
+          "info": {
+            "name": "Create a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.rapidapi.com/v1/gateways/:gatewayId/routes",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the gateway"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new routing rule for the gateway, specifying how incoming requests matching a path pattern are forwarded to a backend service."
+        },
+        {
+          "info": {
+            "name": "Update a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.rapidapi.com/v1/gateways/:gatewayId/routes/:routeId",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the gateway"
+              },
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the route"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing routing rule's path pattern, backend target, or transformation settings."
+        },
+        {
+          "info": {
+            "name": "Delete a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.rapidapi.com/v1/gateways/:gatewayId/routes/:routeId",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the gateway"
+              },
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the route"
+              }
+            ]
+          },
+          "docs": "Deletes a routing rule from the gateway. Requests matching this route will no longer be forwarded."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

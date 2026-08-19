@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Rate Limiting API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rate Limiting",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get rate limiting configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/gateways/:gatewayId/rate-limiting",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the gateway"
+              }
+            ]
+          },
+          "docs": "Retrieves the rate limiting policies configured for a gateway, including request limits, quota settings, and request size limits."
+        },
+        {
+          "info": {
+            "name": "Update rate limiting configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.rapidapi.com/v1/gateways/:gatewayId/rate-limiting",
+            "params": [
+              {
+                "name": "gatewayId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the gateway"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the rate limiting policies for a gateway, including per-user request limits, global quotas, and maximum request size constraints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

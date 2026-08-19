@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Schedules API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/schedules"
+          },
+          "docs": "Retrieves all configured test schedules, including their frequency, associated test, environment, and monitoring locations."
+        },
+        {
+          "info": {
+            "name": "Create a schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.rapidapi.com/v1/schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new test schedule that runs a test at a specified frequency from one or more monitoring locations. Frequency options include intervals ranging from every 5 minutes to every 24 hours."
+        },
+        {
+          "info": {
+            "name": "Update a schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.rapidapi.com/v1/schedules/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the schedule"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the frequency, environment, or location settings of an existing test schedule."
+        },
+        {
+          "info": {
+            "name": "Delete a schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.rapidapi.com/v1/schedules/:scheduleId",
+            "params": [
+              {
+                "name": "scheduleId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the schedule"
+              }
+            ]
+          },
+          "docs": "Deletes a test schedule. The associated test is not deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List alert configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/alerts"
+          },
+          "docs": "Retrieves all configured alert notifications for test failures, including integration settings for PagerDuty, Slack, and Twilio."
+        },
+        {
+          "info": {
+            "name": "Create an alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.rapidapi.com/v1/alerts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new alert configuration that sends notifications when a specified test fails. Supports integration with PagerDuty, Slack, Twilio, and email."
+        },
+        {
+          "info": {
+            "name": "Delete an alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.rapidapi.com/v1/alerts/:alertId",
+            "params": [
+              {
+                "name": "alertId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the alert"
+              }
+            ]
+          },
+          "docs": "Deletes an alert configuration. Notifications will no longer be sent for the associated test failures."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

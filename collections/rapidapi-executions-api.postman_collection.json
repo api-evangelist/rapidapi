@@ -1,0 +1,417 @@
+{
+  "item": [
+    {
+      "id": "bb9ba59d-7c7e-4b80-a860-d8c0dd403501",
+      "name": "Executions",
+      "description": {
+        "content": "Endpoints for viewing test execution results, including pass/fail statuses, response times, and detailed assertion outcomes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dea25edf-f695-42e2-9283-8a44ad4e1482",
+          "name": "List test executions",
+          "request": {
+            "name": "List test executions",
+            "description": {
+              "content": "Retrieves a list of test execution results, optionally filtered by test identifier, status, or date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "executions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "testId",
+                  "value": "<string>",
+                  "description": "Filter executions by test identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter executions by result status"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of items to skip for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "The maximum number of items to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f801fb42-e470-470d-bb3b-ca3c3c38b8fd",
+              "name": "A list of test executions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "testId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"executions\": [\n    {\n      \"id\": \"string\",\n      \"testId\": \"string\",\n      \"status\": \"error\",\n      \"duration\": 9668,\n      \"location\": \"string\",\n      \"startedAt\": \"1978-09-27T17:15:50.150Z\",\n      \"completedAt\": \"1977-09-19T09:33:52.476Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"testId\": \"string\",\n      \"status\": \"passed\",\n      \"duration\": 293,\n      \"location\": \"string\",\n      \"startedAt\": \"1976-04-21T09:24:41.561Z\",\n      \"completedAt\": \"2014-01-06T02:37:30.696Z\"\n    }\n  ],\n  \"totalCount\": 2813\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7013d2cf-26bd-4891-baab-70c2f6064f59",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "testId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01b96416-f9de-4be3-80ed-410f9b681853",
+          "name": "Get execution details",
+          "request": {
+            "name": "Get execution details",
+            "description": {
+              "content": "Retrieves the detailed results of a specific test execution, including per-step results, response times, assertion outcomes, and any errors.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "executions",
+                ":executionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "executionId",
+                  "description": "(Required) The unique identifier of the test execution"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "166caa28-05a7-45a8-a50a-88585b10c6dc",
+              "name": "Execution details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "executions",
+                    ":executionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "executionId",
+                      "description": "(Required) The unique identifier of the test execution"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"testId\": \"string\",\n  \"testName\": \"string\",\n  \"status\": \"passed\",\n  \"duration\": 8213,\n  \"location\": \"string\",\n  \"steps\": [\n    {\n      \"stepId\": \"string\",\n      \"stepName\": \"string\",\n      \"status\": \"passed\",\n      \"responseTime\": 3015,\n      \"statusCode\": 2802,\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"passed\": false,\n          \"expected\": \"string\",\n          \"actual\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"passed\": false,\n          \"expected\": \"string\",\n          \"actual\": \"string\"\n        }\n      ]\n    },\n    {\n      \"stepId\": \"string\",\n      \"stepName\": \"string\",\n      \"status\": \"skipped\",\n      \"responseTime\": 666,\n      \"statusCode\": 7305,\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"passed\": false,\n          \"expected\": \"string\",\n          \"actual\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"passed\": true,\n          \"expected\": \"string\",\n          \"actual\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"startedAt\": \"2000-08-27T10:08:08.339Z\",\n  \"completedAt\": \"1989-12-09T12:41:07.648Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67b1e676-6da4-4aaf-bb3e-e9c100e0d4d2",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "executions",
+                    ":executionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "executionId",
+                      "description": "(Required) The unique identifier of the test execution"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c49ec7f2-d34c-4d4f-8f7a-945f60ad438b",
+              "name": "Execution not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "executions",
+                    ":executionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "executionId",
+                      "description": "(Required) The unique identifier of the test execution"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://gateway.rapidapi.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3dd0fab4-ce5e-48d8-8389-4ec7cc726837",
+    "name": "RapidAPI Gateway Alerts Executions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Subscriptions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List my subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/subscriptions"
+          },
+          "docs": "Retrieves the authenticated user's active API subscriptions, including plan details and usage statistics."
+        },
+        {
+          "info": {
+            "name": "Subscribe to an API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.rapidapi.com/v1/apis/:apiSlug/subscribe",
+            "params": [
+              {
+                "name": "apiSlug",
+                "value": "",
+                "type": "path",
+                "description": "The URL-friendly slug or identifier of the API"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribes the authenticated user to a specific API plan on the marketplace. After subscribing, the user can make API calls using their RapidAPI key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

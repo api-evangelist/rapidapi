@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Snippets API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Snippets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get code snippets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/apis/:apiSlug/snippets",
+            "params": [
+              {
+                "name": "apiSlug",
+                "value": "",
+                "type": "path",
+                "description": "The URL-friendly slug or identifier of the API"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "query",
+                "description": "The identifier of the specific endpoint"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "The programming language for the code snippet"
+              }
+            ]
+          },
+          "docs": "Generates code snippets for calling a specific API endpoint in various programming languages and libraries, including JavaScript, Python, PHP, Ruby, Java, and more."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

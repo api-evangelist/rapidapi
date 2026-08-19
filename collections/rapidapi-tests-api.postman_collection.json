@@ -1,0 +1,1296 @@
+{
+  "item": [
+    {
+      "id": "ea4ad005-ec71-42df-81dc-1ad9b1107c9d",
+      "name": "Tests",
+      "description": {
+        "content": "Endpoints for creating, reading, updating, deleting, and executing API tests, including functional and performance test flows.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c89246db-47f0-4cc3-8ebb-0e8a67012ff6",
+          "name": "List all tests",
+          "request": {
+            "name": "List all tests",
+            "description": {
+              "content": "Retrieves a list of all API tests in the account, including test names, types, statuses, and associated APIs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of items to skip for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "The maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "apiId",
+                  "value": "<string>",
+                  "description": "Filter tests by associated API identifier"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d603918a-f06f-4ad6-a681-78a7252023c1",
+              "name": "A list of tests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "apiId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tests\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"apiId\": \"string\",\n      \"type\": \"performance\",\n      \"steps\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"method\": \"POST\",\n          \"url\": \"http://z.dpvqU92z1-LmBoZ1+d7N5dgb8pTp2eg-dOIvzE5BeE9\",\n          \"headers\": {\n            \"key_0\": \"string\"\n          },\n          \"body\": \"string\",\n          \"assertions\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"target\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"target\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"method\": \"DELETE\",\n          \"url\": \"https://lcjemVntfKMymVcwIvoOrx.bsfN0dRzn1lIFHroTsfKCsXwbjdXpJ0XeD-TVB7O.q28FiZtPj9-xiqlG\",\n          \"headers\": {\n            \"key_0\": \"string\"\n          },\n          \"body\": \"string\",\n          \"assertions\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"target\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"target\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"status\": \"archived\",\n      \"createdAt\": \"1994-10-15T12:03:06.696Z\",\n      \"updatedAt\": \"1951-06-24T22:36:56.673Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"apiId\": \"string\",\n      \"type\": \"performance\",\n      \"steps\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"method\": \"PATCH\",\n          \"url\": \"https://WiFtsIdcELYmYtYr.cazye1JOZeRuBKMYVAJgNJ9h\",\n          \"headers\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"body\": \"string\",\n          \"assertions\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"target\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"target\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"method\": \"PUT\",\n          \"url\": \"https://SQLYv.dhTNJlVZhVl8dCyZ4od+Y-PRq5ubokvja5b1,QoU41-Oky\",\n          \"headers\": {\n            \"key_0\": \"string\"\n          },\n          \"body\": \"string\",\n          \"assertions\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"target\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"target\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comparison\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"status\": \"active\",\n      \"createdAt\": \"1998-02-12T04:38:36.696Z\",\n      \"updatedAt\": \"2011-10-16T08:59:54.289Z\"\n    }\n  ],\n  \"totalCount\": 897\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a327c15d-0793-4edd-a79d-b5160da50613",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "apiId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8b96957-d9cf-43a6-8d96-d7b587720bb9",
+          "name": "Create a test",
+          "request": {
+            "name": "Create a test",
+            "description": {
+              "content": "Creates a new API test with defined steps, assertions, and configuration. Tests can call multiple API endpoints and chain data between them to mimic real application behavior.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"body\": \"<string>\",\n      \"assertions\": [\n        {\n          \"target\": \"<string>\",\n          \"comparison\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"target\": \"<string>\",\n          \"comparison\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"body\": \"<string>\",\n      \"assertions\": [\n        {\n          \"target\": \"<string>\",\n          \"comparison\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"target\": \"<string>\",\n          \"comparison\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"apiId\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e84b2db1-9879-462d-b86b-ace5c6388a32",
+              "name": "Test created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"string\",\n      \"method\": \"DELETE\",\n      \"url\": \"http://CAPnWFDbHVblv.wszgKCHPSu88QHhO+RrzM.U,hDmNeY5\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_contains\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"less_than\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"method\": \"DELETE\",\n      \"url\": \"https://ofIdbuCbvqLCDGqMCCqFwogJZcMCFtPi.nbypKYTJhQATVatZB1XhbczPubzbuDZq+8fnDVrkFBghJ\",\n      \"headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_contains\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"greater_than\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"apiId\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"apiId\": \"string\",\n  \"type\": \"functional\",\n  \"steps\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"method\": \"PATCH\",\n      \"url\": \"https://taZF.lvgvip4CLy0RiudzV\",\n      \"headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"id\": \"string\",\n          \"target\": \"string\",\n          \"comparison\": \"equals\",\n          \"value\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"target\": \"string\",\n          \"comparison\": \"equals\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"method\": \"GET\",\n      \"url\": \"http://PXMYOdgAsDQMDKlTDwAZuJAROxfgIZ.qqcqrnniYdgfvG3XDoER.eupNpp4rye0AELcn4MmWulMuGE0nU87sZ8G\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"id\": \"string\",\n          \"target\": \"string\",\n          \"comparison\": \"equals\",\n          \"value\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"target\": \"string\",\n          \"comparison\": \"less_than\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"status\": \"archived\",\n  \"createdAt\": \"1976-08-27T06:21:24.474Z\",\n  \"updatedAt\": \"2006-06-10T14:33:20.193Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c4e152b-8361-421a-84f8-e0d2bfc7cdc1",
+              "name": "Bad request - invalid test configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"string\",\n      \"method\": \"DELETE\",\n      \"url\": \"http://CAPnWFDbHVblv.wszgKCHPSu88QHhO+RrzM.U,hDmNeY5\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_contains\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"less_than\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"method\": \"DELETE\",\n      \"url\": \"https://ofIdbuCbvqLCDGqMCCqFwogJZcMCFtPi.nbypKYTJhQATVatZB1XhbczPubzbuDZq+8fnDVrkFBghJ\",\n      \"headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_contains\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"greater_than\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"apiId\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aa7042d0-1ec6-42a3-b962-435ad36c841e",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"string\",\n      \"method\": \"DELETE\",\n      \"url\": \"http://CAPnWFDbHVblv.wszgKCHPSu88QHhO+RrzM.U,hDmNeY5\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_contains\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"less_than\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"method\": \"DELETE\",\n      \"url\": \"https://ofIdbuCbvqLCDGqMCCqFwogJZcMCFtPi.nbypKYTJhQATVatZB1XhbczPubzbuDZq+8fnDVrkFBghJ\",\n      \"headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_contains\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"greater_than\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"apiId\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a29a7aad-b24f-460a-ba34-861039639c43",
+          "name": "Get a test",
+          "request": {
+            "name": "Get a test",
+            "description": {
+              "content": "Retrieves the full details of a specific test, including all steps, assertions, and configuration settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tests",
+                ":testId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "testId",
+                  "description": "(Required) The unique identifier of the test"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "233f6e71-fe07-44fe-afd3-0b6966ed1b94",
+              "name": "Test details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) The unique identifier of the test"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"apiId\": \"string\",\n  \"type\": \"functional\",\n  \"steps\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"method\": \"PATCH\",\n      \"url\": \"https://taZF.lvgvip4CLy0RiudzV\",\n      \"headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"id\": \"string\",\n          \"target\": \"string\",\n          \"comparison\": \"equals\",\n          \"value\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"target\": \"string\",\n          \"comparison\": \"equals\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"method\": \"GET\",\n      \"url\": \"http://PXMYOdgAsDQMDKlTDwAZuJAROxfgIZ.qqcqrnniYdgfvG3XDoER.eupNpp4rye0AELcn4MmWulMuGE0nU87sZ8G\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"id\": \"string\",\n          \"target\": \"string\",\n          \"comparison\": \"equals\",\n          \"value\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"target\": \"string\",\n          \"comparison\": \"less_than\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"status\": \"archived\",\n  \"createdAt\": \"1976-08-27T06:21:24.474Z\",\n  \"updatedAt\": \"2006-06-10T14:33:20.193Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92afec8e-035d-4969-b555-b29a0bcfe562",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) The unique identifier of the test"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "00e87f5c-3c81-4612-b9f5-490a682ab9f7",
+              "name": "Test not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) The unique identifier of the test"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25d2df0c-b2d1-469e-a08c-0a811dd3d36d",
+          "name": "Update a test",
+          "request": {
+            "name": "Update a test",
+            "description": {
+              "content": "Updates the configuration, steps, and assertions of an existing API test.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tests",
+                ":testId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "testId",
+                  "description": "(Required) The unique identifier of the test"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"body\": \"<string>\",\n      \"assertions\": [\n        {\n          \"target\": \"<string>\",\n          \"comparison\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"target\": \"<string>\",\n          \"comparison\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"body\": \"<string>\",\n      \"assertions\": [\n        {\n          \"target\": \"<string>\",\n          \"comparison\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"target\": \"<string>\",\n          \"comparison\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1302cee5-9e1d-45f1-a3b9-f79f4cc9b6da",
+              "name": "Test updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) The unique identifier of the test"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"string\",\n      \"method\": \"PUT\",\n      \"url\": \"http://HWzDajytXXmZnjUYbBm.cpGaxO\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"equals\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_contains\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"method\": \"DELETE\",\n      \"url\": \"https://CmoEYYRKSogwmOshGdVivmAuz.drrgseDK8Ad\",\n      \"headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"greater_than\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_exists\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"apiId\": \"string\",\n  \"type\": \"functional\",\n  \"steps\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"method\": \"PATCH\",\n      \"url\": \"https://taZF.lvgvip4CLy0RiudzV\",\n      \"headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"id\": \"string\",\n          \"target\": \"string\",\n          \"comparison\": \"equals\",\n          \"value\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"target\": \"string\",\n          \"comparison\": \"equals\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"method\": \"GET\",\n      \"url\": \"http://PXMYOdgAsDQMDKlTDwAZuJAROxfgIZ.qqcqrnniYdgfvG3XDoER.eupNpp4rye0AELcn4MmWulMuGE0nU87sZ8G\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"id\": \"string\",\n          \"target\": \"string\",\n          \"comparison\": \"equals\",\n          \"value\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"target\": \"string\",\n          \"comparison\": \"less_than\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"status\": \"archived\",\n  \"createdAt\": \"1976-08-27T06:21:24.474Z\",\n  \"updatedAt\": \"2006-06-10T14:33:20.193Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d00465b9-9f00-4fc5-af64-0adc07e19e39",
+              "name": "Bad request - invalid test configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) The unique identifier of the test"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"string\",\n      \"method\": \"PUT\",\n      \"url\": \"http://HWzDajytXXmZnjUYbBm.cpGaxO\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"equals\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_contains\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"method\": \"DELETE\",\n      \"url\": \"https://CmoEYYRKSogwmOshGdVivmAuz.drrgseDK8Ad\",\n      \"headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"greater_than\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_exists\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d6f4d26-27a2-4ac1-a183-00345d68903e",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) The unique identifier of the test"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"string\",\n      \"method\": \"PUT\",\n      \"url\": \"http://HWzDajytXXmZnjUYbBm.cpGaxO\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"equals\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_contains\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"method\": \"DELETE\",\n      \"url\": \"https://CmoEYYRKSogwmOshGdVivmAuz.drrgseDK8Ad\",\n      \"headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"greater_than\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_exists\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0359f641-ef3c-4f9e-865e-685fc32deb32",
+              "name": "Test not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) The unique identifier of the test"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"string\",\n      \"method\": \"PUT\",\n      \"url\": \"http://HWzDajytXXmZnjUYbBm.cpGaxO\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"equals\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_contains\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"method\": \"DELETE\",\n      \"url\": \"https://CmoEYYRKSogwmOshGdVivmAuz.drrgseDK8Ad\",\n      \"headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"body\": \"string\",\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"comparison\": \"greater_than\",\n          \"value\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"comparison\": \"not_exists\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "975d1516-d3c2-4a77-be15-1f95efd9802d",
+          "name": "Delete a test",
+          "request": {
+            "name": "Delete a test",
+            "description": {
+              "content": "Deletes an API test and all associated execution history and schedules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tests",
+                ":testId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "testId",
+                  "description": "(Required) The unique identifier of the test"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a070af3-8e3b-4bf0-b9ae-8809474fc7da",
+              "name": "Test deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) The unique identifier of the test"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d28d9fd-52fe-4a90-9806-d445e775a9fc",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) The unique identifier of the test"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1926a91b-4d42-4981-80df-acf1faa2738e",
+              "name": "Test not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) The unique identifier of the test"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8caa076-6362-4a4f-9c13-0330c341fe8b",
+          "name": "Run a test",
+          "request": {
+            "name": "Run a test",
+            "description": {
+              "content": "Triggers an immediate execution of a specific test. The test runs against the configured environment and location, and results are available through the executions endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tests",
+                ":testId",
+                "run"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "testId",
+                  "description": "(Required) The unique identifier of the test"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"environmentId\": \"<string>\",\n  \"locationId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e8a2e84-b80d-4225-b5aa-14310c7a65fe",
+              "name": "Test execution started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) The unique identifier of the test"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"environmentId\": \"<string>\",\n  \"locationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"testId\": \"string\",\n  \"status\": \"running\",\n  \"duration\": 7057,\n  \"location\": \"string\",\n  \"startedAt\": \"1994-03-01T19:24:24.608Z\",\n  \"completedAt\": \"1982-04-03T00:40:55.621Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58fb9394-b67d-41d0-90f0-5f8cdfbd3bc4",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) The unique identifier of the test"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"environmentId\": \"<string>\",\n  \"locationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "76a228de-84b2-46cf-973f-6aa2119a714d",
+              "name": "Test not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tests",
+                    ":testId",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "testId",
+                      "description": "(Required) The unique identifier of the test"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"environmentId\": \"<string>\",\n  \"locationId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://gateway.rapidapi.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "db9092b7-8826-43c1-a200-cd4fc50c63bd",
+    "name": "RapidAPI Gateway Alerts Tests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
+      "type": "text/plain"
+    }
+  }
+}

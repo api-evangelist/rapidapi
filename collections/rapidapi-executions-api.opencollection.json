@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Executions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List test executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/executions",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "query",
+                "description": "Filter executions by test identifier"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter executions by result status"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of test execution results, optionally filtered by test identifier, status, or date range."
+        },
+        {
+          "info": {
+            "name": "Get execution details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/executions/:executionId",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the test execution"
+              }
+            ]
+          },
+          "docs": "Retrieves the detailed results of a specific test execution, including per-step results, response times, assertion outcomes, and any errors."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

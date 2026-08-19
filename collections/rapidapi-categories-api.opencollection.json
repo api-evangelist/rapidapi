@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RapidAPI Gateway Alerts Categories API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List marketplace categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/categories"
+          },
+          "docs": "Retrieves all API categories available on the RapidAPI marketplace, including category names, slugs, and the number of APIs in each."
+        },
+        {
+          "info": {
+            "name": "Create a category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.rapidapi.com/v1/categories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new API category in the Enterprise Hub for organizing APIs."
+        },
+        {
+          "info": {
+            "name": "List APIs in a category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.rapidapi.com/v1/categories/:categorySlug/apis",
+            "params": [
+              {
+                "name": "categorySlug",
+                "value": "",
+                "type": "path",
+                "description": "The URL-friendly slug of the category"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Retrieves all APIs within a specific category on the RapidAPI marketplace, sorted by popularity or relevance."
+        },
+        {
+          "info": {
+            "name": "Update a category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.rapidapi.com/v1/categories/:categoryId",
+            "params": [
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the category"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing API category in the Enterprise Hub."
+        },
+        {
+          "info": {
+            "name": "Delete a category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.rapidapi.com/v1/categories/:categoryId",
+            "params": [
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the category"
+              }
+            ]
+          },
+          "docs": "Deletes an API category from the Enterprise Hub. APIs in this category will need to be reassigned."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
