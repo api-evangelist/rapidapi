@@ -127,7 +127,8 @@ apis:
   name: RapidAPI Apis API
   description: The Apis API from RapidAPI — 6 operation(s) for apis.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
-  tags:
+  tags: []
+  tags_raw:
   - Apis
   properties:
   - type: OpenAPI
@@ -173,6 +174,8 @@ apis:
     the Enterprise Hub.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -308,6 +311,8 @@ apis:
     Geocoding APIs, and other groupings.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -441,7 +446,8 @@ apis:
     Endpoints for managing API endpoint configurations within a project, including creating, updating,
     and organizing endpoint groups.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
-  tags:
+  tags: []
+  tags_raw:
   - Endpoints
   properties:
   - type: OpenAPI
@@ -532,6 +538,8 @@ apis:
     assertion outcomes.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
   tags:
+  - Execution
+  tags_raw:
   - Executions
   properties:
   - type: OpenAPI
@@ -712,6 +720,8 @@ apis:
     organization configurations.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -757,6 +767,8 @@ apis:
     projects.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -1116,6 +1128,8 @@ apis:
     and usage analytics.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -1248,6 +1262,8 @@ apis:
     Endpoints for viewing and managing API transaction records, including usage data and billing information.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -1293,6 +1309,8 @@ apis:
     configurations.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
