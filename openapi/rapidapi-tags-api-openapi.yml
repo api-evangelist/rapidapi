@@ -1,14 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: RapidAPI Gateway Alerts Tags API
-  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  title: RapidAPI REST Platform Tags API
+  description: The RapidAPI REST Platform API allows Enterprise Hub administrators to programmatically manage their API hub configurations through RESTful endpoints. It provides CRUD operations for organizations, categories, tags, collections, transactions, subscriptions, users, APIs, and applications. This API enables automation of tasks normally performed through the Enterprise Hub Admin Panel, making it possible to integrate hub management into CI/CD pipelines and custom workflows.
   version: '1.0'
   contact:
     name: RapidAPI Support
     url: https://docs.rapidapi.com
   termsOfService: https://rapidapi.com/terms
 servers:
-- url: https://gateway.rapidapi.com/v1
+- url: https://platform.rapidapi.com/v1
   description: Production Server
 security:
 - rapidApiKey: []
@@ -76,15 +76,15 @@ paths:
         '404':
           description: Tag not found
 components:
-  parameters:
-    tagId:
-      name: tagId
-      in: path
-      required: true
-      description: The unique identifier of the tag
-      schema:
-        type: string
   schemas:
+    TagInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Tag name
     Tag:
       type: object
       properties:
@@ -97,20 +97,20 @@ components:
         status:
           type: string
           description: Current status of the tag
-    TagInput:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Tag name
+  parameters:
+    tagId:
+      name: tagId
+      in: path
+      required: true
+      description: The unique identifier of the tag
+      schema:
+        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey
       name: X-RapidAPI-Key
       in: header
-      description: RapidAPI key used for authenticating requests to the Gateway API.
+      description: RapidAPI key used for authenticating requests to the Platform API. Obtained from the Enterprise Hub Admin Panel.
 externalDocs:
-  description: RapidAPI Gateway Configuration Documentation
-  url: https://docs.rapidapi.com/docs/gateway-configuration
+  description: RapidAPI REST Platform API Documentation
+  url: https://docs.rapidapi.com/docs/platform-api-overview

@@ -1,14 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: RapidAPI Gateway Alerts Apis API
-  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  title: Rapidapi APIS API
   version: '1.0'
   contact:
     name: RapidAPI Support
     url: https://docs.rapidapi.com
   termsOfService: https://rapidapi.com/terms
+  description: 'Operations tagged Apis across 2 of this provider''s published API definitions: rapidapi-hub-api-openapi.yml, rapidapi-rest-platform-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://gateway.rapidapi.com/v1
+- url: https://rapidapi.com
+  description: Production Server
+- url: https://platform.rapidapi.com/v1
   description: Production Server
 security:
 - rapidApiKey: []
@@ -40,6 +42,9 @@ paths:
           description: Unauthorized - invalid or missing API key
         '404':
           description: API not found
+    servers:
+    - url: https://rapidapi.com
+      description: Production Server
   /apis/{apiSlug}/endpoints:
     get:
       operationId: listApiEndpoints
@@ -70,6 +75,9 @@ paths:
           description: Unauthorized - invalid or missing API key
         '404':
           description: API not found
+    servers:
+    - url: https://rapidapi.com
+      description: Production Server
   /apis:
     get:
       operationId: listApis
@@ -124,6 +132,9 @@ paths:
           description: Unauthorized - invalid or missing API key
         '403':
           description: Forbidden - insufficient permissions
+    servers:
+    - url: https://platform.rapidapi.com/v1
+      description: Production Server
   /apis/{apiId}:
     get:
       operationId: getApi
@@ -186,6 +197,9 @@ paths:
           description: Unauthorized - invalid or missing API key
         '404':
           description: API not found
+    servers:
+    - url: https://platform.rapidapi.com/v1
+      description: Production Server
   /apis/{apiId}/versions:
     get:
       operationId: listApiVersions
@@ -211,6 +225,9 @@ paths:
           description: Unauthorized - invalid or missing API key
         '404':
           description: API not found
+    servers:
+    - url: https://platform.rapidapi.com/v1
+      description: Production Server
   /apis/{apiId}/versions/{versionId}:
     put:
       operationId: updateApiVersion
@@ -240,31 +257,11 @@ paths:
           description: Unauthorized - invalid or missing API key
         '404':
           description: API version not found
+    servers:
+    - url: https://platform.rapidapi.com/v1
+      description: Production Server
 components:
   schemas:
-    ApiUpdateInput:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated display name of the API
-        description:
-          type: string
-          description: Updated short description of the API
-        longDescription:
-          type: string
-          description: Updated detailed description
-        category:
-          type: string
-          description: Updated category assignment
-        websiteUrl:
-          type: string
-          format: uri
-          description: Updated website URL
-        imageFile:
-          type: string
-          format: binary
-          description: Updated API icon image file
     ApiDetails:
       type: object
       properties:
@@ -321,90 +318,6 @@ components:
           items:
             type: string
           description: Tags associated with the API
-    ApiVersionUpdateInput:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated version name
-        description:
-          type: string
-          description: Updated version description
-        status:
-          type: string
-          enum:
-          - active
-          - deprecated
-          - draft
-          description: Updated version status
-    ApiCreateInput:
-      type: object
-      required:
-      - name
-      - description
-      - category
-      properties:
-        name:
-          type: string
-          description: Display name of the API
-        description:
-          type: string
-          description: Short description of the API
-        longDescription:
-          type: string
-          description: Detailed description of the API and its use cases
-        category:
-          type: string
-          description: The category to assign the API to
-        websiteUrl:
-          type: string
-          format: uri
-          description: URL to the website providing the API
-        imageFile:
-          type: string
-          format: binary
-          description: API icon image file in PNG or JPG format, recommended 500x500 px
-    Api:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the API
-        name:
-          type: string
-          description: Display name of the API
-        description:
-          type: string
-          description: Short description of the API
-        longDescription:
-          type: string
-          description: Detailed description of the API and its use cases
-        category:
-          type: string
-          description: The category the API belongs to
-        websiteUrl:
-          type: string
-          format: uri
-          description: URL to the website providing the API
-        imageUrl:
-          type: string
-          format: uri
-          description: URL to the API icon image
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-          - deprecated
-          description: Current status of the API
-        createdAt:
-          type: string
-          format: date-time
-          description: Timestamp when the API was created
-        updatedAt:
-          type: string
-          format: date-time
-          description: Timestamp when the API was last updated
     EndpointParameter:
       type: object
       properties:
@@ -452,29 +365,6 @@ components:
           items:
             type: string
           description: List of features included in this plan
-    ApiVersion:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the API version
-        apiId:
-          type: string
-          description: The API this version belongs to
-        name:
-          type: string
-          description: Version name or label
-        status:
-          type: string
-          enum:
-          - active
-          - deprecated
-          - draft
-          description: Current status of the version
-        createdAt:
-          type: string
-          format: date-time
-          description: Timestamp when the version was created
     ApiEndpoint:
       type: object
       properties:
@@ -507,14 +397,137 @@ components:
           items:
             $ref: '#/components/schemas/EndpointParameter'
           description: Parameters accepted by this endpoint
+    ApiUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated display name of the API
+        description:
+          type: string
+          description: Updated short description of the API
+        longDescription:
+          type: string
+          description: Updated detailed description
+        category:
+          type: string
+          description: Updated category assignment
+        websiteUrl:
+          type: string
+          format: uri
+          description: Updated website URL
+        imageFile:
+          type: string
+          format: binary
+          description: Updated API icon image file
+    Api:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the API
+        name:
+          type: string
+          description: Display name of the API
+        description:
+          type: string
+          description: Short description of the API
+        longDescription:
+          type: string
+          description: Detailed description of the API and its use cases
+        category:
+          type: string
+          description: The category the API belongs to
+        websiteUrl:
+          type: string
+          format: uri
+          description: URL to the website providing the API
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the API icon image
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - deprecated
+          description: Current status of the API
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the API was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the API was last updated
+    ApiCreateInput:
+      type: object
+      required:
+      - name
+      - description
+      - category
+      properties:
+        name:
+          type: string
+          description: Display name of the API
+        description:
+          type: string
+          description: Short description of the API
+        longDescription:
+          type: string
+          description: Detailed description of the API and its use cases
+        category:
+          type: string
+          description: The category to assign the API to
+        websiteUrl:
+          type: string
+          format: uri
+          description: URL to the website providing the API
+        imageFile:
+          type: string
+          format: binary
+          description: API icon image file in PNG or JPG format, recommended 500x500 px
+    ApiVersionUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated version name
+        description:
+          type: string
+          description: Updated version description
+        status:
+          type: string
+          enum:
+          - active
+          - deprecated
+          - draft
+          description: Updated version status
+    ApiVersion:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the API version
+        apiId:
+          type: string
+          description: The API this version belongs to
+        name:
+          type: string
+          description: Version name or label
+        status:
+          type: string
+          enum:
+          - active
+          - deprecated
+          - draft
+          description: Current status of the version
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the version was created
   parameters:
-    apiId:
-      name: apiId
-      in: path
-      required: true
-      description: The unique identifier of the API
-      schema:
-        type: string
     versionId:
       name: versionId
       in: path
@@ -522,6 +535,22 @@ components:
       description: The unique identifier of the API version
       schema:
         type: string
+    apiId:
+      name: apiId
+      in: path
+      required: true
+      description: The unique identifier of the API
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     limit:
       name: limit
       in: query
@@ -532,21 +561,12 @@ components:
         minimum: 1
         maximum: 100
         default: 25
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   securitySchemes:
     rapidApiKey:
       type: apiKey
       name: X-RapidAPI-Key
       in: header
-      description: RapidAPI key used for authenticating requests to the Gateway API.
-externalDocs:
-  description: RapidAPI Gateway Configuration Documentation
-  url: https://docs.rapidapi.com/docs/gateway-configuration
+      description: RapidAPI key used for authenticating all requests to the Hub API. Available from the developer dashboard after registration.
+x-refined-from:
+- rapidapi-hub-api-openapi.yml
+- rapidapi-rest-platform-api-openapi.yml

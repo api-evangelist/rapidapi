@@ -1,14 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: RapidAPI Gateway Alerts Definitions API
-  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  title: RapidAPI Studio Definitions API
+  description: RapidAPI Studio is an API design and development environment that enables teams to design, build, and document APIs collaboratively. It supports importing and editing OpenAPI specifications and Postman Collections, providing a visual interface for defining endpoints, parameters, and response schemas. Studio integrates with the broader RapidAPI platform, allowing developers to publish designed APIs directly to the hub and generate documentation automatically from API definitions.
   version: '1.0'
   contact:
     name: RapidAPI Support
     url: https://docs.rapidapi.com
   termsOfService: https://rapidapi.com/terms
 servers:
-- url: https://gateway.rapidapi.com/v1
+- url: https://studio.rapidapi.com/v1
   description: Production Server
 security:
 - rapidApiKey: []
@@ -160,6 +160,21 @@ paths:
         '404':
           description: Definition not found
 components:
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project
+      schema:
+        type: string
+    definitionId:
+      name: definitionId
+      in: path
+      required: true
+      description: The unique identifier of the API definition
+      schema:
+        type: string
   schemas:
     Definition:
       type: object
@@ -186,27 +201,12 @@ components:
           type: string
           format: date-time
           description: Timestamp when the definition was imported
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: The unique identifier of the project
-      schema:
-        type: string
-    definitionId:
-      name: definitionId
-      in: path
-      required: true
-      description: The unique identifier of the API definition
-      schema:
-        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey
       name: X-RapidAPI-Key
       in: header
-      description: RapidAPI key used for authenticating requests to the Gateway API.
+      description: RapidAPI key used for authenticating requests to the Studio API.
 externalDocs:
-  description: RapidAPI Gateway Configuration Documentation
-  url: https://docs.rapidapi.com/docs/gateway-configuration
+  description: RapidAPI Studio Documentation
+  url: https://docs.rapidapi.com/docs/studio-overview

@@ -1,14 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: RapidAPI Gateway Alerts Applications API
-  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  title: RapidAPI REST Platform Applications API
+  description: The RapidAPI REST Platform API allows Enterprise Hub administrators to programmatically manage their API hub configurations through RESTful endpoints. It provides CRUD operations for organizations, categories, tags, collections, transactions, subscriptions, users, APIs, and applications. This API enables automation of tasks normally performed through the Enterprise Hub Admin Panel, making it possible to integrate hub management into CI/CD pipelines and custom workflows.
   version: '1.0'
   contact:
     name: RapidAPI Support
     url: https://docs.rapidapi.com
   termsOfService: https://rapidapi.com/terms
 servers:
-- url: https://gateway.rapidapi.com/v1
+- url: https://platform.rapidapi.com/v1
   description: Production Server
 security:
 - rapidApiKey: []
@@ -115,6 +115,15 @@ components:
       description: The unique identifier of the application
       schema:
         type: string
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     limit:
       name: limit
       in: query
@@ -125,15 +134,6 @@ components:
         minimum: 1
         maximum: 100
         default: 25
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   schemas:
     ApplicationInput:
       type: object
@@ -176,7 +176,7 @@ components:
       type: apiKey
       name: X-RapidAPI-Key
       in: header
-      description: RapidAPI key used for authenticating requests to the Gateway API.
+      description: RapidAPI key used for authenticating requests to the Platform API. Obtained from the Enterprise Hub Admin Panel.
 externalDocs:
-  description: RapidAPI Gateway Configuration Documentation
-  url: https://docs.rapidapi.com/docs/gateway-configuration
+  description: RapidAPI REST Platform API Documentation
+  url: https://docs.rapidapi.com/docs/platform-api-overview

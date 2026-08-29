@@ -1,14 +1,16 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: RapidAPI Gateway Alerts Collections API
-  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  title: Rapidapi Collections API
   version: '1.0'
   contact:
     name: RapidAPI Support
     url: https://docs.rapidapi.com
   termsOfService: https://rapidapi.com/terms
+  description: 'Operations tagged Collections across 2 of this provider''s published API definitions: rapidapi-hub-api-openapi.yml, rapidapi-rest-platform-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://gateway.rapidapi.com/v1
+- url: https://rapidapi.com
+  description: Production Server
+- url: https://platform.rapidapi.com/v1
   description: Production Server
 security:
 - rapidApiKey: []
@@ -63,6 +65,9 @@ paths:
           description: Bad request - invalid input parameters
         '401':
           description: Unauthorized - invalid or missing API key
+    servers:
+    - url: https://rapidapi.com
+      description: Production Server
   /collections/{collectionId}/apis:
     get:
       operationId: listApisInCollection
@@ -98,6 +103,9 @@ paths:
           description: Unauthorized - invalid or missing API key
         '404':
           description: Collection not found
+    servers:
+    - url: https://rapidapi.com
+      description: Production Server
   /collections/{collectionId}:
     get:
       operationId: getCollection
@@ -160,70 +168,11 @@ paths:
           description: Unauthorized - invalid or missing API key
         '404':
           description: Collection not found
+    servers:
+    - url: https://platform.rapidapi.com/v1
+      description: Production Server
 components:
-  parameters:
-    collectionId:
-      name: collectionId
-      in: path
-      required: true
-      description: The unique identifier of the collection
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   schemas:
-    CollectionInput:
-      type: object
-      required:
-      - title
-      properties:
-        title:
-          type: string
-          description: Display title of the collection
-        description:
-          type: string
-          description: Description of the collection
-        apis:
-          type: array
-          items:
-            type: string
-          description: List of API identifiers to include in the collection
-    HubCollection:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the collection
-        title:
-          type: string
-          description: Collection title
-        description:
-          type: string
-          description: Description of the collection
-        apiCount:
-          type: integer
-          description: Number of APIs in this collection
-        imageUrl:
-          type: string
-          format: uri
-          description: URL to the collection image
     ApiSummary:
       type: object
       properties:
@@ -260,6 +209,25 @@ components:
         provider:
           type: string
           description: Name of the API provider
+    HubCollection:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the collection
+        title:
+          type: string
+          description: Collection title
+        description:
+          type: string
+          description: Description of the collection
+        apiCount:
+          type: integer
+          description: Number of APIs in this collection
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the collection image
     Collection:
       type: object
       properties:
@@ -281,12 +249,55 @@ components:
           type: string
           format: date-time
           description: Timestamp when the collection was created
+    CollectionInput:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          description: Display title of the collection
+        description:
+          type: string
+          description: Description of the collection
+        apis:
+          type: array
+          items:
+            type: string
+          description: List of API identifiers to include in the collection
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    collectionId:
+      name: collectionId
+      in: path
+      required: true
+      description: The unique identifier of the collection
+      schema:
+        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey
       name: X-RapidAPI-Key
       in: header
-      description: RapidAPI key used for authenticating requests to the Gateway API.
-externalDocs:
-  description: RapidAPI Gateway Configuration Documentation
-  url: https://docs.rapidapi.com/docs/gateway-configuration
+      description: RapidAPI key used for authenticating all requests to the Hub API. Available from the developer dashboard after registration.
+x-refined-from:
+- rapidapi-hub-api-openapi.yml
+- rapidapi-rest-platform-api-openapi.yml

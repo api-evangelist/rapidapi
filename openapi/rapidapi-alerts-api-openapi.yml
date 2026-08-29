@@ -1,14 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: RapidAPI Gateway Alerts API
-  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  title: RapidAPI Testing Alerts API
+  description: RapidAPI Testing provides a comprehensive API testing and monitoring solution that supports REST, SOAP, and GraphQL APIs. It offers an intuitive interface for creating and running functional tests, performance tests, and automated monitoring checks. The testing platform integrates with CI/CD pipelines, enabling teams to verify API behavior as part of their development workflow. Tests can be scheduled to run periodically across 9 AWS regions to monitor API health and detect regressions.
   version: '1.0'
   contact:
     name: RapidAPI Support
     url: https://docs.rapidapi.com
   termsOfService: https://rapidapi.com/terms
 servers:
-- url: https://gateway.rapidapi.com/v1
+- url: https://testing.rapidapi.com/v1
   description: Production Server
 security:
 - rapidApiKey: []
@@ -77,14 +77,6 @@ paths:
         '404':
           description: Alert not found
 components:
-  parameters:
-    alertId:
-      name: alertId
-      in: path
-      required: true
-      description: The unique identifier of the alert
-      schema:
-        type: string
   schemas:
     AlertInput:
       type: object
@@ -140,12 +132,20 @@ components:
           type: string
           format: date-time
           description: Timestamp when the alert was created
+  parameters:
+    alertId:
+      name: alertId
+      in: path
+      required: true
+      description: The unique identifier of the alert
+      schema:
+        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey
       name: X-RapidAPI-Key
       in: header
-      description: RapidAPI key used for authenticating requests to the Gateway API.
+      description: RapidAPI key used for authenticating requests to the Testing API.
 externalDocs:
-  description: RapidAPI Gateway Configuration Documentation
-  url: https://docs.rapidapi.com/docs/gateway-configuration
+  description: RapidAPI Testing Documentation
+  url: https://docs.rapidapi.com/docs/testing-getting-started

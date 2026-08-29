@@ -1,14 +1,14 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: RapidAPI Gateway Alerts GraphQL API
-  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  title: RapidAPI Platform Graph QL API
+  description: The RapidAPI GraphQL Platform API exposes the same queries and mutations that RapidAPI uses internally, providing enterprise users with a powerful interface for managing their API hub. It supports creating and updating APIs, managing collections, configuring hub settings, and automating API lifecycle management through GraphQL queries and mutations. The API uses a single POST endpoint and is the recommended approach for Enterprise Hub administration over the REST Platform API.
   version: '1.0'
   contact:
     name: RapidAPI Support
     url: https://docs.rapidapi.com
   termsOfService: https://rapidapi.com/terms
 servers:
-- url: https://gateway.rapidapi.com/v1
+- url: https://platform.rapidapi.com
   description: Production Server
 security:
 - rapidApiKey: []
@@ -59,18 +59,6 @@ components:
         operationName:
           type: string
           description: The name of the operation to execute when the query contains multiple named operations.
-    GraphQLResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties: true
-          description: The result of the GraphQL query or mutation. The structure matches the shape of the requested fields in the query.
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GraphQLError'
-          description: An array of errors encountered during execution, if any. Errors may be returned alongside partial data.
     GraphQLError:
       type: object
       properties:
@@ -98,12 +86,29 @@ components:
           type: object
           additionalProperties: true
           description: Additional error metadata provided by the server
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+          description: The result of the GraphQL query or mutation. The structure matches the shape of the requested fields in the query.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GraphQLError'
+          description: An array of errors encountered during execution, if any. Errors may be returned alongside partial data.
   securitySchemes:
     rapidApiKey:
       type: apiKey
       name: X-RapidAPI-Key
       in: header
-      description: RapidAPI key used for authenticating requests to the Gateway API.
+      description: RapidAPI key used for authenticating requests to the GraphQL Platform API. Obtained from the Enterprise Hub Admin Panel.
+    rapidApiIdentityKey:
+      type: apiKey
+      name: X-RapidAPI-Identity-Key
+      in: header
+      description: Identity key header required alongside the API key for authorization of GraphQL Platform API requests.
 externalDocs:
-  description: RapidAPI Gateway Configuration Documentation
-  url: https://docs.rapidapi.com/docs/gateway-configuration
+  description: RapidAPI GraphQL Platform API Documentation
+  url: https://docs.rapidapi.com/docs/graphql-platform-api-overview

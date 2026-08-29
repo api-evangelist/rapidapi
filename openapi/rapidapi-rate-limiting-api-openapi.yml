@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: RapidAPI Gateway Alerts Rate Limiting API
+  title: RapidAPI Gateway Rate Limiting API
   description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
   version: '1.0'
   contact:
@@ -64,14 +64,6 @@ paths:
         '404':
           description: Gateway not found
 components:
-  parameters:
-    gatewayId:
-      name: gatewayId
-      in: path
-      required: true
-      description: The unique identifier of the gateway
-      schema:
-        type: string
   schemas:
     RateLimitConfig:
       type: object
@@ -117,6 +109,14 @@ components:
           type: integer
           minimum: 1
           description: Maximum burst of requests allowed
+  parameters:
+    gatewayId:
+      name: gatewayId
+      in: path
+      required: true
+      description: The unique identifier of the gateway
+      schema:
+        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey

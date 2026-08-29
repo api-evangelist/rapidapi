@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: RapidAPI Gateway Alerts Routes API
+  title: RapidAPI Gateway Routes API
   description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
   version: '1.0'
   contact:
@@ -114,58 +114,7 @@ paths:
         '404':
           description: Route not found
 components:
-  parameters:
-    routeId:
-      name: routeId
-      in: path
-      required: true
-      description: The unique identifier of the route
-      schema:
-        type: string
-    gatewayId:
-      name: gatewayId
-      in: path
-      required: true
-      description: The unique identifier of the gateway
-      schema:
-        type: string
   schemas:
-    RouteInput:
-      type: object
-      required:
-      - pathPattern
-      - targetUrl
-      properties:
-        pathPattern:
-          type: string
-          description: URL path pattern to match incoming requests
-        targetUrl:
-          type: string
-          format: uri
-          description: Backend service URL to forward matching requests to
-        methods:
-          type: array
-          items:
-            type: string
-            enum:
-            - GET
-            - POST
-            - PUT
-            - PATCH
-            - DELETE
-          description: HTTP methods this route handles
-        stripPrefix:
-          type: boolean
-          default: false
-          description: Whether to strip the matched path prefix before forwarding
-        priority:
-          type: integer
-          default: 0
-          description: Route priority for matching order
-        enabled:
-          type: boolean
-          default: true
-          description: Whether this route should be active
     Route:
       type: object
       properties:
@@ -202,6 +151,57 @@ components:
         enabled:
           type: boolean
           description: Whether this route is currently active
+    RouteInput:
+      type: object
+      required:
+      - pathPattern
+      - targetUrl
+      properties:
+        pathPattern:
+          type: string
+          description: URL path pattern to match incoming requests
+        targetUrl:
+          type: string
+          format: uri
+          description: Backend service URL to forward matching requests to
+        methods:
+          type: array
+          items:
+            type: string
+            enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+          description: HTTP methods this route handles
+        stripPrefix:
+          type: boolean
+          default: false
+          description: Whether to strip the matched path prefix before forwarding
+        priority:
+          type: integer
+          default: 0
+          description: Route priority for matching order
+        enabled:
+          type: boolean
+          default: true
+          description: Whether this route should be active
+  parameters:
+    routeId:
+      name: routeId
+      in: path
+      required: true
+      description: The unique identifier of the route
+      schema:
+        type: string
+    gatewayId:
+      name: gatewayId
+      in: path
+      required: true
+      description: The unique identifier of the gateway
+      schema:
+        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey
