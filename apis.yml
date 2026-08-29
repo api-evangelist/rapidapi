@@ -5,6 +5,18 @@ description: >-
   platform. Their developer platform provides tools for API discovery, testing, management, design, and gateway
   configuration, enabling both individual developers and enterprises to build, consume, and manage APIs at scale.
 kind: contract
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
