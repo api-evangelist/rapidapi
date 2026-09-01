@@ -1,31 +1,34 @@
-# Kin Score artifact — rapidapi — 2026-08-01T171935
+# Kin Score artifact — rapidapi — 2026-08-30T203505
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: rapidapi
-  schema_version: 0.9
-  scored_at: '2026-08-01'
-  run_ts: 2026-08-01T171935
-  composite: 54.3
+  schema_version: 0.17.2
+  scored_at: '2026-08-30'
+  run_ts: 2026-08-30T203505
+  composite: 42.0
   band: developing
   facets:
-    discoverability: 59.3
-    contract_quality: 79.1
-    governance: 68.8
-    operational_transparency: 26.3
-    developer_ergonomics: 34.8
-    commercial_clarity: 50.0
+    discoverability: 66.7
+    contract_quality: 72.9
+    governance: 28.8
+    operational_transparency: 7.9
+    developer_ergonomics: 26.2
+    commercial_clarity: 36.8
+    contract_governance: 28.8
+    access_clarity: 36.8
   agent_readiness:
-    score: 30.6
+    score: 21.0
     band: agent-aware
     dimensions:
       spec_presence: true
       agentic_access: derived
+      reversibility_documented: false
       mcp_server: false
-      auth_clarity: true
+      auth_clarity: bearer
       idempotency: false
       error_semantics: false
-      openapi_examples: false
+      openapi_examples: documented
       rate_limit_signal: documented
       event_surface_described: false
       agent_skills: false
@@ -33,10 +36,14 @@ kin_score:
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: false
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
   provenance:
     agentic_access: derived
     contracts:
       total: 29
       derived: 0
       coverage: 0.0
-      callable: 100.0
+      callable: 0.0
