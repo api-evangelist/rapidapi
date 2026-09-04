@@ -19,18 +19,19 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: enterprise
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Enterprise · Self-serve signup
-  confidence: high
+  label: Enterprise
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
-position: Consumer
+position: Consuming
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rapidapi.png
 tags:
@@ -1362,6 +1363,9 @@ apis:
   - type: JSONSchema
     url: json-schema/rapidapi-gateway-config-schema.json
 common:
+- type: CapabilityMap
+  url: capabilities/rapidapi-capability-edges.yml
+  name: RapidAPI Business Capability Map
 - type: AgenticAccess
   url: agentic-access/rapidapi-agentic-access.yml
 - type: DomainSecurity
