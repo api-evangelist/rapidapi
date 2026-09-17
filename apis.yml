@@ -137,50 +137,6 @@ apis:
     url: https://docs.rapidapi.com/docs/gateway-configuration
   - type: JSONSchema
     url: json-schema/rapidapi-gateway-config-schema.json
-- aid: rapidapi:rapidapi-apis-api
-  name: RapidAPI Apis API
-  description: The Apis API from RapidAPI — 6 operation(s) for apis.
-  humanURL: https://docs.rapidapi.com/docs/platform-api-overview
-  tags: []
-  tags_raw:
-  - Apis
-  properties:
-  - type: OpenAPI
-    url: openapi/rapidapi-apis-api-openapi.yml
-  - type: Documentation
-    url: https://docs.rapidapi.com/docs/platform-api-overview
-  - type: JSONStructure
-    url: json-structure/rapidapi-subscription-structure.json
-  - type: Examples
-    url: examples/rapidapi-list-apis-example.json
-  - type: Examples
-    url: examples/rapidapi-list-subscriptions-example.json
-  - type: SpectralRules
-    url: rules/rapidapi-rules.yml
-  - type: Documentation
-    url: https://docs.rapidapi.com/docs/graphql-platform-api-overview
-  - type: GraphQL
-    url: graphql/rapidapi-graphql.md
-  - type: Documentation
-    url: https://docs.rapidapi.com/docs/consumer-quick-start-guide
-  - type: Documentation
-    url: https://docs.rapidapi.com/docs/testing-getting-started
-  - type: JSONSchema
-    url: json-schema/rapidapi-test-schema.json
-  - type: JSONStructure
-    url: json-structure/rapidapi-test-structure.json
-  - type: Examples
-    url: examples/rapidapi-list-tests-example.json
-  - type: Documentation
-    url: https://docs.rapidapi.com/docs/studio-overview
-  - type: JSONSchema
-    url: json-schema/rapidapi-api-listing-schema.json
-  - type: JSONStructure
-    url: json-structure/rapidapi-api-listing-structure.json
-  - type: Documentation
-    url: https://docs.rapidapi.com/docs/gateway-configuration
-  - type: JSONSchema
-    url: json-schema/rapidapi-gateway-config-schema.json
 - aid: rapidapi:rapidapi-applications-api
   name: RapidAPI Applications API
   description: >-
@@ -603,51 +559,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/rapidapi-gateways-api-openapi.yml
-  - type: Documentation
-    url: https://docs.rapidapi.com/docs/platform-api-overview
-  - type: JSONStructure
-    url: json-structure/rapidapi-subscription-structure.json
-  - type: Examples
-    url: examples/rapidapi-list-apis-example.json
-  - type: Examples
-    url: examples/rapidapi-list-subscriptions-example.json
-  - type: SpectralRules
-    url: rules/rapidapi-rules.yml
-  - type: Documentation
-    url: https://docs.rapidapi.com/docs/graphql-platform-api-overview
-  - type: GraphQL
-    url: graphql/rapidapi-graphql.md
-  - type: Documentation
-    url: https://docs.rapidapi.com/docs/consumer-quick-start-guide
-  - type: Documentation
-    url: https://docs.rapidapi.com/docs/testing-getting-started
-  - type: JSONSchema
-    url: json-schema/rapidapi-test-schema.json
-  - type: JSONStructure
-    url: json-structure/rapidapi-test-structure.json
-  - type: Examples
-    url: examples/rapidapi-list-tests-example.json
-  - type: Documentation
-    url: https://docs.rapidapi.com/docs/studio-overview
-  - type: JSONSchema
-    url: json-schema/rapidapi-api-listing-schema.json
-  - type: JSONStructure
-    url: json-structure/rapidapi-api-listing-structure.json
-  - type: Documentation
-    url: https://docs.rapidapi.com/docs/gateway-configuration
-  - type: JSONSchema
-    url: json-schema/rapidapi-gateway-config-schema.json
-- aid: rapidapi:rapidapi-graphql-api
-  name: RapidAPI GraphQL API
-  description: >-
-    The single GraphQL endpoint that accepts all queries and mutations for managing the Enterprise Hub,
-    including APIs, collections, organizations, users, and hub configuration.
-  humanURL: https://docs.rapidapi.com/docs/platform-api-overview
-  tags:
-  - GraphQL
-  properties:
-  - type: OpenAPI
-    url: openapi/rapidapi-graphql-api-openapi.yml
   - type: Documentation
     url: https://docs.rapidapi.com/docs/platform-api-overview
   - type: JSONStructure
@@ -1329,6 +1240,94 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/rapidapi-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.rapidapi.com/docs/platform-api-overview
+  - type: JSONStructure
+    url: json-structure/rapidapi-subscription-structure.json
+  - type: Examples
+    url: examples/rapidapi-list-apis-example.json
+  - type: Examples
+    url: examples/rapidapi-list-subscriptions-example.json
+  - type: SpectralRules
+    url: rules/rapidapi-rules.yml
+  - type: Documentation
+    url: https://docs.rapidapi.com/docs/graphql-platform-api-overview
+  - type: GraphQL
+    url: graphql/rapidapi-graphql.md
+  - type: Documentation
+    url: https://docs.rapidapi.com/docs/consumer-quick-start-guide
+  - type: Documentation
+    url: https://docs.rapidapi.com/docs/testing-getting-started
+  - type: JSONSchema
+    url: json-schema/rapidapi-test-schema.json
+  - type: JSONStructure
+    url: json-structure/rapidapi-test-structure.json
+  - type: Examples
+    url: examples/rapidapi-list-tests-example.json
+  - type: Documentation
+    url: https://docs.rapidapi.com/docs/studio-overview
+  - type: JSONSchema
+    url: json-schema/rapidapi-api-listing-schema.json
+  - type: JSONStructure
+    url: json-structure/rapidapi-api-listing-structure.json
+  - type: Documentation
+    url: https://docs.rapidapi.com/docs/gateway-configuration
+  - type: JSONSchema
+    url: json-schema/rapidapi-gateway-config-schema.json
+- aid: rapidapi:rapidapi-apis-api
+  name: RapidAPI APIS API
+  description: The Apis API from RapidAPI — 6 operation(s) for apis.
+  humanURL: https://docs.rapidapi.com/docs/platform-api-overview
+  tags:
+  - Apis
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidapi-apis-api-openapi.yml
+  - type: Documentation
+    url: https://docs.rapidapi.com/docs/platform-api-overview
+  - type: JSONStructure
+    url: json-structure/rapidapi-subscription-structure.json
+  - type: Examples
+    url: examples/rapidapi-list-apis-example.json
+  - type: Examples
+    url: examples/rapidapi-list-subscriptions-example.json
+  - type: SpectralRules
+    url: rules/rapidapi-rules.yml
+  - type: Documentation
+    url: https://docs.rapidapi.com/docs/graphql-platform-api-overview
+  - type: GraphQL
+    url: graphql/rapidapi-graphql.md
+  - type: Documentation
+    url: https://docs.rapidapi.com/docs/consumer-quick-start-guide
+  - type: Documentation
+    url: https://docs.rapidapi.com/docs/testing-getting-started
+  - type: JSONSchema
+    url: json-schema/rapidapi-test-schema.json
+  - type: JSONStructure
+    url: json-structure/rapidapi-test-structure.json
+  - type: Examples
+    url: examples/rapidapi-list-tests-example.json
+  - type: Documentation
+    url: https://docs.rapidapi.com/docs/studio-overview
+  - type: JSONSchema
+    url: json-schema/rapidapi-api-listing-schema.json
+  - type: JSONStructure
+    url: json-structure/rapidapi-api-listing-structure.json
+  - type: Documentation
+    url: https://docs.rapidapi.com/docs/gateway-configuration
+  - type: JSONSchema
+    url: json-schema/rapidapi-gateway-config-schema.json
+- aid: rapidapi:rapidapi-graph-ql-api
+  name: RapidAPI Graph QL API
+  description: >-
+    The single GraphQL endpoint that accepts all queries and mutations for managing the Enterprise Hub,
+    including APIs, collections, organizations, users, and hub configuration.
+  humanURL: https://docs.rapidapi.com/docs/platform-api-overview
+  tags:
+  - Graph QL
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidapi-graph-ql-api-openapi.yml
   - type: Documentation
     url: https://docs.rapidapi.com/docs/platform-api-overview
   - type: JSONStructure
