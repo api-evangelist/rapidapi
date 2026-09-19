@@ -464,6 +464,8 @@ apis:
     deployment stages.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
   tags:
+  - Environment
+  tags_raw:
   - Environments
   properties:
   - type: OpenAPI
@@ -601,6 +603,8 @@ apis:
     executed.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
@@ -875,6 +879,8 @@ apis:
     automated monitoring.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
   tags:
+  - Schedule
+  tags_raw:
   - Schedules
   properties:
   - type: OpenAPI
@@ -1279,7 +1285,8 @@ apis:
   name: RapidAPI APIS API
   description: The Apis API from RapidAPI — 6 operation(s) for apis.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
-  tags:
+  tags: []
+  tags_raw:
   - Apis
   properties:
   - type: OpenAPI
@@ -1325,6 +1332,8 @@ apis:
     including APIs, collections, organizations, users, and hub configuration.
   humanURL: https://docs.rapidapi.com/docs/platform-api-overview
   tags:
+  - GraphQL
+  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
