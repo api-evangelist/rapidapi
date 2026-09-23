@@ -15,7 +15,7 @@ servers:
 security:
 - rapidApiKey: []
 tags:
-- name: Apis
+- name: APIs
 paths:
   /apis/{apiSlug}:
     get:
@@ -23,7 +23,7 @@ paths:
       summary: Get API details
       description: Retrieves detailed information about a specific API on the marketplace, including its description, endpoints, pricing plans, ratings, and provider information.
       tags:
-      - Apis
+      - APIs
       parameters:
       - name: apiSlug
         in: path
@@ -51,7 +51,7 @@ paths:
       summary: List API endpoints
       description: Retrieves the list of available endpoints for a specific API, including HTTP methods, paths, parameters, and response schemas.
       tags:
-      - Apis
+      - APIs
       parameters:
       - name: apiSlug
         in: path
@@ -84,7 +84,7 @@ paths:
       summary: List all APIs
       description: Retrieves a list of all APIs available in the Enterprise Hub. Supports filtering and pagination to narrow down results.
       tags:
-      - Apis
+      - APIs
       parameters:
       - $ref: '#/components/parameters/offset'
       - $ref: '#/components/parameters/limit'
@@ -112,7 +112,7 @@ paths:
       summary: Create an API
       description: Creates a new API listing in the Enterprise Hub. Requires providing the API name, description, category, and other configuration details.
       tags:
-      - Apis
+      - APIs
       requestBody:
         required: true
         content:
@@ -141,7 +141,7 @@ paths:
       summary: Get an API
       description: Retrieves the details of a specific API by its unique identifier, including its configuration, versions, and metadata.
       tags:
-      - Apis
+      - APIs
       parameters:
       - $ref: '#/components/parameters/apiId'
       responses:
@@ -160,7 +160,7 @@ paths:
       summary: Update an API
       description: Updates the configuration and metadata of an existing API in the Enterprise Hub.
       tags:
-      - Apis
+      - APIs
       parameters:
       - $ref: '#/components/parameters/apiId'
       requestBody:
@@ -187,7 +187,7 @@ paths:
       summary: Delete an API
       description: Deletes an API listing from the Enterprise Hub. This action is irreversible and removes all associated versions and configurations.
       tags:
-      - Apis
+      - APIs
       parameters:
       - $ref: '#/components/parameters/apiId'
       responses:
@@ -206,7 +206,7 @@ paths:
       summary: List API versions
       description: Retrieves all versions of a specific API, including version names, statuses, and configuration details.
       tags:
-      - Apis
+      - APIs
       parameters:
       - $ref: '#/components/parameters/apiId'
       responses:
@@ -234,7 +234,7 @@ paths:
       summary: Update an API version
       description: Updates the configuration of a specific version of an API, including its endpoints, description, and settings.
       tags:
-      - Apis
+      - APIs
       parameters:
       - $ref: '#/components/parameters/apiId'
       - $ref: '#/components/parameters/versionId'
@@ -262,6 +262,85 @@ paths:
       description: Production Server
 components:
   schemas:
+    ApiEndpoint:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the endpoint
+        name:
+          type: string
+          description: Display name of the endpoint
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          description: HTTP method for the endpoint
+        path:
+          type: string
+          description: The URL path for the endpoint
+        description:
+          type: string
+          description: Description of what the endpoint does
+        group:
+          type: string
+          description: The endpoint group this endpoint belongs to
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/EndpointParameter'
+          description: Parameters accepted by this endpoint
+    EndpointParameter:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name
+        type:
+          type: string
+          description: Data type of the parameter
+        required:
+          type: boolean
+          description: Whether the parameter is required
+        description:
+          type: string
+          description: Description of the parameter
+        defaultValue:
+          type: string
+          description: Default value for the parameter if not provided
+        location:
+          type: string
+          enum:
+          - query
+          - path
+          - header
+          - body
+          description: Where the parameter is sent in the request
+    PricingPlan:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the plan
+        name:
+          type: string
+          description: Plan name such as Basic, Pro, or Ultra
+        price:
+          type: number
+          format: double
+          description: Monthly price in USD
+        rateLimit:
+          type: integer
+          description: Maximum number of requests allowed per month
+        features:
+          type: array
+          items:
+            type: string
+          description: List of features included in this plan
     ApiDetails:
       type: object
       properties:
@@ -318,108 +397,49 @@ components:
           items:
             type: string
           description: Tags associated with the API
-    EndpointParameter:
+    ApiVersionUpdateInput:
       type: object
       properties:
         name:
           type: string
-          description: Parameter name
-        type:
-          type: string
-          description: Data type of the parameter
-        required:
-          type: boolean
-          description: Whether the parameter is required
+          description: Updated version name
         description:
           type: string
-          description: Description of the parameter
-        defaultValue:
-          type: string
-          description: Default value for the parameter if not provided
-        location:
+          description: Updated version description
+        status:
           type: string
           enum:
-          - query
-          - path
-          - header
-          - body
-          description: Where the parameter is sent in the request
-    PricingPlan:
+          - active
+          - deprecated
+          - draft
+          description: Updated version status
+    ApiCreateInput:
       type: object
+      required:
+      - name
+      - description
+      - category
       properties:
-        id:
-          type: string
-          description: Unique identifier for the plan
         name:
           type: string
-          description: Plan name such as Basic, Pro, or Ultra
-        price:
-          type: number
-          format: double
-          description: Monthly price in USD
-        rateLimit:
-          type: integer
-          description: Maximum number of requests allowed per month
-        features:
-          type: array
-          items:
-            type: string
-          description: List of features included in this plan
-    ApiEndpoint:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the endpoint
-        name:
-          type: string
-          description: Display name of the endpoint
-        method:
-          type: string
-          enum:
-          - GET
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
-          description: HTTP method for the endpoint
-        path:
-          type: string
-          description: The URL path for the endpoint
+          description: Display name of the API
         description:
           type: string
-          description: Description of what the endpoint does
-        group:
-          type: string
-          description: The endpoint group this endpoint belongs to
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/EndpointParameter'
-          description: Parameters accepted by this endpoint
-    ApiUpdateInput:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated display name of the API
-        description:
-          type: string
-          description: Updated short description of the API
+          description: Short description of the API
         longDescription:
           type: string
-          description: Updated detailed description
+          description: Detailed description of the API and its use cases
         category:
           type: string
-          description: Updated category assignment
+          description: The category to assign the API to
         websiteUrl:
           type: string
           format: uri
-          description: Updated website URL
+          description: URL to the website providing the API
         imageFile:
           type: string
           format: binary
-          description: Updated API icon image file
+          description: API icon image file in PNG or JPG format, recommended 500x500 px
     Api:
       type: object
       properties:
@@ -461,49 +481,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the API was last updated
-    ApiCreateInput:
-      type: object
-      required:
-      - name
-      - description
-      - category
-      properties:
-        name:
-          type: string
-          description: Display name of the API
-        description:
-          type: string
-          description: Short description of the API
-        longDescription:
-          type: string
-          description: Detailed description of the API and its use cases
-        category:
-          type: string
-          description: The category to assign the API to
-        websiteUrl:
-          type: string
-          format: uri
-          description: URL to the website providing the API
-        imageFile:
-          type: string
-          format: binary
-          description: API icon image file in PNG or JPG format, recommended 500x500 px
-    ApiVersionUpdateInput:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated version name
-        description:
-          type: string
-          description: Updated version description
-        status:
-          type: string
-          enum:
-          - active
-          - deprecated
-          - draft
-          description: Updated version status
     ApiVersion:
       type: object
       properties:
@@ -527,19 +504,52 @@ components:
           type: string
           format: date-time
           description: Timestamp when the version was created
+    ApiUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated display name of the API
+        description:
+          type: string
+          description: Updated short description of the API
+        longDescription:
+          type: string
+          description: Updated detailed description
+        category:
+          type: string
+          description: Updated category assignment
+        websiteUrl:
+          type: string
+          format: uri
+          description: Updated website URL
+        imageFile:
+          type: string
+          format: binary
+          description: Updated API icon image file
   parameters:
-    versionId:
-      name: versionId
-      in: path
-      required: true
-      description: The unique identifier of the API version
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
       schema:
-        type: string
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
     apiId:
       name: apiId
       in: path
       required: true
       description: The unique identifier of the API
+      schema:
+        type: string
+    versionId:
+      name: versionId
+      in: path
+      required: true
+      description: The unique identifier of the API version
       schema:
         type: string
     offset:
@@ -551,16 +561,6 @@ components:
         type: integer
         minimum: 0
         default: 0
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
   securitySchemes:
     rapidApiKey:
       type: apiKey

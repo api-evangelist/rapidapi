@@ -130,6 +130,16 @@ paths:
           description: Project not found
 components:
   parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
     projectId:
       name: projectId
       in: path
@@ -146,16 +156,6 @@ components:
         type: integer
         minimum: 0
         default: 0
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
   schemas:
     ProjectInput:
       type: object

@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: RapidAPI Gateway Authentication API
-  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.
+  description: The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing.
   version: '1.0'
   contact:
     name: RapidAPI Support

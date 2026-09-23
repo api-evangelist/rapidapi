@@ -77,14 +77,6 @@ paths:
           description: Tag not found
 components:
   schemas:
-    TagInput:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Tag name
     Tag:
       type: object
       properties:
@@ -97,6 +89,14 @@ components:
         status:
           type: string
           description: Current status of the tag
+    TagInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Tag name
   parameters:
     tagId:
       name: tagId

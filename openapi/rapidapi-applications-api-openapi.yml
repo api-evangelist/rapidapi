@@ -108,6 +108,16 @@ paths:
           description: Application not found
 components:
   parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
     applicationId:
       name: applicationId
       in: path
@@ -124,28 +134,7 @@ components:
         type: integer
         minimum: 0
         default: 0
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
   schemas:
-    ApplicationInput:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Application name
-        description:
-          type: string
-          description: Application description
     Application:
       type: object
       properties:
@@ -171,6 +160,17 @@ components:
           type: string
           format: date-time
           description: Timestamp when the application was created
+    ApplicationInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description
   securitySchemes:
     rapidApiKey:
       type: apiKey

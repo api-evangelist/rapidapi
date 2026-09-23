@@ -172,7 +172,53 @@ paths:
     - url: https://platform.rapidapi.com/v1
       description: Production Server
 components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    collectionId:
+      name: collectionId
+      in: path
+      required: true
+      description: The unique identifier of the collection
+      schema:
+        type: string
   schemas:
+    HubCollection:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the collection
+        title:
+          type: string
+          description: Collection title
+        description:
+          type: string
+          description: Description of the collection
+        apiCount:
+          type: integer
+          description: Number of APIs in this collection
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the collection image
     ApiSummary:
       type: object
       properties:
@@ -209,25 +255,22 @@ components:
         provider:
           type: string
           description: Name of the API provider
-    HubCollection:
+    CollectionInput:
       type: object
+      required:
+      - title
       properties:
-        id:
-          type: string
-          description: Unique identifier for the collection
         title:
           type: string
-          description: Collection title
+          description: Display title of the collection
         description:
           type: string
           description: Description of the collection
-        apiCount:
-          type: integer
-          description: Number of APIs in this collection
-        imageUrl:
-          type: string
-          format: uri
-          description: URL to the collection image
+        apis:
+          type: array
+          items:
+            type: string
+          description: List of API identifiers to include in the collection
     Collection:
       type: object
       properties:
@@ -249,49 +292,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the collection was created
-    CollectionInput:
-      type: object
-      required:
-      - title
-      properties:
-        title:
-          type: string
-          description: Display title of the collection
-        description:
-          type: string
-          description: Description of the collection
-        apis:
-          type: array
-          items:
-            type: string
-          description: List of API identifiers to include in the collection
-  parameters:
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    collectionId:
-      name: collectionId
-      in: path
-      required: true
-      description: The unique identifier of the collection
-      schema:
-        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey

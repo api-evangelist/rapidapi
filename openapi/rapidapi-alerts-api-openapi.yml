@@ -77,6 +77,14 @@ paths:
         '404':
           description: Alert not found
 components:
+  parameters:
+    alertId:
+      name: alertId
+      in: path
+      required: true
+      description: The unique identifier of the alert
+      schema:
+        type: string
   schemas:
     AlertInput:
       type: object
@@ -132,14 +140,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the alert was created
-  parameters:
-    alertId:
-      name: alertId
-      in: path
-      required: true
-      description: The unique identifier of the alert
-      schema:
-        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey

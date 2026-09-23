@@ -161,18 +161,18 @@ paths:
           description: Definition not found
 components:
   parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: The unique identifier of the project
-      schema:
-        type: string
     definitionId:
       name: definitionId
       in: path
       required: true
       description: The unique identifier of the API definition
+      schema:
+        type: string
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project
       schema:
         type: string
   schemas:

@@ -81,6 +81,33 @@ paths:
         '404':
           description: Execution not found
 components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    executionId:
+      name: executionId
+      in: path
+      required: true
+      description: The unique identifier of the test execution
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   schemas:
     Execution:
       type: object
@@ -105,6 +132,45 @@ components:
         location:
           type: string
           description: The monitoring location where the test ran
+        startedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the execution started
+        completedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the execution completed
+    ExecutionDetail:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the execution
+        testId:
+          type: string
+          description: The test that was executed
+        testName:
+          type: string
+          description: Name of the test
+        status:
+          type: string
+          enum:
+          - passed
+          - failed
+          - running
+          - error
+          description: Overall execution result status
+        duration:
+          type: integer
+          description: Total execution time in milliseconds
+        location:
+          type: string
+          description: The monitoring location where the test ran
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/StepResult'
+          description: Per-step execution results
         startedAt:
           type: string
           format: date-time
@@ -154,72 +220,6 @@ components:
                 type: string
                 description: The actual value received
           description: Per-assertion results
-    ExecutionDetail:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the execution
-        testId:
-          type: string
-          description: The test that was executed
-        testName:
-          type: string
-          description: Name of the test
-        status:
-          type: string
-          enum:
-          - passed
-          - failed
-          - running
-          - error
-          description: Overall execution result status
-        duration:
-          type: integer
-          description: Total execution time in milliseconds
-        location:
-          type: string
-          description: The monitoring location where the test ran
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/StepResult'
-          description: Per-step execution results
-        startedAt:
-          type: string
-          format: date-time
-          description: Timestamp when the execution started
-        completedAt:
-          type: string
-          format: date-time
-          description: Timestamp when the execution completed
-  parameters:
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    executionId:
-      name: executionId
-      in: path
-      required: true
-      description: The unique identifier of the test execution
-      schema:
-        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey
