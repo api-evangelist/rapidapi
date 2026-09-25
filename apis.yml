@@ -1373,6 +1373,8 @@ apis:
   - type: JSONSchema
     url: json-schema/rapidapi-gateway-config-schema.json
 common:
+- type: VendorFacets
+  url: vendor-facets/rapidapi-vendor-facets.yml
 - type: CapabilityMap
   url: capabilities/rapidapi-capability-edges.yml
   name: RapidAPI Business Capability Map

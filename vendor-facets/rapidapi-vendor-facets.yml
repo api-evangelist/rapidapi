@@ -1,0 +1,221 @@
+# Vendor facets — RapidAPI (Rapid, now the Nokia API Hub). A marketplace: a provider imports its
+# OpenAPI, and the hub renders a listing with a web playground, docs, pricing plans and discussions on
+# rapidapi.com, fronts the API with the Rapid Runtime gateway, and (new) serves every listing as MCP
+# tools on mcp.rapidapi.com. Everything lives on RapidAPI's domain, so pointer checks can be declared
+# but the MCP is a platform template, and a gateway base URL is the marketplace's surface, not the
+# provider's. The RapidAPI for Mac client (ex-Paw) is in maintenance with no macOS 27 support.
+vendor: rapidapi
+name: RapidAPI
+website: https://rapidapi.com
+areas:
+- api-collections
+registry_keys: []
+rubric_schema_version: 0.22.0
+generated: '2026-09-25'
+features_refreshed: '2026-09-25'
+basis: capability
+summary: >-
+  A RapidAPI listing gives a provider a hosted playground, a pricing page and an MCP endpoint without
+  building any of them, but all of it lives on rapidapi.com. The console and pricing pointers count once
+  the provider declares the listing; the MCP server is one Nokia-hosted template across the whole hub
+  and grades `platform` (0.25); and a provider that registers the *.rapidapi.com gateway as its base URL
+  is registering a surface the marketplace operates. The contract is the OpenAPI the provider uploaded
+  — RapidAPI does not create one — and the Mac client is no longer developed.
+features:
+- id: hub-listing
+  name: Hub listing page
+  description: >-
+    Endpoints tab with a web-based API client and code snippets, About tab with ReadMe and docs, Tutorials,
+    Discussions and a Pricing tab of subscription plans.
+  source: https://docs.rapidapi.com/docs/api-listing-overview
+  tier: all
+- id: openapi-import
+  name: OpenAPI import
+  description: Providers create and update listings by uploading an OpenAPI document (JSON or YAML).
+  source: https://docs.rapidapi.com/docs/adding-and-updating-openapi-documents
+  tier: all
+- id: rapid-runtime
+  name: Rapid Runtime gateway
+  description: >-
+    With the hosted runtime, consumer requests go to a rapidapi.com subdomain that forwards them to the
+    provider's configured base URL.
+  source: https://docs.rapidapi.com/docs/gateway-configuration
+  tier: all
+- id: hub-mcp
+  name: MCP for listed APIs (mcp.rapidapi.com)
+  description: >-
+    The hub generates one tool per REST endpoint and serves it from mcp.rapidapi.com; consumers authenticate
+    with their x-rapidapi-key and subscription.
+  source: https://docs.rapidapi.com/docs/consume-apis-using-ai
+  tier: all
+- id: rapidapi-for-mac
+  name: RapidAPI for Mac (formerly Paw)
+  description: >-
+    The native macOS client; Nokia's notice says macOS 27 and later will not be tested, certified or supported.
+  source: https://paw.cloud/
+  tier: unknown
+maps:
+- feature: hub-listing
+  check: console_or_sandbox
+  layer: composite
+  provider_must: Declare the listing's Endpoints page as Console or Playground in apis.yml.
+  note: >-
+    A real console, but the caller needs a RapidAPI account and a plan subscription first, and it calls
+    through the marketplace gateway.
+  catalog_pass_rate: 0.089
+  facet: developer_ergonomics
+  points: 3
+  baseline_pass_rate: 0.332
+- feature: hub-listing
+  check: pricing_link
+  layer: composite
+  provider_must: Declare the listing's Pricing tab as Pricing in apis.yml.
+  catalog_pass_rate: 0.224
+  facet: access_clarity
+  points: 4
+  baseline_pass_rate: 0.47
+- feature: hub-listing
+  check: plans_present
+  layer: composite
+  conditional: true
+  condition: >-
+    Only if the provider's plans artifact is harvested from the listing's Pricing tab; the check reads
+    the plans artifact, not the link.
+  catalog_pass_rate: 0.172
+  facet: access_clarity
+  points: 8
+  baseline_pass_rate: 0.44
+- feature: hub-listing
+  check: sign_up_present
+  layer: composite
+  conditional: true
+  condition: >-
+    Only if RapidAPI is the provider's actual access channel; the hub's sign-up is RapidAPI's, and a provider
+    with its own keys and sign-up should declare that one.
+  catalog_pass_rate: 0.19
+  facet: access_clarity
+  points: 5
+  baseline_pass_rate: 0.463
+- feature: hub-listing
+  check: documentation_present
+  layer: composite
+  conditional: true
+  condition: >-
+    Only if the provider writes the About-tab ReadMe and docs; an endpoint list rendered from the uploaded
+    OpenAPI is not documentation the provider wrote.
+  catalog_pass_rate: 0.453
+  facet: developer_ergonomics
+  points: 4
+  baseline_pass_rate: 0.95
+  saturated: true
+  saturated_note: >-
+    95% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+- feature: hub-mcp
+  check: mcp_server
+  layer: agent_readiness
+  grade: platform
+  note: >-
+    One Nokia-hosted template on the marketplace's domain serves every listing; 0.22.0 grades that `platform`
+    (0.25). The provider neither runs nor authors it.
+  points: 12
+  baseline_pass_rate: 0.22
+earns_nothing:
+- feature: openapi-import
+  check: contract_present
+  why: >-
+    The listing consumes the provider's OpenAPI; RapidAPI does not create a contract the provider lacked.
+- feature: rapid-runtime
+  check: contract_self_operated
+  why: >-
+    A *.rapidapi.com gateway URL is a surface the marketplace operates; registering it as the API's base
+    URL describes RapidAPI's proxy, not the provider's own operated API.
+- feature: rapidapi-for-mac
+  check: postman_present
+  why: A local client (now in maintenance) publishes nothing a provider's pointers can declare.
+out_of_reach:
+  checks:
+  - llms_txt_published
+  - agent_skill_present
+  - sdk_count_1
+  - cli_present
+  - well_known_published
+  - apis_json_self_hosted
+  note: >-
+    Nothing on the fetched pages writes an llms.txt, Agent Skill, SDK, provider CLI or .well-known document,
+    and a hub listing is by definition not self-hosted.
+unscored_practice:
+- feature: hub-listing
+  why: >-
+    Marketplace discussions and provider tutorials on the listing are real consumer surfaces; support_channel
+    reads them only if the provider declares the Discussions page.
+surface:
+  developer_ergonomics:
+    reachable: 7.0
+    total: 42
+  access_clarity:
+    reachable: 17.0
+    total: 38
+  agent_readiness:
+    reachable: 3.0
+    total: 139
+hard_rule: >-
+  A model, not a score. Adopting this vendor changes a provider's Kin Score only when the provider publishes
+  the resulting artifacts on its own surface; nothing here writes a score, and no sponsorship or partnership
+  can.
+method: searched
+source:
+- https://docs.rapidapi.com/docs/adding-and-updating-openapi-documents
+- https://docs.rapidapi.com/docs/api-listing-overview
+- https://docs.rapidapi.com/docs/consume-apis-using-ai
+- https://docs.rapidapi.com/docs/gateway-configuration
+- https://paw.cloud/
+measured:
+  cohort:
+    method: vendors-catalog.json detections (CNAME / header / URL shape / markup), never a name match
+    detected: 0
+    in_baseline: 0
+  control:
+    basis: providers earning contract_present + documentation_present + api_reference_present, minus the
+      cohort
+    n: 5216
+  metric: >-
+    cohort_pct / control_pct = mean share of the check's points earned (derived and platform credit weighted),
+    x100
+  measured_on: '2026-09-25'
+  status: 'not measurable: 0 detected customers clear the baseline (need 20)'
+simulation:
+  simulated_on: '2026-09-25'
+  rubric: 0.23.0
+  population: providers publishing a contract (contract_present earned), replayable exactly
+  providers: 8977
+  providers_unreplayable: 987
+  providers_moved: 8545
+  conditional_rows: excluded (they depend on what the API already does)
+  composite_lift:
+    median: 2.1
+    p75: 3.5
+    p90: 3.6
+    max: 3.6
+    mean_among_movers: 2.5
+  agent_readiness_lift:
+    median: 2.1
+    p75: 2.2
+    p90: 2.2
+    max: 2.6
+    mean_among_movers: 2.2
+  facet_lift_median_among_movers:
+    developer_ergonomics: 7.1
+    access_clarity: 10.5
+  composite_band_moves:
+    thin -> developing: 945
+    developing -> strong: 299
+    emerging -> thin: 223
+    strong -> exemplar: 67
+    minimal -> emerging: 1
+  agent_readiness_band_moves:
+    agent-aware -> agent-ready: 639
+    agent-ready -> agent-native: 68
+  method: >-
+    each provider's own kin/checks file, the vendor's maps at their stated credit, the scorer's composite
+    formula; from -> to, nothing written
