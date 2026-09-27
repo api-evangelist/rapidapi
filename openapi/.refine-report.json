@@ -40,7 +40,7 @@
     "rapidapi-tests-api-openapi.yml"
   ],
   "archived": [
-    "deleted 2 superseded output(s) from the previous generation"
+    "deleted 1 superseded output(s) from the previous generation"
   ],
   "errors": [],
   "warnings": [],
@@ -71,13 +71,13 @@
     "tag 'Categories' spans 2 source specs (rapidapi-hub-api-openapi.yml, rapidapi-rest-platform-api-openapi.yml): per-path servers applied",
     "tag 'Collections' spans 2 source specs (rapidapi-hub-api-openapi.yml, rapidapi-rest-platform-api-openapi.yml): per-path servers applied",
     "tag 'Subscriptions' spans 2 source specs (rapidapi-hub-api-openapi.yml, rapidapi-rest-platform-api-openapi.yml): per-path servers applied",
-    "superseded outputs removed: rapidapi-ap-is-api-openapi.yml, rapidapi-graph-ql-api-openapi.yml",
-    "apis.yml register: written (+2 apis, 29 total)"
+    "superseded outputs removed: rapidapi-graph-ql-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 29 total)"
   ],
   "skipped": [
     "rapidapi-alerts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rapidapi-analytics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "rapidapi-ap-is-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rapidapi-apis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rapidapi-applications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rapidapi-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "rapidapi-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",

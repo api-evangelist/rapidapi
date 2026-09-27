@@ -107,33 +107,6 @@ paths:
         '404':
           description: Application not found
 components:
-  parameters:
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    applicationId:
-      name: applicationId
-      in: path
-      required: true
-      description: The unique identifier of the application
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   schemas:
     Application:
       type: object
@@ -171,6 +144,33 @@ components:
         description:
           type: string
           description: Application description
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    applicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: The unique identifier of the application
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     rapidApiKey:
       type: apiKey

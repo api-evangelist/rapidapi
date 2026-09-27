@@ -168,34 +168,62 @@ paths:
         '404':
           description: Test not found
 components:
-  parameters:
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    testId:
-      name: testId
-      in: path
-      required: true
-      description: The unique identifier of the test
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   schemas:
+    AssertionInput:
+      type: object
+      required:
+      - target
+      - comparison
+      properties:
+        target:
+          type: string
+          description: The response element to assert on
+        comparison:
+          type: string
+          enum:
+          - equals
+          - not_equals
+          - contains
+          - not_contains
+          - greater_than
+          - less_than
+          - exists
+          - not_exists
+          description: The comparison operator
+        value:
+          type: string
+          description: The expected value to compare against
+    Execution:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the execution
+        testId:
+          type: string
+          description: The test that was executed
+        status:
+          type: string
+          enum:
+          - passed
+          - failed
+          - running
+          - error
+          description: Overall execution result status
+        duration:
+          type: integer
+          description: Total execution time in milliseconds
+        location:
+          type: string
+          description: The monitoring location where the test ran
+        startedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the execution started
+        completedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the execution completed
     TestStep:
       type: object
       properties:
@@ -231,37 +259,56 @@ components:
           items:
             $ref: '#/components/schemas/Assertion'
           description: Assertions to validate the response
-    Execution:
+    Assertion:
       type: object
       properties:
         id:
           type: string
-          description: Unique identifier for the execution
-        testId:
+          description: Unique identifier for the assertion
+        target:
           type: string
-          description: The test that was executed
-        status:
+          description: The response element to assert on, such as status_code, response_time, or a JSONPath expression
+        comparison:
           type: string
           enum:
-          - passed
-          - failed
-          - running
-          - error
-          description: Overall execution result status
-        duration:
-          type: integer
-          description: Total execution time in milliseconds
-        location:
+          - equals
+          - not_equals
+          - contains
+          - not_contains
+          - greater_than
+          - less_than
+          - exists
+          - not_exists
+          description: The comparison operator
+        value:
           type: string
-          description: The monitoring location where the test ran
-        startedAt:
+          description: The expected value to compare against
+    TestCreateInput:
+      type: object
+      required:
+      - name
+      - steps
+      properties:
+        name:
           type: string
-          format: date-time
-          description: Timestamp when the execution started
-        completedAt:
+          description: Display name of the test
+        description:
           type: string
-          format: date-time
-          description: Timestamp when the execution completed
+          description: Description of what the test validates
+        apiId:
+          type: string
+          description: The API to associate this test with
+        type:
+          type: string
+          enum:
+          - functional
+          - performance
+          description: The type of test
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestStepInput'
+          description: Ordered list of test steps
     TestStepInput:
       type: object
       required:
@@ -298,30 +345,6 @@ components:
           items:
             $ref: '#/components/schemas/AssertionInput'
           description: Assertions to validate the response
-    AssertionInput:
-      type: object
-      required:
-      - target
-      - comparison
-      properties:
-        target:
-          type: string
-          description: The response element to assert on
-        comparison:
-          type: string
-          enum:
-          - equals
-          - not_equals
-          - contains
-          - not_contains
-          - greater_than
-          - less_than
-          - exists
-          - not_exists
-          description: The comparison operator
-        value:
-          type: string
-          description: The expected value to compare against
     Test:
       type: object
       properties:
@@ -377,56 +400,33 @@ components:
           items:
             $ref: '#/components/schemas/TestStepInput'
           description: Updated list of test steps
-    TestCreateInput:
-      type: object
-      required:
-      - name
-      - steps
-      properties:
-        name:
-          type: string
-          description: Display name of the test
-        description:
-          type: string
-          description: Description of what the test validates
-        apiId:
-          type: string
-          description: The API to associate this test with
-        type:
-          type: string
-          enum:
-          - functional
-          - performance
-          description: The type of test
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestStepInput'
-          description: Ordered list of test steps
-    Assertion:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the assertion
-        target:
-          type: string
-          description: The response element to assert on, such as status_code, response_time, or a JSONPath expression
-        comparison:
-          type: string
-          enum:
-          - equals
-          - not_equals
-          - contains
-          - not_contains
-          - greater_than
-          - less_than
-          - exists
-          - not_exists
-          description: The comparison operator
-        value:
-          type: string
-          description: The expected value to compare against
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    testId:
+      name: testId
+      in: path
+      required: true
+      description: The unique identifier of the test
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     rapidApiKey:
       type: apiKey

@@ -76,6 +76,14 @@ paths:
         '404':
           description: Tag not found
 components:
+  parameters:
+    tagId:
+      name: tagId
+      in: path
+      required: true
+      description: The unique identifier of the tag
+      schema:
+        type: string
   schemas:
     Tag:
       type: object
@@ -97,14 +105,6 @@ components:
         name:
           type: string
           description: Tag name
-  parameters:
-    tagId:
-      name: tagId
-      in: path
-      required: true
-      description: The unique identifier of the tag
-      schema:
-        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey

@@ -130,6 +130,13 @@ paths:
           description: Project not found
 components:
   parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -140,13 +147,6 @@ components:
         minimum: 1
         maximum: 100
         default: 25
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: The unique identifier of the project
-      schema:
-        type: string
     offset:
       name: offset
       in: query

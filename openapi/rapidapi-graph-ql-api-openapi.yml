@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: RapidAPI Platform Graph QL API
+  title: RapidAPI Platform GraphQL API
   description: The RapidAPI GraphQL Platform API exposes the same queries and mutations that RapidAPI uses internally, providing enterprise users with a powerful interface for managing their API hub. It supports creating and updating APIs, managing collections, configuring hub settings, and automating API lifecycle management through GraphQL queries and mutations. The API uses a single POST endpoint and is the recommended approach for Enterprise Hub administration over the REST Platform API.
   version: '1.0'
   contact:
@@ -44,6 +44,18 @@ paths:
           description: Forbidden - insufficient permissions for the requested operation
 components:
   schemas:
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+          description: The result of the GraphQL query or mutation. The structure matches the shape of the requested fields in the query.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GraphQLError'
+          description: An array of errors encountered during execution, if any. Errors may be returned alongside partial data.
     GraphQLError:
       type: object
       properties:
@@ -71,18 +83,6 @@ components:
           type: object
           additionalProperties: true
           description: Additional error metadata provided by the server
-    GraphQLResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties: true
-          description: The result of the GraphQL query or mutation. The structure matches the shape of the requested fields in the query.
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GraphQLError'
-          description: An array of errors encountered during execution, if any. Errors may be returned alongside partial data.
     GraphQLRequest:
       type: object
       required:

@@ -104,14 +104,6 @@ paths:
         '404':
           description: Environment not found
 components:
-  parameters:
-    environmentId:
-      name: environmentId
-      in: path
-      required: true
-      description: The unique identifier of the environment
-      schema:
-        type: string
   schemas:
     Environment:
       type: object
@@ -144,6 +136,14 @@ components:
           additionalProperties:
             type: string
           description: Key-value pairs of environment variables
+  parameters:
+    environmentId:
+      name: environmentId
+      in: path
+      required: true
+      description: The unique identifier of the environment
+      schema:
+        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey
