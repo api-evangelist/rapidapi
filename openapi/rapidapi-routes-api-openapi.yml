@@ -115,18 +115,18 @@ paths:
           description: Route not found
 components:
   parameters:
-    routeId:
-      name: routeId
-      in: path
-      required: true
-      description: The unique identifier of the route
-      schema:
-        type: string
     gatewayId:
       name: gatewayId
       in: path
       required: true
       description: The unique identifier of the gateway
+      schema:
+        type: string
+    routeId:
+      name: routeId
+      in: path
+      required: true
+      description: The unique identifier of the route
       schema:
         type: string
   schemas:

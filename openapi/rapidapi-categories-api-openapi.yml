@@ -150,6 +150,33 @@ paths:
     - url: https://platform.rapidapi.com/v1
       description: Production Server
 components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    categoryId:
+      name: categoryId
+      in: path
+      required: true
+      description: The unique identifier of the category
+      schema:
+        type: string
   schemas:
     ApiSummary:
       type: object
@@ -202,14 +229,6 @@ components:
         apiCount:
           type: integer
           description: Number of APIs in this category
-    CategoryInput:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Display name of the category
     Category:
       type: object
       properties:
@@ -222,33 +241,14 @@ components:
         slugifiedName:
           type: string
           description: URL-friendly slug for the category
-  parameters:
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    categoryId:
-      name: categoryId
-      in: path
-      required: true
-      description: The unique identifier of the category
-      schema:
-        type: string
+    CategoryInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Display name of the category
   securitySchemes:
     rapidApiKey:
       type: apiKey

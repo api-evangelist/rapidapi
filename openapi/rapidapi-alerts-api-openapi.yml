@@ -78,32 +78,6 @@ paths:
           description: Alert not found
 components:
   schemas:
-    AlertInput:
-      type: object
-      required:
-      - testId
-      - channel
-      - configuration
-      properties:
-        testId:
-          type: string
-          description: The test to monitor for failures
-        channel:
-          type: string
-          enum:
-          - email
-          - slack
-          - pagerduty
-          - twilio
-          description: Notification channel
-        configuration:
-          type: object
-          additionalProperties: true
-          description: Channel-specific configuration
-        enabled:
-          type: boolean
-          default: true
-          description: Whether the alert should be active
     Alert:
       type: object
       properties:
@@ -132,6 +106,32 @@ components:
           type: string
           format: date-time
           description: Timestamp when the alert was created
+    AlertInput:
+      type: object
+      required:
+      - testId
+      - channel
+      - configuration
+      properties:
+        testId:
+          type: string
+          description: The test to monitor for failures
+        channel:
+          type: string
+          enum:
+          - email
+          - slack
+          - pagerduty
+          - twilio
+          description: Notification channel
+        configuration:
+          type: object
+          additionalProperties: true
+          description: Channel-specific configuration
+        enabled:
+          type: boolean
+          default: true
+          description: Whether the alert should be active
   parameters:
     alertId:
       name: alertId

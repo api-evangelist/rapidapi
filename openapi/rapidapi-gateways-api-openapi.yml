@@ -124,28 +124,6 @@ paths:
           description: Gateway not found
 components:
   schemas:
-    GatewayInput:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Gateway display name
-        description:
-          type: string
-          description: Description of the gateway's purpose
-        deploymentModel:
-          type: string
-          enum:
-          - cloud
-          - on-premise
-          - hybrid
-          description: How the gateway should be deployed
-        baseUrl:
-          type: string
-          format: uri
-          description: The base URL for the gateway
     Gateway:
       type: object
       properties:
@@ -187,6 +165,28 @@ components:
           type: string
           format: date-time
           description: Timestamp when the gateway was last updated
+    GatewayInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Gateway display name
+        description:
+          type: string
+          description: Description of the gateway's purpose
+        deploymentModel:
+          type: string
+          enum:
+          - cloud
+          - on-premise
+          - hybrid
+          description: How the gateway should be deployed
+        baseUrl:
+          type: string
+          format: uri
+          description: The base URL for the gateway
   parameters:
     gatewayId:
       name: gatewayId

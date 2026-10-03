@@ -262,32 +262,6 @@ paths:
       description: Production Server
 components:
   schemas:
-    EndpointParameter:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Parameter name
-        type:
-          type: string
-          description: Data type of the parameter
-        required:
-          type: boolean
-          description: Whether the parameter is required
-        description:
-          type: string
-          description: Description of the parameter
-        defaultValue:
-          type: string
-          description: Default value for the parameter if not provided
-        location:
-          type: string
-          enum:
-          - query
-          - path
-          - header
-          - body
-          description: Where the parameter is sent in the request
     PricingPlan:
       type: object
       properties:
@@ -365,6 +339,32 @@ components:
           items:
             type: string
           description: Tags associated with the API
+    EndpointParameter:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Parameter name
+        type:
+          type: string
+          description: Data type of the parameter
+        required:
+          type: boolean
+          description: Whether the parameter is required
+        description:
+          type: string
+          description: Description of the parameter
+        defaultValue:
+          type: string
+          description: Default value for the parameter if not provided
+        location:
+          type: string
+          enum:
+          - query
+          - path
+          - header
+          - body
+          description: Where the parameter is sent in the request
     ApiEndpoint:
       type: object
       properties:
@@ -397,6 +397,49 @@ components:
           items:
             $ref: '#/components/schemas/EndpointParameter'
           description: Parameters accepted by this endpoint
+    ApiVersionUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated version name
+        description:
+          type: string
+          description: Updated version description
+        status:
+          type: string
+          enum:
+          - active
+          - deprecated
+          - draft
+          description: Updated version status
+    ApiCreateInput:
+      type: object
+      required:
+      - name
+      - description
+      - category
+      properties:
+        name:
+          type: string
+          description: Display name of the API
+        description:
+          type: string
+          description: Short description of the API
+        longDescription:
+          type: string
+          description: Detailed description of the API and its use cases
+        category:
+          type: string
+          description: The category to assign the API to
+        websiteUrl:
+          type: string
+          format: uri
+          description: URL to the website providing the API
+        imageFile:
+          type: string
+          format: binary
+          description: API icon image file in PNG or JPG format, recommended 500x500 px
     ApiUpdateInput:
       type: object
       properties:
@@ -461,49 +504,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the API was last updated
-    ApiVersionUpdateInput:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated version name
-        description:
-          type: string
-          description: Updated version description
-        status:
-          type: string
-          enum:
-          - active
-          - deprecated
-          - draft
-          description: Updated version status
-    ApiCreateInput:
-      type: object
-      required:
-      - name
-      - description
-      - category
-      properties:
-        name:
-          type: string
-          description: Display name of the API
-        description:
-          type: string
-          description: Short description of the API
-        longDescription:
-          type: string
-          description: Detailed description of the API and its use cases
-        category:
-          type: string
-          description: The category to assign the API to
-        websiteUrl:
-          type: string
-          format: uri
-          description: URL to the website providing the API
-        imageFile:
-          type: string
-          format: binary
-          description: API icon image file in PNG or JPG format, recommended 500x500 px
     ApiVersion:
       type: object
       properties:
@@ -528,6 +528,22 @@ components:
           format: date-time
           description: Timestamp when the version was created
   parameters:
+    versionId:
+      name: versionId
+      in: path
+      required: true
+      description: The unique identifier of the API version
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     limit:
       name: limit
       in: query
@@ -543,22 +559,6 @@ components:
       in: path
       required: true
       description: The unique identifier of the API
-      schema:
-        type: string
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    versionId:
-      name: versionId
-      in: path
-      required: true
-      description: The unique identifier of the API version
       schema:
         type: string
   securitySchemes:

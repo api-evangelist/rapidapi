@@ -114,6 +114,21 @@ paths:
         '404':
           description: Endpoint not found
 components:
+  parameters:
+    endpointId:
+      name: endpointId
+      in: path
+      required: true
+      description: The unique identifier of the endpoint
+      schema:
+        type: string
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project
+      schema:
+        type: string
   schemas:
     EndpointInput:
       type: object
@@ -196,21 +211,6 @@ components:
                 type: string
                 description: Parameter description
           description: Endpoint parameters
-  parameters:
-    endpointId:
-      name: endpointId
-      in: path
-      required: true
-      description: The unique identifier of the endpoint
-      schema:
-        type: string
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: The unique identifier of the project
-      schema:
-        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey

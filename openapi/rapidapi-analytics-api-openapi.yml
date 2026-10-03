@@ -65,6 +65,14 @@ paths:
         '404':
           description: Gateway not found
 components:
+  parameters:
+    gatewayId:
+      name: gatewayId
+      in: path
+      required: true
+      description: The unique identifier of the gateway
+      schema:
+        type: string
   schemas:
     GatewayAnalytics:
       type: object
@@ -130,14 +138,6 @@ components:
                 format: double
                 description: Average response time for this endpoint
           description: Top endpoints by request volume
-  parameters:
-    gatewayId:
-      name: gatewayId
-      in: path
-      required: true
-      description: The unique identifier of the gateway
-      schema:
-        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey

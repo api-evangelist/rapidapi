@@ -42,14 +42,6 @@ paths:
         '404':
           description: Project not found
 components:
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: The unique identifier of the project
-      schema:
-        type: string
   schemas:
     SavedRequest:
       type: object
@@ -78,6 +70,14 @@ components:
         body:
           type: string
           description: Request body content
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project
+      schema:
+        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey

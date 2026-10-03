@@ -169,15 +169,15 @@ paths:
           description: Test not found
 components:
   schemas:
-    AssertionInput:
+    Assertion:
       type: object
-      required:
-      - target
-      - comparison
       properties:
+        id:
+          type: string
+          description: Unique identifier for the assertion
         target:
           type: string
-          description: The response element to assert on
+          description: The response element to assert on, such as status_code, response_time, or a JSONPath expression
         comparison:
           type: string
           enum:
@@ -193,6 +193,83 @@ components:
         value:
           type: string
           description: The expected value to compare against
+    Test:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the test
+        name:
+          type: string
+          description: Display name of the test
+        description:
+          type: string
+          description: Description of what the test validates
+        apiId:
+          type: string
+          description: The API this test is associated with
+        type:
+          type: string
+          enum:
+          - functional
+          - performance
+          description: The type of test
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestStep'
+          description: Ordered list of test steps
+        status:
+          type: string
+          enum:
+          - active
+          - draft
+          - archived
+          description: Current status of the test
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the test was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the test was last updated
+    TestStepInput:
+      type: object
+      required:
+      - name
+      - method
+      - url
+      properties:
+        name:
+          type: string
+          description: Step name
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          description: HTTP method for the API call
+        url:
+          type: string
+          format: uri
+          description: The endpoint URL to call
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: HTTP headers to include
+        body:
+          type: string
+          description: Request body content
+        assertions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssertionInput'
+          description: Assertions to validate the response
     Execution:
       type: object
       properties:
@@ -259,30 +336,6 @@ components:
           items:
             $ref: '#/components/schemas/Assertion'
           description: Assertions to validate the response
-    Assertion:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the assertion
-        target:
-          type: string
-          description: The response element to assert on, such as status_code, response_time, or a JSONPath expression
-        comparison:
-          type: string
-          enum:
-          - equals
-          - not_equals
-          - contains
-          - not_contains
-          - greater_than
-          - less_than
-          - exists
-          - not_exists
-          description: The comparison operator
-        value:
-          type: string
-          description: The expected value to compare against
     TestCreateInput:
       type: object
       required:
@@ -309,83 +362,30 @@ components:
           items:
             $ref: '#/components/schemas/TestStepInput'
           description: Ordered list of test steps
-    TestStepInput:
+    AssertionInput:
       type: object
       required:
-      - name
-      - method
-      - url
+      - target
+      - comparison
       properties:
-        name:
+        target:
           type: string
-          description: Step name
-        method:
-          type: string
-          enum:
-          - GET
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
-          description: HTTP method for the API call
-        url:
-          type: string
-          format: uri
-          description: The endpoint URL to call
-        headers:
-          type: object
-          additionalProperties:
-            type: string
-          description: HTTP headers to include
-        body:
-          type: string
-          description: Request body content
-        assertions:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssertionInput'
-          description: Assertions to validate the response
-    Test:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the test
-        name:
-          type: string
-          description: Display name of the test
-        description:
-          type: string
-          description: Description of what the test validates
-        apiId:
-          type: string
-          description: The API this test is associated with
-        type:
+          description: The response element to assert on
+        comparison:
           type: string
           enum:
-          - functional
-          - performance
-          description: The type of test
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestStep'
-          description: Ordered list of test steps
-        status:
+          - equals
+          - not_equals
+          - contains
+          - not_contains
+          - greater_than
+          - less_than
+          - exists
+          - not_exists
+          description: The comparison operator
+        value:
           type: string
-          enum:
-          - active
-          - draft
-          - archived
-          description: Current status of the test
-        createdAt:
-          type: string
-          format: date-time
-          description: Timestamp when the test was created
-        updatedAt:
-          type: string
-          format: date-time
-          description: Timestamp when the test was last updated
+          description: The expected value to compare against
     TestUpdateInput:
       type: object
       properties:
@@ -401,16 +401,6 @@ components:
             $ref: '#/components/schemas/TestStepInput'
           description: Updated list of test steps
   parameters:
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
     testId:
       name: testId
       in: path
@@ -427,6 +417,16 @@ components:
         type: integer
         minimum: 0
         default: 0
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
   securitySchemes:
     rapidApiKey:
       type: apiKey

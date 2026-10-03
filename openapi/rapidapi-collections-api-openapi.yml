@@ -172,6 +172,33 @@ paths:
     - url: https://platform.rapidapi.com/v1
       description: Production Server
 components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    collectionId:
+      name: collectionId
+      in: path
+      required: true
+      description: The unique identifier of the collection
+      schema:
+        type: string
   schemas:
     ApiSummary:
       type: object
@@ -265,33 +292,6 @@ components:
           items:
             type: string
           description: List of API identifiers to include in the collection
-  parameters:
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    collectionId:
-      name: collectionId
-      in: path
-      required: true
-      description: The unique identifier of the collection
-      schema:
-        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey

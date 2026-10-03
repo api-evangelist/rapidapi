@@ -44,18 +44,6 @@ paths:
           description: Forbidden - insufficient permissions for the requested operation
 components:
   schemas:
-    GraphQLResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties: true
-          description: The result of the GraphQL query or mutation. The structure matches the shape of the requested fields in the query.
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GraphQLError'
-          description: An array of errors encountered during execution, if any. Errors may be returned alongside partial data.
     GraphQLError:
       type: object
       properties:
@@ -98,6 +86,18 @@ components:
         operationName:
           type: string
           description: The name of the operation to execute when the query contains multiple named operations.
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+          description: The result of the GraphQL query or mutation. The structure matches the shape of the requested fields in the query.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GraphQLError'
+          description: An array of errors encountered during execution, if any. Errors may be returned alongside partial data.
   securitySchemes:
     rapidApiKey:
       type: apiKey
