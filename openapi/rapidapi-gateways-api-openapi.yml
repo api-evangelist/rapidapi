@@ -123,6 +123,14 @@ paths:
         '404':
           description: Gateway not found
 components:
+  parameters:
+    gatewayId:
+      name: gatewayId
+      in: path
+      required: true
+      description: The unique identifier of the gateway
+      schema:
+        type: string
   schemas:
     Gateway:
       type: object
@@ -187,14 +195,6 @@ components:
           type: string
           format: uri
           description: The base URL for the gateway
-  parameters:
-    gatewayId:
-      name: gatewayId
-      in: path
-      required: true
-      description: The unique identifier of the gateway
-      schema:
-        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey

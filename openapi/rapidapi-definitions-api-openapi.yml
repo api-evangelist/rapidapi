@@ -160,21 +160,6 @@ paths:
         '404':
           description: Definition not found
 components:
-  parameters:
-    definitionId:
-      name: definitionId
-      in: path
-      required: true
-      description: The unique identifier of the API definition
-      schema:
-        type: string
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: The unique identifier of the project
-      schema:
-        type: string
   schemas:
     Definition:
       type: object
@@ -201,6 +186,21 @@ components:
           type: string
           format: date-time
           description: Timestamp when the definition was imported
+  parameters:
+    definitionId:
+      name: definitionId
+      in: path
+      required: true
+      description: The unique identifier of the API definition
+      schema:
+        type: string
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: The unique identifier of the project
+      schema:
+        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey

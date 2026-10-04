@@ -262,27 +262,32 @@ paths:
       description: Production Server
 components:
   schemas:
-    PricingPlan:
+    EndpointParameter:
       type: object
       properties:
-        id:
-          type: string
-          description: Unique identifier for the plan
         name:
           type: string
-          description: Plan name such as Basic, Pro, or Ultra
-        price:
-          type: number
-          format: double
-          description: Monthly price in USD
-        rateLimit:
-          type: integer
-          description: Maximum number of requests allowed per month
-        features:
-          type: array
-          items:
-            type: string
-          description: List of features included in this plan
+          description: Parameter name
+        type:
+          type: string
+          description: Data type of the parameter
+        required:
+          type: boolean
+          description: Whether the parameter is required
+        description:
+          type: string
+          description: Description of the parameter
+        defaultValue:
+          type: string
+          description: Default value for the parameter if not provided
+        location:
+          type: string
+          enum:
+          - query
+          - path
+          - header
+          - body
+          description: Where the parameter is sent in the request
     ApiDetails:
       type: object
       properties:
@@ -339,32 +344,27 @@ components:
           items:
             type: string
           description: Tags associated with the API
-    EndpointParameter:
+    PricingPlan:
       type: object
       properties:
+        id:
+          type: string
+          description: Unique identifier for the plan
         name:
           type: string
-          description: Parameter name
-        type:
-          type: string
-          description: Data type of the parameter
-        required:
-          type: boolean
-          description: Whether the parameter is required
-        description:
-          type: string
-          description: Description of the parameter
-        defaultValue:
-          type: string
-          description: Default value for the parameter if not provided
-        location:
-          type: string
-          enum:
-          - query
-          - path
-          - header
-          - body
-          description: Where the parameter is sent in the request
+          description: Plan name such as Basic, Pro, or Ultra
+        price:
+          type: number
+          format: double
+          description: Monthly price in USD
+        rateLimit:
+          type: integer
+          description: Maximum number of requests allowed per month
+        features:
+          type: array
+          items:
+            type: string
+          description: List of features included in this plan
     ApiEndpoint:
       type: object
       properties:
@@ -397,22 +397,52 @@ components:
           items:
             $ref: '#/components/schemas/EndpointParameter'
           description: Parameters accepted by this endpoint
-    ApiVersionUpdateInput:
+    ApiVersion:
       type: object
       properties:
+        id:
+          type: string
+          description: Unique identifier for the API version
+        apiId:
+          type: string
+          description: The API this version belongs to
         name:
           type: string
-          description: Updated version name
-        description:
-          type: string
-          description: Updated version description
+          description: Version name or label
         status:
           type: string
           enum:
           - active
           - deprecated
           - draft
-          description: Updated version status
+          description: Current status of the version
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the version was created
+    ApiUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated display name of the API
+        description:
+          type: string
+          description: Updated short description of the API
+        longDescription:
+          type: string
+          description: Updated detailed description
+        category:
+          type: string
+          description: Updated category assignment
+        websiteUrl:
+          type: string
+          format: uri
+          description: Updated website URL
+        imageFile:
+          type: string
+          format: binary
+          description: Updated API icon image file
     ApiCreateInput:
       type: object
       required:
@@ -440,29 +470,22 @@ components:
           type: string
           format: binary
           description: API icon image file in PNG or JPG format, recommended 500x500 px
-    ApiUpdateInput:
+    ApiVersionUpdateInput:
       type: object
       properties:
         name:
           type: string
-          description: Updated display name of the API
+          description: Updated version name
         description:
           type: string
-          description: Updated short description of the API
-        longDescription:
+          description: Updated version description
+        status:
           type: string
-          description: Updated detailed description
-        category:
-          type: string
-          description: Updated category assignment
-        websiteUrl:
-          type: string
-          format: uri
-          description: Updated website URL
-        imageFile:
-          type: string
-          format: binary
-          description: Updated API icon image file
+          enum:
+          - active
+          - deprecated
+          - draft
+          description: Updated version status
     Api:
       type: object
       properties:
@@ -504,30 +527,14 @@ components:
           type: string
           format: date-time
           description: Timestamp when the API was last updated
-    ApiVersion:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the API version
-        apiId:
-          type: string
-          description: The API this version belongs to
-        name:
-          type: string
-          description: Version name or label
-        status:
-          type: string
-          enum:
-          - active
-          - deprecated
-          - draft
-          description: Current status of the version
-        createdAt:
-          type: string
-          format: date-time
-          description: Timestamp when the version was created
   parameters:
+    apiId:
+      name: apiId
+      in: path
+      required: true
+      description: The unique identifier of the API
+      schema:
+        type: string
     versionId:
       name: versionId
       in: path
@@ -554,13 +561,6 @@ components:
         minimum: 1
         maximum: 100
         default: 25
-    apiId:
-      name: apiId
-      in: path
-      required: true
-      description: The unique identifier of the API
-      schema:
-        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey

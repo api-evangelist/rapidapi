@@ -169,30 +169,32 @@ paths:
           description: Test not found
 components:
   schemas:
-    Assertion:
+    TestCreateInput:
       type: object
+      required:
+      - name
+      - steps
       properties:
-        id:
+        name:
           type: string
-          description: Unique identifier for the assertion
-        target:
+          description: Display name of the test
+        description:
           type: string
-          description: The response element to assert on, such as status_code, response_time, or a JSONPath expression
-        comparison:
+          description: Description of what the test validates
+        apiId:
+          type: string
+          description: The API to associate this test with
+        type:
           type: string
           enum:
-          - equals
-          - not_equals
-          - contains
-          - not_contains
-          - greater_than
-          - less_than
-          - exists
-          - not_exists
-          description: The comparison operator
-        value:
-          type: string
-          description: The expected value to compare against
+          - functional
+          - performance
+          description: The type of test
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestStepInput'
+          description: Ordered list of test steps
     Test:
       type: object
       properties:
@@ -336,32 +338,6 @@ components:
           items:
             $ref: '#/components/schemas/Assertion'
           description: Assertions to validate the response
-    TestCreateInput:
-      type: object
-      required:
-      - name
-      - steps
-      properties:
-        name:
-          type: string
-          description: Display name of the test
-        description:
-          type: string
-          description: Description of what the test validates
-        apiId:
-          type: string
-          description: The API to associate this test with
-        type:
-          type: string
-          enum:
-          - functional
-          - performance
-          description: The type of test
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestStepInput'
-          description: Ordered list of test steps
     AssertionInput:
       type: object
       required:
@@ -400,6 +376,30 @@ components:
           items:
             $ref: '#/components/schemas/TestStepInput'
           description: Updated list of test steps
+    Assertion:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the assertion
+        target:
+          type: string
+          description: The response element to assert on, such as status_code, response_time, or a JSONPath expression
+        comparison:
+          type: string
+          enum:
+          - equals
+          - not_equals
+          - contains
+          - not_contains
+          - greater_than
+          - less_than
+          - exists
+          - not_exists
+          description: The comparison operator
+        value:
+          type: string
+          description: The expected value to compare against
   parameters:
     testId:
       name: testId

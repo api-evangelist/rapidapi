@@ -130,42 +130,6 @@ components:
       schema:
         type: string
   schemas:
-    RouteInput:
-      type: object
-      required:
-      - pathPattern
-      - targetUrl
-      properties:
-        pathPattern:
-          type: string
-          description: URL path pattern to match incoming requests
-        targetUrl:
-          type: string
-          format: uri
-          description: Backend service URL to forward matching requests to
-        methods:
-          type: array
-          items:
-            type: string
-            enum:
-            - GET
-            - POST
-            - PUT
-            - PATCH
-            - DELETE
-          description: HTTP methods this route handles
-        stripPrefix:
-          type: boolean
-          default: false
-          description: Whether to strip the matched path prefix before forwarding
-        priority:
-          type: integer
-          default: 0
-          description: Route priority for matching order
-        enabled:
-          type: boolean
-          default: true
-          description: Whether this route should be active
     Route:
       type: object
       properties:
@@ -202,6 +166,42 @@ components:
         enabled:
           type: boolean
           description: Whether this route is currently active
+    RouteInput:
+      type: object
+      required:
+      - pathPattern
+      - targetUrl
+      properties:
+        pathPattern:
+          type: string
+          description: URL path pattern to match incoming requests
+        targetUrl:
+          type: string
+          format: uri
+          description: Backend service URL to forward matching requests to
+        methods:
+          type: array
+          items:
+            type: string
+            enum:
+            - GET
+            - POST
+            - PUT
+            - PATCH
+            - DELETE
+          description: HTTP methods this route handles
+        stripPrefix:
+          type: boolean
+          default: false
+          description: Whether to strip the matched path prefix before forwarding
+        priority:
+          type: integer
+          default: 0
+          description: Route priority for matching order
+        enabled:
+          type: boolean
+          default: true
+          description: Whether this route should be active
   securitySchemes:
     rapidApiKey:
       type: apiKey

@@ -178,6 +178,21 @@ components:
       schema:
         type: string
   schemas:
+    HubCategory:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the category
+        name:
+          type: string
+          description: Category display name
+        slug:
+          type: string
+          description: URL-friendly category slug
+        apiCount:
+          type: integer
+          description: Number of APIs in this category
     ApiSummary:
       type: object
       properties:
@@ -214,21 +229,14 @@ components:
         provider:
           type: string
           description: Name of the API provider
-    HubCategory:
+    CategoryInput:
       type: object
+      required:
+      - name
       properties:
-        id:
-          type: string
-          description: Unique identifier for the category
         name:
           type: string
-          description: Category display name
-        slug:
-          type: string
-          description: URL-friendly category slug
-        apiCount:
-          type: integer
-          description: Number of APIs in this category
+          description: Display name of the category
     Category:
       type: object
       properties:
@@ -241,14 +249,6 @@ components:
         slugifiedName:
           type: string
           description: URL-friendly slug for the category
-    CategoryInput:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Display name of the category
   securitySchemes:
     rapidApiKey:
       type: apiKey

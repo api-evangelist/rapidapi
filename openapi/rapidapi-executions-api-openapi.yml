@@ -81,75 +81,7 @@ paths:
         '404':
           description: Execution not found
 components:
-  parameters:
-    executionId:
-      name: executionId
-      in: path
-      required: true
-      description: The unique identifier of the test execution
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   schemas:
-    StepResult:
-      type: object
-      properties:
-        stepId:
-          type: string
-          description: The step that was executed
-        stepName:
-          type: string
-          description: Name of the step
-        status:
-          type: string
-          enum:
-          - passed
-          - failed
-          - error
-          - skipped
-          description: Step execution result
-        responseTime:
-          type: integer
-          description: Response time in milliseconds
-        statusCode:
-          type: integer
-          description: HTTP status code returned
-        assertions:
-          type: array
-          items:
-            type: object
-            properties:
-              target:
-                type: string
-                description: The assertion target
-              passed:
-                type: boolean
-                description: Whether the assertion passed
-              expected:
-                type: string
-                description: The expected value
-              actual:
-                type: string
-                description: The actual value received
-          description: Per-assertion results
     Execution:
       type: object
       properties:
@@ -220,6 +152,74 @@ components:
           type: string
           format: date-time
           description: Timestamp when the execution completed
+    StepResult:
+      type: object
+      properties:
+        stepId:
+          type: string
+          description: The step that was executed
+        stepName:
+          type: string
+          description: Name of the step
+        status:
+          type: string
+          enum:
+          - passed
+          - failed
+          - error
+          - skipped
+          description: Step execution result
+        responseTime:
+          type: integer
+          description: Response time in milliseconds
+        statusCode:
+          type: integer
+          description: HTTP status code returned
+        assertions:
+          type: array
+          items:
+            type: object
+            properties:
+              target:
+                type: string
+                description: The assertion target
+              passed:
+                type: boolean
+                description: Whether the assertion passed
+              expected:
+                type: string
+                description: The expected value
+              actual:
+                type: string
+                description: The actual value received
+          description: Per-assertion results
+  parameters:
+    executionId:
+      name: executionId
+      in: path
+      required: true
+      description: The unique identifier of the test execution
+      schema:
+        type: string
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
   securitySchemes:
     rapidApiKey:
       type: apiKey

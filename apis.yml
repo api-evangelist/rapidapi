@@ -1,10 +1,14 @@
 aid: rapidapi
+
 name: RapidAPI
+
 description: >-
   RapidAPI operates the world's largest API marketplace, connecting developers to thousands of APIs through a single
   platform. Their developer platform provides tools for API discovery, testing, management, design, and gateway
   configuration, enabling both individual developers and enterprises to build, consume, and manage APIs at scale.
+
 kind: contract
+
 deliveryModel:
   model: saas
   open_source: false
@@ -17,6 +21,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: enterprise
   onboarding: unknown
@@ -31,9 +36,13 @@ accessModel:
   - security
   generated: '2026-09-03'
   method: derived
+
 position: Consuming
+
 access: 3rd-Party
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rapidapi.png
+
 tags:
 - API Marketplace
 - API Management
@@ -43,10 +52,72 @@ tags:
 - Enterprise
 - Developer Tools
 - RapidAPI
+
 created: '2026-03-20'
+
 modified: '2026-05-19'
+
 url: https://raw.githubusercontent.com/api-evangelist/rapidapi/refs/heads/main/apis.yml
+
 specificationVersion: '0.23'
+
+maintainers:
+- FN: API Evangelist
+  email: info@apievangelist.com
+
+common:
+- type: FinOps
+  url: finops/rapidapi-finops.yml
+- type: RateLimits
+  url: rate-limits/rapidapi-rate-limits.yml
+- type: Plans
+  url: plans/rapidapi-plans-pricing.yml
+- type: Spectral
+  url: rules/rapidapi-rules.yml
+- type: Spectral
+  url: rules/rapidapi-jsonschema-spectral-rules.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/rapidapi-data-model.yml
+- type: ErrorCatalog
+  url: errors/rapidapi-problem-types.yml
+- type: Conformance
+  url: conformance/rapidapi-conformance.yml
+- type: Hosts
+  url: hosts/rapidapi-hosts.yml
+- type: Vendors
+  url: vendors/rapidapi-vendors.yml
+- type: VendorFacets
+  url: vendor-facets/rapidapi-vendor-facets.yml
+  name: RapidAPI Business Capability Map
+- type: AgenticAccess
+  url: agentic-access/rapidapi-agentic-access.yml
+- type: DomainSecurity
+  url: security/rapidapi-domain-security.yml
+- type: Authentication
+  url: authentication/rapidapi-authentication.yml
+- type: GitHubOrganization
+  url: https://github.com/RapidAPI
+- type: LinkedIn
+  url: https://www.linkedin.com/company/rapidapi
+- type: Portal
+  url: https://rapidapi.com/hub
+- type: Documentation
+  url: https://docs.rapidapi.com/
+- type: Website
+  url: https://rapidapi.com/
+- type: PrivacyPolicy
+  url: https://rapidapi.com/privacy/
+- type: Signup
+  url: https://rapidapi.com/auth/sign-up
+- type: JSONLD
+  url: json-ld/rapidapi-context.jsonld
+- type: Vocabulary
+  url: vocabulary/rapidapi-vocabulary.yml
+- type: LlmsText
+  url: https://docs.rapidapi.com/llms.txt
+
 apis:
 - aid: rapidapi:rapidapi-alerts-api
   name: RapidAPI Alerts API
@@ -1372,47 +1443,14 @@ apis:
     url: https://docs.rapidapi.com/docs/gateway-configuration
   - type: JSONSchema
     url: json-schema/rapidapi-gateway-config-schema.json
-common:
-- type: VendorFacets
-  url: vendor-facets/rapidapi-vendor-facets.yml
-- type: CapabilityMap
-  url: capabilities/rapidapi-capability-edges.yml
-  name: RapidAPI Business Capability Map
-- type: AgenticAccess
-  url: agentic-access/rapidapi-agentic-access.yml
-- type: DomainSecurity
-  url: security/rapidapi-domain-security.yml
-- type: Authentication
-  url: authentication/rapidapi-authentication.yml
-- type: GitHubOrganization
-  url: https://github.com/RapidAPI
-- type: LinkedIn
-  url: https://www.linkedin.com/company/rapidapi
-- type: Portal
-  url: https://rapidapi.com/hub
-- type: Documentation
-  url: https://docs.rapidapi.com/
-- type: Website
-  url: https://rapidapi.com/
-- type: PrivacyPolicy
-  url: https://rapidapi.com/privacy/
-- type: TermsOfService
-  url: https://rapidapi.com/terms-of-service/
-- type: Support
-  url: https://rapidapi.com/support/
-- type: Blog
-  url: https://rapidapi.com/blog/
-- type: Signup
-  url: https://rapidapi.com/auth/sign-up
-- type: JSONLD
-  url: json-ld/rapidapi-context.jsonld
-- type: Vocabulary
-  url: vocabulary/rapidapi-vocabulary.yml
-- type: LlmsText
-  url: https://docs.rapidapi.com/llms.txt
-maintainers:
-- FN: API Evangelist
-  email: info@apievangelist.com
 x-parent: nokia-corp
+
 x-relationship: acquisition
+
 x-acquired: 2024
+x-enrichment:
+  date: '2026-10-04'
+  status: enriched
+  artifacts_added: 12
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

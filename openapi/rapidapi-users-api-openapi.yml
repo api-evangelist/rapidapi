@@ -74,6 +74,13 @@ components:
         type: integer
         minimum: 0
         default: 0
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: The unique identifier of the user
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -84,13 +91,6 @@ components:
         minimum: 1
         maximum: 100
         default: 25
-    userId:
-      name: userId
-      in: path
-      required: true
-      description: The unique identifier of the user
-      schema:
-        type: string
   schemas:
     User:
       type: object

@@ -108,6 +108,13 @@ paths:
           description: Application not found
 components:
   parameters:
+    applicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: The unique identifier of the application
+      schema:
+        type: string
     offset:
       name: offset
       in: query
@@ -127,25 +134,7 @@ components:
         minimum: 1
         maximum: 100
         default: 25
-    applicationId:
-      name: applicationId
-      in: path
-      required: true
-      description: The unique identifier of the application
-      schema:
-        type: string
   schemas:
-    ApplicationInput:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Application name
-        description:
-          type: string
-          description: Application description
     Application:
       type: object
       properties:
@@ -171,6 +160,17 @@ components:
           type: string
           format: date-time
           description: Timestamp when the application was created
+    ApplicationInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Application name
+        description:
+          type: string
+          description: Application description
   securitySchemes:
     rapidApiKey:
       type: apiKey

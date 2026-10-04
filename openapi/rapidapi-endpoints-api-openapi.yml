@@ -130,34 +130,6 @@ components:
       schema:
         type: string
   schemas:
-    EndpointInput:
-      type: object
-      required:
-      - name
-      - method
-      - path
-      properties:
-        name:
-          type: string
-          description: Display name of the endpoint
-        method:
-          type: string
-          enum:
-          - GET
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
-          description: HTTP method
-        path:
-          type: string
-          description: URL path for the endpoint
-        group:
-          type: string
-          description: The endpoint group to organize under
-        description:
-          type: string
-          description: Description of the endpoint
     Endpoint:
       type: object
       properties:
@@ -211,6 +183,34 @@ components:
                 type: string
                 description: Parameter description
           description: Endpoint parameters
+    EndpointInput:
+      type: object
+      required:
+      - name
+      - method
+      - path
+      properties:
+        name:
+          type: string
+          description: Display name of the endpoint
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          description: HTTP method
+        path:
+          type: string
+          description: URL path for the endpoint
+        group:
+          type: string
+          description: The endpoint group to organize under
+        description:
+          type: string
+          description: Description of the endpoint
   securitySchemes:
     rapidApiKey:
       type: apiKey

@@ -44,6 +44,33 @@ paths:
           description: Forbidden - insufficient permissions for the requested operation
 components:
   schemas:
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+          description: The result of the GraphQL query or mutation. The structure matches the shape of the requested fields in the query.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GraphQLError'
+          description: An array of errors encountered during execution, if any. Errors may be returned alongside partial data.
+    GraphQLRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: The GraphQL query or mutation string to execute. Queries read data and mutations modify data in the Enterprise Hub.
+        variables:
+          type: object
+          additionalProperties: true
+          description: Optional variables to pass to the GraphQL query or mutation, matching the variable declarations in the query string.
+        operationName:
+          type: string
+          description: The name of the operation to execute when the query contains multiple named operations.
     GraphQLError:
       type: object
       properties:
@@ -71,33 +98,6 @@ components:
           type: object
           additionalProperties: true
           description: Additional error metadata provided by the server
-    GraphQLRequest:
-      type: object
-      required:
-      - query
-      properties:
-        query:
-          type: string
-          description: The GraphQL query or mutation string to execute. Queries read data and mutations modify data in the Enterprise Hub.
-        variables:
-          type: object
-          additionalProperties: true
-          description: Optional variables to pass to the GraphQL query or mutation, matching the variable declarations in the query string.
-        operationName:
-          type: string
-          description: The name of the operation to execute when the query contains multiple named operations.
-    GraphQLResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties: true
-          description: The result of the GraphQL query or mutation. The structure matches the shape of the requested fields in the query.
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GraphQLError'
-          description: An array of errors encountered during execution, if any. Errors may be returned alongside partial data.
   securitySchemes:
     rapidApiKey:
       type: apiKey
