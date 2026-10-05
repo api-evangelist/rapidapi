@@ -1,0 +1,52 @@
+slug: rapidapi
+provider: RapidAPI
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: APIs
+  spec_file: rapidapi-apis-api-openapi.yml
+  capability_id: BC-4270.10
+  capability_id_l1: BC-4270
+  capability_name: Public API Lifecycle Management
+  confidence: 0.85
+  evidence: POST /apis createApi "Create an API"; GET /apis/{apiId}/versions "List API versions"; PUT
+    /apis/{apiId}/versions/{versionId} "Update an API version"
+  reason: Operations create, update, version and delete API products and expose their endpoints — specification
+    and versioning of APIs published to developers, which is public API lifecycle management.
+- tag: Tests
+  spec_file: rapidapi-tests-api-openapi.yml
+  capability_id: BC-4200.50
+  capability_id_l1: BC-4200
+  capability_name: Software Quality Engineering
+  confidence: 0.85
+  evidence: POST /tests createTest; POST /tests/{testId}/run "Run a test"; schemas Assertion, TestStep
+  reason: Creating, maintaining and running API tests with assertions is automated test strategy and suite
+    stewardship — software quality engineering.
+- tag: Rate Limiting
+  spec_file: rapidapi-rate-limiting-api-openapi.yml
+  capability_id: BC-4270.50
+  capability_id_l1: BC-4270
+  capability_name: API Consumption Governance
+  confidence: 0.78
+  evidence: GET /gateways/{gatewayId}/rate-limiting "Get rate limiting configuration"; schema RateLimitConfig
+  reason: Explicit quota/rate-limit configuration on the API gateway is the defining content of API consumption
+    governance; it is realised business capability for an API platform vendor, not incidental plumbing.
+- tag: Executions
+  spec_file: rapidapi-executions-api-openapi.yml
+  capability_id: BC-4200.50
+  capability_id_l1: BC-4200
+  capability_name: Software Quality Engineering
+  confidence: 0.72
+  evidence: GET /executions "List test executions"; schemas StepResult, ExecutionDetail
+  reason: Executions are results of functional/monitoring test runs, which is automated test suite stewardship
+    under software quality engineering.
