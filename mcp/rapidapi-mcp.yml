@@ -1,241 +1,27 @@
-generated: '2026-10-04'
-method: derived
-generator: derive-mcp-candidate.py
-source:
-- openapi/rapidapi-alerts-api-openapi.yml
-- openapi/rapidapi-analytics-api-openapi.yml
-- openapi/rapidapi-apis-api-openapi.yml
-- openapi/rapidapi-applications-api-openapi.yml
-- openapi/rapidapi-authentication-api-openapi.yml
-- openapi/rapidapi-categories-api-openapi.yml
-- openapi/rapidapi-collections-api-openapi.yml
-- openapi/rapidapi-definitions-api-openapi.yml
-- openapi/rapidapi-documentation-api-openapi.yml
-- openapi/rapidapi-endpoints-api-openapi.yml
-- openapi/rapidapi-environments-api-openapi.yml
-- openapi/rapidapi-executions-api-openapi.yml
-- openapi/rapidapi-gateways-api-openapi.yml
-- openapi/rapidapi-graph-ql-api-openapi.yml
-- openapi/rapidapi-locations-api-openapi.yml
-- openapi/rapidapi-organizations-api-openapi.yml
-- openapi/rapidapi-projects-api-openapi.yml
-- openapi/rapidapi-rate-limiting-api-openapi.yml
-- openapi/rapidapi-requests-api-openapi.yml
-- openapi/rapidapi-routes-api-openapi.yml
-- openapi/rapidapi-schedules-api-openapi.yml
-- openapi/rapidapi-search-api-openapi.yml
-- openapi/rapidapi-security-api-openapi.yml
-- openapi/rapidapi-snippets-api-openapi.yml
-- openapi/rapidapi-subscriptions-api-openapi.yml
-- openapi/rapidapi-tags-api-openapi.yml
-- openapi/rapidapi-tests-api-openapi.yml
-- openapi/rapidapi-transactions-api-openapi.yml
-- openapi/rapidapi-users-api-openapi.yml
-status: candidate
+generated: '2026-09-25'
+method: probed
+source: https://mcp.rapidapi.com/
+status: published
+server:
+  name: rapidapi
+  transport: http
+  url: https://mcp.rapidapi.com/
 deployment:
-  mode: none
-  auth: unknown
+  mode: remote
+  endpoint: https://mcp.rapidapi.com/
   verified: probed
-note: No MCP server was found. The pre-flight posted tools/list to /mcp on the known hosts; verdict None. Candidate tools below are derived from
-  the 90 operation(s) in the provider's own OpenAPI (40 listed); they describe what a server WOULD expose, not one that exists.
-tools:
-- name: list_alerts
-  operationId: listAlerts
-  method: GET
-  path: /alerts
-  description: List alert configurations
-- name: get_gateway_analytics
-  operationId: getGatewayAnalytics
-  method: GET
-  path: /gateways/{gatewayId}/analytics
-  description: Get gateway analytics
-- name: get_api_details
-  operationId: getApiDetails
-  method: GET
-  path: /apis/{apiSlug}
-  description: Get API details
-- name: list_applications
-  operationId: listApplications
-  method: GET
-  path: /applications
-  description: List all applications
-- name: get_authentication_config
-  operationId: getAuthenticationConfig
-  method: GET
-  path: /gateways/{gatewayId}/authentication
-  description: Get authentication configuration
-- name: list_hub_categories
-  operationId: listHubCategories
-  method: GET
-  path: /categories
-  description: List marketplace categories
-- name: list_hub_collections
-  operationId: listHubCollections
-  method: GET
-  path: /collections
-  description: List curated collections
-- name: list_definitions
-  operationId: listDefinitions
-  method: GET
-  path: /projects/{projectId}/definitions
-  description: List definitions
-- name: publish_project
-  operationId: publishProject
-  method: POST
-  path: /projects/{projectId}/publish
-  description: Publish to hub
-- name: list_endpoints
-  operationId: listEndpoints
-  method: GET
-  path: /projects/{projectId}/endpoints
-  description: List endpoints
-- name: list_environments
-  operationId: listEnvironments
-  method: GET
-  path: /environments
-  description: List environments
-- name: list_executions
-  operationId: listExecutions
-  method: GET
-  path: /executions
-  description: List test executions
-- name: list_gateways
-  operationId: listGateways
-  method: GET
-  path: /gateways
-  description: List gateways
-- name: execute_graph_ql
-  operationId: executeGraphQL
-  method: POST
-  path: /graphql
-  description: Execute a GraphQL query or mutation
-- name: list_locations
-  operationId: listLocations
-  method: GET
-  path: /locations
-  description: List monitoring locations
-- name: list_organizations
-  operationId: listOrganizations
-  method: GET
-  path: /organizations
-  description: List all organizations
-- name: list_projects
-  operationId: listProjects
-  method: GET
-  path: /projects
-  description: List all projects
-- name: get_rate_limit_config
-  operationId: getRateLimitConfig
-  method: GET
-  path: /gateways/{gatewayId}/rate-limiting
-  description: Get rate limiting configuration
-- name: list_requests
-  operationId: listRequests
-  method: GET
-  path: /projects/{projectId}/requests
-  description: List saved requests
-- name: list_routes
-  operationId: listRoutes
-  method: GET
-  path: /gateways/{gatewayId}/routes
-  description: List routes
-- name: list_schedules
-  operationId: listSchedules
-  method: GET
-  path: /schedules
-  description: List all schedules
-- name: search_apis
-  operationId: searchApis
-  method: GET
-  path: /search/apis
-  description: Search APIs
-- name: get_security_config
-  operationId: getSecurityConfig
-  method: GET
-  path: /gateways/{gatewayId}/security
-  description: Get security configuration
-- name: get_code_snippets
-  operationId: getCodeSnippets
-  method: GET
-  path: /apis/{apiSlug}/snippets
-  description: Get code snippets
-- name: list_my_subscriptions
-  operationId: listMySubscriptions
-  method: GET
-  path: /subscriptions
-  description: List my subscriptions
-- name: list_tags
-  operationId: listTags
-  method: GET
-  path: /tags
-  description: List all tags
-- name: list_tests
-  operationId: listTests
-  method: GET
-  path: /tests
-  description: List all tests
-- name: list_transactions
-  operationId: listTransactions
-  method: GET
-  path: /transactions
-  description: List all transactions
-- name: list_users
-  operationId: listUsers
-  method: GET
-  path: /users
-  description: List all users
-- name: create_alert
-  operationId: createAlert
-  method: POST
-  path: /alerts
-  description: Create an alert
-- name: list_api_endpoints
-  operationId: listApiEndpoints
-  method: GET
-  path: /apis/{apiSlug}/endpoints
-  description: List API endpoints
-- name: create_application
-  operationId: createApplication
-  method: POST
-  path: /applications
-  description: Create an application
-- name: update_authentication_config
-  operationId: updateAuthenticationConfig
-  method: PUT
-  path: /gateways/{gatewayId}/authentication
-  description: Update authentication configuration
-- name: create_category
-  operationId: createCategory
-  method: POST
-  path: /categories
-  description: Create a category
-- name: create_collection
-  operationId: createCollection
-  method: POST
-  path: /collections
-  description: Create a collection
-- name: import_definition
-  operationId: importDefinition
-  method: POST
-  path: /projects/{projectId}/definitions
-  description: Import a definition
-- name: create_endpoint
-  operationId: createEndpoint
-  method: POST
-  path: /projects/{projectId}/endpoints
-  description: Create an endpoint
-- name: create_environment
-  operationId: createEnvironment
-  method: POST
-  path: /environments
-  description: Create an environment
-- name: get_execution
-  operationId: getExecution
-  method: GET
-  path: /executions/{executionId}
-  description: Get execution details
-- name: create_gateway
-  operationId: createGateway
-  method: POST
-  path: /gateways
-  description: Create a gateway
+  probe: live
+  checked: '2026-09-25'
+  source: 'docs-check 2026-09-25 (first-party, on the provider''s own domain: docs-check stages 1-5 (llms.txt
+    / server-card / docs page); probed with JSON-RPC initialize; roadmap#590 #721)'
+  probe_why: 'initialize answered: serverInfo RapidAPI MCP Server 0.1.0'
+  server_info:
+    name: RapidAPI MCP Server
+    version: 0.1.0
+  protocol_version: '2024-11-05'
+  found_via: docs-check stages 1-5 (llms.txt / server-card / docs page)
+tools_note: No tool list captured. This manifest records a PROBED, reachable endpoint only; anonymous
+  tools/list was auth-gated or the server requires an initialize handshake this reachability probe does
+  not perform. Run signals/audit_mcp_authorship.py --probe to enumerate tools and settle platform-vs-provider
+  authorship. Do NOT derive a tool list from the OpenAPI and store it here -- that is a candidate manifest,
+  and it belongs under an X-MCPServerCandidate pointer.
