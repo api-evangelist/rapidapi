@@ -1,0 +1,48 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/rapidapi-alerts-api-openapi.yml
+- openapi/rapidapi-analytics-api-openapi.yml
+- openapi/rapidapi-apis-api-openapi.yml
+- openapi/rapidapi-applications-api-openapi.yml
+- openapi/rapidapi-authentication-api-openapi.yml
+- openapi/rapidapi-categories-api-openapi.yml
+- openapi/rapidapi-collections-api-openapi.yml
+- openapi/rapidapi-definitions-api-openapi.yml
+- openapi/rapidapi-documentation-api-openapi.yml
+- openapi/rapidapi-endpoints-api-openapi.yml
+- openapi/rapidapi-environments-api-openapi.yml
+- openapi/rapidapi-executions-api-openapi.yml
+format: custom
+envelope:
+  media_type: null
+  schema: null
+coverage:
+  operations: 90
+  statuses_declared: 4
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad request - invalid input parameters
+  operations: 35
+  media_types: []
+  schema: null
+- status: 401
+  title: Unauthorized
+  description: Unauthorized - invalid or missing API key
+  operations: 90
+  media_types: []
+  schema: null
+- status: 403
+  title: Forbidden
+  description: Forbidden - insufficient permissions
+  operations: 3
+  media_types: []
+  schema: null
+- status: 404
+  title: Not Found
+  description: Gateway not found
+  operations: 60
+  media_types: []
+  schema: null

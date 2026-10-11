@@ -1,0 +1,39 @@
+generated: '2026-10-04'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/rapidapi-apis-api-openapi.yml
+skills:
+- file: skills/rapidapi-endpoint-management.md
+  name: rapidapi-endpoint-management
+  api: openapi/rapidapi-endpoints-api-openapi.yml
+  operations:
+  - createEndpoint
+  - listEndpoints
+  - updateEndpoint
+  - deleteEndpoint
+- file: skills/rapidapi-definition-management.md
+  name: rapidapi-definition-management
+  api: openapi/rapidapi-definitions-api-openapi.yml
+  operations:
+  - importDefinition
+  - listDefinitions
+  - getDefinition
+  - exportDefinition
+  - deleteDefinition
+- file: skills/rapidapi-collection-management.md
+  name: rapidapi-collection-management
+  api: openapi/rapidapi-collections-api-openapi.yml
+  operations:
+  - createCollection
+  - getCollection
+  - updateCollection
+  - listApisInCollection
+  - deleteCollection
+- file: skills/rapidapi-manage-routes.md
+  name: rapidapi-manage-routes
+  api: openapi/rapidapi-routes-api-openapi.yml
+  operations:
+  - createRoute
+  - listRoutes
+  - updateRoute
+  - deleteRoute

@@ -43,6 +43,9 @@ access: 3rd-Party
 
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rapidapi.png
 
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-04
 tags:
 - API Marketplace
 - API Management

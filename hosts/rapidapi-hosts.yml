@@ -1,0 +1,60 @@
+generated: '2026-10-04'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 4
+  own: 0
+  other_domain: 0
+  platform: 4
+  roles:
+  - docs
+  - other
+  - source
+  - website
+hosts:
+- host: docs.rapidapi.com
+  found_by:
+  - pointer
+  - apis[]
+  - vendor-detect
+  types:
+  - Documentation
+  - LlmsText
+  serves:
+  - docs
+  - cdn
+  vendor: cloudflare
+  registrable_domain: rapidapi.com
+  role: docs
+  relation: platform
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: rapidapi.com
+  found_by:
+  - pointer
+  types:
+  - Portal
+  - Website
+  - PrivacyPolicy
+  - Signup
+  serves: []
+  registrable_domain: rapidapi.com
+  role: website
+  relation: platform
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
