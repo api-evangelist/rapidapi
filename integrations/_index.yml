@@ -15,3 +15,22 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: rapidapi-mcp-registry
+  label: MCP Registry
+  partner: mcp
+  partner_name: MCP Registry
+  type: register
+  channel: standard-directory
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=io.github.JosejuX
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: io.github.JosejuX/rapidapi-metadata-extractor
+    register_id: io.github.JosejuX/rapidapi-metadata-extractor
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-14'
+  status: not-a-workflow
+  arazzo: null

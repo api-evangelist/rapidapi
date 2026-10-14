@@ -2,6 +2,7 @@ generated: '2026-10-14'
 method: searched
 checked:
 - https://github.com/marketplace?type=actions
+- https://registry.modelcontextprotocol.io/v0/servers
 marketplace_apps: []
 edges:
 - partner_name: GitHub Marketplace (actions)
@@ -21,5 +22,36 @@ edges:
   - Verified creator
   detected_by: sweep-devtools.py
   detected: '2026-10-14'
+- partner_name: MCP Registry
+  partner: mcp
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=io.github.JosejuX
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: io.github.JosejuX/rapidapi-metadata-extractor
+    register_id: io.github.JosejuX/rapidapi-metadata-extractor
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-14'
+  mcp_registry:
+    servers:
+    - io.github.JosejuX/rapidapi-metadata-extractor
+    hosted_remote: 1
+    local_package: 0
+    transports:
+      streamable-http: 1
+    auth_declared: 1
+    catalog_declared: true
+    namespace_domains:
+    - rapidapi.com
+  matched_by:
+  - remote-domain
+  detected_by: sweep-agent-tools.py
+  first_seen: '2026-10-14'
 source:
 - https://github.com/marketplace?type=actions
