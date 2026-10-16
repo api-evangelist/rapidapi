@@ -2,17 +2,17 @@
 kin_checks:
   slug: rapidapi
   schema_version: 0.23.0
-  scored_at: '2026-10-03'
-  run_ts: 2026-10-03T024842
+  scored_at: '2026-10-11'
+  run_ts: 2026-10-11T110117
   note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
     apply in `na`. Everything else in rubric/scoring-0.23.0.yml was earned; counts
     below let you verify that.
   counts:
     total: 153
-    earned: 25
+    earned: 23
     partial: 32
-    missed: 69
-    na: 27
+    missed: 70
+    na: 28
   checks:
   - id: newsroom_present
     status: missed
@@ -78,17 +78,14 @@ kin_checks:
     status: missed
   - id: support_channel
     status: missed
-    detail: pointer liveness 0.0
   - id: blog_present
     status: missed
-    detail: pointer liveness 0.0
   - id: plans_multiple
     status: missed
   - id: pricing_link
     status: missed
   - id: terms_of_service
     status: missed
-    detail: pointer liveness 0.0
   - id: compliance_published
     status: missed
   - id: trust_center
@@ -99,7 +96,6 @@ kin_checks:
     status: missed
   - id: reg_terms_of_service
     status: missed
-    detail: pointer liveness 0.0
   - id: reg_compliance_published
     status: missed
   - id: reg_named_standard_conformance
@@ -137,6 +133,8 @@ kin_checks:
   - id: upsert_declared_conflict
     status: missed
   - id: reversibility_documented
+    status: missed
+  - id: mcp_server
     status: missed
   - id: idempotency
     status: missed
@@ -292,8 +290,8 @@ kin_checks:
     detail: 'grade: documented'
   - id: rate_limit_signal
     status: partial
-    earned: 3.5
-    detail: 'grade: documented'
+    earned: 0.88
+    detail: 'grade: derived'
   na:
   - asyncapi_3_x
   - channels_defined
@@ -304,6 +302,7 @@ kin_checks:
   - graphql_sdl_present
   - graphql_type_depth
   - inbound_contract_published
+  - mcp_endpoint_discoverable
   - messages_with_schema
   - os_code_of_conduct
   - os_contribution_guide

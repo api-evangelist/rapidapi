@@ -37,15 +37,28 @@ edges:
     registered_name: io.github.JosejuX/rapidapi-metadata-extractor
     register_id: io.github.JosejuX/rapidapi-metadata-extractor
     detected_by: sweep-agent-tools.py
-    detected: '2026-10-14'
+    detected: '2026-10-15'
   mcp_registry:
     servers:
     - io.github.JosejuX/rapidapi-metadata-extractor
-    hosted_remote: 1
+    - io.github.OlsOls4/calkit
+    - io.github.OlsOls4/dockit
+    - io.github.OlsOls4/domainkit
+    - io.github.OlsOls4/fraudkit
+    - io.github.OlsOls4/geoip
+    - io.github.OlsOls4/imagekit
+    - io.github.OlsOls4/llmkit
+    - io.github.OlsOls4/phonekit
+    - io.github.OlsOls4/qrkit
+    - io.github.OlsOls4/textkit
+    - io.github.OlsOls4/ukpostcode
+    - io.github.OlsOls4/validkit
+    - io.github.OlsOls4/webkit
+    hosted_remote: 14
     local_package: 0
     transports:
-      streamable-http: 1
-    auth_declared: 1
+      streamable-http: 14
+    auth_declared: 14
     catalog_declared: true
     namespace_domains:
     - rapidapi.com

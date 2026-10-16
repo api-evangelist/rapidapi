@@ -31,6 +31,6 @@
     registered_name: io.github.JosejuX/rapidapi-metadata-extractor
     register_id: io.github.JosejuX/rapidapi-metadata-extractor
     detected_by: sweep-agent-tools.py
-    detected: '2026-10-14'
+    detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
