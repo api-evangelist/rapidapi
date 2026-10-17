@@ -344,27 +344,6 @@ components:
           items:
             type: string
           description: Tags associated with the API
-    PricingPlan:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the plan
-        name:
-          type: string
-          description: Plan name such as Basic, Pro, or Ultra
-        price:
-          type: number
-          format: double
-          description: Monthly price in USD
-        rateLimit:
-          type: integer
-          description: Maximum number of requests allowed per month
-        features:
-          type: array
-          items:
-            type: string
-          description: List of features included in this plan
     ApiEndpoint:
       type: object
       properties:
@@ -397,6 +376,27 @@ components:
           items:
             $ref: '#/components/schemas/EndpointParameter'
           description: Parameters accepted by this endpoint
+    PricingPlan:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the plan
+        name:
+          type: string
+          description: Plan name such as Basic, Pro, or Ultra
+        price:
+          type: number
+          format: double
+          description: Monthly price in USD
+        rateLimit:
+          type: integer
+          description: Maximum number of requests allowed per month
+        features:
+          type: array
+          items:
+            type: string
+          description: List of features included in this plan
     ApiVersion:
       type: object
       properties:
@@ -420,56 +420,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the version was created
-    ApiUpdateInput:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated display name of the API
-        description:
-          type: string
-          description: Updated short description of the API
-        longDescription:
-          type: string
-          description: Updated detailed description
-        category:
-          type: string
-          description: Updated category assignment
-        websiteUrl:
-          type: string
-          format: uri
-          description: Updated website URL
-        imageFile:
-          type: string
-          format: binary
-          description: Updated API icon image file
-    ApiCreateInput:
-      type: object
-      required:
-      - name
-      - description
-      - category
-      properties:
-        name:
-          type: string
-          description: Display name of the API
-        description:
-          type: string
-          description: Short description of the API
-        longDescription:
-          type: string
-          description: Detailed description of the API and its use cases
-        category:
-          type: string
-          description: The category to assign the API to
-        websiteUrl:
-          type: string
-          format: uri
-          description: URL to the website providing the API
-        imageFile:
-          type: string
-          format: binary
-          description: API icon image file in PNG or JPG format, recommended 500x500 px
     ApiVersionUpdateInput:
       type: object
       properties:
@@ -527,14 +477,57 @@ components:
           type: string
           format: date-time
           description: Timestamp when the API was last updated
+    ApiCreateInput:
+      type: object
+      required:
+      - name
+      - description
+      - category
+      properties:
+        name:
+          type: string
+          description: Display name of the API
+        description:
+          type: string
+          description: Short description of the API
+        longDescription:
+          type: string
+          description: Detailed description of the API and its use cases
+        category:
+          type: string
+          description: The category to assign the API to
+        websiteUrl:
+          type: string
+          format: uri
+          description: URL to the website providing the API
+        imageFile:
+          type: string
+          format: binary
+          description: API icon image file in PNG or JPG format, recommended 500x500 px
+    ApiUpdateInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated display name of the API
+        description:
+          type: string
+          description: Updated short description of the API
+        longDescription:
+          type: string
+          description: Updated detailed description
+        category:
+          type: string
+          description: Updated category assignment
+        websiteUrl:
+          type: string
+          format: uri
+          description: Updated website URL
+        imageFile:
+          type: string
+          format: binary
+          description: Updated API icon image file
   parameters:
-    apiId:
-      name: apiId
-      in: path
-      required: true
-      description: The unique identifier of the API
-      schema:
-        type: string
     versionId:
       name: versionId
       in: path
@@ -542,15 +535,6 @@ components:
       description: The unique identifier of the API version
       schema:
         type: string
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     limit:
       name: limit
       in: query
@@ -561,6 +545,22 @@ components:
         minimum: 1
         maximum: 100
         default: 25
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    apiId:
+      name: apiId
+      in: path
+      required: true
+      description: The unique identifier of the API
+      schema:
+        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey

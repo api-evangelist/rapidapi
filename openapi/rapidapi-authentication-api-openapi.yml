@@ -64,14 +64,6 @@ paths:
         '404':
           description: Gateway not found
 components:
-  parameters:
-    gatewayId:
-      name: gatewayId
-      in: path
-      required: true
-      description: The unique identifier of the gateway
-      schema:
-        type: string
   schemas:
     AuthenticationConfigInput:
       type: object
@@ -157,6 +149,14 @@ components:
               type: string
               description: Custom header name for authentication
           description: Header authentication configuration
+  parameters:
+    gatewayId:
+      name: gatewayId
+      in: path
+      required: true
+      description: The unique identifier of the gateway
+      schema:
+        type: string
   securitySchemes:
     rapidApiKey:
       type: apiKey

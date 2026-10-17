@@ -41,6 +41,26 @@ paths:
         '401':
           description: Unauthorized - invalid or missing API key
 components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   schemas:
     Transaction:
       type: object
@@ -72,26 +92,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the transaction occurred
-  parameters:
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
   securitySchemes:
     rapidApiKey:
       type: apiKey

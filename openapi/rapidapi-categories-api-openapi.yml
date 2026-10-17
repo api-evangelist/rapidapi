@@ -229,14 +229,6 @@ components:
         provider:
           type: string
           description: Name of the API provider
-    CategoryInput:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Display name of the category
     Category:
       type: object
       properties:
@@ -249,6 +241,14 @@ components:
         slugifiedName:
           type: string
           description: URL-friendly slug for the category
+    CategoryInput:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Display name of the category
   securitySchemes:
     rapidApiKey:
       type: apiKey

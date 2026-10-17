@@ -172,6 +172,33 @@ paths:
     - url: https://platform.rapidapi.com/v1
       description: Production Server
 components:
+  parameters:
+    offset:
+      name: offset
+      in: query
+      required: false
+      description: The number of items to skip for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: The maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    collectionId:
+      name: collectionId
+      in: path
+      required: true
+      description: The unique identifier of the collection
+      schema:
+        type: string
   schemas:
     HubCollection:
       type: object
@@ -228,22 +255,6 @@ components:
         provider:
           type: string
           description: Name of the API provider
-    CollectionInput:
-      type: object
-      required:
-      - title
-      properties:
-        title:
-          type: string
-          description: Display title of the collection
-        description:
-          type: string
-          description: Description of the collection
-        apis:
-          type: array
-          items:
-            type: string
-          description: List of API identifiers to include in the collection
     Collection:
       type: object
       properties:
@@ -265,33 +276,22 @@ components:
           type: string
           format: date-time
           description: Timestamp when the collection was created
-  parameters:
-    offset:
-      name: offset
-      in: query
-      required: false
-      description: The number of items to skip for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: The maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    collectionId:
-      name: collectionId
-      in: path
-      required: true
-      description: The unique identifier of the collection
-      schema:
-        type: string
+    CollectionInput:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          description: Display title of the collection
+        description:
+          type: string
+          description: Description of the collection
+        apis:
+          type: array
+          items:
+            type: string
+          description: List of API identifiers to include in the collection
   securitySchemes:
     rapidApiKey:
       type: apiKey
