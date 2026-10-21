@@ -3,6 +3,12 @@ method: searched
 checked:
 - https://github.com/marketplace?type=actions
 - https://registry.modelcontextprotocol.io/v0/servers
+- https://a16z.com/portfolio/
+- https://www.battery.com/company/
+- https://www.battery.com/wp-admin/admin-ajax.php
+- https://www.indexventures.com/companies/
+- https://www.sequoiacap.com/our-companies/
+- https://www.sequoiacap.com/sitemap.xml
 marketplace_apps: []
 edges:
 - partner_name: GitHub Marketplace (actions)
@@ -37,11 +43,12 @@ edges:
     registered_name: io.github.JosejuX/rapidapi-metadata-extractor
     register_id: io.github.JosejuX/rapidapi-metadata-extractor
     detected_by: sweep-agent-tools.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   mcp_registry:
     servers:
     - io.github.JosejuX/rapidapi-metadata-extractor
     - io.github.OlsOls4/calkit
+    - io.github.OlsOls4/currencykit
     - io.github.OlsOls4/dockit
     - io.github.OlsOls4/domainkit
     - io.github.OlsOls4/fraudkit
@@ -53,12 +60,13 @@ edges:
     - io.github.OlsOls4/textkit
     - io.github.OlsOls4/ukpostcode
     - io.github.OlsOls4/validkit
+    - io.github.OlsOls4/vatkit
     - io.github.OlsOls4/webkit
-    hosted_remote: 14
+    hosted_remote: 16
     local_package: 0
     transports:
-      streamable-http: 14
-    auth_declared: 14
+      streamable-http: 16
+    auth_declared: 16
     catalog_declared: true
     namespace_domains:
     - rapidapi.com
@@ -66,5 +74,34 @@ edges:
   - remote-domain
   detected_by: sweep-agent-tools.py
   first_seen: '2026-10-14'
+- partner_name: Andreessen Horowitz (a16z)
+  partner: a16z
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://a16z.com/companies/rapidapi/
+  category: vc portfolio participation
+  contract_reference:
+    register: a16z portfolio (a16z.com/portfolio/, the page's own data-companies JSON)
+    standard: null
+    spec_file: null
+    role: vc-portfolio-company
+    registered_name: RapidAPI
+    register_id: https://a16z.com/companies/rapidapi/
+    register_country: null
+    register_website: https://rapidapi.com
+    matched_domain: rapidapi.com
+    matched_by: domain
+    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
+      an ownership and participation record, not conformance or certification'
+    detected_by: sweep-vc-portfolios.py
+    detected: '2026-10-21'
+    year: '2016'
+    status: Active
+    sector: Enterprise;Seed
+  detected_by: sweep-vc-portfolios.py
+  first_seen: '2026-10-21'
 source:
 - https://github.com/marketplace?type=actions
