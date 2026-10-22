@@ -9,6 +9,8 @@ checked:
 - https://www.indexventures.com/companies/
 - https://www.sequoiacap.com/our-companies/
 - https://www.sequoiacap.com/sitemap.xml
+- https://api.apis.guru/v2/list.json
+- https://api.apis.guru/v2/providers.json
 marketplace_apps: []
 edges:
 - partner_name: GitHub Marketplace (actions)
@@ -103,5 +105,86 @@ edges:
     sector: Enterprise;Seed
   detected_by: sweep-vc-portfolios.py
   first_seen: '2026-10-21'
+- partner_name: APIs.guru OpenAPI Directory
+  partner: apis-guru
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: third-party
+  evidence: https://apis.guru/
+  category: API definition directory listing (OpenAPI)
+  contract_reference:
+    register: APIs.guru OpenAPI Directory
+    spec_file: null
+    standard: APIs.guru OpenAPI Directory
+    role: listed-in-directory
+    directory_provider: rapidapi.com
+    matched_domain: rapidapi.com
+    matched_by: domain
+    apis_listed: 6
+    version_count: 6
+    first_added: '2018-11-14'
+    last_updated: '2023-03-15'
+    origin_publisher_hosted: false
+    origin_hosts:
+    - advicement.io
+    - boggio-analytics.com
+    - corrently.io
+    - idealspot.gitlab.io
+    - raw.githubusercontent.com
+    categories:
+    - developer_tools
+    - text
+    own_openapi_files: 29
+    listings:
+    - key: rapidapi.com:dynamicdocs
+      title: DynamicDocs
+      preferred: '1.0'
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/rapidapi.com/dynamicdocs/1.0/openapi.json
+      origin_url: https://advicement.io/open_api_spec/dynamicdocs.json
+      openapi_version: 3.0.0
+    - key: rapidapi.com:ecowetter
+      title: Historische  Daten
+      preferred: 1.0.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/rapidapi.com/ecowetter/1.0.0/openapi.json
+      origin_url: https://corrently.io/attachments/4
+      openapi_version: 3.0.0
+    - key: rapidapi.com:football-prediction
+      title: Football Prediction API
+      preferred: '2'
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/rapidapi.com/football-prediction/2/openapi.json
+      origin_url: https://boggio-analytics.com/fp-api/schema/football-prediction-openapi.yaml
+      openapi_version: 3.0.1
+    - key: rapidapi.com:idealspot-geodata
+      title: IdealSpot GeoData
+      preferred: '1.0'
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/rapidapi.com/idealspot-geodata/1.0/openapi.json
+      origin_url: https://idealspot.gitlab.io/developer-docs/specs/idealspot-swagger20.json
+      openapi_version: 3.0.0
+    - key: rapidapi.com:language-identification
+      title: Language Identification (Prediction)
+      preferred: 1.0.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/rapidapi.com/language-identification/1.0.0/swagger.json
+      origin_url: https://raw.githubusercontent.com/BigLobsterito/apis/master/language-identification-swagger.yaml
+      openapi_version: '2.0'
+    - key: rapidapi.com:spellcheckpro
+      title: SpellCheckPro
+      preferred: 1.0.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/rapidapi.com/spellcheckpro/1.0.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/VipulBachani/SpellCheckerPro/44da96c5bfa723362f5a3d3d6af441a4e818b93a/SpellCheckPro.postman_collection.json
+      openapi_version: 3.0.3
+    signal_note: 'participation only: a community directory listing (APIs.guru collects definitions; the provider
+      did not file them). Signals: version_count, apis_listed, origin_publisher_hosted.'
+    detected_by: sweep-openapi-directory-apis-guru.py
+    detected: '2026-10-22'
+  detected_by: sweep-openapi-directory-apis-guru.py
+  first_seen: '2026-10-22'
 source:
 - https://github.com/marketplace?type=actions
