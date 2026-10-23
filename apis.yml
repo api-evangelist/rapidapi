@@ -69,6 +69,8 @@ maintainers:
   email: info@apievangelist.com
 
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/rapidapi/overview
 - type: FinOps
   url: finops/rapidapi-finops.yml
 - type: RateLimits
