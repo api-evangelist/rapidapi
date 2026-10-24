@@ -1,363 +1,340 @@
 {
+  "info": {
+    "_postman_id": "11cb760b-91c8-4229-aea2-db46b550a665",
+    "name": "RapidAPI REST Platform Users API",
+    "description": "The RapidAPI REST Platform API allows Enterprise Hub administrators to programmatically manage their API hub configurations through RESTful endpoints. It provides CRUD operations for organizations, categories, tags, collections, transactions, subscriptions, users, APIs, and applications. This API enables automation of tasks normally performed through the Enterprise Hub Admin Panel, making it possible to integrate hub management into CI/CD pipelines and custom workflows.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:53:19.000Z",
+    "updatedAt": "2026-10-22T01:53:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-11cb760b-91c8-4229-aea2-db46b550a665"
+  },
   "item": [
     {
-      "id": "7b352443-489d-41fd-b12a-9432acc85241",
-      "name": "Users",
-      "description": {
-        "content": "Endpoints for managing users within the Enterprise Hub, including user roles, permissions, and account configurations.",
-        "type": "text/plain"
-      },
+      "name": "users",
       "item": [
         {
-          "id": "8ebf46c0-023d-446e-b203-c6475246c55d",
+          "name": "{userId}",
+          "item": [
+            {
+              "name": "Get a user",
+              "id": "00402c93-00ac-431c-85c6-1a21e8603b18",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:userId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":userId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b1f1f170-bc59-49dd-83ed-6ecfd199a566",
+                      "key": "userId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the user"
+                    }
+                  ]
+                },
+                "description": "Retrieves the details of a specific user by their unique identifier, including their profile, roles, and subscription information."
+              },
+              "response": [
+                {
+                  "id": "4f06a9e2-1294-46d1-9862-bb910c1a14dc",
+                  "name": "User details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "userId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"role\": \"user\",\n  \"status\": \"pending\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:53:19.000Z",
+                  "updatedAt": "2026-10-22T01:53:19.000Z",
+                  "uid": "35240-4f06a9e2-1294-46d1-9862-bb910c1a14dc"
+                },
+                {
+                  "id": "493edf9e-3bcd-433f-a235-d495339e6dd6",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "userId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:53:19.000Z",
+                  "updatedAt": "2026-10-22T01:53:19.000Z",
+                  "uid": "35240-493edf9e-3bcd-433f-a235-d495339e6dd6"
+                },
+                {
+                  "id": "2251b9c7-f6bd-4bcd-b2fd-5496060c6ceb",
+                  "name": "User not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "userId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:53:19.000Z",
+                  "updatedAt": "2026-10-22T01:53:19.000Z",
+                  "uid": "35240-2251b9c7-f6bd-4bcd-b2fd-5496060c6ceb"
+                }
+              ],
+              "createdAt": "2026-10-22T01:53:19.000Z",
+              "updatedAt": "2026-10-22T01:53:19.000Z",
+              "uid": "35240-00402c93-00ac-431c-85c6-1a21e8603b18"
+            }
+          ],
+          "id": "25047192-6f31-437d-9b56-ba8aa1a9454d",
+          "createdAt": "2026-10-22T01:53:19.000Z",
+          "updatedAt": "2026-10-22T01:53:19.000Z",
+          "uid": "35240-25047192-6f31-437d-9b56-ba8aa1a9454d"
+        },
+        {
           "name": "List all users",
+          "id": "095963b9-107b-4956-902e-9a47f4b6e3d0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "List all users",
-            "description": {
-              "content": "Retrieves a list of all users in the Enterprise Hub, including their roles, email addresses, and account statuses.",
-              "type": "text/plain"
-            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/users?offset=0&limit=25",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "users"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "The number of items to skip for pagination",
                   "key": "offset",
-                  "value": "0",
-                  "description": "The number of items to skip for pagination"
+                  "value": "0"
                 },
                 {
-                  "disabled": false,
+                  "description": "The maximum number of items to return",
                   "key": "limit",
-                  "value": "25",
-                  "description": "The maximum number of items to return"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "41aec0e3-8ded-42dd-8c4b-025467c7e8c4",
-              "name": "A list of users",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"users\": [\n    {\n      \"id\": \"string\",\n      \"email\": \"vu5D14nECTw1Ct@BcqbUBHnYjHTFlwFVmglqdUTfjWVW.qtih\",\n      \"name\": \"string\",\n      \"role\": \"provider\",\n      \"status\": \"inactive\",\n      \"createdAt\": \"2007-01-17T14:39:32.652Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"email\": \"ukGjOj@LcUHnebMTn.oka\",\n      \"name\": \"string\",\n      \"role\": \"user\",\n      \"status\": \"pending\",\n      \"createdAt\": \"2007-08-01T04:40:33.792Z\"\n    }\n  ],\n  \"totalCount\": 4625\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "454dd359-d319-41e1-b819-6b73c04c5025",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4dea31ab-2ef9-41d2-a0cb-08f0b7eb93cf",
-          "name": "Get a user",
-          "request": {
-            "name": "Get a user",
-            "description": {
-              "content": "Retrieves the details of a specific user by their unique identifier, including their profile, roles, and subscription information.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                ":userId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "userId",
-                  "description": "(Required) The unique identifier of the user"
+                  "value": "25"
                 }
               ]
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            "description": "Retrieves a list of all users in the Enterprise Hub, including their roles, email addresses, and account statuses."
           },
           "response": [
             {
-              "id": "9e98dada-01ef-409c-b3da-f7379b0a8268",
-              "name": "User details",
+              "id": "ddafb32f-9bd1-4727-9874-996f00f624fb",
+              "name": "A list of users",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) The unique identifier of the user"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/users?offset=0&limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of items to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "The maximum number of items to return",
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"email\": \"r8CNizttgOQi1XJ@WkYraIDmpQtCYNHsKKEXAYwTb.rfde\",\n  \"name\": \"string\",\n  \"role\": \"admin\",\n  \"status\": \"inactive\",\n  \"createdAt\": \"1977-11-26T00:54:50.632Z\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"users\": [\n    {\n      \"id\": \"<string>\",\n      \"email\": \"<email>\",\n      \"name\": \"<string>\",\n      \"role\": \"user\",\n      \"status\": \"active\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"email\": \"<email>\",\n      \"name\": \"<string>\",\n      \"role\": \"user\",\n      \"status\": \"active\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+              "createdAt": "2026-10-22T01:53:19.000Z",
+              "updatedAt": "2026-10-22T01:53:19.000Z",
+              "uid": "35240-ddafb32f-9bd1-4727-9874-996f00f624fb"
             },
             {
-              "id": "5d825eef-9e9b-44f3-b3f7-0f6af819050e",
+              "id": "aa9fbe91-f25a-4999-a4e5-c0362821bc74",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) The unique identifier of the user"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/users?offset=0&limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of items to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "The maximum number of items to return",
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "f9eb312e-2ab8-48db-b526-6ca63f071631",
-              "name": "User not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "userId",
-                      "description": "(Required) The unique identifier of the user"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:53:19.000Z",
+              "updatedAt": "2026-10-22T01:53:19.000Z",
+              "uid": "35240-aa9fbe91-f25a-4999-a4e5-c0362821bc74"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:53:19.000Z",
+          "updatedAt": "2026-10-22T01:53:19.000Z",
+          "uid": "35240-095963b9-107b-4956-902e-9a47f4b6e3d0"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "06359ecf-b654-4ae6-a033-dda52e6536a3",
+      "createdAt": "2026-10-22T01:53:19.000Z",
+      "updatedAt": "2026-10-22T01:53:19.000Z",
+      "uid": "35240-06359ecf-b654-4ae6-a033-dda52e6536a3"
     }
   ],
   "auth": {
@@ -365,25 +342,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "43037d0e-f583-4a51-a3c3-7386639d8db4",
-    "name": "RapidAPI Gateway Alerts Users API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://platform.rapidapi.com/v1"
     }
-  }
+  ]
 }

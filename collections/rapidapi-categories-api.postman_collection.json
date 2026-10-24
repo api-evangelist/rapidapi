@@ -1,149 +1,804 @@
 {
+  "info": {
+    "_postman_id": "fa3e2817-f29b-49d4-915c-f2d0490a3298",
+    "name": "Rapidapi Categories API",
+    "description": "Operations tagged Categories across 2 of this provider's published API definitions: rapidapi-hub-api-openapi.yml, rapidapi-rest-platform-api-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:50:48.000Z",
+    "updatedAt": "2026-10-22T01:50:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fa3e2817-f29b-49d4-915c-f2d0490a3298"
+  },
   "item": [
     {
-      "id": "dea450f2-ceb5-47ad-a398-6c9786b40f2a",
-      "name": "Categories",
-      "description": {
-        "content": "Endpoints for browsing API categories available on the marketplace, including Data, Sports, Finance, Travel, and Entertainment.",
-        "type": "text/plain"
-      },
+      "name": "categories",
       "item": [
         {
-          "id": "cd7bbf3c-289f-40bb-9813-98817b0b18a3",
-          "name": "List marketplace categories",
-          "request": {
-            "name": "List marketplace categories",
-            "description": {
-              "content": "Retrieves all API categories available on the RapidAPI marketplace, including category names, slugs, and the number of APIs in each.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "categories"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{categorySlug}",
+          "item": [
             {
-              "id": "cdb4f667-ba3b-41ae-a26a-a255f2243976",
-              "name": "A list of marketplace categories",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories"
+              "name": "apis",
+              "item": [
+                {
+                  "name": "List APIs in a category",
+                  "id": "31fcf004-0dd5-4087-b725-cc78c57323f0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/categories/:categorySlug/apis?offset=0&limit=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "categories",
+                        ":categorySlug",
+                        "apis"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of items to return",
+                          "key": "limit",
+                          "value": "25"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "4698463e-1b1c-4935-bb8f-a3a6972b3089",
+                          "key": "categorySlug",
+                          "value": "<string>",
+                          "description": "(Required) The URL-friendly slug of the category"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves all APIs within a specific category on the RapidAPI marketplace, sorted by popularity or relevance."
+                  },
+                  "response": [
+                    {
+                      "id": "0d76ea19-53fa-4e95-8741-b85355084153",
+                      "name": "APIs in the specified category",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/categories/:categorySlug/apis?offset=0&limit=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "categories",
+                            ":categorySlug",
+                            "apis"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "The maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "categorySlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"apis\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"description\": \"<string>\",\n      \"category\": \"<string>\",\n      \"imageUrl\": \"<uri>\",\n      \"averageRating\": \"<float>\",\n      \"popularity\": \"<float>\",\n      \"isVerified\": \"<boolean>\",\n      \"provider\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"description\": \"<string>\",\n      \"category\": \"<string>\",\n      \"imageUrl\": \"<uri>\",\n      \"averageRating\": \"<float>\",\n      \"popularity\": \"<float>\",\n      \"isVerified\": \"<boolean>\",\n      \"provider\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                      "createdAt": "2026-10-22T01:50:49.000Z",
+                      "updatedAt": "2026-10-22T01:50:49.000Z",
+                      "uid": "35240-0d76ea19-53fa-4e95-8741-b85355084153"
+                    },
+                    {
+                      "id": "dc2fba59-4530-4a71-8b5e-ba2fcf17087a",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/categories/:categorySlug/apis?offset=0&limit=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "categories",
+                            ":categorySlug",
+                            "apis"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "The maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "categorySlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:50:49.000Z",
+                      "updatedAt": "2026-10-22T01:50:49.000Z",
+                      "uid": "35240-dc2fba59-4530-4a71-8b5e-ba2fcf17087a"
+                    },
+                    {
+                      "id": "f9819493-73ab-4452-9b21-49df01c538e3",
+                      "name": "Category not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/categories/:categorySlug/apis?offset=0&limit=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "categories",
+                            ":categorySlug",
+                            "apis"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "The maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "categorySlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:50:49.000Z",
+                      "updatedAt": "2026-10-22T01:50:49.000Z",
+                      "uid": "35240-f9819493-73ab-4452-9b21-49df01c538e3"
+                    }
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                  "createdAt": "2026-10-22T01:50:49.000Z",
+                  "updatedAt": "2026-10-22T01:50:49.000Z",
+                  "uid": "35240-31fcf004-0dd5-4087-b725-cc78c57323f0"
+                }
+              ],
+              "id": "f2afdcc0-204a-4cef-8c48-b302ec014b4d",
+              "createdAt": "2026-10-22T01:50:49.000Z",
+              "updatedAt": "2026-10-22T01:50:49.000Z",
+              "uid": "35240-f2afdcc0-204a-4cef-8c48-b302ec014b4d"
+            }
+          ],
+          "id": "c233e07c-2fc3-4a9d-b4d4-a790335e11d0",
+          "createdAt": "2026-10-22T01:50:49.000Z",
+          "updatedAt": "2026-10-22T01:50:49.000Z",
+          "uid": "35240-c233e07c-2fc3-4a9d-b4d4-a790335e11d0"
+        },
+        {
+          "name": "{categoryId}",
+          "item": [
+            {
+              "name": "Update a category",
+              "id": "3d842ca5-1ecb-425c-bd5c-874f33996415",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/categories/:categoryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories",
+                    ":categoryId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2602f8a9-cc7c-4f93-9f38-a60b0dc17b09",
+                      "key": "categoryId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the category"
+                    }
+                  ]
+                },
+                "description": "Updates an existing API category in the Enterprise Hub."
+              },
+              "response": [
+                {
+                  "id": "5c507f8f-14d2-49b5-b35a-2a0e59f0f821",
+                  "name": "Category updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/categories/:categoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "categories",
+                        ":categoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "categoryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"slugifiedName\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:50:49.000Z",
+                  "updatedAt": "2026-10-22T01:50:49.000Z",
+                  "uid": "35240-5c507f8f-14d2-49b5-b35a-2a0e59f0f821"
+                },
+                {
+                  "id": "8a162235-0784-40e5-8103-3daffc9a9ecd",
+                  "name": "Bad request - invalid input parameters",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/categories/:categoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "categories",
+                        ":categoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "categoryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:49.000Z",
+                  "updatedAt": "2026-10-22T01:50:49.000Z",
+                  "uid": "35240-8a162235-0784-40e5-8103-3daffc9a9ecd"
+                },
+                {
+                  "id": "1422a4b4-f280-4c70-a5d4-4f767e68cdf2",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/categories/:categoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "categories",
+                        ":categoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "categoryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:49.000Z",
+                  "updatedAt": "2026-10-22T01:50:49.000Z",
+                  "uid": "35240-1422a4b4-f280-4c70-a5d4-4f767e68cdf2"
+                },
+                {
+                  "id": "d7a250ac-304e-4e64-87ed-a562b4e33810",
+                  "name": "Category not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/categories/:categoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "categories",
+                        ":categoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "categoryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:49.000Z",
+                  "updatedAt": "2026-10-22T01:50:49.000Z",
+                  "uid": "35240-d7a250ac-304e-4e64-87ed-a562b4e33810"
+                }
+              ],
+              "createdAt": "2026-10-22T01:50:49.000Z",
+              "updatedAt": "2026-10-22T01:50:49.000Z",
+              "uid": "35240-3d842ca5-1ecb-425c-bd5c-874f33996415"
+            },
+            {
+              "name": "Delete a category",
+              "id": "e6b830b5-7359-48cf-bf1f-641e1d090ddc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/categories/:categoryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories",
+                    ":categoryId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8e710f45-f6f2-4747-b437-0191c12fbbb3",
+                      "key": "categoryId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the category"
+                    }
+                  ]
+                },
+                "description": "Deletes an API category from the Enterprise Hub. APIs in this category will need to be reassigned."
+              },
+              "response": [
+                {
+                  "id": "15b5973d-62bb-471b-ac9f-0b2448c0e9c5",
+                  "name": "Category deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/categories/:categoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "categories",
+                        ":categoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "categoryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:49.000Z",
+                  "updatedAt": "2026-10-22T01:50:49.000Z",
+                  "uid": "35240-15b5973d-62bb-471b-ac9f-0b2448c0e9c5"
+                },
+                {
+                  "id": "2ea447cc-f680-499c-905d-e486885864fe",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/categories/:categoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "categories",
+                        ":categoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "categoryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:49.000Z",
+                  "updatedAt": "2026-10-22T01:50:49.000Z",
+                  "uid": "35240-2ea447cc-f680-499c-905d-e486885864fe"
+                },
+                {
+                  "id": "a8173bf6-513f-444b-b2b1-c382e8338456",
+                  "name": "Category not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/categories/:categoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "categories",
+                        ":categoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "categoryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:49.000Z",
+                  "updatedAt": "2026-10-22T01:50:49.000Z",
+                  "uid": "35240-a8173bf6-513f-444b-b2b1-c382e8338456"
+                }
+              ],
+              "createdAt": "2026-10-22T01:50:49.000Z",
+              "updatedAt": "2026-10-22T01:50:49.000Z",
+              "uid": "35240-e6b830b5-7359-48cf-bf1f-641e1d090ddc"
+            }
+          ],
+          "id": "191cfdcf-29bf-4cac-91a3-a5fa6ce45305",
+          "createdAt": "2026-10-22T01:50:49.000Z",
+          "updatedAt": "2026-10-22T01:50:49.000Z",
+          "uid": "35240-191cfdcf-29bf-4cac-91a3-a5fa6ce45305"
+        },
+        {
+          "name": "List marketplace categories",
+          "id": "2f0f0bae-b700-47ff-8026-41908f489636",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            },
+            "description": "Retrieves all API categories available on the RapidAPI marketplace, including category names, slugs, and the number of APIs in each."
+          },
+          "response": [
+            {
+              "id": "9b338f46-dd7e-42f8-bc47-3d4761790944",
+              "name": "A list of marketplace categories",
+              "originalRequest": {
                 "method": "GET",
-                "body": {}
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"categories\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"apiCount\": 4928\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"apiCount\": 7320\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"categories\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"apiCount\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"apiCount\": \"<integer>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:50:49.000Z",
+              "updatedAt": "2026-10-22T01:50:49.000Z",
+              "uid": "35240-9b338f46-dd7e-42f8-bc47-3d4761790944"
             },
             {
-              "id": "c52269bc-f983-48b0-940f-d5bd031d0e41",
+              "id": "d7bdd5ef-ecc4-4a7f-ae29-242b728d9acf",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:50:49.000Z",
+              "updatedAt": "2026-10-22T01:50:49.000Z",
+              "uid": "35240-d7bdd5ef-ecc4-4a7f-ae29-242b728d9acf"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:50:49.000Z",
+          "updatedAt": "2026-10-22T01:50:49.000Z",
+          "uid": "35240-2f0f0bae-b700-47ff-8026-41908f489636"
         },
         {
-          "id": "18f0d073-e938-497a-8742-1f7f4b81c333",
           "name": "Create a category",
+          "id": "b69ae0a0-3e82-44e4-9925-4d6e4e35af69",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Create a category",
-            "description": {
-              "content": "Creates a new API category in the Enterprise Hub for organizing APIs.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "categories"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -154,883 +809,188 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"name\": \"<string>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            },
+            "description": "Creates a new API category in the Enterprise Hub for organizing APIs."
           },
           "response": [
             {
-              "id": "bfea1b0c-73a8-47e5-868f-e3fa0d37902a",
+              "id": "4bedd245-c875-47d8-b97e-ce9b23b4589f",
               "name": "Category created successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"name\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"slugifiedName\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"slugifiedName\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:50:49.000Z",
+              "updatedAt": "2026-10-22T01:50:49.000Z",
+              "uid": "35240-4bedd245-c875-47d8-b97e-ce9b23b4589f"
             },
             {
-              "id": "41f3afc3-d626-481d-a103-0178f16dc9f4",
+              "id": "d7db0169-374e-46d5-bc9a-9b38c6dc6214",
               "name": "Bad request - invalid input parameters",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"name\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:50:49.000Z",
+              "updatedAt": "2026-10-22T01:50:49.000Z",
+              "uid": "35240-d7db0169-374e-46d5-bc9a-9b38c6dc6214"
             },
             {
-              "id": "2f209f86-87e9-4045-9eaa-e2756abead1f",
+              "id": "e5509cd6-5581-48e8-8191-e864e6c5c106",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "categories"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:50:49.000Z",
+              "updatedAt": "2026-10-22T01:50:49.000Z",
+              "uid": "35240-e5509cd6-5581-48e8-8191-e864e6c5c106"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1bd72d92-1b95-4b11-95cd-a4a385d2dc54",
-          "name": "List APIs in a category",
-          "request": {
-            "name": "List APIs in a category",
-            "description": {
-              "content": "Retrieves all APIs within a specific category on the RapidAPI marketplace, sorted by popularity or relevance.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "categories",
-                ":categorySlug",
-                "apis"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "The number of items to skip for pagination"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "25",
-                  "description": "The maximum number of items to return"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "categorySlug",
-                  "description": "(Required) The URL-friendly slug of the category"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9986d9b4-dff1-48ec-b333-0c838eb084e6",
-              "name": "APIs in the specified category",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories",
-                    ":categorySlug",
-                    "apis"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "categorySlug",
-                      "description": "(Required) The URL-friendly slug of the category"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"apis\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"imageUrl\": \"https://wrBQNGPbtbfrXOFFHQAJDhOSaFNMpHkth.qwofJ02QpclMebJKp+rWQ-wrgTkjvSuqCZySD8Hmina\",\n      \"averageRating\": 136.80689584162576,\n      \"popularity\": 6115.096390337115,\n      \"isVerified\": false,\n      \"provider\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"imageUrl\": \"https://IqWndLCscQpaR.fqyyT87dVcaWDPccwNjGDrfIlXinoFgDgqxunCagAnzUuLje54qPv\",\n      \"averageRating\": 8151.699120155436,\n      \"popularity\": 614.4632668289319,\n      \"isVerified\": true,\n      \"provider\": \"string\"\n    }\n  ],\n  \"totalCount\": 2114\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "529e2a24-3a57-451f-aae6-8974ce84c3c0",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories",
-                    ":categorySlug",
-                    "apis"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "categorySlug",
-                      "description": "(Required) The URL-friendly slug of the category"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "a393aeae-955c-4635-9c73-84dda8e1e6f6",
-              "name": "Category not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories",
-                    ":categorySlug",
-                    "apis"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "categorySlug",
-                      "description": "(Required) The URL-friendly slug of the category"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "986c3c82-fd38-48f2-9a05-b5cf088510ef",
-          "name": "Update a category",
-          "request": {
-            "name": "Update a category",
-            "description": {
-              "content": "Updates an existing API category in the Enterprise Hub.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "categories",
-                ":categoryId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "categoryId",
-                  "description": "(Required) The unique identifier of the category"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "d4fa7306-620e-4253-8327-9ddb3b2a70cf",
-              "name": "Category updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories",
-                    ":categoryId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "categoryId",
-                      "description": "(Required) The unique identifier of the category"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"slugifiedName\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b264463c-fb61-47b3-a857-3b642430cec0",
-              "name": "Bad request - invalid input parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories",
-                    ":categoryId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "categoryId",
-                      "description": "(Required) The unique identifier of the category"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "fcfbe6c5-27f3-4748-abbb-cdc71f589241",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories",
-                    ":categoryId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "categoryId",
-                      "description": "(Required) The unique identifier of the category"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "324dd3b1-5c49-4225-96b2-c5769d39714b",
-              "name": "Category not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories",
-                    ":categoryId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "categoryId",
-                      "description": "(Required) The unique identifier of the category"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2a1852e8-cc5b-4d2a-a91d-5330a96f40c3",
-          "name": "Delete a category",
-          "request": {
-            "name": "Delete a category",
-            "description": {
-              "content": "Deletes an API category from the Enterprise Hub. APIs in this category will need to be reassigned.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "categories",
-                ":categoryId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "categoryId",
-                  "description": "(Required) The unique identifier of the category"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9a8e647b-b04b-447d-8470-c694313f6f6d",
-              "name": "Category deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories",
-                    ":categoryId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "categoryId",
-                      "description": "(Required) The unique identifier of the category"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "5608e777-dbb9-4b78-9bdd-7e04d7653599",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories",
-                    ":categoryId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "categoryId",
-                      "description": "(Required) The unique identifier of the category"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "ac81f0e5-9a8b-4c8c-8fa8-4bbbdf18ca95",
-              "name": "Category not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "categories",
-                    ":categoryId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "categoryId",
-                      "description": "(Required) The unique identifier of the category"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:50:49.000Z",
+          "updatedAt": "2026-10-22T01:50:49.000Z",
+          "uid": "35240-b69ae0a0-3e82-44e4-9925-4d6e4e35af69"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "e9899dae-05d7-4161-bb9a-c46873a11626",
+      "createdAt": "2026-10-22T01:50:49.000Z",
+      "updatedAt": "2026-10-22T01:50:49.000Z",
+      "uid": "35240-e9899dae-05d7-4161-bb9a-c46873a11626"
     }
   ],
   "auth": {
@@ -1038,25 +998,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "42c90bd5-65bc-49ba-b4d5-e6524b716b50",
-    "name": "RapidAPI Gateway Alerts Categories API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rapidapi.com"
     }
-  }
+  ]
 }

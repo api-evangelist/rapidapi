@@ -1,219 +1,211 @@
 {
+  "info": {
+    "_postman_id": "5227d874-e4e9-44db-affd-3266d2a312da",
+    "name": "RapidAPI Studio Requests API",
+    "description": "RapidAPI Studio is an API design and development environment that enables teams to design, build, and document APIs collaboratively. It supports importing and editing OpenAPI specifications and Postman Collections, providing a visual interface for defining endpoints, parameters, and response schemas. Studio integrates with the broader RapidAPI platform, allowing developers to publish designed APIs directly to the hub and generate documentation automatically from API definitions.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:52:15.000Z",
+    "updatedAt": "2026-10-22T01:52:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5227d874-e4e9-44db-affd-3266d2a312da"
+  },
   "item": [
     {
-      "id": "512bc8bd-977d-4c75-ad6c-9a659ac1b438",
-      "name": "Requests",
-      "description": {
-        "content": "Endpoints for managing saved API requests within a project, including importing from spec files and organizing into groups.",
-        "type": "text/plain"
-      },
+      "name": "projects",
       "item": [
         {
-          "id": "26bdcc34-d769-4100-a438-8bbc9959a9a7",
-          "name": "List saved requests",
-          "request": {
-            "name": "List saved requests",
-            "description": {
-              "content": "Retrieves all saved API requests within a project, organized into groups. Requests are used for testing and documentation.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "projects",
-                ":projectId",
-                "requests"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectId",
-                  "description": "(Required) The unique identifier of the project"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{projectId}",
+          "item": [
             {
-              "id": "d3df9f7c-eef5-46d2-9a22-195a6f92ea0e",
-              "name": "A list of saved requests",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "requests"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+              "name": "requests",
+              "item": [
+                {
+                  "name": "List saved requests",
+                  "id": "55af7258-bb57-458f-9723-d91a93c37cf3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"requests\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"method\": \"string\",\n      \"url\": \"https://kpyWBcIyhRbSLuHs.ocarGeRivDmWz8F4n,VLwfavGBZtPwq9Yx06Sm8sLynCcc+sB\",\n      \"group\": \"string\",\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"body\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"method\": \"string\",\n      \"url\": \"https://gqjxYHErcrTdfYFTdmoMFVPG.bncGP51jw.GdykxkLO6LtSjNl,RNh5\",\n      \"group\": \"string\",\n      \"headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\",\n        \"key_4\": \"string\"\n      },\n      \"body\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "659e484c-a29d-4077-bc25-fe079b9d25ff",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "requests"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/requests",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "requests"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3c2e3176-d4eb-4eb1-9005-3e7d1594a6ae",
+                          "key": "projectId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the project"
+                        }
+                      ]
                     },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "0b0698a3-2688-4c1b-877c-e2f2b264df77",
-              "name": "Project not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "requests"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                    "description": "Retrieves all saved API requests within a project, organized into groups. Requests are used for testing and documentation."
+                  },
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                      "id": "ba029509-99ee-4595-981a-1bb4281f9ddb",
+                      "name": "A list of saved requests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/requests",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "requests"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requests\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"group\": \"<string>\",\n      \"headers\": {\n        \"adipisicing0\": \"<string>\"\n      },\n      \"body\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"group\": \"<string>\",\n      \"headers\": {\n        \"fugiat__7\": \"<string>\"\n      },\n      \"body\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:52:16.000Z",
+                      "updatedAt": "2026-10-22T01:52:16.000Z",
+                      "uid": "35240-ba029509-99ee-4595-981a-1bb4281f9ddb"
                     },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                    {
+                      "id": "04e2eca8-62f0-4d6b-ab35-6c5db969badf",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/requests",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "requests"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:16.000Z",
+                      "updatedAt": "2026-10-22T01:52:16.000Z",
+                      "uid": "35240-04e2eca8-62f0-4d6b-ab35-6c5db969badf"
+                    },
+                    {
+                      "id": "0c329679-b0ef-4bb5-b99d-49ad5c56ae95",
+                      "name": "Project not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/requests",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "requests"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:16.000Z",
+                      "updatedAt": "2026-10-22T01:52:16.000Z",
+                      "uid": "35240-0c329679-b0ef-4bb5-b99d-49ad5c56ae95"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:16.000Z",
+                  "updatedAt": "2026-10-22T01:52:16.000Z",
+                  "uid": "35240-55af7258-bb57-458f-9723-d91a93c37cf3"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "2ba7228b-f30c-40ce-8bb7-dc31c4d7cc8f",
+              "createdAt": "2026-10-22T01:52:16.000Z",
+              "updatedAt": "2026-10-22T01:52:16.000Z",
+              "uid": "35240-2ba7228b-f30c-40ce-8bb7-dc31c4d7cc8f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "5d9afb1c-ecf1-4fd2-a498-d331530d3f16",
+          "createdAt": "2026-10-22T01:52:16.000Z",
+          "updatedAt": "2026-10-22T01:52:16.000Z",
+          "uid": "35240-5d9afb1c-ecf1-4fd2-a498-d331530d3f16"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "ef7e3772-3661-4326-abde-81adbd3905fc",
+      "createdAt": "2026-10-22T01:52:16.000Z",
+      "updatedAt": "2026-10-22T01:52:16.000Z",
+      "uid": "35240-ef7e3772-3661-4326-abde-81adbd3905fc"
     }
   ],
   "auth": {
@@ -221,25 +213,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "2cd4120c-91e9-44de-a8a7-b6d71343d336",
-    "name": "RapidAPI Gateway Alerts Requests API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://studio.rapidapi.com/v1"
     }
-  }
+  ]
 }

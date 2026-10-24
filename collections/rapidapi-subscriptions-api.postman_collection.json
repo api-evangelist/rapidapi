@@ -1,430 +1,436 @@
 {
+  "info": {
+    "_postman_id": "cebdbecf-b08a-40cd-842f-11a70e07314b",
+    "name": "Rapidapi Subscriptions API",
+    "description": "Operations tagged Subscriptions across 2 of this provider's published API definitions: rapidapi-hub-api-openapi.yml, rapidapi-rest-platform-api-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:52:52.000Z",
+    "updatedAt": "2026-10-22T01:52:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cebdbecf-b08a-40cd-842f-11a70e07314b"
+  },
   "item": [
     {
-      "id": "ecbf7ae8-c33c-413a-a50b-e5f49edd28d1",
-      "name": "Subscriptions",
-      "description": {
-        "content": "Endpoints for managing API subscriptions, including subscribing to API plans, viewing active subscriptions, and usage analytics.",
-        "type": "text/plain"
-      },
+      "name": "subscriptions",
       "item": [
         {
-          "id": "29ce29cc-b2fc-4092-ab92-16f249bea092",
           "name": "List my subscriptions",
+          "id": "448cc660-fe23-4154-8ffd-87302e88dc66",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "List my subscriptions",
-            "description": {
-              "content": "Retrieves the authenticated user's active API subscriptions, including plan details and usage statistics.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "subscriptions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions"
+              ]
+            },
+            "description": "Retrieves the authenticated user's active API subscriptions, including plan details and usage statistics."
           },
           "response": [
             {
-              "id": "d2992667-adcb-457f-b3ee-df2ad9db3ec9",
+              "id": "99dc749e-47c5-46a3-ab1e-8ff7e657ce55",
               "name": "List of active subscriptions",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "subscriptions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscriptions"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"subscriptions\": [\n    {\n      \"id\": \"string\",\n      \"apiId\": \"string\",\n      \"apiName\": \"string\",\n      \"planName\": \"string\",\n      \"status\": \"cancelled\",\n      \"usageCount\": 9126,\n      \"usageLimit\": 5474,\n      \"subscribedAt\": \"2025-07-07T13:17:12.319Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"apiId\": \"string\",\n      \"apiName\": \"string\",\n      \"planName\": \"string\",\n      \"status\": \"cancelled\",\n      \"usageCount\": 3878,\n      \"usageLimit\": 5748,\n      \"subscribedAt\": \"1951-06-04T16:42:34.828Z\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"subscriptions\": [\n    {\n      \"id\": \"<string>\",\n      \"apiId\": \"<string>\",\n      \"apiName\": \"<string>\",\n      \"planName\": \"<string>\",\n      \"status\": \"active\",\n      \"usageCount\": \"<integer>\",\n      \"usageLimit\": \"<integer>\",\n      \"subscribedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"apiId\": \"<string>\",\n      \"apiName\": \"<string>\",\n      \"planName\": \"<string>\",\n      \"status\": \"cancelled\",\n      \"usageCount\": \"<integer>\",\n      \"usageLimit\": \"<integer>\",\n      \"subscribedAt\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:52:53.000Z",
+              "updatedAt": "2026-10-22T01:52:53.000Z",
+              "uid": "35240-99dc749e-47c5-46a3-ab1e-8ff7e657ce55"
             },
             {
-              "id": "e30de2af-6b59-49c8-b696-ad1a35f82e93",
+              "id": "4323dcfe-1890-4d4e-8693-923239bf0822",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/subscriptions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "subscriptions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c6af39d5-30e0-4654-8eed-d1ef34c2e096",
-          "name": "Subscribe to an API",
-          "request": {
-            "name": "Subscribe to an API",
-            "description": {
-              "content": "Subscribes the authenticated user to a specific API plan on the marketplace. After subscribing, the user can make API calls using their RapidAPI key.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apis",
-                ":apiSlug",
-                "subscribe"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "apiSlug",
-                  "description": "(Required) The URL-friendly slug or identifier of the API"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"planId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "7da7cb75-fe11-4702-a0a8-f1cf1032b8c3",
-              "name": "Subscription created successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiSlug",
-                    "subscribe"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiSlug",
-                      "description": "(Required) The URL-friendly slug or identifier of the API"
-                    }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"planId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"apiId\": \"string\",\n  \"apiName\": \"string\",\n  \"planName\": \"string\",\n  \"status\": \"cancelled\",\n  \"usageCount\": 954,\n  \"usageLimit\": 626,\n  \"subscribedAt\": \"2002-12-11T19:50:42.445Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "32b9fac6-e91b-4d6f-838f-d3698e16ef38",
-              "name": "Bad request - invalid plan or already subscribed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiSlug",
-                    "subscribe"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiSlug",
-                      "description": "(Required) The URL-friendly slug or identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"planId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "f8dd4c41-6727-4b5d-8a04-95c7f1361fe8",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiSlug",
-                    "subscribe"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiSlug",
-                      "description": "(Required) The URL-friendly slug or identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"planId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
                 }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "e1c29e58-9d5f-4ca4-9dcb-b85a18ce80cd",
-              "name": "API or plan not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiSlug",
-                    "subscribe"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiSlug",
-                      "description": "(Required) The URL-friendly slug or identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"planId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:52:53.000Z",
+              "updatedAt": "2026-10-22T01:52:53.000Z",
+              "uid": "35240-4323dcfe-1890-4d4e-8693-923239bf0822"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:52:53.000Z",
+          "updatedAt": "2026-10-22T01:52:53.000Z",
+          "uid": "35240-448cc660-fe23-4154-8ffd-87302e88dc66"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
+      "id": "51bcd5ff-890f-4d08-8806-80727a516ce3",
+      "createdAt": "2026-10-22T01:52:53.000Z",
+      "updatedAt": "2026-10-22T01:52:53.000Z",
+      "uid": "35240-51bcd5ff-890f-4d08-8806-80727a516ce3"
+    },
     {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "name": "apis",
+      "item": [
+        {
+          "name": "{apiSlug}",
+          "item": [
+            {
+              "name": "subscribe",
+              "item": [
+                {
+                  "name": "Subscribe to an API",
+                  "id": "5aa69087-6ae3-45d9-86b2-073aa5523167",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"planId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiSlug/subscribe",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiSlug",
+                        "subscribe"
+                      ],
+                      "variable": [
+                        {
+                          "id": "55958e72-303f-48ca-8bd2-645878866d04",
+                          "key": "apiSlug",
+                          "value": "<string>",
+                          "description": "(Required) The URL-friendly slug or identifier of the API"
+                        }
+                      ]
+                    },
+                    "description": "Subscribes the authenticated user to a specific API plan on the marketplace. After subscribing, the user can make API calls using their RapidAPI key."
+                  },
+                  "response": [
+                    {
+                      "id": "4e07d7a0-ef0e-4871-b09e-362ed222d0bf",
+                      "name": "Subscription created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"planId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiSlug/subscribe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiSlug",
+                            "subscribe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"apiId\": \"<string>\",\n  \"apiName\": \"<string>\",\n  \"planName\": \"<string>\",\n  \"status\": \"active\",\n  \"usageCount\": \"<integer>\",\n  \"usageLimit\": \"<integer>\",\n  \"subscribedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T01:52:53.000Z",
+                      "updatedAt": "2026-10-22T01:52:53.000Z",
+                      "uid": "35240-4e07d7a0-ef0e-4871-b09e-362ed222d0bf"
+                    },
+                    {
+                      "id": "d6dad5da-57f6-4c27-92ac-98b6da7ff6b1",
+                      "name": "Bad request - invalid plan or already subscribed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"planId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiSlug/subscribe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiSlug",
+                            "subscribe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:53.000Z",
+                      "updatedAt": "2026-10-22T01:52:53.000Z",
+                      "uid": "35240-d6dad5da-57f6-4c27-92ac-98b6da7ff6b1"
+                    },
+                    {
+                      "id": "16c31e98-580d-42ad-a53d-9406faac2cb5",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"planId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiSlug/subscribe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiSlug",
+                            "subscribe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:53.000Z",
+                      "updatedAt": "2026-10-22T01:52:53.000Z",
+                      "uid": "35240-16c31e98-580d-42ad-a53d-9406faac2cb5"
+                    },
+                    {
+                      "id": "4209cf44-615c-42af-96e4-56f089024f9b",
+                      "name": "API or plan not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"planId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiSlug/subscribe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiSlug",
+                            "subscribe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:53.000Z",
+                      "updatedAt": "2026-10-22T01:52:53.000Z",
+                      "uid": "35240-4209cf44-615c-42af-96e4-56f089024f9b"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:53.000Z",
+                  "updatedAt": "2026-10-22T01:52:53.000Z",
+                  "uid": "35240-5aa69087-6ae3-45d9-86b2-073aa5523167"
+                }
+              ],
+              "id": "691e8f64-b5d0-40a8-a421-b5e30b701346",
+              "createdAt": "2026-10-22T01:52:53.000Z",
+              "updatedAt": "2026-10-22T01:52:53.000Z",
+              "uid": "35240-691e8f64-b5d0-40a8-a421-b5e30b701346"
+            }
+          ],
+          "id": "33fc3db3-c7bc-43b7-a328-279ad3a2feaf",
+          "createdAt": "2026-10-22T01:52:53.000Z",
+          "updatedAt": "2026-10-22T01:52:53.000Z",
+          "uid": "35240-33fc3db3-c7bc-43b7-a328-279ad3a2feaf"
+        }
+      ],
+      "id": "dab26481-de8d-4926-8713-0467a1e7dbc2",
+      "createdAt": "2026-10-22T01:52:53.000Z",
+      "updatedAt": "2026-10-22T01:52:53.000Z",
+      "uid": "35240-dab26481-de8d-4926-8713-0467a1e7dbc2"
     }
   ],
   "auth": {
@@ -432,25 +438,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "8ef8def1-0dc1-4293-9601-713894220aa6",
-    "name": "RapidAPI Gateway Alerts Subscriptions API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rapidapi.com"
     }
-  }
+  ]
 }

@@ -1,259 +1,259 @@
 {
+  "info": {
+    "_postman_id": "649c2b2e-e5ec-483d-9120-088e37ba69f7",
+    "name": "RapidAPI Hub Snippets API",
+    "description": "The RapidAPI Hub API enables developers to discover, search, test, and connect to thousands of APIs through the world's largest API marketplace. Using a single API key, developers can browse APIs across categories such as weather, social media, e-commerce, and finance, test endpoints directly, view auto-generated code snippets in multiple programming languages, and manage subscriptions and usage analytics from a single dashboard.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:52:48.000Z",
+    "updatedAt": "2026-10-22T01:52:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-649c2b2e-e5ec-483d-9120-088e37ba69f7"
+  },
   "item": [
     {
-      "id": "5ca2fc10-a9c3-4936-9d2f-da0c9a69265e",
-      "name": "Snippets",
-      "description": {
-        "content": "Endpoints for generating code snippets for API calls in multiple programming languages and libraries.",
-        "type": "text/plain"
-      },
+      "name": "apis",
       "item": [
         {
-          "id": "42502651-890f-45b4-8bca-8ad0a5a7c298",
-          "name": "Get code snippets",
-          "request": {
-            "name": "Get code snippets",
-            "description": {
-              "content": "Generates code snippets for calling a specific API endpoint in various programming languages and libraries, including JavaScript, Python, PHP, Ruby, Java, and more.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apis",
-                ":apiSlug",
-                "snippets"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "endpointId",
-                  "value": "<string>",
-                  "description": "(Required) The identifier of the specific endpoint"
-                },
-                {
-                  "disabled": false,
-                  "key": "language",
-                  "value": "<string>",
-                  "description": "The programming language for the code snippet"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "apiSlug",
-                  "description": "(Required) The URL-friendly slug or identifier of the API"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{apiSlug}",
+          "item": [
             {
-              "id": "a08fdc47-3d6e-46bb-ac78-015fee4dd605",
-              "name": "Code snippets for the requested endpoint",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiSlug",
-                    "snippets"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "endpointId",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "language",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiSlug",
-                      "description": "(Required) The URL-friendly slug or identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+              "name": "snippets",
+              "item": [
+                {
+                  "name": "Get code snippets",
+                  "id": "70e7e12f-c96a-4a43-b698-741d27b414d4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiSlug/snippets?endpointId=<string>&language=csharp",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiSlug",
+                        "snippets"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The identifier of the specific endpoint",
+                          "key": "endpointId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The programming language for the code snippet",
+                          "key": "language",
+                          "value": "csharp"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "22d3f2f8-9e9e-4ac6-901c-341917f9b233",
+                          "key": "apiSlug",
+                          "value": "<string>",
+                          "description": "(Required) The URL-friendly slug or identifier of the API"
+                        }
+                      ]
+                    },
+                    "description": "Generates code snippets for calling a specific API endpoint in various programming languages and libraries, including JavaScript, Python, PHP, Ruby, Java, and more."
+                  },
+                  "response": [
+                    {
+                      "id": "315ef293-1242-4a94-b4db-4e1c2fe8e810",
+                      "name": "Code snippets for the requested endpoint",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiSlug/snippets?endpointId=<string>&language=csharp",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiSlug",
+                            "snippets"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The identifier of the specific endpoint",
+                              "key": "endpointId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The programming language for the code snippet",
+                              "key": "language",
+                              "value": "csharp"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"snippets\": [\n    {\n      \"language\": \"<string>\",\n      \"library\": \"<string>\",\n      \"code\": \"<string>\"\n    },\n    {\n      \"language\": \"<string>\",\n      \"library\": \"<string>\",\n      \"code\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:52:48.000Z",
+                      "updatedAt": "2026-10-22T01:52:48.000Z",
+                      "uid": "35240-315ef293-1242-4a94-b4db-4e1c2fe8e810"
+                    },
+                    {
+                      "id": "ad5bebb8-1390-41be-ada1-e5b9f8749a7e",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiSlug/snippets?endpointId=<string>&language=csharp",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiSlug",
+                            "snippets"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The identifier of the specific endpoint",
+                              "key": "endpointId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The programming language for the code snippet",
+                              "key": "language",
+                              "value": "csharp"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:48.000Z",
+                      "updatedAt": "2026-10-22T01:52:48.000Z",
+                      "uid": "35240-ad5bebb8-1390-41be-ada1-e5b9f8749a7e"
+                    },
+                    {
+                      "id": "d303aaf4-135d-405a-9319-2fed574c23b7",
+                      "name": "API or endpoint not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiSlug/snippets?endpointId=<string>&language=csharp",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiSlug",
+                            "snippets"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The identifier of the specific endpoint",
+                              "key": "endpointId",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The programming language for the code snippet",
+                              "key": "language",
+                              "value": "csharp"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:48.000Z",
+                      "updatedAt": "2026-10-22T01:52:48.000Z",
+                      "uid": "35240-d303aaf4-135d-405a-9319-2fed574c23b7"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:48.000Z",
+                  "updatedAt": "2026-10-22T01:52:48.000Z",
+                  "uid": "35240-70e7e12f-c96a-4a43-b698-741d27b414d4"
                 }
               ],
-              "body": "{\n  \"snippets\": [\n    {\n      \"language\": \"string\",\n      \"library\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"language\": \"string\",\n      \"library\": \"string\",\n      \"code\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "fd5dfb44-3b21-43a9-9f66-1a6079f33d88",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiSlug",
-                    "snippets"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "endpointId",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "language",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiSlug",
-                      "description": "(Required) The URL-friendly slug or identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "f12b4033-4961-4ac8-848a-ee4a4d74e737",
-              "name": "API or endpoint not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiSlug",
-                    "snippets"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "endpointId",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "language",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiSlug",
-                      "description": "(Required) The URL-friendly slug or identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "5428535e-67d0-44d9-9ae8-f89b549c9d98",
+              "createdAt": "2026-10-22T01:52:48.000Z",
+              "updatedAt": "2026-10-22T01:52:48.000Z",
+              "uid": "35240-5428535e-67d0-44d9-9ae8-f89b549c9d98"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "ef86c2c0-c463-49ef-ba44-d45b48a46beb",
+          "createdAt": "2026-10-22T01:52:48.000Z",
+          "updatedAt": "2026-10-22T01:52:48.000Z",
+          "uid": "35240-ef86c2c0-c463-49ef-ba44-d45b48a46beb"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "d14a3f76-1832-4173-92fe-6dbfdc3fcc61",
+      "createdAt": "2026-10-22T01:52:48.000Z",
+      "updatedAt": "2026-10-22T01:52:48.000Z",
+      "uid": "35240-d14a3f76-1832-4173-92fe-6dbfdc3fcc61"
     }
   ],
   "auth": {
@@ -261,25 +261,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "2ce23b1f-a70e-42dc-886a-7dc375350842",
-    "name": "RapidAPI Gateway Alerts Snippets API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rapidapi.com"
     }
-  }
+  ]
 }

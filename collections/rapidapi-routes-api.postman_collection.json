@@ -1,1057 +1,978 @@
 {
+  "info": {
+    "_postman_id": "b5a9dd5e-615c-481a-97be-2107bd20e425",
+    "name": "RapidAPI Gateway Routes API",
+    "description": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:52:22.000Z",
+    "updatedAt": "2026-10-22T01:52:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b5a9dd5e-615c-481a-97be-2107bd20e425"
+  },
   "item": [
     {
-      "id": "618d37d8-cbca-43ed-a44e-49132e105057",
-      "name": "Routes",
-      "description": {
-        "content": "Endpoints for configuring request routing rules that determine how incoming API requests are forwarded to backend services.",
-        "type": "text/plain"
-      },
+      "name": "gateways",
       "item": [
         {
-          "id": "7bb59b9e-bdd3-45fe-b278-3a34877333b8",
-          "name": "List routes",
-          "request": {
-            "name": "List routes",
-            "description": {
-              "content": "Retrieves all routing rules configured for a gateway, including path patterns, target backends, and transformation rules.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "gateways",
-                ":gatewayId",
-                "routes"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "gatewayId",
-                  "description": "(Required) The unique identifier of the gateway"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{gatewayId}",
+          "item": [
             {
-              "id": "118066b1-a2f9-4670-9b13-4051728c6f1e",
-              "name": "A list of routes",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "routes",
+              "item": [
+                {
+                  "name": "{routeId}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                      "name": "Update a route",
+                      "id": "2d01bf5b-1480-4bb5-98d7-cecbbf893a0f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"GET\",\n    \"GET\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/routes/:routeId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "routes",
+                            ":routeId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "80ac8ecb-6de9-4796-89a3-ce367bc36947",
+                              "key": "gatewayId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the gateway"
+                            },
+                            {
+                              "id": "d5cde7a1-32c7-4472-ab24-d8b4e9f48757",
+                              "key": "routeId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the route"
+                            }
+                          ]
+                        },
+                        "description": "Updates an existing routing rule's path pattern, backend target, or transformation settings."
+                      },
+                      "response": [
+                        {
+                          "id": "60df681e-46af-4fcd-b7c2-c161f55c9960",
+                          "name": "Route updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"GET\",\n    \"GET\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/gateways/:gatewayId/routes/:routeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "gateways",
+                                ":gatewayId",
+                                "routes",
+                                ":routeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "gatewayId"
+                                },
+                                {
+                                  "key": "routeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"gatewayId\": \"<string>\",\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"PUT\",\n    \"PATCH\"\n  ],\n  \"stripPrefix\": \"<boolean>\",\n  \"priority\": \"<integer>\",\n  \"enabled\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-22T01:52:23.000Z",
+                          "updatedAt": "2026-10-22T01:52:23.000Z",
+                          "uid": "35240-60df681e-46af-4fcd-b7c2-c161f55c9960"
+                        },
+                        {
+                          "id": "4807a879-99ea-40f1-b84a-df5f3ee4f054",
+                          "name": "Bad request - invalid route configuration",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"GET\",\n    \"GET\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/gateways/:gatewayId/routes/:routeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "gateways",
+                                ":gatewayId",
+                                "routes",
+                                ":routeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "gatewayId"
+                                },
+                                {
+                                  "key": "routeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:52:23.000Z",
+                          "updatedAt": "2026-10-22T01:52:23.000Z",
+                          "uid": "35240-4807a879-99ea-40f1-b84a-df5f3ee4f054"
+                        },
+                        {
+                          "id": "732c8574-fbb6-4820-ba22-1d82dc5f7a92",
+                          "name": "Unauthorized - invalid or missing API key",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"GET\",\n    \"GET\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/gateways/:gatewayId/routes/:routeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "gateways",
+                                ":gatewayId",
+                                "routes",
+                                ":routeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "gatewayId"
+                                },
+                                {
+                                  "key": "routeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:52:23.000Z",
+                          "updatedAt": "2026-10-22T01:52:23.000Z",
+                          "uid": "35240-732c8574-fbb6-4820-ba22-1d82dc5f7a92"
+                        },
+                        {
+                          "id": "edfd57d3-9ad6-4a93-80b5-a4372b9f22ef",
+                          "name": "Route not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"GET\",\n    \"GET\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/gateways/:gatewayId/routes/:routeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "gateways",
+                                ":gatewayId",
+                                "routes",
+                                ":routeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "gatewayId"
+                                },
+                                {
+                                  "key": "routeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:52:23.000Z",
+                          "updatedAt": "2026-10-22T01:52:23.000Z",
+                          "uid": "35240-edfd57d3-9ad6-4a93-80b5-a4372b9f22ef"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-2d01bf5b-1480-4bb5-98d7-cecbbf893a0f"
                     },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    {
+                      "name": "Delete a route",
+                      "id": "a773e8ff-fee5-4858-8f7b-aaf062299a14",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/routes/:routeId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "routes",
+                            ":routeId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3367436e-9f1e-40ed-babb-753d389bcbdc",
+                              "key": "gatewayId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the gateway"
+                            },
+                            {
+                              "id": "0a5df04b-8e3a-4c6c-855b-bfc9352640d0",
+                              "key": "routeId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the route"
+                            }
+                          ]
+                        },
+                        "description": "Deletes a routing rule from the gateway. Requests matching this route will no longer be forwarded."
+                      },
+                      "response": [
+                        {
+                          "id": "b17ee725-166f-4cbf-9048-d004b7c2c523",
+                          "name": "Route deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/gateways/:gatewayId/routes/:routeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "gateways",
+                                ":gatewayId",
+                                "routes",
+                                ":routeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "gatewayId"
+                                },
+                                {
+                                  "key": "routeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:52:23.000Z",
+                          "updatedAt": "2026-10-22T01:52:23.000Z",
+                          "uid": "35240-b17ee725-166f-4cbf-9048-d004b7c2c523"
+                        },
+                        {
+                          "id": "b83c0c95-9116-4643-829f-5f27949141dd",
+                          "name": "Unauthorized - invalid or missing API key",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/gateways/:gatewayId/routes/:routeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "gateways",
+                                ":gatewayId",
+                                "routes",
+                                ":routeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "gatewayId"
+                                },
+                                {
+                                  "key": "routeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:52:23.000Z",
+                          "updatedAt": "2026-10-22T01:52:23.000Z",
+                          "uid": "35240-b83c0c95-9116-4643-829f-5f27949141dd"
+                        },
+                        {
+                          "id": "e27bda81-d647-4b42-b49b-596bf0752950",
+                          "name": "Route not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/gateways/:gatewayId/routes/:routeId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "gateways",
+                                ":gatewayId",
+                                "routes",
+                                ":routeId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "gatewayId"
+                                },
+                                {
+                                  "key": "routeId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:52:23.000Z",
+                          "updatedAt": "2026-10-22T01:52:23.000Z",
+                          "uid": "35240-e27bda81-d647-4b42-b49b-596bf0752950"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-a773e8ff-fee5-4858-8f7b-aaf062299a14"
+                    }
+                  ],
+                  "id": "eebe9979-970d-4722-ac7b-fec4c5e0187f",
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-eebe9979-970d-4722-ac7b-fec4c5e0187f"
+                },
+                {
+                  "name": "List routes",
+                  "id": "168f9325-5090-4a17-a5c8-8621a86b0cf5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"routes\": [\n    {\n      \"id\": \"string\",\n      \"gatewayId\": \"string\",\n      \"pathPattern\": \"string\",\n      \"targetUrl\": \"https://ygZnFMtUpaqASPGaO.nlYSjIXMqYWPGMB.lhfnTiRC\",\n      \"methods\": [\n        \"POST\",\n        \"DELETE\"\n      ],\n      \"stripPrefix\": false,\n      \"priority\": 286,\n      \"enabled\": false\n    },\n    {\n      \"id\": \"string\",\n      \"gatewayId\": \"string\",\n      \"pathPattern\": \"string\",\n      \"targetUrl\": \"http://kXGtLOiFGcWbqzZheIvALaX.efkvtCjSZ1ceECAfUxheAckkVk955jFce+bfL7ICRE-\",\n      \"methods\": [\n        \"PUT\",\n        \"PUT\"\n      ],\n      \"stripPrefix\": false,\n      \"priority\": 8344,\n      \"enabled\": true\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "412ed6e0-24cf-45a1-8809-d849ff2c0639",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/gateways/:gatewayId/routes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gateways",
+                        ":gatewayId",
+                        "routes"
+                      ],
+                      "variable": [
+                        {
+                          "id": "df3b6ad3-6cb1-434a-b2ad-f3f03f8edcac",
+                          "key": "gatewayId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the gateway"
+                        }
+                      ]
                     },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "2e585113-e83b-4c06-b3fc-8f4e47cc4aad",
-              "name": "Gateway not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d8c2811d-640b-4f5b-8ce9-1a96bff6412d",
-          "name": "Create a route",
-          "request": {
-            "name": "Create a route",
-            "description": {
-              "content": "Creates a new routing rule for the gateway, specifying how incoming requests matching a path pattern are forwarded to a backend service.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "gateways",
-                ":gatewayId",
-                "routes"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "gatewayId",
-                  "description": "(Required) The unique identifier of the gateway"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "97a74ed4-ba03-4e56-a530-7e474fa4212d",
-              "name": "Route created successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "description": "Retrieves all routing rules configured for a gateway, including path patterns, target backends, and transformation rules."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"gatewayId\": \"string\",\n  \"pathPattern\": \"string\",\n  \"targetUrl\": \"https://ZiWmuxOwSNske.apvApd.RU9\",\n  \"methods\": [\n    \"GET\",\n    \"GET\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 9266,\n  \"enabled\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5265bd25-45ff-443b-8175-6e70e4fbb7eb",
-              "name": "Bad request - invalid route configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "73fd9b6b-e5ed-4eb4-b4c9-8a5c9c12c84e",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "c884b9e3-6dd0-42f9-8b8c-51d05a1fd492",
-              "name": "Gateway not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a4291535-282a-4e3e-840b-dcd6ec029080",
-          "name": "Update a route",
-          "request": {
-            "name": "Update a route",
-            "description": {
-              "content": "Updates an existing routing rule's path pattern, backend target, or transformation settings.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "gateways",
-                ":gatewayId",
-                "routes",
-                ":routeId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "gatewayId",
-                  "description": "(Required) The unique identifier of the gateway"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "routeId",
-                  "description": "(Required) The unique identifier of the route"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1621cf0f-fbdf-4b56-959a-eec2f1af64b7",
-              "name": "Route updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes",
-                    ":routeId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
+                      "id": "7a21f253-1dd0-4117-8fd3-27a05a667fcf",
+                      "name": "A list of routes",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/routes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "routes"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"routes\": [\n    {\n      \"id\": \"<string>\",\n      \"gatewayId\": \"<string>\",\n      \"pathPattern\": \"<string>\",\n      \"targetUrl\": \"<uri>\",\n      \"methods\": [\n        \"PUT\",\n        \"DELETE\"\n      ],\n      \"stripPrefix\": \"<boolean>\",\n      \"priority\": \"<integer>\",\n      \"enabled\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"gatewayId\": \"<string>\",\n      \"pathPattern\": \"<string>\",\n      \"targetUrl\": \"<uri>\",\n      \"methods\": [\n        \"PATCH\",\n        \"PUT\"\n      ],\n      \"stripPrefix\": \"<boolean>\",\n      \"priority\": \"<integer>\",\n      \"enabled\": \"<boolean>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-7a21f253-1dd0-4117-8fd3-27a05a667fcf"
                     },
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "routeId",
-                      "description": "(Required) The unique identifier of the route"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                      "id": "470f8f5f-391e-4389-8dcc-9474572debca",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/routes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "routes"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-470f8f5f-391e-4389-8dcc-9474572debca"
                     },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    {
+                      "id": "60ecc4dc-15ba-4428-9761-24a563ebc0ea",
+                      "name": "Gateway not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/routes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "routes"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-60ecc4dc-15ba-4428-9761-24a563ebc0ea"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-168f9325-5090-4a17-a5c8-8621a86b0cf5"
+                },
+                {
+                  "name": "Create a route",
+                  "id": "f550188a-176b-448a-89a7-3ae7cf74379c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"GET\",\n    \"GET\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/gateways/:gatewayId/routes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gateways",
+                        ":gatewayId",
+                        "routes"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8ab8d0a7-8706-47ee-9315-38149bcad0b6",
+                          "key": "gatewayId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the gateway"
+                        }
+                      ]
+                    },
+                    "description": "Creates a new routing rule for the gateway, specifying how incoming requests matching a path pattern are forwarded to a backend service."
+                  },
+                  "response": [
+                    {
+                      "id": "a95a361c-0bf4-44d7-af7f-8c5d188ca6b8",
+                      "name": "Route created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"GET\",\n    \"GET\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/routes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "routes"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"gatewayId\": \"<string>\",\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"PUT\",\n    \"PATCH\"\n  ],\n  \"stripPrefix\": \"<boolean>\",\n  \"priority\": \"<integer>\",\n  \"enabled\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-a95a361c-0bf4-44d7-af7f-8c5d188ca6b8"
+                    },
+                    {
+                      "id": "b3b52d20-39de-45e9-b28c-cc2a6764f506",
+                      "name": "Bad request - invalid route configuration",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"GET\",\n    \"GET\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/routes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "routes"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-b3b52d20-39de-45e9-b28c-cc2a6764f506"
+                    },
+                    {
+                      "id": "0e4cff74-aaa5-4873-aa10-fc316f5c647c",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"GET\",\n    \"GET\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/routes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "routes"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-0e4cff74-aaa5-4873-aa10-fc316f5c647c"
+                    },
+                    {
+                      "id": "9bee0736-91c1-4790-8e35-30f8e36058cb",
+                      "name": "Gateway not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"GET\",\n    \"GET\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/routes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "routes"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-9bee0736-91c1-4790-8e35-30f8e36058cb"
                     }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-f550188a-176b-448a-89a7-3ae7cf74379c"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"gatewayId\": \"string\",\n  \"pathPattern\": \"string\",\n  \"targetUrl\": \"https://ZiWmuxOwSNske.apvApd.RU9\",\n  \"methods\": [\n    \"GET\",\n    \"GET\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 9266,\n  \"enabled\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bc4a8da2-00cd-49fb-8401-2c28f8019a5f",
-              "name": "Bad request - invalid route configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes",
-                    ":routeId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "routeId",
-                      "description": "(Required) The unique identifier of the route"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "7b298abd-c2ca-413a-8514-4412ff73e17b",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes",
-                    ":routeId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "routeId",
-                      "description": "(Required) The unique identifier of the route"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "98a6f095-1785-4175-9e28-926b6c557aa9",
-              "name": "Route not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes",
-                    ":routeId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "routeId",
-                      "description": "(Required) The unique identifier of the route"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"pathPattern\": \"<string>\",\n  \"targetUrl\": \"<uri>\",\n  \"methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stripPrefix\": false,\n  \"priority\": 0,\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "3f50740c-f7ea-4f22-9e69-5a1b1611ea4e",
+              "createdAt": "2026-10-22T01:52:23.000Z",
+              "updatedAt": "2026-10-22T01:52:23.000Z",
+              "uid": "35240-3f50740c-f7ea-4f22-9e69-5a1b1611ea4e"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f0280999-6375-4568-b085-deb489ad6bc9",
-          "name": "Delete a route",
-          "request": {
-            "name": "Delete a route",
-            "description": {
-              "content": "Deletes a routing rule from the gateway. Requests matching this route will no longer be forwarded.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "gateways",
-                ":gatewayId",
-                "routes",
-                ":routeId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "gatewayId",
-                  "description": "(Required) The unique identifier of the gateway"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "routeId",
-                  "description": "(Required) The unique identifier of the route"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "0da8ef92-da1e-4cff-a92f-3f359dab5be6",
-              "name": "Route deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes",
-                    ":routeId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "routeId",
-                      "description": "(Required) The unique identifier of the route"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "01fa3bc1-ecad-4881-a79c-7ebd670d8e71",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes",
-                    ":routeId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "routeId",
-                      "description": "(Required) The unique identifier of the route"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "aae94499-413a-4577-8593-ec7c00bdfd82",
-              "name": "Route not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "routes",
-                    ":routeId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "routeId",
-                      "description": "(Required) The unique identifier of the route"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "9917bc76-bbe3-4176-9577-654dc603aa45",
+          "createdAt": "2026-10-22T01:52:23.000Z",
+          "updatedAt": "2026-10-22T01:52:23.000Z",
+          "uid": "35240-9917bc76-bbe3-4176-9577-654dc603aa45"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "38af9896-40f5-439d-b0a1-e165698ac2bf",
+      "createdAt": "2026-10-22T01:52:23.000Z",
+      "updatedAt": "2026-10-22T01:52:23.000Z",
+      "uid": "35240-38af9896-40f5-439d-b0a1-e165698ac2bf"
     }
   ],
   "auth": {
@@ -1059,25 +980,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "e75d6970-9b1a-40c1-a81f-144c3b29cb2f",
-    "name": "RapidAPI Gateway Alerts Routes API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.rapidapi.com/v1"
     }
-  }
+  ]
 }

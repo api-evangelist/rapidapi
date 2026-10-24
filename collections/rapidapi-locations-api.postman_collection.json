@@ -1,140 +1,129 @@
 {
+  "info": {
+    "_postman_id": "f739c97f-b4ac-4ada-ad58-5c12fd02a59b",
+    "name": "RapidAPI Testing Locations API",
+    "description": "RapidAPI Testing provides a comprehensive API testing and monitoring solution that supports REST, SOAP, and GraphQL APIs. It offers an intuitive interface for creating and running functional tests, performance tests, and automated monitoring checks. The testing platform integrates with CI/CD pipelines, enabling teams to verify API behavior as part of their development workflow. Tests can be scheduled to run periodically across 9 AWS regions to monitor API health and detect regressions.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:51:49.000Z",
+    "updatedAt": "2026-10-22T01:51:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f739c97f-b4ac-4ada-ad58-5c12fd02a59b"
+  },
   "item": [
     {
-      "id": "6b824e51-7808-46f3-b6bf-f6eef520cb89",
-      "name": "Locations",
-      "description": {
-        "content": "Endpoints for listing available monitoring locations across global AWS regions where tests can be executed.",
-        "type": "text/plain"
-      },
+      "name": "locations",
       "item": [
         {
-          "id": "595d4c21-c388-48da-b34e-5a71e4b324c0",
           "name": "List monitoring locations",
+          "id": "29d683e5-ded4-4055-b16c-1e58d6179422",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "List monitoring locations",
-            "description": {
-              "content": "Retrieves the list of available global monitoring locations where tests can be executed. Includes AWS regions and any custom locations.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "locations"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/locations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "locations"
+              ]
+            },
+            "description": "Retrieves the list of available global monitoring locations where tests can be executed. Includes AWS regions and any custom locations."
           },
           "response": [
             {
-              "id": "a9115f70-6ca4-4026-9c5e-cb6060ba4014",
+              "id": "202a2641-6c60-49cf-81cf-04f5fbdcaa17",
               "name": "A list of available monitoring locations",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "locations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/locations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "locations"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"locations\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"region\": \"string\",\n      \"provider\": \"custom\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"region\": \"string\",\n      \"provider\": \"custom\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"locations\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"region\": \"<string>\",\n      \"provider\": \"azure\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"region\": \"<string>\",\n      \"provider\": \"aws\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:51:50.000Z",
+              "updatedAt": "2026-10-22T01:51:50.000Z",
+              "uid": "35240-202a2641-6c60-49cf-81cf-04f5fbdcaa17"
             },
             {
-              "id": "a8e0246a-9902-4b5b-bd71-af7dc1cbf52e",
+              "id": "f7554573-7bf8-431d-80d0-8a958162ab73",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "locations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/locations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "locations"
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:51:50.000Z",
+              "updatedAt": "2026-10-22T01:51:50.000Z",
+              "uid": "35240-f7554573-7bf8-431d-80d0-8a958162ab73"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:51:50.000Z",
+          "updatedAt": "2026-10-22T01:51:50.000Z",
+          "uid": "35240-29d683e5-ded4-4055-b16c-1e58d6179422"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "828a5dd7-731a-4a35-9659-f46d89da93d4",
+      "createdAt": "2026-10-22T01:51:50.000Z",
+      "updatedAt": "2026-10-22T01:51:50.000Z",
+      "uid": "35240-828a5dd7-731a-4a35-9659-f46d89da93d4"
     }
   ],
   "auth": {
@@ -142,25 +131,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "ce2cde64-840c-4f0a-b43d-c401ea81961d",
-    "name": "RapidAPI Gateway Alerts Locations API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://testing.rapidapi.com/v1"
     }
-  }
+  ]
 }

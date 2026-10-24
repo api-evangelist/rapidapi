@@ -1,509 +1,491 @@
 {
+  "info": {
+    "_postman_id": "b1a7b430-2f46-4479-836d-c5721db44e9a",
+    "name": "RapidAPI Gateway Rate Limiting API",
+    "description": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:52:09.000Z",
+    "updatedAt": "2026-10-22T01:52:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b1a7b430-2f46-4479-836d-c5721db44e9a"
+  },
   "item": [
     {
-      "id": "38106fbe-1bf3-4696-8cdb-c82a53d077a8",
-      "name": "Rate Limiting",
-      "description": {
-        "content": "Endpoints for configuring rate limiting policies to protect APIs from overuse, including request limits, quota management, and request size limits.",
-        "type": "text/plain"
-      },
+      "name": "gateways",
       "item": [
         {
-          "id": "fc34c020-b455-4a4f-9734-72f34205225e",
-          "name": "Get rate limiting configuration",
-          "request": {
-            "name": "Get rate limiting configuration",
-            "description": {
-              "content": "Retrieves the rate limiting policies configured for a gateway, including request limits, quota settings, and request size limits.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "gateways",
-                ":gatewayId",
-                "rate-limiting"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "gatewayId",
-                  "description": "(Required) The unique identifier of the gateway"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{gatewayId}",
+          "item": [
             {
-              "id": "b51e293d-04ea-4ebf-a5cf-1818a1fc136b",
-              "name": "Rate limiting configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "rate-limiting"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+              "name": "rate-limiting",
+              "item": [
+                {
+                  "name": "Get rate limiting configuration",
+                  "id": "daba4651-e92c-4257-acae-0b208deb5638",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"gatewayId\": \"string\",\n  \"requestsPerSecond\": 2050,\n  \"requestsPerMinute\": 4561,\n  \"requestsPerDay\": 7050,\n  \"maxRequestSizeBytes\": 4728,\n  \"burstLimit\": 6032\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9dced57a-0e9a-4e41-a520-5fd70a92d23b",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "rate-limiting"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/gateways/:gatewayId/rate-limiting",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gateways",
+                        ":gatewayId",
+                        "rate-limiting"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6d740f61-b42c-4bf1-a26c-4d087be167fc",
+                          "key": "gatewayId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the gateway"
+                        }
+                      ]
                     },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "6d96093a-588c-4e97-b30b-a36c19740143",
-              "name": "Gateway not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "rate-limiting"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                    "description": "Retrieves the rate limiting policies configured for a gateway, including request limits, quota settings, and request size limits."
+                  },
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                      "id": "5b0569c3-4359-4d05-a477-2b708ecb1b5b",
+                      "name": "Rate limiting configuration",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/rate-limiting",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "rate-limiting"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"gatewayId\": \"<string>\",\n  \"requestsPerSecond\": \"<integer>\",\n  \"requestsPerMinute\": \"<integer>\",\n  \"requestsPerDay\": \"<integer>\",\n  \"maxRequestSizeBytes\": \"<integer>\",\n  \"burstLimit\": \"<integer>\"\n}",
+                      "createdAt": "2026-10-22T01:52:10.000Z",
+                      "updatedAt": "2026-10-22T01:52:10.000Z",
+                      "uid": "35240-5b0569c3-4359-4d05-a477-2b708ecb1b5b"
                     },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
+                    {
+                      "id": "1670992d-1600-4ff3-87b0-0fca1ceebb4d",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/rate-limiting",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "rate-limiting"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:10.000Z",
+                      "updatedAt": "2026-10-22T01:52:10.000Z",
+                      "uid": "35240-1670992d-1600-4ff3-87b0-0fca1ceebb4d"
+                    },
+                    {
+                      "id": "1dce9cb7-c89c-4047-b127-a9d9733d51e8",
+                      "name": "Gateway not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/rate-limiting",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "rate-limiting"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:10.000Z",
+                      "updatedAt": "2026-10-22T01:52:10.000Z",
+                      "uid": "35240-1dce9cb7-c89c-4047-b127-a9d9733d51e8"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:10.000Z",
+                  "updatedAt": "2026-10-22T01:52:10.000Z",
+                  "uid": "35240-daba4651-e92c-4257-acae-0b208deb5638"
+                },
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "Update rate limiting configuration",
+                  "id": "f960658f-a8d5-4548-b91b-ccc0bb2d650d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"requestsPerSecond\": \"<integer>\",\n  \"requestsPerMinute\": \"<integer>\",\n  \"requestsPerDay\": \"<integer>\",\n  \"maxRequestSizeBytes\": \"<integer>\",\n  \"burstLimit\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/gateways/:gatewayId/rate-limiting",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gateways",
+                        ":gatewayId",
+                        "rate-limiting"
+                      ],
+                      "variable": [
+                        {
+                          "id": "40f461ee-a26e-4078-aca9-84ff94dc8095",
+                          "key": "gatewayId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the gateway"
+                        }
+                      ]
+                    },
+                    "description": "Updates the rate limiting policies for a gateway, including per-user request limits, global quotas, and maximum request size constraints."
+                  },
+                  "response": [
+                    {
+                      "id": "35345b33-b314-42bc-9998-18569eae334d",
+                      "name": "Rate limiting configuration updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"requestsPerSecond\": \"<integer>\",\n  \"requestsPerMinute\": \"<integer>\",\n  \"requestsPerDay\": \"<integer>\",\n  \"maxRequestSizeBytes\": \"<integer>\",\n  \"burstLimit\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/rate-limiting",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "rate-limiting"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"gatewayId\": \"<string>\",\n  \"requestsPerSecond\": \"<integer>\",\n  \"requestsPerMinute\": \"<integer>\",\n  \"requestsPerDay\": \"<integer>\",\n  \"maxRequestSizeBytes\": \"<integer>\",\n  \"burstLimit\": \"<integer>\"\n}",
+                      "createdAt": "2026-10-22T01:52:10.000Z",
+                      "updatedAt": "2026-10-22T01:52:10.000Z",
+                      "uid": "35240-35345b33-b314-42bc-9998-18569eae334d"
+                    },
+                    {
+                      "id": "6d6b2647-bc1f-4986-b8f9-f38eba33baa0",
+                      "name": "Bad request - invalid rate limit configuration",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"requestsPerSecond\": \"<integer>\",\n  \"requestsPerMinute\": \"<integer>\",\n  \"requestsPerDay\": \"<integer>\",\n  \"maxRequestSizeBytes\": \"<integer>\",\n  \"burstLimit\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/rate-limiting",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "rate-limiting"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:10.000Z",
+                      "updatedAt": "2026-10-22T01:52:10.000Z",
+                      "uid": "35240-6d6b2647-bc1f-4986-b8f9-f38eba33baa0"
+                    },
+                    {
+                      "id": "af1e1e04-c343-4a49-b292-b3bb9d53f842",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"requestsPerSecond\": \"<integer>\",\n  \"requestsPerMinute\": \"<integer>\",\n  \"requestsPerDay\": \"<integer>\",\n  \"maxRequestSizeBytes\": \"<integer>\",\n  \"burstLimit\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/rate-limiting",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "rate-limiting"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:10.000Z",
+                      "updatedAt": "2026-10-22T01:52:10.000Z",
+                      "uid": "35240-af1e1e04-c343-4a49-b292-b3bb9d53f842"
+                    },
+                    {
+                      "id": "8a667f9b-2659-41da-ab0c-929a882d895a",
+                      "name": "Gateway not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"requestsPerSecond\": \"<integer>\",\n  \"requestsPerMinute\": \"<integer>\",\n  \"requestsPerDay\": \"<integer>\",\n  \"maxRequestSizeBytes\": \"<integer>\",\n  \"burstLimit\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/rate-limiting",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "rate-limiting"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:10.000Z",
+                      "updatedAt": "2026-10-22T01:52:10.000Z",
+                      "uid": "35240-8a667f9b-2659-41da-ab0c-929a882d895a"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:10.000Z",
+                  "updatedAt": "2026-10-22T01:52:10.000Z",
+                  "uid": "35240-f960658f-a8d5-4548-b91b-ccc0bb2d650d"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "f5260475-6dc5-47cf-b7b5-674114c1d735",
+              "createdAt": "2026-10-22T01:52:10.000Z",
+              "updatedAt": "2026-10-22T01:52:10.000Z",
+              "uid": "35240-f5260475-6dc5-47cf-b7b5-674114c1d735"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7452dace-30ba-4463-9cd3-e43662f76f8d",
-          "name": "Update rate limiting configuration",
-          "request": {
-            "name": "Update rate limiting configuration",
-            "description": {
-              "content": "Updates the rate limiting policies for a gateway, including per-user request limits, global quotas, and maximum request size constraints.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "gateways",
-                ":gatewayId",
-                "rate-limiting"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "gatewayId",
-                  "description": "(Required) The unique identifier of the gateway"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"requestsPerSecond\": \"<integer>\",\n  \"requestsPerMinute\": \"<integer>\",\n  \"requestsPerDay\": \"<integer>\",\n  \"maxRequestSizeBytes\": \"<integer>\",\n  \"burstLimit\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "76c77e29-7860-4566-a7c4-03298353c733",
-              "name": "Rate limiting configuration updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "rate-limiting"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"requestsPerSecond\": \"<integer>\",\n  \"requestsPerMinute\": \"<integer>\",\n  \"requestsPerDay\": \"<integer>\",\n  \"maxRequestSizeBytes\": \"<integer>\",\n  \"burstLimit\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"gatewayId\": \"string\",\n  \"requestsPerSecond\": 2050,\n  \"requestsPerMinute\": 4561,\n  \"requestsPerDay\": 7050,\n  \"maxRequestSizeBytes\": 4728,\n  \"burstLimit\": 6032\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "edfe7e6a-b086-408f-9f94-6d76bc658467",
-              "name": "Bad request - invalid rate limit configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "rate-limiting"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"requestsPerSecond\": \"<integer>\",\n  \"requestsPerMinute\": \"<integer>\",\n  \"requestsPerDay\": \"<integer>\",\n  \"maxRequestSizeBytes\": \"<integer>\",\n  \"burstLimit\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "8edb7de6-d28d-4dc9-ae35-555aeed1e988",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "rate-limiting"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"requestsPerSecond\": \"<integer>\",\n  \"requestsPerMinute\": \"<integer>\",\n  \"requestsPerDay\": \"<integer>\",\n  \"maxRequestSizeBytes\": \"<integer>\",\n  \"burstLimit\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "61f0e9ec-6860-4328-9778-8e339e899026",
-              "name": "Gateway not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "rate-limiting"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"requestsPerSecond\": \"<integer>\",\n  \"requestsPerMinute\": \"<integer>\",\n  \"requestsPerDay\": \"<integer>\",\n  \"maxRequestSizeBytes\": \"<integer>\",\n  \"burstLimit\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "f5f135fa-2119-406a-85c6-6748a459efde",
+          "createdAt": "2026-10-22T01:52:10.000Z",
+          "updatedAt": "2026-10-22T01:52:10.000Z",
+          "uid": "35240-f5f135fa-2119-406a-85c6-6748a459efde"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "bbb91d57-32b9-43eb-b04a-3bc9a2bed5ad",
+      "createdAt": "2026-10-22T01:52:10.000Z",
+      "updatedAt": "2026-10-22T01:52:10.000Z",
+      "uid": "35240-bbb91d57-32b9-43eb-b04a-3bc9a2bed5ad"
     }
   ],
   "auth": {
@@ -511,25 +493,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "a37ccdb8-a619-400f-87b8-80d687671583",
-    "name": "RapidAPI Gateway Alerts Rate Limiting API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.rapidapi.com/v1"
     }
-  }
+  ]
 }

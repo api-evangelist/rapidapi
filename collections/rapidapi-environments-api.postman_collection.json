@@ -1,149 +1,568 @@
 {
+  "info": {
+    "_postman_id": "306eae4d-8673-4927-abab-6c430a7c4ea4",
+    "name": "RapidAPI Testing Environments API",
+    "description": "RapidAPI Testing provides a comprehensive API testing and monitoring solution that supports REST, SOAP, and GraphQL APIs. It offers an intuitive interface for creating and running functional tests, performance tests, and automated monitoring checks. The testing platform integrates with CI/CD pipelines, enabling teams to verify API behavior as part of their development workflow. Tests can be scheduled to run periodically across 9 AWS regions to monitor API health and detect regressions.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:51:22.000Z",
+    "updatedAt": "2026-10-22T01:51:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-306eae4d-8673-4927-abab-6c430a7c4ea4"
+  },
   "item": [
     {
-      "id": "997339ea-f60d-40e2-8bad-d9b574b7da8b",
-      "name": "Environments",
-      "description": {
-        "content": "Endpoints for managing test environments with variable sets that can be used across tests for different deployment stages.",
-        "type": "text/plain"
-      },
+      "name": "environments",
       "item": [
         {
-          "id": "7b76386d-da77-4d35-a46e-0dd7b195ec01",
-          "name": "List environments",
-          "request": {
-            "name": "List environments",
-            "description": {
-              "content": "Retrieves all test environments with their variable configurations. Environments allow defining different variable sets for development, staging, and production.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "environments"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{environmentId}",
+          "item": [
             {
-              "id": "b0263925-2489-48a8-80e6-17589a84ed78",
-              "name": "A list of environments",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "environments"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Update an environment",
+              "id": "0c6b94d9-187a-404f-978a-17754ea4d1a7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"commodof24\": \"<string>\",\n    \"nisi06b\": \"<string>\",\n    \"in_9\": \"<string>\",\n    \"qui_3e\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/environments/:environmentId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "environments",
+                    ":environmentId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d78af7bd-61b1-4377-b27e-d83c67288de8",
+                      "key": "environmentId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the environment"
+                    }
+                  ]
+                },
+                "description": "Updates an existing test environment's name and variable set."
+              },
+              "response": [
+                {
+                  "id": "13e870a7-e19a-42e2-942e-bf04889163d8",
+                  "name": "Environment updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"commodof24\": \"<string>\",\n    \"nisi06b\": \"<string>\",\n    \"in_9\": \"<string>\",\n    \"qui_3e\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/environments/:environmentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "environments",
+                        ":environmentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "environmentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"laboris_3ca\": \"<string>\",\n    \"dolor_ad0\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-13e870a7-e19a-42e2-942e-bf04889163d8"
+                },
+                {
+                  "id": "b92f7bbb-0219-455e-87a9-e1a732457be9",
+                  "name": "Bad request - invalid environment configuration",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"commodof24\": \"<string>\",\n    \"nisi06b\": \"<string>\",\n    \"in_9\": \"<string>\",\n    \"qui_3e\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/environments/:environmentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "environments",
+                        ":environmentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "environmentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-b92f7bbb-0219-455e-87a9-e1a732457be9"
+                },
+                {
+                  "id": "56f5911f-e650-4dc8-ac17-fb16d06fd77f",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"commodof24\": \"<string>\",\n    \"nisi06b\": \"<string>\",\n    \"in_9\": \"<string>\",\n    \"qui_3e\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/environments/:environmentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "environments",
+                        ":environmentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "environmentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-56f5911f-e650-4dc8-ac17-fb16d06fd77f"
+                },
+                {
+                  "id": "da68e084-9daa-4197-828b-694ab6e38739",
+                  "name": "Environment not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"commodof24\": \"<string>\",\n    \"nisi06b\": \"<string>\",\n    \"in_9\": \"<string>\",\n    \"qui_3e\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/environments/:environmentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "environments",
+                        ":environmentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "environmentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-da68e084-9daa-4197-828b-694ab6e38739"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-0c6b94d9-187a-404f-978a-17754ea4d1a7"
+            },
+            {
+              "name": "Delete an environment",
+              "id": "6f04f2e0-2ffe-4bdb-a03d-051270d614fc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/environments/:environmentId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "environments",
+                    ":environmentId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a37e5853-a7b2-49af-b5ed-47bf94d2dc68",
+                      "key": "environmentId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the environment"
+                    }
+                  ]
+                },
+                "description": "Deletes a test environment. Tests using this environment will need to be reconfigured."
+              },
+              "response": [
+                {
+                  "id": "af495cc7-f82b-4e80-ad0d-9f3665253e83",
+                  "name": "Environment deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/environments/:environmentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "environments",
+                        ":environmentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "environmentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-af495cc7-f82b-4e80-ad0d-9f3665253e83"
+                },
+                {
+                  "id": "37365867-1fc7-40d1-ad74-8437b468d80a",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/environments/:environmentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "environments",
+                        ":environmentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "environmentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-37365867-1fc7-40d1-ad74-8437b468d80a"
+                },
+                {
+                  "id": "aa4c4962-9d95-4574-88bc-1c59a1afed5b",
+                  "name": "Environment not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/environments/:environmentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "environments",
+                        ":environmentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "environmentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-aa4c4962-9d95-4574-88bc-1c59a1afed5b"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-6f04f2e0-2ffe-4bdb-a03d-051270d614fc"
+            }
+          ],
+          "id": "c6c2bc45-4eb3-4456-b2f7-f91ce965e3b9",
+          "createdAt": "2026-10-22T01:51:23.000Z",
+          "updatedAt": "2026-10-22T01:51:23.000Z",
+          "uid": "35240-c6c2bc45-4eb3-4456-b2f7-f91ce965e3b9"
+        },
+        {
+          "name": "List environments",
+          "id": "a529d5cd-ac78-4077-819e-4dd25d707fbc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/environments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "environments"
+              ]
+            },
+            "description": "Retrieves all test environments with their variable configurations. Environments allow defining different variable sets for development, staging, and production."
+          },
+          "response": [
+            {
+              "id": "486dc702-6991-4406-911c-a2dd5db9503f",
+              "name": "A list of environments",
+              "originalRequest": {
                 "method": "GET",
-                "body": {}
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/environments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "environments"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"environments\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"variables\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"createdAt\": \"1973-06-24T14:09:36.860Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"variables\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"createdAt\": \"2006-09-12T17:42:55.072Z\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"environments\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"variables\": {\n        \"esse1\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"variables\": {\n        \"Excepteur9\": \"<string>\",\n        \"consequat9c\": \"<string>\",\n        \"exercitationb\": \"<string>\",\n        \"consectetur2\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-486dc702-6991-4406-911c-a2dd5db9503f"
             },
             {
-              "id": "d48ff955-55eb-47e2-a291-9591a364fe7f",
+              "id": "f5c0c27e-c603-4f5d-9b6d-0fdad5c4b987",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "environments"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/environments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "environments"
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-f5c0c27e-c603-4f5d-9b6d-0fdad5c4b987"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:51:23.000Z",
+          "updatedAt": "2026-10-22T01:51:23.000Z",
+          "uid": "35240-a529d5cd-ac78-4077-819e-4dd25d707fbc"
         },
         {
-          "id": "0ce261a6-a259-45e1-af7d-849b196767bc",
           "name": "Create an environment",
+          "id": "77701e3d-5b04-4d53-843c-f1b8732afff4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Create an environment",
-            "description": {
-              "content": "Creates a new test environment with a set of variables that can be used across test configurations.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "environments"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -154,647 +573,188 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"commodof24\": \"<string>\",\n    \"nisi06b\": \"<string>\",\n    \"in_9\": \"<string>\",\n    \"qui_3e\": \"<string>\"\n  }\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/environments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "environments"
+              ]
+            },
+            "description": "Creates a new test environment with a set of variables that can be used across test configurations."
           },
           "response": [
             {
-              "id": "6bddf836-aaac-4abb-9d4a-fb016bd6c6cf",
+              "id": "110bb8b4-8ad3-463e-9c81-c2d4329f9ab1",
               "name": "Environment created successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "environments"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"commodof24\": \"<string>\",\n    \"nisi06b\": \"<string>\",\n    \"in_9\": \"<string>\",\n    \"qui_3e\": \"<string>\"\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/environments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "environments"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"variables\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"createdAt\": \"1963-03-05T10:30:26.057Z\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"laboris_3ca\": \"<string>\",\n    \"dolor_ad0\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-110bb8b4-8ad3-463e-9c81-c2d4329f9ab1"
             },
             {
-              "id": "fa994653-e604-4aef-b062-3c137ed25d78",
+              "id": "f31e9cc5-4497-4a07-be38-86fa801e7e41",
               "name": "Bad request - invalid environment configuration",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "environments"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
                 "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "926a7825-1e93-45cd-a4e7-2d4ebc7e81c9",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "environments"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0647fb55-0cec-4628-a897-ba0ec4356f35",
-          "name": "Update an environment",
-          "request": {
-            "name": "Update an environment",
-            "description": {
-              "content": "Updates an existing test environment's name and variable set.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "environments",
-                ":environmentId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "environmentId",
-                  "description": "(Required) The unique identifier of the environment"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "0960c73b-a8b1-47d2-9550-1c2f602ff54c",
-              "name": "Environment updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "environments",
-                    ":environmentId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "environmentId",
-                      "description": "(Required) The unique identifier of the environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"variables\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"createdAt\": \"1963-03-05T10:30:26.057Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5608b0c8-f9d3-4759-9c1a-41308a03e504",
-              "name": "Bad request - invalid environment configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "environments",
-                    ":environmentId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "environmentId",
-                      "description": "(Required) The unique identifier of the environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"commodof24\": \"<string>\",\n    \"nisi06b\": \"<string>\",\n    \"in_9\": \"<string>\",\n    \"qui_3e\": \"<string>\"\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/environments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "environments"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-f31e9cc5-4497-4a07-be38-86fa801e7e41"
             },
             {
-              "id": "e542acb9-7a05-4ef6-a9f3-d14b115ca0ba",
+              "id": "9f09fc30-7be5-41fd-913c-8c90c655f5fd",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "environments",
-                    ":environmentId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "environmentId",
-                      "description": "(Required) The unique identifier of the environment"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"commodof24\": \"<string>\",\n    \"nisi06b\": \"<string>\",\n    \"in_9\": \"<string>\",\n    \"qui_3e\": \"<string>\"\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/environments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "environments"
+                  ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "8a5c3c61-608e-4179-85f8-2e2f47c548a2",
-              "name": "Environment not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "environments",
-                    ":environmentId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "environmentId",
-                      "description": "(Required) The unique identifier of the environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"variables\": {\n    \"key_0\": \"<string>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-9f09fc30-7be5-41fd-913c-8c90c655f5fd"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ae79c2e7-5623-4352-bed3-346d9651c166",
-          "name": "Delete an environment",
-          "request": {
-            "name": "Delete an environment",
-            "description": {
-              "content": "Deletes a test environment. Tests using this environment will need to be reconfigured.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "environments",
-                ":environmentId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "environmentId",
-                  "description": "(Required) The unique identifier of the environment"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "804d34a5-8646-47cc-9070-717249751dd5",
-              "name": "Environment deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "environments",
-                    ":environmentId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "environmentId",
-                      "description": "(Required) The unique identifier of the environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "5e711926-960b-4f69-988e-f2a725fc2442",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "environments",
-                    ":environmentId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "environmentId",
-                      "description": "(Required) The unique identifier of the environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "393d5aa7-793c-4079-a339-4a241584adae",
-              "name": "Environment not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "environments",
-                    ":environmentId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "environmentId",
-                      "description": "(Required) The unique identifier of the environment"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:51:23.000Z",
+          "updatedAt": "2026-10-22T01:51:23.000Z",
+          "uid": "35240-77701e3d-5b04-4d53-843c-f1b8732afff4"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "59c2f570-5b95-4e25-b80b-f7f31fbfd59f",
+      "createdAt": "2026-10-22T01:51:23.000Z",
+      "updatedAt": "2026-10-22T01:51:23.000Z",
+      "uid": "35240-59c2f570-5b95-4e25-b80b-f7f31fbfd59f"
     }
   ],
   "auth": {
@@ -802,25 +762,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "bc225f80-2188-487e-ae7a-277f250f8bf7",
-    "name": "RapidAPI Gateway Alerts Environments API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://testing.rapidapi.com/v1"
     }
-  }
+  ]
 }

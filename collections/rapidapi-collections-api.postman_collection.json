@@ -1,180 +1,997 @@
 {
+  "info": {
+    "_postman_id": "bfb88ab3-85ac-44c4-a628-5d0482230ca7",
+    "name": "Rapidapi Collections API",
+    "description": "Operations tagged Collections across 2 of this provider's published API definitions: rapidapi-hub-api-openapi.yml, rapidapi-rest-platform-api-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:50:56.000Z",
+    "updatedAt": "2026-10-22T01:50:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bfb88ab3-85ac-44c4-a628-5d0482230ca7"
+  },
   "item": [
     {
-      "id": "ea9672d2-299a-49a6-8f3f-082336796eee",
-      "name": "Collections",
-      "description": {
-        "content": "Endpoints for browsing curated API collections organized around themes such as Top Meme APIs, Top Geocoding APIs, and other groupings.",
-        "type": "text/plain"
-      },
+      "name": "collections",
       "item": [
         {
-          "id": "023ef9e8-dd17-4748-b318-ffc8579a618d",
-          "name": "List curated collections",
-          "request": {
-            "name": "List curated collections",
-            "description": {
-              "content": "Retrieves all curated API collections on the RapidAPI marketplace. Collections group APIs with similar characteristics or themes.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "collections"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{collectionId}",
+          "item": [
+            {
+              "name": "apis",
+              "item": [
                 {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "The number of items to skip for pagination"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "25",
-                  "description": "The maximum number of items to return"
+                  "name": "List APIs in a collection",
+                  "id": "2f850173-1506-4c9e-8dc9-ce34ad8b3676",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/collections/:collectionId/apis?offset=0&limit=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "collections",
+                        ":collectionId",
+                        "apis"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to skip for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "The maximum number of items to return",
+                          "key": "limit",
+                          "value": "25"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "59777e8e-b2d3-48f9-a299-83d06a6d14fc",
+                          "key": "collectionId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the collection"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves all APIs within a specific curated collection on the RapidAPI marketplace."
+                  },
+                  "response": [
+                    {
+                      "id": "e65b165d-8ab3-4480-bfe4-993d0732c474",
+                      "name": "APIs in the specified collection",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/collections/:collectionId/apis?offset=0&limit=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "collections",
+                            ":collectionId",
+                            "apis"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "The maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "collectionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"apis\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"description\": \"<string>\",\n      \"category\": \"<string>\",\n      \"imageUrl\": \"<uri>\",\n      \"averageRating\": \"<float>\",\n      \"popularity\": \"<float>\",\n      \"isVerified\": \"<boolean>\",\n      \"provider\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"description\": \"<string>\",\n      \"category\": \"<string>\",\n      \"imageUrl\": \"<uri>\",\n      \"averageRating\": \"<float>\",\n      \"popularity\": \"<float>\",\n      \"isVerified\": \"<boolean>\",\n      \"provider\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                      "createdAt": "2026-10-22T01:50:57.000Z",
+                      "updatedAt": "2026-10-22T01:50:57.000Z",
+                      "uid": "35240-e65b165d-8ab3-4480-bfe4-993d0732c474"
+                    },
+                    {
+                      "id": "764b6c69-86ab-422e-975f-fb56a58fa5e2",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/collections/:collectionId/apis?offset=0&limit=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "collections",
+                            ":collectionId",
+                            "apis"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "The maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "collectionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:50:57.000Z",
+                      "updatedAt": "2026-10-22T01:50:57.000Z",
+                      "uid": "35240-764b6c69-86ab-422e-975f-fb56a58fa5e2"
+                    },
+                    {
+                      "id": "6ed12e64-b8f1-4fb5-8997-fa498d0e3615",
+                      "name": "Collection not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/collections/:collectionId/apis?offset=0&limit=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "collections",
+                            ":collectionId",
+                            "apis"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to skip for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "The maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "collectionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:50:57.000Z",
+                      "updatedAt": "2026-10-22T01:50:57.000Z",
+                      "uid": "35240-6ed12e64-b8f1-4fb5-8997-fa498d0e3615"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:50:57.000Z",
+                  "updatedAt": "2026-10-22T01:50:57.000Z",
+                  "uid": "35240-2f850173-1506-4c9e-8dc9-ce34ad8b3676"
                 }
               ],
-              "variable": []
+              "id": "ddddb551-8282-4f37-8ca0-07e352415be7",
+              "createdAt": "2026-10-22T01:50:57.000Z",
+              "updatedAt": "2026-10-22T01:50:57.000Z",
+              "uid": "35240-ddddb551-8282-4f37-8ca0-07e352415be7"
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
             {
-              "id": "98bd0237-d45a-46c6-a221-e321b83ca523",
-              "name": "A list of curated collections",
-              "originalRequest": {
+              "name": "Get a collection",
+              "id": "b4cc5910-6c60-4d8d-897b-23da553419ef",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "collections"
-                  ],
+                  "raw": "{{baseUrl}}/collections/:collectionId",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
+                  "path": [
+                    "collections",
+                    ":collectionId"
+                  ],
+                  "variable": [
                     {
-                      "key": "offset",
-                      "value": "0"
-                    },
+                      "id": "2d3840d9-e2d7-4543-9624-eaee38d32bbc",
+                      "key": "collectionId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the collection"
+                    }
+                  ]
+                },
+                "description": "Retrieves the details of a specific collection by its unique identifier, including the APIs it contains."
+              },
+              "response": [
+                {
+                  "id": "faaf13c6-494c-498a-8142-b756d9783b2b",
+                  "name": "Collection details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/collections/:collectionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "collections",
+                        ":collectionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collectionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "limit",
-                      "value": "25"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:50:57.000Z",
+                  "updatedAt": "2026-10-22T01:50:57.000Z",
+                  "uid": "35240-faaf13c6-494c-498a-8142-b756d9783b2b"
                 },
+                {
+                  "id": "e4e4b08a-e93f-4f59-9d28-61d4d2b7661d",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/collections/:collectionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "collections",
+                        ":collectionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collectionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:57.000Z",
+                  "updatedAt": "2026-10-22T01:50:57.000Z",
+                  "uid": "35240-e4e4b08a-e93f-4f59-9d28-61d4d2b7661d"
+                },
+                {
+                  "id": "10c118df-43de-4b46-b65b-a5386985540d",
+                  "name": "Collection not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/collections/:collectionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "collections",
+                        ":collectionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collectionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:57.000Z",
+                  "updatedAt": "2026-10-22T01:50:57.000Z",
+                  "uid": "35240-10c118df-43de-4b46-b65b-a5386985540d"
+                }
+              ],
+              "createdAt": "2026-10-22T01:50:57.000Z",
+              "updatedAt": "2026-10-22T01:50:57.000Z",
+              "uid": "35240-b4cc5910-6c60-4d8d-897b-23da553419ef"
+            },
+            {
+              "name": "Update a collection",
+              "id": "41516a84-f36d-4e4b-a979-9b942ea65f79",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/collections/:collectionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections",
+                    ":collectionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "110fd7d8-2fde-4836-97cc-d2b84b13aa25",
+                      "key": "collectionId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the collection"
+                    }
+                  ]
+                },
+                "description": "Updates an existing API collection in the Enterprise Hub, including its name, description, and associated APIs."
+              },
+              "response": [
+                {
+                  "id": "ed77b75a-bddd-45ec-b0e2-4f4189dfea74",
+                  "name": "Collection updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/collections/:collectionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "collections",
+                        ":collectionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collectionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:50:57.000Z",
+                  "updatedAt": "2026-10-22T01:50:57.000Z",
+                  "uid": "35240-ed77b75a-bddd-45ec-b0e2-4f4189dfea74"
+                },
+                {
+                  "id": "3cce1dc6-1261-42b0-ad0a-b46288748208",
+                  "name": "Bad request - invalid input parameters",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/collections/:collectionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "collections",
+                        ":collectionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collectionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:57.000Z",
+                  "updatedAt": "2026-10-22T01:50:57.000Z",
+                  "uid": "35240-3cce1dc6-1261-42b0-ad0a-b46288748208"
+                },
+                {
+                  "id": "41107d5c-1884-41f8-83d9-c3c7e3fd3539",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/collections/:collectionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "collections",
+                        ":collectionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collectionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:57.000Z",
+                  "updatedAt": "2026-10-22T01:50:57.000Z",
+                  "uid": "35240-41107d5c-1884-41f8-83d9-c3c7e3fd3539"
+                },
+                {
+                  "id": "3af9a9fc-8ee3-42b7-b0f8-0890d770bd8a",
+                  "name": "Collection not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/collections/:collectionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "collections",
+                        ":collectionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collectionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:57.000Z",
+                  "updatedAt": "2026-10-22T01:50:57.000Z",
+                  "uid": "35240-3af9a9fc-8ee3-42b7-b0f8-0890d770bd8a"
+                }
+              ],
+              "createdAt": "2026-10-22T01:50:57.000Z",
+              "updatedAt": "2026-10-22T01:50:57.000Z",
+              "uid": "35240-41516a84-f36d-4e4b-a979-9b942ea65f79"
+            },
+            {
+              "name": "Delete a collection",
+              "id": "49f32bfd-ac5c-42d1-8fc0-4b621a0d4f50",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/collections/:collectionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections",
+                    ":collectionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d774c75b-d29c-4338-bbbf-8779575b1ba4",
+                      "key": "collectionId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the collection"
+                    }
+                  ]
+                },
+                "description": "Deletes a collection from the Enterprise Hub. The APIs within the collection are not deleted."
+              },
+              "response": [
+                {
+                  "id": "e4d062bd-5f81-4985-b9e4-a04ab8f3bb02",
+                  "name": "Collection deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/collections/:collectionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "collections",
+                        ":collectionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collectionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:57.000Z",
+                  "updatedAt": "2026-10-22T01:50:57.000Z",
+                  "uid": "35240-e4d062bd-5f81-4985-b9e4-a04ab8f3bb02"
+                },
+                {
+                  "id": "a22b5072-5a16-4ea5-ac2b-35d34729dc0c",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/collections/:collectionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "collections",
+                        ":collectionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collectionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:57.000Z",
+                  "updatedAt": "2026-10-22T01:50:57.000Z",
+                  "uid": "35240-a22b5072-5a16-4ea5-ac2b-35d34729dc0c"
+                },
+                {
+                  "id": "923e766b-6efa-4fac-bb23-f8d61ee595cd",
+                  "name": "Collection not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/collections/:collectionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "collections",
+                        ":collectionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collectionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:57.000Z",
+                  "updatedAt": "2026-10-22T01:50:57.000Z",
+                  "uid": "35240-923e766b-6efa-4fac-bb23-f8d61ee595cd"
+                }
+              ],
+              "createdAt": "2026-10-22T01:50:57.000Z",
+              "updatedAt": "2026-10-22T01:50:57.000Z",
+              "uid": "35240-49f32bfd-ac5c-42d1-8fc0-4b621a0d4f50"
+            }
+          ],
+          "id": "796e338b-49df-4e90-9eda-cbbcae602d47",
+          "createdAt": "2026-10-22T01:50:57.000Z",
+          "updatedAt": "2026-10-22T01:50:57.000Z",
+          "uid": "35240-796e338b-49df-4e90-9eda-cbbcae602d47"
+        },
+        {
+          "name": "List curated collections",
+          "id": "df56a8ba-7681-445d-8060-4ce85ff9733d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/collections?offset=0&limit=25",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "collections"
+              ],
+              "query": [
+                {
+                  "description": "The number of items to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "The maximum number of items to return",
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
+            },
+            "description": "Retrieves all curated API collections on the RapidAPI marketplace. Collections group APIs with similar characteristics or themes."
+          },
+          "response": [
+            {
+              "id": "167f9539-4a02-4a9e-a837-f7d675464d96",
+              "name": "A list of curated collections",
+              "originalRequest": {
                 "method": "GET",
-                "body": {}
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/collections?offset=0&limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of items to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "The maximum number of items to return",
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"collections\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"apiCount\": 3290,\n      \"imageUrl\": \"https://bRGcnkNxlorgopLUfS.dgglPaPvE3iFQLD5aVHu.i,kZsAM3P,-iEfqktmqAMc3fjACjKA81s5D366ZwyTfYShgVGj28Ue2LTF\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"apiCount\": 3672,\n      \"imageUrl\": \"https://LyWBvbyjSuZQOpqgWHi.wworSTiOVSUXOIqDdY\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"collections\": [\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"apiCount\": \"<integer>\",\n      \"imageUrl\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"apiCount\": \"<integer>\",\n      \"imageUrl\": \"<uri>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:50:57.000Z",
+              "updatedAt": "2026-10-22T01:50:57.000Z",
+              "uid": "35240-167f9539-4a02-4a9e-a837-f7d675464d96"
             },
             {
-              "id": "c016d842-989b-4d36-87c6-019db44f2862",
+              "id": "f8f93146-0f6b-4c84-8c6d-1510b8b3de8b",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/collections?offset=0&limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of items to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "The maximum number of items to return",
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:50:57.000Z",
+              "updatedAt": "2026-10-22T01:50:57.000Z",
+              "uid": "35240-f8f93146-0f6b-4c84-8c6d-1510b8b3de8b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:50:57.000Z",
+          "updatedAt": "2026-10-22T01:50:57.000Z",
+          "uid": "35240-df56a8ba-7681-445d-8060-4ce85ff9733d"
         },
         {
-          "id": "ff0396d4-47aa-482f-b1e3-8c2515f45d96",
           "name": "Create a collection",
+          "id": "c1ff9a18-5489-4e8f-b39b-8dde91ea6e22",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Create a collection",
-            "description": {
-              "content": "Creates a new API collection in the Enterprise Hub for grouping related APIs together.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "collections"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -185,1075 +1002,188 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/collections",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "collections"
+              ]
+            },
+            "description": "Creates a new API collection in the Enterprise Hub for grouping related APIs together."
           },
           "response": [
             {
-              "id": "47ad7c19-73e1-48b4-a738-41a2a1883dec",
+              "id": "58d7821c-2b89-4db1-ae32-0435dd7e1616",
               "name": "Collection created successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/collections",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"apis\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1950-05-02T16:08:37.816Z\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"createdAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-10-22T01:50:57.000Z",
+              "updatedAt": "2026-10-22T01:50:57.000Z",
+              "uid": "35240-58d7821c-2b89-4db1-ae32-0435dd7e1616"
             },
             {
-              "id": "3c6630ea-43a2-4cde-85d4-0271e3da22a2",
+              "id": "3c6b63c3-bde0-4917-8dee-deaebde2f174",
               "name": "Bad request - invalid input parameters",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/collections",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "collections"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:50:57.000Z",
+              "updatedAt": "2026-10-22T01:50:57.000Z",
+              "uid": "35240-3c6b63c3-bde0-4917-8dee-deaebde2f174"
             },
             {
-              "id": "5b225c89-bb06-4289-bef5-54c590fbf575",
+              "id": "b7ff5ed0-421b-460f-9bd7-2e5b6f58ba0b",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/collections",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "collections"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:50:57.000Z",
+              "updatedAt": "2026-10-22T01:50:57.000Z",
+              "uid": "35240-b7ff5ed0-421b-460f-9bd7-2e5b6f58ba0b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f806845e-539c-4f8a-b8f0-129695171c23",
-          "name": "List APIs in a collection",
-          "request": {
-            "name": "List APIs in a collection",
-            "description": {
-              "content": "Retrieves all APIs within a specific curated collection on the RapidAPI marketplace.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "collections",
-                ":collectionId",
-                "apis"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "The number of items to skip for pagination"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "25",
-                  "description": "The maximum number of items to return"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "collectionId",
-                  "description": "(Required) The unique identifier of the collection"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "30a51b1c-8a29-4b6d-bd11-b597ff720c68",
-              "name": "APIs in the specified collection",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections",
-                    ":collectionId",
-                    "apis"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collectionId",
-                      "description": "(Required) The unique identifier of the collection"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"apis\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"imageUrl\": \"http://LExUnKLRaXulwgtpaoBDbdZbGb.uzxbPR,Pilk1Z1aWiMkbMDcI72KV+EbeWsnf,ibCN+MI\",\n      \"averageRating\": 9873.542709431122,\n      \"popularity\": 7241.14592655763,\n      \"isVerified\": false,\n      \"provider\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"imageUrl\": \"http://LhBg.dkAWtqWj.iffx7lOneKXWb6Q4BhskhfKlFu8gRJNEC4O+bM6B\",\n      \"averageRating\": 7629.530286560533,\n      \"popularity\": 6546.968366490473,\n      \"isVerified\": true,\n      \"provider\": \"string\"\n    }\n  ],\n  \"totalCount\": 772\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d89c281f-0769-4f70-bbd0-1916490a88c9",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections",
-                    ":collectionId",
-                    "apis"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collectionId",
-                      "description": "(Required) The unique identifier of the collection"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "ee0ccee2-8a36-476c-b777-528f578054db",
-              "name": "Collection not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections",
-                    ":collectionId",
-                    "apis"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collectionId",
-                      "description": "(Required) The unique identifier of the collection"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a1f62e84-f8d2-42a4-9eac-b7b30eac48f7",
-          "name": "Get a collection",
-          "request": {
-            "name": "Get a collection",
-            "description": {
-              "content": "Retrieves the details of a specific collection by its unique identifier, including the APIs it contains.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "collections",
-                ":collectionId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "collectionId",
-                  "description": "(Required) The unique identifier of the collection"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "34c1c063-28a7-4969-9e92-12c22a8551ce",
-              "name": "Collection details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections",
-                    ":collectionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collectionId",
-                      "description": "(Required) The unique identifier of the collection"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"apis\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1950-05-02T16:08:37.816Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "db98a03d-998f-4281-b083-b3172372557e",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections",
-                    ":collectionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collectionId",
-                      "description": "(Required) The unique identifier of the collection"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "415bbb30-1da9-47e0-b154-76e5d4aba2b2",
-              "name": "Collection not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections",
-                    ":collectionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collectionId",
-                      "description": "(Required) The unique identifier of the collection"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0fef4ab9-c7e8-4b84-a53c-0351e0b3f434",
-          "name": "Update a collection",
-          "request": {
-            "name": "Update a collection",
-            "description": {
-              "content": "Updates an existing API collection in the Enterprise Hub, including its name, description, and associated APIs.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "collections",
-                ":collectionId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "collectionId",
-                  "description": "(Required) The unique identifier of the collection"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "d4bfeaa7-86f6-4197-8e4b-73050f3c55ae",
-              "name": "Collection updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections",
-                    ":collectionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collectionId",
-                      "description": "(Required) The unique identifier of the collection"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"apis\": [\n    \"string\",\n    \"string\"\n  ],\n  \"createdAt\": \"1950-05-02T16:08:37.816Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "215419c9-ca83-42ba-88a8-a6f63f10fdb2",
-              "name": "Bad request - invalid input parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections",
-                    ":collectionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collectionId",
-                      "description": "(Required) The unique identifier of the collection"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "3fcb2020-906d-4f16-9f95-9c8e76bc32bc",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections",
-                    ":collectionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collectionId",
-                      "description": "(Required) The unique identifier of the collection"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "89d9998b-d1cc-4e0b-bc81-23d3e3df4951",
-              "name": "Collection not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections",
-                    ":collectionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collectionId",
-                      "description": "(Required) The unique identifier of the collection"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1ae38598-7eb6-4c1a-a79c-6f03094620d4",
-          "name": "Delete a collection",
-          "request": {
-            "name": "Delete a collection",
-            "description": {
-              "content": "Deletes a collection from the Enterprise Hub. The APIs within the collection are not deleted.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "collections",
-                ":collectionId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "collectionId",
-                  "description": "(Required) The unique identifier of the collection"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "b3aa29b1-94c7-4e63-bd10-c398f32e1d06",
-              "name": "Collection deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections",
-                    ":collectionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collectionId",
-                      "description": "(Required) The unique identifier of the collection"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "2ab1523e-6f41-417d-8329-fd2e0af6b758",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections",
-                    ":collectionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collectionId",
-                      "description": "(Required) The unique identifier of the collection"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "5247be24-3550-44ff-acc3-e928a717c62f",
-              "name": "Collection not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "collections",
-                    ":collectionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "collectionId",
-                      "description": "(Required) The unique identifier of the collection"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:50:57.000Z",
+          "updatedAt": "2026-10-22T01:50:57.000Z",
+          "uid": "35240-c1ff9a18-5489-4e8f-b39b-8dde91ea6e22"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "deb19ee7-6b23-4260-8ea4-ac397704d783",
+      "createdAt": "2026-10-22T01:50:57.000Z",
+      "updatedAt": "2026-10-22T01:50:57.000Z",
+      "uid": "35240-deb19ee7-6b23-4260-8ea4-ac397704d783"
     }
   ],
   "auth": {
@@ -1261,25 +1191,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "45ba7aed-22dd-4930-b15d-f01a61e7da38",
-    "name": "RapidAPI Gateway Alerts Collections API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rapidapi.com"
     }
-  }
+  ]
 }

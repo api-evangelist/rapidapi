@@ -1,509 +1,491 @@
 {
+  "info": {
+    "_postman_id": "3638a4fc-a175-4bdf-87eb-cb589b9433ec",
+    "name": "RapidAPI Gateway Security API",
+    "description": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:52:41.000Z",
+    "updatedAt": "2026-10-22T01:52:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3638a4fc-a175-4bdf-87eb-cb589b9433ec"
+  },
   "item": [
     {
-      "id": "d08d4289-c054-4af3-8212-2fc10e641bef",
-      "name": "Security",
-      "description": {
-        "content": "Endpoints for configuring security policies such as IP allow and deny lists, CORS settings, and proxy secret validation.",
-        "type": "text/plain"
-      },
+      "name": "gateways",
       "item": [
         {
-          "id": "736714f4-f29c-4ecf-b592-0a13dfb2bf6a",
-          "name": "Get security configuration",
-          "request": {
-            "name": "Get security configuration",
-            "description": {
-              "content": "Retrieves the security policies configured for a gateway, including IP allow and deny lists, CORS settings, and proxy secret validation.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "gateways",
-                ":gatewayId",
-                "security"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "gatewayId",
-                  "description": "(Required) The unique identifier of the gateway"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{gatewayId}",
+          "item": [
             {
-              "id": "b69fda10-88f1-4f30-a862-590e58189ec0",
-              "name": "Security configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "security"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+              "name": "security",
+              "item": [
+                {
+                  "name": "Get security configuration",
+                  "id": "32aecc81-6ac9-4b28-ae34-13499db78b1d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"gatewayId\": \"string\",\n  \"ipAllowList\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ipDenyList\": [\n    \"string\",\n    \"string\"\n  ],\n  \"corsEnabled\": false,\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"allowedMethods\": [\n      \"string\",\n      \"string\"\n    ],\n    \"allowedHeaders\": [\n      \"string\",\n      \"string\"\n    ],\n    \"maxAge\": 9270\n  },\n  \"validateProxySecret\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8f5c845e-2189-42f9-ab71-27d1dbf54e5b",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "security"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/gateways/:gatewayId/security",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gateways",
+                        ":gatewayId",
+                        "security"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5e0489af-00ef-4f64-90a3-bc03df1f8b96",
+                          "key": "gatewayId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the gateway"
+                        }
+                      ]
                     },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "27e28cc5-4f32-4633-910c-63d7951c0500",
-              "name": "Gateway not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "security"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                    "description": "Retrieves the security policies configured for a gateway, including IP allow and deny lists, CORS settings, and proxy secret validation."
+                  },
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                      "id": "f6033bc1-dc67-455a-bcfa-89ac4c925bc6",
+                      "name": "Security configuration",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/security",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "security"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"gatewayId\": \"<string>\",\n  \"ipAllowList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ipDenyList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corsEnabled\": \"<boolean>\",\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedHeaders\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAge\": \"<integer>\"\n  },\n  \"validateProxySecret\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-22T01:52:42.000Z",
+                      "updatedAt": "2026-10-22T01:52:42.000Z",
+                      "uid": "35240-f6033bc1-dc67-455a-bcfa-89ac4c925bc6"
                     },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
+                    {
+                      "id": "042b4583-aeb0-4dc6-8b60-dee139544821",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/security",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "security"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:42.000Z",
+                      "updatedAt": "2026-10-22T01:52:42.000Z",
+                      "uid": "35240-042b4583-aeb0-4dc6-8b60-dee139544821"
+                    },
+                    {
+                      "id": "34d538b1-58bc-40bf-80a8-e33a10f761e7",
+                      "name": "Gateway not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/security",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "security"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:42.000Z",
+                      "updatedAt": "2026-10-22T01:52:42.000Z",
+                      "uid": "35240-34d538b1-58bc-40bf-80a8-e33a10f761e7"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:42.000Z",
+                  "updatedAt": "2026-10-22T01:52:42.000Z",
+                  "uid": "35240-32aecc81-6ac9-4b28-ae34-13499db78b1d"
+                },
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "Update security configuration",
+                  "id": "c6a27efa-8b26-4882-9673-5c36ded3b5b2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ipAllowList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ipDenyList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corsEnabled\": \"<boolean>\",\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedHeaders\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAge\": \"<integer>\"\n  },\n  \"validateProxySecret\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/gateways/:gatewayId/security",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gateways",
+                        ":gatewayId",
+                        "security"
+                      ],
+                      "variable": [
+                        {
+                          "id": "61eff50a-52a8-4404-b48d-750acd7aedc5",
+                          "key": "gatewayId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the gateway"
+                        }
+                      ]
+                    },
+                    "description": "Updates the security policies for a gateway, including IP filtering, CORS, and request validation settings."
+                  },
+                  "response": [
+                    {
+                      "id": "5b5e7ca4-f980-47c5-b35e-196c1c917b02",
+                      "name": "Security configuration updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ipAllowList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ipDenyList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corsEnabled\": \"<boolean>\",\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedHeaders\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAge\": \"<integer>\"\n  },\n  \"validateProxySecret\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/security",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "security"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"gatewayId\": \"<string>\",\n  \"ipAllowList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ipDenyList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corsEnabled\": \"<boolean>\",\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedHeaders\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAge\": \"<integer>\"\n  },\n  \"validateProxySecret\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-22T01:52:42.000Z",
+                      "updatedAt": "2026-10-22T01:52:42.000Z",
+                      "uid": "35240-5b5e7ca4-f980-47c5-b35e-196c1c917b02"
+                    },
+                    {
+                      "id": "602d70a8-0e98-469e-b832-139d7c9095c7",
+                      "name": "Bad request - invalid security configuration",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ipAllowList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ipDenyList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corsEnabled\": \"<boolean>\",\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedHeaders\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAge\": \"<integer>\"\n  },\n  \"validateProxySecret\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/security",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "security"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:42.000Z",
+                      "updatedAt": "2026-10-22T01:52:42.000Z",
+                      "uid": "35240-602d70a8-0e98-469e-b832-139d7c9095c7"
+                    },
+                    {
+                      "id": "61a5c929-533c-404f-a7b9-c85516b34af6",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ipAllowList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ipDenyList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corsEnabled\": \"<boolean>\",\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedHeaders\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAge\": \"<integer>\"\n  },\n  \"validateProxySecret\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/security",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "security"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:42.000Z",
+                      "updatedAt": "2026-10-22T01:52:42.000Z",
+                      "uid": "35240-61a5c929-533c-404f-a7b9-c85516b34af6"
+                    },
+                    {
+                      "id": "e43db001-c46b-4f8a-9eff-6eec435f4966",
+                      "name": "Gateway not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ipAllowList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ipDenyList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corsEnabled\": \"<boolean>\",\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedHeaders\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAge\": \"<integer>\"\n  },\n  \"validateProxySecret\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gateways/:gatewayId/security",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gateways",
+                            ":gatewayId",
+                            "security"
+                          ],
+                          "variable": [
+                            {
+                              "key": "gatewayId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:42.000Z",
+                      "updatedAt": "2026-10-22T01:52:42.000Z",
+                      "uid": "35240-e43db001-c46b-4f8a-9eff-6eec435f4966"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:42.000Z",
+                  "updatedAt": "2026-10-22T01:52:42.000Z",
+                  "uid": "35240-c6a27efa-8b26-4882-9673-5c36ded3b5b2"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "ac63e919-81e7-4576-82f4-b13d228aaf71",
+              "createdAt": "2026-10-22T01:52:42.000Z",
+              "updatedAt": "2026-10-22T01:52:42.000Z",
+              "uid": "35240-ac63e919-81e7-4576-82f4-b13d228aaf71"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d13a6472-21e0-4e35-a066-07813769d747",
-          "name": "Update security configuration",
-          "request": {
-            "name": "Update security configuration",
-            "description": {
-              "content": "Updates the security policies for a gateway, including IP filtering, CORS, and request validation settings.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "gateways",
-                ":gatewayId",
-                "security"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "gatewayId",
-                  "description": "(Required) The unique identifier of the gateway"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"ipAllowList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ipDenyList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corsEnabled\": \"<boolean>\",\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedHeaders\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAge\": \"<integer>\"\n  },\n  \"validateProxySecret\": true\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "2fc9b157-f011-4fe3-a368-a645d1312888",
-              "name": "Security configuration updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "security"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ipAllowList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ipDenyList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corsEnabled\": \"<boolean>\",\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedHeaders\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAge\": \"<integer>\"\n  },\n  \"validateProxySecret\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"gatewayId\": \"string\",\n  \"ipAllowList\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ipDenyList\": [\n    \"string\",\n    \"string\"\n  ],\n  \"corsEnabled\": false,\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"allowedMethods\": [\n      \"string\",\n      \"string\"\n    ],\n    \"allowedHeaders\": [\n      \"string\",\n      \"string\"\n    ],\n    \"maxAge\": 9270\n  },\n  \"validateProxySecret\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9fd8cde5-0d6f-4e7a-b133-0b8e768bf017",
-              "name": "Bad request - invalid security configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "security"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ipAllowList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ipDenyList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corsEnabled\": \"<boolean>\",\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedHeaders\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAge\": \"<integer>\"\n  },\n  \"validateProxySecret\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "4016e9f0-74da-4121-96f7-c567ef92bd75",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "security"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ipAllowList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ipDenyList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corsEnabled\": \"<boolean>\",\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedHeaders\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAge\": \"<integer>\"\n  },\n  \"validateProxySecret\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "1d8e9156-9977-41c7-86fc-4103ecf83ec6",
-              "name": "Gateway not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "gateways",
-                    ":gatewayId",
-                    "security"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "gatewayId",
-                      "description": "(Required) The unique identifier of the gateway"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"ipAllowList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ipDenyList\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corsEnabled\": \"<boolean>\",\n  \"corsConfig\": {\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedMethods\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedHeaders\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxAge\": \"<integer>\"\n  },\n  \"validateProxySecret\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "35a8c2ee-a1f5-4ea6-971f-edaa24b263b3",
+          "createdAt": "2026-10-22T01:52:42.000Z",
+          "updatedAt": "2026-10-22T01:52:42.000Z",
+          "uid": "35240-35a8c2ee-a1f5-4ea6-971f-edaa24b263b3"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "a214bace-22fb-471c-ab72-7cf38284bb4b",
+      "createdAt": "2026-10-22T01:52:42.000Z",
+      "updatedAt": "2026-10-22T01:52:42.000Z",
+      "uid": "35240-a214bace-22fb-471c-ab72-7cf38284bb4b"
     }
   ],
   "auth": {
@@ -511,25 +493,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "cc371021-931e-4554-8457-72ea6aa346a9",
-    "name": "RapidAPI Gateway Alerts Security API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.rapidapi.com/v1"
     }
-  }
+  ]
 }

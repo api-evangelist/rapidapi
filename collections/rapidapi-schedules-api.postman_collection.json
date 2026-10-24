@@ -1,149 +1,568 @@
 {
+  "info": {
+    "_postman_id": "b6f782ce-d979-465f-aeb5-04f142402672",
+    "name": "RapidAPI Testing Schedules API",
+    "description": "RapidAPI Testing provides a comprehensive API testing and monitoring solution that supports REST, SOAP, and GraphQL APIs. It offers an intuitive interface for creating and running functional tests, performance tests, and automated monitoring checks. The testing platform integrates with CI/CD pipelines, enabling teams to verify API behavior as part of their development workflow. Tests can be scheduled to run periodically across 9 AWS regions to monitor API health and detect regressions.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:52:28.000Z",
+    "updatedAt": "2026-10-22T01:52:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b6f782ce-d979-465f-aeb5-04f142402672"
+  },
   "item": [
     {
-      "id": "b117b07d-0f1c-497f-834c-247657047671",
-      "name": "Schedules",
-      "description": {
-        "content": "Endpoints for managing test schedules, including frequency, environment, and location settings for automated monitoring.",
-        "type": "text/plain"
-      },
+      "name": "schedules",
       "item": [
         {
-          "id": "81599483-bdb9-4f57-b985-e1c22e4d88b9",
-          "name": "List all schedules",
-          "request": {
-            "name": "List all schedules",
-            "description": {
-              "content": "Retrieves all configured test schedules, including their frequency, associated test, environment, and monitoring locations.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "schedules"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{scheduleId}",
+          "item": [
             {
-              "id": "7baf23ac-f15d-46bd-babc-ab9aae77d81e",
-              "name": "A list of schedules",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "schedules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Update a schedule",
+              "id": "a78cce62-f9ca-4fb3-9554-8e3270badc5f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"5m\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/schedules/:scheduleId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "schedules",
+                    ":scheduleId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "779d8c4b-a9b0-491c-ae8e-66b303f1b2c3",
+                      "key": "scheduleId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the schedule"
+                    }
+                  ]
+                },
+                "description": "Updates the frequency, environment, or location settings of an existing test schedule."
+              },
+              "response": [
+                {
+                  "id": "5926985b-b487-402c-8b14-2fe1113724aa",
+                  "name": "Schedule updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"5m\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/schedules/:scheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "schedules",
+                        ":scheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"testId\": \"<string>\",\n  \"frequency\": \"1h\",\n  \"environmentId\": \"<string>\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:52:29.000Z",
+                  "updatedAt": "2026-10-22T01:52:29.000Z",
+                  "uid": "35240-5926985b-b487-402c-8b14-2fe1113724aa"
+                },
+                {
+                  "id": "e929290b-5fc1-494a-a0b9-796d9fdcd516",
+                  "name": "Bad request - invalid schedule configuration",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"5m\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/schedules/:scheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "schedules",
+                        ":scheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:52:29.000Z",
+                  "updatedAt": "2026-10-22T01:52:29.000Z",
+                  "uid": "35240-e929290b-5fc1-494a-a0b9-796d9fdcd516"
+                },
+                {
+                  "id": "c70a1f3e-2fb5-460d-9000-9eb8742c1263",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"5m\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/schedules/:scheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "schedules",
+                        ":scheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:52:29.000Z",
+                  "updatedAt": "2026-10-22T01:52:29.000Z",
+                  "uid": "35240-c70a1f3e-2fb5-460d-9000-9eb8742c1263"
+                },
+                {
+                  "id": "49b224ef-f252-4a10-a01c-654d8cebd5a3",
+                  "name": "Schedule not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"5m\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/schedules/:scheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "schedules",
+                        ":scheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:52:29.000Z",
+                  "updatedAt": "2026-10-22T01:52:29.000Z",
+                  "uid": "35240-49b224ef-f252-4a10-a01c-654d8cebd5a3"
+                }
+              ],
+              "createdAt": "2026-10-22T01:52:29.000Z",
+              "updatedAt": "2026-10-22T01:52:29.000Z",
+              "uid": "35240-a78cce62-f9ca-4fb3-9554-8e3270badc5f"
+            },
+            {
+              "name": "Delete a schedule",
+              "id": "d521a236-a760-472f-91a3-4e22dea83fcb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/schedules/:scheduleId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "schedules",
+                    ":scheduleId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c52b3e98-d2e7-4658-9c92-9fdcf9992fde",
+                      "key": "scheduleId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the schedule"
+                    }
+                  ]
+                },
+                "description": "Deletes a test schedule. The associated test is not deleted."
+              },
+              "response": [
+                {
+                  "id": "bac58e61-97f3-43a1-882c-76c7eb611f5a",
+                  "name": "Schedule deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/schedules/:scheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "schedules",
+                        ":scheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:52:29.000Z",
+                  "updatedAt": "2026-10-22T01:52:29.000Z",
+                  "uid": "35240-bac58e61-97f3-43a1-882c-76c7eb611f5a"
+                },
+                {
+                  "id": "d66c913c-a387-4b75-9cf5-628f591a3678",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/schedules/:scheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "schedules",
+                        ":scheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:52:29.000Z",
+                  "updatedAt": "2026-10-22T01:52:29.000Z",
+                  "uid": "35240-d66c913c-a387-4b75-9cf5-628f591a3678"
+                },
+                {
+                  "id": "92cf3a8b-1142-4129-889b-5404194bad22",
+                  "name": "Schedule not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/schedules/:scheduleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "schedules",
+                        ":scheduleId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "scheduleId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:52:29.000Z",
+                  "updatedAt": "2026-10-22T01:52:29.000Z",
+                  "uid": "35240-92cf3a8b-1142-4129-889b-5404194bad22"
+                }
+              ],
+              "createdAt": "2026-10-22T01:52:29.000Z",
+              "updatedAt": "2026-10-22T01:52:29.000Z",
+              "uid": "35240-d521a236-a760-472f-91a3-4e22dea83fcb"
+            }
+          ],
+          "id": "703e90a7-d229-433e-bc99-c46f3b9b1785",
+          "createdAt": "2026-10-22T01:52:29.000Z",
+          "updatedAt": "2026-10-22T01:52:29.000Z",
+          "uid": "35240-703e90a7-d229-433e-bc99-c46f3b9b1785"
+        },
+        {
+          "name": "List all schedules",
+          "id": "9cbdecc8-4f57-49e3-8b40-d4c321e28091",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/schedules",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "schedules"
+              ]
+            },
+            "description": "Retrieves all configured test schedules, including their frequency, associated test, environment, and monitoring locations."
+          },
+          "response": [
+            {
+              "id": "7c23cbaf-69e4-4d06-a9f4-3e6fcdf5f4ca",
+              "name": "A list of schedules",
+              "originalRequest": {
                 "method": "GET",
-                "body": {}
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "schedules"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"schedules\": [\n    {\n      \"id\": \"string\",\n      \"testId\": \"string\",\n      \"frequency\": \"5m\",\n      \"environmentId\": \"string\",\n      \"locationIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"enabled\": true,\n      \"createdAt\": \"1972-02-09T06:49:52.309Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"testId\": \"string\",\n      \"frequency\": \"1h\",\n      \"environmentId\": \"string\",\n      \"locationIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"enabled\": true,\n      \"createdAt\": \"1950-05-02T08:22:37.028Z\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"schedules\": [\n    {\n      \"id\": \"<string>\",\n      \"testId\": \"<string>\",\n      \"frequency\": \"1h\",\n      \"environmentId\": \"<string>\",\n      \"locationIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabled\": \"<boolean>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"testId\": \"<string>\",\n      \"frequency\": \"30m\",\n      \"environmentId\": \"<string>\",\n      \"locationIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabled\": \"<boolean>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:52:29.000Z",
+              "updatedAt": "2026-10-22T01:52:29.000Z",
+              "uid": "35240-7c23cbaf-69e4-4d06-a9f4-3e6fcdf5f4ca"
             },
             {
-              "id": "cdb82af6-6e6a-42e0-bdf8-0990dd3e8bf1",
+              "id": "381c78e6-da97-49be-9ab2-38bf7fa46b57",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "schedules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "schedules"
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:52:29.000Z",
+              "updatedAt": "2026-10-22T01:52:29.000Z",
+              "uid": "35240-381c78e6-da97-49be-9ab2-38bf7fa46b57"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:52:29.000Z",
+          "updatedAt": "2026-10-22T01:52:29.000Z",
+          "uid": "35240-9cbdecc8-4f57-49e3-8b40-d4c321e28091"
         },
         {
-          "id": "973fb7d6-e627-4b9f-b8d9-a08847b36c93",
           "name": "Create a schedule",
+          "id": "f53b08be-e793-4ac1-b44d-cc5fa930d433",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Create a schedule",
-            "description": {
-              "content": "Creates a new test schedule that runs a test at a specified frequency from one or more monitoring locations. Frequency options include intervals ranging from every 5 minutes to every 24 hours.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "schedules"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -154,647 +573,188 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"<string>\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
+              "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"5m\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/schedules",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "schedules"
+              ]
+            },
+            "description": "Creates a new test schedule that runs a test at a specified frequency from one or more monitoring locations. Frequency options include intervals ranging from every 5 minutes to every 24 hours."
           },
           "response": [
             {
-              "id": "523707f0-0f75-467f-98bc-ac2fd11253e9",
+              "id": "ba8a3c55-689f-4617-85c5-d594b68e715b",
               "name": "Schedule created successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "schedules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"<string>\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
+                  "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"5m\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "schedules"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"testId\": \"string\",\n  \"frequency\": \"5m\",\n  \"environmentId\": \"string\",\n  \"locationIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"enabled\": false,\n  \"createdAt\": \"1975-08-19T21:20:26.578Z\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"testId\": \"<string>\",\n  \"frequency\": \"1h\",\n  \"environmentId\": \"<string>\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-10-22T01:52:29.000Z",
+              "updatedAt": "2026-10-22T01:52:29.000Z",
+              "uid": "35240-ba8a3c55-689f-4617-85c5-d594b68e715b"
             },
             {
-              "id": "2eb1b26f-5f46-4328-bbde-aaf94eaf8b41",
+              "id": "4db16204-4ff8-444b-b184-3ae235f339c8",
               "name": "Bad request - invalid schedule configuration",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "schedules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
                 "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"<string>\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "c9203e6c-e4ae-43f2-a6de-02b17d1f45af",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "schedules"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"<string>\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1b8f1206-ef79-4a03-9e19-4972dc6ce28a",
-          "name": "Update a schedule",
-          "request": {
-            "name": "Update a schedule",
-            "description": {
-              "content": "Updates the frequency, environment, or location settings of an existing test schedule.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "schedules",
-                ":scheduleId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "scheduleId",
-                  "description": "(Required) The unique identifier of the schedule"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"<string>\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1b817fcc-29b9-46be-911e-c305865bfff3",
-              "name": "Schedule updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "schedules",
-                    ":scheduleId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduleId",
-                      "description": "(Required) The unique identifier of the schedule"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"<string>\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"testId\": \"string\",\n  \"frequency\": \"5m\",\n  \"environmentId\": \"string\",\n  \"locationIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"enabled\": false,\n  \"createdAt\": \"1975-08-19T21:20:26.578Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bb70aa84-0e2d-4776-985d-30ca0fac3480",
-              "name": "Bad request - invalid schedule configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "schedules",
-                    ":scheduleId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduleId",
-                      "description": "(Required) The unique identifier of the schedule"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"<string>\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
+                  "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"5m\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "schedules"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:52:29.000Z",
+              "updatedAt": "2026-10-22T01:52:29.000Z",
+              "uid": "35240-4db16204-4ff8-444b-b184-3ae235f339c8"
             },
             {
-              "id": "93d4583e-7125-4b84-a699-b0d05984a876",
+              "id": "fc9ea755-4c8e-44d1-b6b8-f8a1f17cbc53",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "schedules",
-                    ":scheduleId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduleId",
-                      "description": "(Required) The unique identifier of the schedule"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"<string>\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
+                  "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"5m\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/schedules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "schedules"
+                  ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "0923f9d0-7738-4d9a-8f38-071252adae6b",
-              "name": "Schedule not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "schedules",
-                    ":scheduleId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduleId",
-                      "description": "(Required) The unique identifier of the schedule"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"testId\": \"<string>\",\n  \"frequency\": \"<string>\",\n  \"locationIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"environmentId\": \"<string>\",\n  \"enabled\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:52:29.000Z",
+              "updatedAt": "2026-10-22T01:52:29.000Z",
+              "uid": "35240-fc9ea755-4c8e-44d1-b6b8-f8a1f17cbc53"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7e9b9668-dd63-4cf6-bac4-6ee63c605f95",
-          "name": "Delete a schedule",
-          "request": {
-            "name": "Delete a schedule",
-            "description": {
-              "content": "Deletes a test schedule. The associated test is not deleted.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "schedules",
-                ":scheduleId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "scheduleId",
-                  "description": "(Required) The unique identifier of the schedule"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "48fd43a5-0e3a-434e-af60-d26ad7a62bda",
-              "name": "Schedule deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "schedules",
-                    ":scheduleId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduleId",
-                      "description": "(Required) The unique identifier of the schedule"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "69b5526c-7525-48fa-91ce-0be9f8ea7a4d",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "schedules",
-                    ":scheduleId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduleId",
-                      "description": "(Required) The unique identifier of the schedule"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "8d411758-0312-4f7a-8dce-600bffb4492e",
-              "name": "Schedule not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "schedules",
-                    ":scheduleId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "scheduleId",
-                      "description": "(Required) The unique identifier of the schedule"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:52:29.000Z",
+          "updatedAt": "2026-10-22T01:52:29.000Z",
+          "uid": "35240-f53b08be-e793-4ac1-b44d-cc5fa930d433"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "faa1f40d-8e3b-4384-8d5d-3a8ce65ccdf0",
+      "createdAt": "2026-10-22T01:52:29.000Z",
+      "updatedAt": "2026-10-22T01:52:29.000Z",
+      "uid": "35240-faa1f40d-8e3b-4384-8d5d-3a8ce65ccdf0"
     }
   ],
   "auth": {
@@ -802,25 +762,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "42e30170-356f-4852-ab84-bf61afb57823",
-    "name": "RapidAPI Gateway Alerts Schedules API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://testing.rapidapi.com/v1"
     }
-  }
+  ]
 }

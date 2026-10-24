@@ -1,616 +1,1811 @@
 {
+  "info": {
+    "_postman_id": "f07b3707-fc38-43fa-8173-32a1d1a8e46b",
+    "name": "Rapidapi APIs API",
+    "description": "Operations tagged Apis across 2 of this provider's published API definitions: rapidapi-hub-api-openapi.yml, rapidapi-rest-platform-api-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:53:25.000Z",
+    "updatedAt": "2026-10-22T01:53:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f07b3707-fc38-43fa-8173-32a1d1a8e46b"
+  },
   "item": [
     {
-      "id": "3ff2f557-2733-44c5-810c-31d5e1ef3985",
-      "name": "Apis",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "apis",
       "item": [
         {
-          "id": "4c59634c-2b3c-489f-aa97-0f9839f8416e",
-          "name": "Get API details",
-          "request": {
-            "name": "Get API details",
-            "description": {
-              "content": "Retrieves detailed information about a specific API on the marketplace, including its description, endpoints, pricing plans, ratings, and provider information.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apis",
-                ":apiSlug"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "apiSlug",
-                  "description": "(Required) The URL-friendly slug or identifier of the API"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{apiSlug}",
+          "item": [
             {
-              "id": "8261ff0a-2e7c-4b42-beea-f3696d408e30",
-              "name": "Detailed API information",
-              "originalRequest": {
+              "name": "endpoints",
+              "item": [
+                {
+                  "name": "List API endpoints",
+                  "id": "e6fe18e8-85fb-4183-8b0b-53079bcd9eb6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiSlug/endpoints",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiSlug",
+                        "endpoints"
+                      ],
+                      "variable": [
+                        {
+                          "id": "33738320-84ae-4c46-9960-734ba1477d3b",
+                          "key": "apiSlug",
+                          "value": "<string>",
+                          "description": "(Required) The URL-friendly slug or identifier of the API"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the list of available endpoints for a specific API, including HTTP methods, paths, parameters, and response schemas."
+                  },
+                  "response": [
+                    {
+                      "id": "4c071a20-7433-47d5-82ab-1bfad17ba756",
+                      "name": "List of API endpoints",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiSlug/endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiSlug",
+                            "endpoints"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"endpoints\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"method\": \"DELETE\",\n      \"path\": \"<string>\",\n      \"description\": \"<string>\",\n      \"group\": \"<string>\",\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"defaultValue\": \"<string>\",\n          \"location\": \"path\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"defaultValue\": \"<string>\",\n          \"location\": \"header\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"method\": \"POST\",\n      \"path\": \"<string>\",\n      \"description\": \"<string>\",\n      \"group\": \"<string>\",\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"defaultValue\": \"<string>\",\n          \"location\": \"body\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"description\": \"<string>\",\n          \"defaultValue\": \"<string>\",\n          \"location\": \"header\"\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:53:26.000Z",
+                      "updatedAt": "2026-10-22T01:53:26.000Z",
+                      "uid": "35240-4c071a20-7433-47d5-82ab-1bfad17ba756"
+                    },
+                    {
+                      "id": "08f4a1ae-4825-4585-be06-608c23a9b274",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiSlug/endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiSlug",
+                            "endpoints"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:53:26.000Z",
+                      "updatedAt": "2026-10-22T01:53:26.000Z",
+                      "uid": "35240-08f4a1ae-4825-4585-be06-608c23a9b274"
+                    },
+                    {
+                      "id": "c007532d-77d2-4f6a-8014-e09b8534f810",
+                      "name": "API not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiSlug/endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiSlug",
+                            "endpoints"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:53:26.000Z",
+                      "updatedAt": "2026-10-22T01:53:26.000Z",
+                      "uid": "35240-c007532d-77d2-4f6a-8014-e09b8534f810"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-e6fe18e8-85fb-4183-8b0b-53079bcd9eb6"
+                }
+              ],
+              "id": "cc6d07af-ee8b-4ef6-a2ee-1b8466945d28",
+              "createdAt": "2026-10-22T01:53:26.000Z",
+              "updatedAt": "2026-10-22T01:53:26.000Z",
+              "uid": "35240-cc6d07af-ee8b-4ef6-a2ee-1b8466945d28"
+            },
+            {
+              "name": "Get API details",
+              "id": "e706e853-dc7b-44b5-b566-3a79ef805f25",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/apis/:apiSlug",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "apis",
                     ":apiSlug"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "935b81df-8d58-425d-84a6-2d1f6a83b0da",
                       "key": "apiSlug",
+                      "value": "<string>",
                       "description": "(Required) The URL-friendly slug or identifier of the API"
                     }
                   ]
                 },
+                "description": "Retrieves detailed information about a specific API on the marketplace, including its description, endpoints, pricing plans, ratings, and provider information."
+              },
+              "response": [
+                {
+                  "id": "2cb4089f-73fa-4228-91ef-e71f128c12e5",
+                  "name": "Detailed API information",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiSlug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "apiSlug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"description\": \"<string>\",\n  \"longDescription\": \"<string>\",\n  \"category\": \"<string>\",\n  \"imageUrl\": \"<uri>\",\n  \"websiteUrl\": \"<uri>\",\n  \"termsOfServiceUrl\": \"<uri>\",\n  \"averageRating\": \"<float>\",\n  \"totalRatings\": \"<integer>\",\n  \"isVerified\": \"<boolean>\",\n  \"provider\": \"<string>\",\n  \"plans\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<double>\",\n      \"rateLimit\": \"<integer>\",\n      \"features\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<double>\",\n      \"rateLimit\": \"<integer>\",\n      \"features\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-2cb4089f-73fa-4228-91ef-e71f128c12e5"
+                },
+                {
+                  "id": "e9ba1652-0b41-473f-9e8b-f66f6b048870",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiSlug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "apiSlug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-e9ba1652-0b41-473f-9e8b-f66f6b048870"
+                },
+                {
+                  "id": "22e9ae33-6fe9-4908-9fb1-4b0ba0a48f89",
+                  "name": "API not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiSlug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "apiSlug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-22e9ae33-6fe9-4908-9fb1-4b0ba0a48f89"
+                }
+              ],
+              "createdAt": "2026-10-22T01:53:26.000Z",
+              "updatedAt": "2026-10-22T01:53:26.000Z",
+              "uid": "35240-e706e853-dc7b-44b5-b566-3a79ef805f25"
+            }
+          ],
+          "id": "8057471f-4411-4106-a6e5-c659cb8aa0f5",
+          "createdAt": "2026-10-22T01:53:26.000Z",
+          "updatedAt": "2026-10-22T01:53:26.000Z",
+          "uid": "35240-8057471f-4411-4106-a6e5-c659cb8aa0f5"
+        },
+        {
+          "name": "{apiId}",
+          "item": [
+            {
+              "name": "versions",
+              "item": [
+                {
+                  "name": "{versionId}",
+                  "item": [
+                    {
+                      "name": "Update an API version",
+                      "id": "9069bc1a-b421-4c34-b086-d86387ec8e0b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"draft\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiId/versions/:versionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiId",
+                            "versions",
+                            ":versionId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ae832dbb-47c0-494b-92d2-533a2f37fc83",
+                              "key": "apiId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the API"
+                            },
+                            {
+                              "id": "b223cbdc-44d2-4e1d-9d70-71ffd6ab42bc",
+                              "key": "versionId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the API version"
+                            }
+                          ]
+                        },
+                        "description": "Updates the configuration of a specific version of an API, including its endpoints, description, and settings."
+                      },
+                      "response": [
+                        {
+                          "id": "2eb7dd6a-9e00-4de6-b6b6-2da5997ce35b",
+                          "name": "API version updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"draft\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apis/:apiId/versions/:versionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apis",
+                                ":apiId",
+                                "versions",
+                                ":versionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiId"
+                                },
+                                {
+                                  "key": "versionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"apiId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"active\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-10-22T01:53:26.000Z",
+                          "updatedAt": "2026-10-22T01:53:26.000Z",
+                          "uid": "35240-2eb7dd6a-9e00-4de6-b6b6-2da5997ce35b"
+                        },
+                        {
+                          "id": "d52da748-363f-4820-b90c-d3ec988e2aad",
+                          "name": "Bad request - invalid input parameters",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"draft\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apis/:apiId/versions/:versionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apis",
+                                ":apiId",
+                                "versions",
+                                ":versionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiId"
+                                },
+                                {
+                                  "key": "versionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:53:26.000Z",
+                          "updatedAt": "2026-10-22T01:53:26.000Z",
+                          "uid": "35240-d52da748-363f-4820-b90c-d3ec988e2aad"
+                        },
+                        {
+                          "id": "8707a5eb-21b6-4d08-b9b7-fac620f42573",
+                          "name": "Unauthorized - invalid or missing API key",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"draft\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apis/:apiId/versions/:versionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apis",
+                                ":apiId",
+                                "versions",
+                                ":versionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiId"
+                                },
+                                {
+                                  "key": "versionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:53:26.000Z",
+                          "updatedAt": "2026-10-22T01:53:26.000Z",
+                          "uid": "35240-8707a5eb-21b6-4d08-b9b7-fac620f42573"
+                        },
+                        {
+                          "id": "08774748-963b-4d65-b33b-7932cf16356f",
+                          "name": "API version not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"draft\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apis/:apiId/versions/:versionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apis",
+                                ":apiId",
+                                "versions",
+                                ":versionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "apiId"
+                                },
+                                {
+                                  "key": "versionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:53:26.000Z",
+                          "updatedAt": "2026-10-22T01:53:26.000Z",
+                          "uid": "35240-08774748-963b-4d65-b33b-7932cf16356f"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:53:26.000Z",
+                      "updatedAt": "2026-10-22T01:53:26.000Z",
+                      "uid": "35240-9069bc1a-b421-4c34-b086-d86387ec8e0b"
+                    }
+                  ],
+                  "id": "de12f14f-c1c0-42fb-a4bb-a3e4613e409f",
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-de12f14f-c1c0-42fb-a4bb-a3e4613e409f"
+                },
+                {
+                  "name": "List API versions",
+                  "id": "68bd2377-c487-43da-95cd-e171bda3ad87",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiId/versions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiId",
+                        "versions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6af22752-c28c-4970-b3dc-912bdffaaa1f",
+                          "key": "apiId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the API"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves all versions of a specific API, including version names, statuses, and configuration details."
+                  },
+                  "response": [
+                    {
+                      "id": "26bae4e7-8d94-4285-941c-0ebfe3db5cbe",
+                      "name": "A list of API versions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"versions\": [\n    {\n      \"id\": \"<string>\",\n      \"apiId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"active\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"apiId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"draft\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:53:26.000Z",
+                      "updatedAt": "2026-10-22T01:53:26.000Z",
+                      "uid": "35240-26bae4e7-8d94-4285-941c-0ebfe3db5cbe"
+                    },
+                    {
+                      "id": "49e2be24-7659-4c32-a453-e8c2ab76457d",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:53:26.000Z",
+                      "updatedAt": "2026-10-22T01:53:26.000Z",
+                      "uid": "35240-49e2be24-7659-4c32-a453-e8c2ab76457d"
+                    },
+                    {
+                      "id": "b901cfca-9eea-4050-8d86-f46e49970db8",
+                      "name": "API not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apis/:apiId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apis",
+                            ":apiId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:53:26.000Z",
+                      "updatedAt": "2026-10-22T01:53:26.000Z",
+                      "uid": "35240-b901cfca-9eea-4050-8d86-f46e49970db8"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-68bd2377-c487-43da-95cd-e171bda3ad87"
+                }
+              ],
+              "id": "0f0ea9f8-3b71-480c-9985-efe21d30f93a",
+              "createdAt": "2026-10-22T01:53:26.000Z",
+              "updatedAt": "2026-10-22T01:53:26.000Z",
+              "uid": "35240-0f0ea9f8-3b71-480c-9985-efe21d30f93a"
+            },
+            {
+              "name": "Get an API",
+              "id": "21bbe0ea-745a-4c80-9fe1-d137fe74da11",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apis/:apiId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apis",
+                    ":apiId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5bcc9e27-5023-4ac3-8cdd-6519c4fbbe38",
+                      "key": "apiId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the API"
+                    }
+                  ]
+                },
+                "description": "Retrieves the details of a specific API by its unique identifier, including its configuration, versions, and metadata."
+              },
+              "response": [
+                {
+                  "id": "809ed3b6-bbac-45b1-a316-01cf49373ff0",
+                  "name": "API details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "apiId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"longDescription\": \"<string>\",\n  \"category\": \"<string>\",\n  \"websiteUrl\": \"<uri>\",\n  \"imageUrl\": \"<uri>\",\n  \"status\": \"active\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-809ed3b6-bbac-45b1-a316-01cf49373ff0"
+                },
+                {
+                  "id": "e9541391-7133-4581-ba64-e9fd88762c88",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "apiId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-e9541391-7133-4581-ba64-e9fd88762c88"
+                },
+                {
+                  "id": "f2503825-0df8-4551-8b5f-37678cda7b4a",
+                  "name": "API not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "apiId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-f2503825-0df8-4551-8b5f-37678cda7b4a"
+                }
+              ],
+              "createdAt": "2026-10-22T01:53:26.000Z",
+              "updatedAt": "2026-10-22T01:53:26.000Z",
+              "uid": "35240-21bbe0ea-745a-4c80-9fe1-d137fe74da11"
+            },
+            {
+              "name": "Update an API",
+              "id": "b5aea9d8-2ebf-42a1-b6fc-efff89180256",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"longDescription\": \"string\",\n  \"category\": \"string\",\n  \"imageUrl\": \"http://FTTNuBJDbNEQBpUVDEhFq.csbqHjuLtV7JUFd,2zhgSZFiMm,l9hrY4M1xZ0\",\n  \"websiteUrl\": \"http://uaMyYSYXXEnavmjuhvuyiichvkHF.yepGx-\",\n  \"termsOfServiceUrl\": \"http://FmOy.wfww-5lB9dvi\",\n  \"averageRating\": 29.466272974242315,\n  \"totalRatings\": 5683,\n  \"isVerified\": true,\n  \"provider\": \"string\",\n  \"plans\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"price\": 7469.238216711701,\n      \"rateLimit\": 6607,\n      \"features\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"price\": 6202.367599122178,\n      \"rateLimit\": 7822,\n      \"features\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f0445a51-dedf-4565-8ad3-63ffed329527",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiSlug"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
                     {
-                      "disabled": false,
-                      "type": "any",
+                      "description": "Updated display name of the API",
+                      "key": "name",
                       "value": "<string>",
-                      "key": "apiSlug",
-                      "description": "(Required) The URL-friendly slug or identifier of the API"
+                      "type": "text"
+                    },
+                    {
+                      "description": "Updated short description of the API",
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "Updated detailed description",
+                      "key": "longDescription",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "Updated category assignment",
+                      "key": "category",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "Updated website URL",
+                      "key": "websiteUrl",
+                      "value": "<uri>",
+                      "type": "text"
+                    },
+                    {
+                      "description": "Updated API icon image file",
+                      "key": "imageFile",
+                      "type": "file",
+                      "value": null
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "d8e5eb5e-232b-4ea8-bf16-7502219c6d41",
-              "name": "API not found",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "apis",
-                    ":apiSlug"
-                  ],
+                  "raw": "{{baseUrl}}/apis/:apiId",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiSlug",
-                      "description": "(Required) The URL-friendly slug or identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b2813699-8004-4944-bd4d-041c856a1363",
-          "name": "List API endpoints",
-          "request": {
-            "name": "List API endpoints",
-            "description": {
-              "content": "Retrieves the list of available endpoints for a specific API, including HTTP methods, paths, parameters, and response schemas.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apis",
-                ":apiSlug",
-                "endpoints"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "apiSlug",
-                  "description": "(Required) The URL-friendly slug or identifier of the API"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f16856b7-020b-4521-b493-d9ea7a9915f8",
-              "name": "List of API endpoints",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "apis",
-                    ":apiSlug",
-                    "endpoints"
+                    ":apiId"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
+                      "id": "12ce76ee-76c2-4eca-b8ef-f37812a252b4",
+                      "key": "apiId",
                       "value": "<string>",
-                      "key": "apiSlug",
-                      "description": "(Required) The URL-friendly slug or identifier of the API"
+                      "description": "(Required) The unique identifier of the API"
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                "description": "Updates the configuration and metadata of an existing API in the Enterprise Hub."
+              },
+              "response": [
+                {
+                  "id": "51594f3e-b308-45f7-8ae2-3eb03185e24f",
+                  "name": "API updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "Updated display name of the API",
+                          "key": "name",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated short description of the API",
+                          "key": "description",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated detailed description",
+                          "key": "longDescription",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated category assignment",
+                          "key": "category",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated website URL",
+                          "key": "websiteUrl",
+                          "value": "<uri>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated API icon image file",
+                          "key": "imageFile",
+                          "type": "file"
+                        }
+                      ]
                     },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "apiId"
+                        }
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"longDescription\": \"<string>\",\n  \"category\": \"<string>\",\n  \"websiteUrl\": \"<uri>\",\n  \"imageUrl\": \"<uri>\",\n  \"status\": \"active\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-51594f3e-b308-45f7-8ae2-3eb03185e24f"
+                },
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "9ca04edc-2774-4367-9deb-c80c6d5272fe",
+                  "name": "Bad request - invalid input parameters",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "Updated display name of the API",
+                          "key": "name",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated short description of the API",
+                          "key": "description",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated detailed description",
+                          "key": "longDescription",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated category assignment",
+                          "key": "category",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated website URL",
+                          "key": "websiteUrl",
+                          "value": "<uri>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated API icon image file",
+                          "key": "imageFile",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "apiId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-9ca04edc-2774-4367-9deb-c80c6d5272fe"
+                },
+                {
+                  "id": "7a10fe2b-6a58-4361-943a-1b57b9346ab3",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "Updated display name of the API",
+                          "key": "name",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated short description of the API",
+                          "key": "description",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated detailed description",
+                          "key": "longDescription",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated category assignment",
+                          "key": "category",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated website URL",
+                          "key": "websiteUrl",
+                          "value": "<uri>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated API icon image file",
+                          "key": "imageFile",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "apiId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-7a10fe2b-6a58-4361-943a-1b57b9346ab3"
+                },
+                {
+                  "id": "f6e33e4d-ccd3-4e51-9007-9491d8caa809",
+                  "name": "API not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "Updated display name of the API",
+                          "key": "name",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated short description of the API",
+                          "key": "description",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated detailed description",
+                          "key": "longDescription",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated category assignment",
+                          "key": "category",
+                          "value": "<string>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated website URL",
+                          "key": "websiteUrl",
+                          "value": "<uri>",
+                          "type": "text"
+                        },
+                        {
+                          "description": "Updated API icon image file",
+                          "key": "imageFile",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "apiId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-f6e33e4d-ccd3-4e51-9007-9491d8caa809"
                 }
               ],
-              "body": "{\n  \"endpoints\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"method\": \"DELETE\",\n      \"path\": \"string\",\n      \"description\": \"string\",\n      \"group\": \"string\",\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"required\": true,\n          \"description\": \"string\",\n          \"defaultValue\": \"string\",\n          \"location\": \"body\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"required\": true,\n          \"description\": \"string\",\n          \"defaultValue\": \"string\",\n          \"location\": \"body\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"method\": \"DELETE\",\n      \"path\": \"string\",\n      \"description\": \"string\",\n      \"group\": \"string\",\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"required\": false,\n          \"description\": \"string\",\n          \"defaultValue\": \"string\",\n          \"location\": \"header\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"required\": true,\n          \"description\": \"string\",\n          \"defaultValue\": \"string\",\n          \"location\": \"body\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:53:26.000Z",
+              "updatedAt": "2026-10-22T01:53:26.000Z",
+              "uid": "35240-b5aea9d8-2ebf-42a1-b6fc-efff89180256"
             },
             {
-              "id": "ee8aab3b-1d05-475a-aadd-37f35f72e23d",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
+              "name": "Delete an API",
+              "id": "b7b4e527-209d-4c89-8c83-1537ebadbf0f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
                 "url": {
-                  "path": [
-                    "apis",
-                    ":apiSlug",
-                    "endpoints"
-                  ],
+                  "raw": "{{baseUrl}}/apis/:apiId",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiSlug",
-                      "description": "(Required) The URL-friendly slug or identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "5cc04329-1de7-4d77-863c-ebe70cd80209",
-              "name": "API not found",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "apis",
-                    ":apiSlug",
-                    "endpoints"
+                    ":apiId"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
+                      "id": "f97325ac-be90-460b-8d14-15391646e8df",
+                      "key": "apiId",
                       "value": "<string>",
-                      "key": "apiSlug",
-                      "description": "(Required) The URL-friendly slug or identifier of the API"
+                      "description": "(Required) The unique identifier of the API"
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Deletes an API listing from the Enterprise Hub. This action is irreversible and removes all associated versions and configurations."
               },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "a6122822-2ae8-4812-9d30-38b3bd05dc4a",
+                  "name": "API deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "apiId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-a6122822-2ae8-4812-9d30-38b3bd05dc4a"
+                },
+                {
+                  "id": "e864a61c-5379-45ac-8d04-50546502ace7",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "apiId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-e864a61c-5379-45ac-8d04-50546502ace7"
+                },
+                {
+                  "id": "4a37237f-d010-4295-9aa2-91bc0f6f7aa7",
+                  "name": "API not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apis/:apiId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apis",
+                        ":apiId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "apiId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:53:26.000Z",
+                  "updatedAt": "2026-10-22T01:53:26.000Z",
+                  "uid": "35240-4a37237f-d010-4295-9aa2-91bc0f6f7aa7"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:53:26.000Z",
+              "updatedAt": "2026-10-22T01:53:26.000Z",
+              "uid": "35240-b7b4e527-209d-4c89-8c83-1537ebadbf0f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "b584ec62-770d-46e7-88d5-1618ac4cf290",
+          "createdAt": "2026-10-22T01:53:26.000Z",
+          "updatedAt": "2026-10-22T01:53:26.000Z",
+          "uid": "35240-b584ec62-770d-46e7-88d5-1618ac4cf290"
         },
         {
-          "id": "f437ae5a-0fda-4c76-9ce1-7234e2e96a05",
           "name": "List all APIs",
+          "id": "1fc7c329-eac9-4569-9b2e-5549ecd2b98a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "List all APIs",
-            "description": {
-              "content": "Retrieves a list of all APIs available in the Enterprise Hub. Supports filtering and pagination to narrow down results.",
-              "type": "text/plain"
-            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/apis?offset=0&limit=25",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "apis"
-              ],
-              "host": [
-                "{{baseUrl}}"
               ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "The number of items to skip for pagination",
                   "key": "offset",
-                  "value": "0",
-                  "description": "The number of items to skip for pagination"
+                  "value": "0"
                 },
                 {
-                  "disabled": false,
+                  "description": "The maximum number of items to return",
                   "key": "limit",
-                  "value": "25",
-                  "description": "The maximum number of items to return"
+                  "value": "25"
                 }
-              ],
-              "variable": []
+              ]
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            "description": "Retrieves a list of all APIs available in the Enterprise Hub. Supports filtering and pagination to narrow down results."
           },
           "response": [
             {
-              "id": "2a3b8455-4e6a-407e-9320-cf2c7a22ba8e",
+              "id": "9cc91e8c-7d4e-4555-935f-164b170c996c",
               "name": "A list of APIs",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "apis"
-                  ],
+                  "raw": "{{baseUrl}}/apis?offset=0&limit=25",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "apis"
+                  ],
                   "query": [
                     {
+                      "description": "The number of items to skip for pagination",
                       "key": "offset",
                       "value": "0"
                     },
                     {
+                      "description": "The maximum number of items to return",
                       "key": "limit",
                       "value": "25"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"apis\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"longDescription\": \"string\",\n      \"category\": \"string\",\n      \"websiteUrl\": \"http://WlpbDs.scT6ULRXP3YTLWyEL6siUUy\",\n      \"imageUrl\": \"http://FqsRXOrYBRmwKRpUod.ptpeJhDrmcUALhEz28Hi,saS\",\n      \"status\": \"inactive\",\n      \"createdAt\": \"2015-07-30T14:09:32.227Z\",\n      \"updatedAt\": \"1982-05-19T10:18:22.323Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"longDescription\": \"string\",\n      \"category\": \"string\",\n      \"websiteUrl\": \"https://Dtp.qxGKV7OzEBYVY72SnKFN\",\n      \"imageUrl\": \"https://oMvLHMWgc.dpbr.Rrp6oDVLAwUbSDFIW68zRJiLDScYwYbCh27+\",\n      \"status\": \"deprecated\",\n      \"createdAt\": \"1988-10-18T07:00:05.427Z\",\n      \"updatedAt\": \"1989-10-08T02:08:39.175Z\"\n    }\n  ],\n  \"totalCount\": 9078\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"apis\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"longDescription\": \"<string>\",\n      \"category\": \"<string>\",\n      \"websiteUrl\": \"<uri>\",\n      \"imageUrl\": \"<uri>\",\n      \"status\": \"inactive\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"longDescription\": \"<string>\",\n      \"category\": \"<string>\",\n      \"websiteUrl\": \"<uri>\",\n      \"imageUrl\": \"<uri>\",\n      \"status\": \"inactive\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+              "createdAt": "2026-10-22T01:53:26.000Z",
+              "updatedAt": "2026-10-22T01:53:26.000Z",
+              "uid": "35240-9cc91e8c-7d4e-4555-935f-164b170c996c"
             },
             {
-              "id": "6748fd57-f7e9-4d8f-a968-4bb1c4342e23",
+              "id": "5a2b31f5-5765-4141-8463-cf87b247a5a1",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/apis?offset=0&limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apis"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of items to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "The maximum number of items to return",
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:53:26.000Z",
+              "updatedAt": "2026-10-22T01:53:26.000Z",
+              "uid": "35240-5a2b31f5-5765-4141-8463-cf87b247a5a1"
             },
             {
-              "id": "893654b9-f4ba-4a83-bd2a-834b8857d79b",
+              "id": "5ebb5968-ffb0-4b8e-9b62-6310d4a61aaf",
               "name": "Forbidden - insufficient permissions",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/apis?offset=0&limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apis"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of items to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "The maximum number of items to return",
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
               },
               "status": "Forbidden",
               "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:53:26.000Z",
+              "updatedAt": "2026-10-22T01:53:26.000Z",
+              "uid": "35240-5ebb5968-ffb0-4b8e-9b62-6310d4a61aaf"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:53:26.000Z",
+          "updatedAt": "2026-10-22T01:53:26.000Z",
+          "uid": "35240-1fc7c329-eac9-4569-9b2e-5549ecd2b98a"
         },
         {
-          "id": "6cb7a513-19ec-4ded-a6e3-15c5f9120c86",
           "name": "Create an API",
+          "id": "9db7703e-696a-4e8a-9f49-ff67ab2be4e5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Create an API",
-            "description": {
-              "content": "Creates a new API listing in the Enterprise Hub. Requires providing the API name, description, category, and other configuration details.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apis"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -621,1874 +1816,386 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "formdata",
               "formdata": [
                 {
+                  "description": "(Required) Display name of the API",
                   "key": "name",
                   "value": "<string>",
-                  "type": "text",
-                  "description": "(Required) Display name of the API"
+                  "type": "text"
                 },
                 {
+                  "description": "(Required) Short description of the API",
                   "key": "description",
                   "value": "<string>",
-                  "type": "text",
-                  "description": "(Required) Short description of the API"
+                  "type": "text"
                 },
                 {
+                  "description": "(Required) The category to assign the API to",
                   "key": "category",
                   "value": "<string>",
-                  "type": "text",
-                  "description": "(Required) The category to assign the API to"
+                  "type": "text"
                 },
                 {
+                  "description": "Detailed description of the API and its use cases",
                   "key": "longDescription",
                   "value": "<string>",
-                  "type": "text",
-                  "description": "Detailed description of the API and its use cases"
+                  "type": "text"
                 },
                 {
+                  "description": "URL to the website providing the API",
                   "key": "websiteUrl",
                   "value": "<uri>",
-                  "type": "text",
-                  "description": "URL to the website providing the API"
+                  "type": "text"
                 },
                 {
+                  "description": "API icon image file in PNG or JPG format, recommended 500x500 px",
                   "key": "imageFile",
                   "type": "file",
-                  "description": "API icon image file in PNG or JPG format, recommended 500x500 px"
+                  "value": null
                 }
               ]
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/apis",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "apis"
+              ]
+            },
+            "description": "Creates a new API listing in the Enterprise Hub. Requires providing the API name, description, category, and other configuration details."
           },
           "response": [
             {
-              "id": "b4b3fe42-98c4-44b7-9c2a-ec00f0b3fe72",
+              "id": "b604379e-3867-4be2-a504-dd12896a4df1",
               "name": "API created successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "(Required) Display name of the API",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Display name of the API",
                       "key": "name",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "(Required) Short description of the API",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Short description of the API",
                       "key": "description",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "(Required) The category to assign the API to",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) The category to assign the API to",
                       "key": "category",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "Detailed description of the API and its use cases",
-                        "type": "text/plain"
-                      },
+                      "description": "Detailed description of the API and its use cases",
                       "key": "longDescription",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "URL to the website providing the API",
-                        "type": "text/plain"
-                      },
+                      "description": "URL to the website providing the API",
                       "key": "websiteUrl",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "API icon image file in PNG or JPG format, recommended 500x500 px",
-                        "type": "text/plain"
-                      },
+                      "description": "API icon image file in PNG or JPG format, recommended 500x500 px",
                       "key": "imageFile",
-                      "value": "<binary>",
-                      "type": "text"
+                      "type": "file"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apis",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apis"
                   ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"longDescription\": \"string\",\n  \"category\": \"string\",\n  \"websiteUrl\": \"https://GXpcgLFWryXydvcFpQHwDrsVIXI.kkqYw5HngxJj1Wd.LZi,K94SzXfsL4ucUqjVJ.sEDDmWtZoXAbw2Nlz.lKm\",\n  \"imageUrl\": \"https://PhaJuq.alXAGnYGYXcDerOmH.\",\n  \"status\": \"deprecated\",\n  \"createdAt\": \"2008-09-30T07:55:13.112Z\",\n  \"updatedAt\": \"2000-09-16T15:24:10.698Z\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"longDescription\": \"<string>\",\n  \"category\": \"<string>\",\n  \"websiteUrl\": \"<uri>\",\n  \"imageUrl\": \"<uri>\",\n  \"status\": \"active\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-10-22T01:53:26.000Z",
+              "updatedAt": "2026-10-22T01:53:26.000Z",
+              "uid": "35240-b604379e-3867-4be2-a504-dd12896a4df1"
             },
             {
-              "id": "eea72877-5e16-44b2-b1f0-4a8810cba7ba",
+              "id": "5fb0e0e7-cfef-4cca-bc28-a4270c25177c",
               "name": "Bad request - invalid input parameters",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "(Required) Display name of the API",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Display name of the API",
                       "key": "name",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "(Required) Short description of the API",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Short description of the API",
                       "key": "description",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "(Required) The category to assign the API to",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) The category to assign the API to",
                       "key": "category",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "Detailed description of the API and its use cases",
-                        "type": "text/plain"
-                      },
+                      "description": "Detailed description of the API and its use cases",
                       "key": "longDescription",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "URL to the website providing the API",
-                        "type": "text/plain"
-                      },
+                      "description": "URL to the website providing the API",
                       "key": "websiteUrl",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "API icon image file in PNG or JPG format, recommended 500x500 px",
-                        "type": "text/plain"
-                      },
+                      "description": "API icon image file in PNG or JPG format, recommended 500x500 px",
                       "key": "imageFile",
-                      "value": "<binary>",
-                      "type": "text"
+                      "type": "file"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apis",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apis"
                   ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:53:26.000Z",
+              "updatedAt": "2026-10-22T01:53:26.000Z",
+              "uid": "35240-5fb0e0e7-cfef-4cca-bc28-a4270c25177c"
             },
             {
-              "id": "6729e652-a333-4e42-a0a7-627f3a0238bc",
+              "id": "7b1c348e-d33b-4a41-ad1d-472cc9ec09c5",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "(Required) Display name of the API",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Display name of the API",
                       "key": "name",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "(Required) Short description of the API",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Short description of the API",
                       "key": "description",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "(Required) The category to assign the API to",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) The category to assign the API to",
                       "key": "category",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "Detailed description of the API and its use cases",
-                        "type": "text/plain"
-                      },
+                      "description": "Detailed description of the API and its use cases",
                       "key": "longDescription",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "URL to the website providing the API",
-                        "type": "text/plain"
-                      },
+                      "description": "URL to the website providing the API",
                       "key": "websiteUrl",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "API icon image file in PNG or JPG format, recommended 500x500 px",
-                        "type": "text/plain"
-                      },
+                      "description": "API icon image file in PNG or JPG format, recommended 500x500 px",
                       "key": "imageFile",
-                      "value": "<binary>",
-                      "type": "text"
+                      "type": "file"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apis",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apis"
                   ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:53:26.000Z",
+              "updatedAt": "2026-10-22T01:53:26.000Z",
+              "uid": "35240-7b1c348e-d33b-4a41-ad1d-472cc9ec09c5"
             },
             {
-              "id": "a8820087-7c50-4362-8af7-f6ba4ab0790e",
+              "id": "3faa4a83-b545-447c-8006-b02edbeeda47",
               "name": "Forbidden - insufficient permissions",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "formdata",
                   "formdata": [
                     {
-                      "description": {
-                        "content": "(Required) Display name of the API",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Display name of the API",
                       "key": "name",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "(Required) Short description of the API",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) Short description of the API",
                       "key": "description",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "(Required) The category to assign the API to",
-                        "type": "text/plain"
-                      },
+                      "description": "(Required) The category to assign the API to",
                       "key": "category",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "Detailed description of the API and its use cases",
-                        "type": "text/plain"
-                      },
+                      "description": "Detailed description of the API and its use cases",
                       "key": "longDescription",
                       "value": "<string>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "URL to the website providing the API",
-                        "type": "text/plain"
-                      },
+                      "description": "URL to the website providing the API",
                       "key": "websiteUrl",
                       "value": "<uri>",
                       "type": "text"
                     },
                     {
-                      "description": {
-                        "content": "API icon image file in PNG or JPG format, recommended 500x500 px",
-                        "type": "text/plain"
-                      },
+                      "description": "API icon image file in PNG or JPG format, recommended 500x500 px",
                       "key": "imageFile",
-                      "value": "<binary>",
-                      "type": "text"
+                      "type": "file"
                     }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/apis",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apis"
                   ]
                 }
               },
               "status": "Forbidden",
               "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:53:26.000Z",
+              "updatedAt": "2026-10-22T01:53:26.000Z",
+              "uid": "35240-3faa4a83-b545-447c-8006-b02edbeeda47"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4c0e7a8f-17c6-4668-ba05-5b0385370f78",
-          "name": "Get an API",
-          "request": {
-            "name": "Get an API",
-            "description": {
-              "content": "Retrieves the details of a specific API by its unique identifier, including its configuration, versions, and metadata.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apis",
-                ":apiId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "apiId",
-                  "description": "(Required) The unique identifier of the API"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "eaf1cb0a-46be-470a-ae6c-9a399d8924d1",
-              "name": "API details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"longDescription\": \"string\",\n  \"category\": \"string\",\n  \"websiteUrl\": \"https://GXpcgLFWryXydvcFpQHwDrsVIXI.kkqYw5HngxJj1Wd.LZi,K94SzXfsL4ucUqjVJ.sEDDmWtZoXAbw2Nlz.lKm\",\n  \"imageUrl\": \"https://PhaJuq.alXAGnYGYXcDerOmH.\",\n  \"status\": \"deprecated\",\n  \"createdAt\": \"2008-09-30T07:55:13.112Z\",\n  \"updatedAt\": \"2000-09-16T15:24:10.698Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "90f1a120-ed17-494f-88e8-03e37964666a",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "38b660e9-ada8-47d3-82f4-e8d845ca9f9d",
-              "name": "API not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f81893c3-272c-4a50-bf5c-521b3b064642",
-          "name": "Update an API",
-          "request": {
-            "name": "Update an API",
-            "description": {
-              "content": "Updates the configuration and metadata of an existing API in the Enterprise Hub.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apis",
-                ":apiId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "apiId",
-                  "description": "(Required) The unique identifier of the API"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "multipart/form-data"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "name",
-                  "value": "<string>",
-                  "type": "text",
-                  "description": "Updated display name of the API"
-                },
-                {
-                  "key": "description",
-                  "value": "<string>",
-                  "type": "text",
-                  "description": "Updated short description of the API"
-                },
-                {
-                  "key": "longDescription",
-                  "value": "<string>",
-                  "type": "text",
-                  "description": "Updated detailed description"
-                },
-                {
-                  "key": "category",
-                  "value": "<string>",
-                  "type": "text",
-                  "description": "Updated category assignment"
-                },
-                {
-                  "key": "websiteUrl",
-                  "value": "<uri>",
-                  "type": "text",
-                  "description": "Updated website URL"
-                },
-                {
-                  "key": "imageFile",
-                  "type": "file",
-                  "description": "Updated API icon image file"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "a4e25567-04cf-45cb-97ef-50cdac1629c6",
-              "name": "API updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "Updated display name of the API",
-                        "type": "text/plain"
-                      },
-                      "key": "name",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated short description of the API",
-                        "type": "text/plain"
-                      },
-                      "key": "description",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated detailed description",
-                        "type": "text/plain"
-                      },
-                      "key": "longDescription",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated category assignment",
-                        "type": "text/plain"
-                      },
-                      "key": "category",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated website URL",
-                        "type": "text/plain"
-                      },
-                      "key": "websiteUrl",
-                      "value": "<uri>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated API icon image file",
-                        "type": "text/plain"
-                      },
-                      "key": "imageFile",
-                      "value": "<binary>",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"longDescription\": \"string\",\n  \"category\": \"string\",\n  \"websiteUrl\": \"https://GXpcgLFWryXydvcFpQHwDrsVIXI.kkqYw5HngxJj1Wd.LZi,K94SzXfsL4ucUqjVJ.sEDDmWtZoXAbw2Nlz.lKm\",\n  \"imageUrl\": \"https://PhaJuq.alXAGnYGYXcDerOmH.\",\n  \"status\": \"deprecated\",\n  \"createdAt\": \"2008-09-30T07:55:13.112Z\",\n  \"updatedAt\": \"2000-09-16T15:24:10.698Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "50b296b6-b7ee-4110-9a25-92316cee0137",
-              "name": "Bad request - invalid input parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "Updated display name of the API",
-                        "type": "text/plain"
-                      },
-                      "key": "name",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated short description of the API",
-                        "type": "text/plain"
-                      },
-                      "key": "description",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated detailed description",
-                        "type": "text/plain"
-                      },
-                      "key": "longDescription",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated category assignment",
-                        "type": "text/plain"
-                      },
-                      "key": "category",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated website URL",
-                        "type": "text/plain"
-                      },
-                      "key": "websiteUrl",
-                      "value": "<uri>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated API icon image file",
-                        "type": "text/plain"
-                      },
-                      "key": "imageFile",
-                      "value": "<binary>",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "2ea04637-a45a-464a-8f78-2016d6fac7f3",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "Updated display name of the API",
-                        "type": "text/plain"
-                      },
-                      "key": "name",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated short description of the API",
-                        "type": "text/plain"
-                      },
-                      "key": "description",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated detailed description",
-                        "type": "text/plain"
-                      },
-                      "key": "longDescription",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated category assignment",
-                        "type": "text/plain"
-                      },
-                      "key": "category",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated website URL",
-                        "type": "text/plain"
-                      },
-                      "key": "websiteUrl",
-                      "value": "<uri>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated API icon image file",
-                        "type": "text/plain"
-                      },
-                      "key": "imageFile",
-                      "value": "<binary>",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "ab416348-a390-4c33-9302-a663ca8752c6",
-              "name": "API not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "Updated display name of the API",
-                        "type": "text/plain"
-                      },
-                      "key": "name",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated short description of the API",
-                        "type": "text/plain"
-                      },
-                      "key": "description",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated detailed description",
-                        "type": "text/plain"
-                      },
-                      "key": "longDescription",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated category assignment",
-                        "type": "text/plain"
-                      },
-                      "key": "category",
-                      "value": "<string>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated website URL",
-                        "type": "text/plain"
-                      },
-                      "key": "websiteUrl",
-                      "value": "<uri>",
-                      "type": "text"
-                    },
-                    {
-                      "description": {
-                        "content": "Updated API icon image file",
-                        "type": "text/plain"
-                      },
-                      "key": "imageFile",
-                      "value": "<binary>",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f8b67d08-a003-4b55-be3c-087657df7ab1",
-          "name": "Delete an API",
-          "request": {
-            "name": "Delete an API",
-            "description": {
-              "content": "Deletes an API listing from the Enterprise Hub. This action is irreversible and removes all associated versions and configurations.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apis",
-                ":apiId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "apiId",
-                  "description": "(Required) The unique identifier of the API"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "a67c5131-bdab-46b3-87bd-cbed99fa976a",
-              "name": "API deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "d4768949-67b0-406d-ad8e-86f6c94c638b",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "f046d762-be16-465a-b39b-5e6a72445914",
-              "name": "API not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4366b3c5-8ba2-4be4-802c-bb2f85a15644",
-          "name": "List API versions",
-          "request": {
-            "name": "List API versions",
-            "description": {
-              "content": "Retrieves all versions of a specific API, including version names, statuses, and configuration details.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apis",
-                ":apiId",
-                "versions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "apiId",
-                  "description": "(Required) The unique identifier of the API"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "6b6195d0-66e1-4b2a-a11f-f80551145e50",
-              "name": "A list of API versions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId",
-                    "versions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"versions\": [\n    {\n      \"id\": \"string\",\n      \"apiId\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"active\",\n      \"createdAt\": \"1994-03-11T07:44:57.528Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"apiId\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"active\",\n      \"createdAt\": \"2014-06-10T14:20:42.673Z\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2195cd6c-208c-4fc1-994b-d1cbd1d3b333",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId",
-                    "versions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "09b1b761-54be-436e-9435-331da9ddff12",
-              "name": "API not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId",
-                    "versions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1dc713cd-9317-4079-852a-ee73ea8dfab1",
-          "name": "Update an API version",
-          "request": {
-            "name": "Update an API version",
-            "description": {
-              "content": "Updates the configuration of a specific version of an API, including its endpoints, description, and settings.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "apis",
-                ":apiId",
-                "versions",
-                ":versionId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "apiId",
-                  "description": "(Required) The unique identifier of the API"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "versionId",
-                  "description": "(Required) The unique identifier of the API version"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "d7d3bfdc-c993-47e0-9f78-d1cbca3355cc",
-              "name": "API version updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId",
-                    "versions",
-                    ":versionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "versionId",
-                      "description": "(Required) The unique identifier of the API version"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"apiId\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"draft\",\n  \"createdAt\": \"2017-05-30T09:48:48.323Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "576adf31-1d16-4987-b49b-aa2e69242acc",
-              "name": "Bad request - invalid input parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId",
-                    "versions",
-                    ":versionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "versionId",
-                      "description": "(Required) The unique identifier of the API version"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "d4b868c2-c392-43c2-b357-09aee545e873",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId",
-                    "versions",
-                    ":versionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "versionId",
-                      "description": "(Required) The unique identifier of the API version"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "913592a1-8e3b-4165-a17c-50a2ad98582f",
-              "name": "API version not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "apis",
-                    ":apiId",
-                    "versions",
-                    ":versionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "apiId",
-                      "description": "(Required) The unique identifier of the API"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "versionId",
-                      "description": "(Required) The unique identifier of the API version"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:53:26.000Z",
+          "updatedAt": "2026-10-22T01:53:26.000Z",
+          "uid": "35240-9db7703e-696a-4e8a-9f49-ff67ab2be4e5"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "59407ddb-8378-4e6a-8274-f5529571e717",
+      "createdAt": "2026-10-22T01:53:26.000Z",
+      "updatedAt": "2026-10-22T01:53:26.000Z",
+      "uid": "35240-59407ddb-8378-4e6a-8274-f5529571e717"
     }
   ],
   "auth": {
@@ -2496,25 +2203,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "0406f299-4899-44f5-aea0-a5014d608359",
-    "name": "RapidAPI Gateway Alerts Apis API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rapidapi.com"
     }
-  }
+  ]
 }

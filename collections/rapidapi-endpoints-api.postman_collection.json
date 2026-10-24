@@ -1,1057 +1,978 @@
 {
+  "info": {
+    "_postman_id": "38edc350-e49e-42fd-920e-6af5432965b7",
+    "name": "RapidAPI Studio Endpoints API",
+    "description": "RapidAPI Studio is an API design and development environment that enables teams to design, build, and document APIs collaboratively. It supports importing and editing OpenAPI specifications and Postman Collections, providing a visual interface for defining endpoints, parameters, and response schemas. Studio integrates with the broader RapidAPI platform, allowing developers to publish designed APIs directly to the hub and generate documentation automatically from API definitions.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:51:17.000Z",
+    "updatedAt": "2026-10-22T01:51:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-38edc350-e49e-42fd-920e-6af5432965b7"
+  },
   "item": [
     {
-      "id": "2e27d47b-61a3-4cb5-8de8-60fc76015e6f",
-      "name": "Endpoints",
-      "description": {
-        "content": "Endpoints for managing API endpoint configurations within a project, including creating, updating, and organizing endpoint groups.",
-        "type": "text/plain"
-      },
+      "name": "projects",
       "item": [
         {
-          "id": "6b04c274-a157-4a4b-a8ef-8d7441630c65",
-          "name": "List endpoints",
-          "request": {
-            "name": "List endpoints",
-            "description": {
-              "content": "Retrieves all endpoints configured in a project, organized by endpoint groups. Each endpoint includes its HTTP method, path, parameters, and response definitions.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "projects",
-                ":projectId",
-                "endpoints"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectId",
-                  "description": "(Required) The unique identifier of the project"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{projectId}",
+          "item": [
             {
-              "id": "164ec7cf-d415-41b4-ba2a-d90d8b260bb6",
-              "name": "A list of endpoints",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "endpoints",
+              "item": [
+                {
+                  "name": "{endpointId}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                      "name": "Update an endpoint",
+                      "id": "ce5cfb21-6579-4210-baaa-86456196c7dd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"PUT\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/endpoints/:endpointId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "endpoints",
+                            ":endpointId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2e5ddc62-b5b7-4f79-87e3-24400711ce2a",
+                              "key": "projectId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the project"
+                            },
+                            {
+                              "id": "27a3db0c-a753-44c2-958d-00b8052bebf4",
+                              "key": "endpointId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the endpoint"
+                            }
+                          ]
+                        },
+                        "description": "Updates the configuration of an existing endpoint in the project."
+                      },
+                      "response": [
+                        {
+                          "id": "b8476995-9b67-4b77-9b1c-77a741c40c17",
+                          "name": "Endpoint updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"PUT\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/endpoints/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "endpoints",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"method\": \"PATCH\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\",\n  \"parameters\": [\n    {\n      \"name\": \"<string>\",\n      \"location\": \"body\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"location\": \"path\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:51:18.000Z",
+                          "updatedAt": "2026-10-22T01:51:18.000Z",
+                          "uid": "35240-b8476995-9b67-4b77-9b1c-77a741c40c17"
+                        },
+                        {
+                          "id": "edc59a45-1377-4a97-ba6c-87d384511728",
+                          "name": "Bad request - invalid endpoint configuration",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"PUT\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/endpoints/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "endpoints",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:51:18.000Z",
+                          "updatedAt": "2026-10-22T01:51:18.000Z",
+                          "uid": "35240-edc59a45-1377-4a97-ba6c-87d384511728"
+                        },
+                        {
+                          "id": "4693e172-6ad2-4640-92a9-75a48cba39fd",
+                          "name": "Unauthorized - invalid or missing API key",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"PUT\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/endpoints/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "endpoints",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:51:18.000Z",
+                          "updatedAt": "2026-10-22T01:51:18.000Z",
+                          "uid": "35240-4693e172-6ad2-4640-92a9-75a48cba39fd"
+                        },
+                        {
+                          "id": "4f26e727-8cf5-43ee-82d1-9d9cbb37bfe7",
+                          "name": "Endpoint not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"PUT\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/endpoints/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "endpoints",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:51:18.000Z",
+                          "updatedAt": "2026-10-22T01:51:18.000Z",
+                          "uid": "35240-4f26e727-8cf5-43ee-82d1-9d9cbb37bfe7"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:51:18.000Z",
+                      "updatedAt": "2026-10-22T01:51:18.000Z",
+                      "uid": "35240-ce5cfb21-6579-4210-baaa-86456196c7dd"
                     },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    {
+                      "name": "Delete an endpoint",
+                      "id": "56f2dfee-b41a-4f06-aa89-66498f639b48",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/endpoints/:endpointId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "endpoints",
+                            ":endpointId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5a42366a-ce3c-4a7a-8947-b077085aa582",
+                              "key": "projectId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the project"
+                            },
+                            {
+                              "id": "525e9fab-0284-48a0-8515-d601f5eb581e",
+                              "key": "endpointId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the endpoint"
+                            }
+                          ]
+                        },
+                        "description": "Deletes an endpoint from the project."
+                      },
+                      "response": [
+                        {
+                          "id": "dc5229d2-8337-49c8-8935-116a5bd2c2d2",
+                          "name": "Endpoint deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/endpoints/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "endpoints",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:51:18.000Z",
+                          "updatedAt": "2026-10-22T01:51:18.000Z",
+                          "uid": "35240-dc5229d2-8337-49c8-8935-116a5bd2c2d2"
+                        },
+                        {
+                          "id": "0ae45cf8-de14-4667-989f-c912aec7cb49",
+                          "name": "Unauthorized - invalid or missing API key",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/endpoints/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "endpoints",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:51:18.000Z",
+                          "updatedAt": "2026-10-22T01:51:18.000Z",
+                          "uid": "35240-0ae45cf8-de14-4667-989f-c912aec7cb49"
+                        },
+                        {
+                          "id": "e0f57879-f1fa-4e20-85c1-25368b78bc27",
+                          "name": "Endpoint not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-RapidAPI-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/endpoints/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "endpoints",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "endpointId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:51:18.000Z",
+                          "updatedAt": "2026-10-22T01:51:18.000Z",
+                          "uid": "35240-e0f57879-f1fa-4e20-85c1-25368b78bc27"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:51:18.000Z",
+                      "updatedAt": "2026-10-22T01:51:18.000Z",
+                      "uid": "35240-56f2dfee-b41a-4f06-aa89-66498f639b48"
+                    }
+                  ],
+                  "id": "739a0a4d-f62d-4ba8-9f71-4856ca49a4a1",
+                  "createdAt": "2026-10-22T01:51:18.000Z",
+                  "updatedAt": "2026-10-22T01:51:18.000Z",
+                  "uid": "35240-739a0a4d-f62d-4ba8-9f71-4856ca49a4a1"
+                },
+                {
+                  "name": "List endpoints",
+                  "id": "99662ff1-0747-4b2a-b7ec-3941d8757729",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"endpoints\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"method\": \"GET\",\n      \"path\": \"string\",\n      \"group\": \"string\",\n      \"description\": \"string\",\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"query\",\n          \"type\": \"string\",\n          \"required\": false,\n          \"description\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"path\",\n          \"type\": \"string\",\n          \"required\": false,\n          \"description\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"method\": \"PUT\",\n      \"path\": \"string\",\n      \"group\": \"string\",\n      \"description\": \"string\",\n      \"parameters\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"query\",\n          \"type\": \"string\",\n          \"required\": true,\n          \"description\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"query\",\n          \"type\": \"string\",\n          \"required\": true,\n          \"description\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3c39c9f2-196c-41b6-84e7-c3061d6974f1",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/endpoints",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "endpoints"
+                      ],
+                      "variable": [
+                        {
+                          "id": "67a7e4ac-22d1-41f1-afd1-418306ebf6ce",
+                          "key": "projectId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the project"
+                        }
+                      ]
                     },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "1e0e4d5d-a98b-477b-8414-7200b6009afd",
-              "name": "Project not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "aeb93c12-58e1-465e-ab0e-e6024c16a7f0",
-          "name": "Create an endpoint",
-          "request": {
-            "name": "Create an endpoint",
-            "description": {
-              "content": "Creates a new endpoint in the project with the specified HTTP method, path, parameters, and response configuration.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "projects",
-                ":projectId",
-                "endpoints"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectId",
-                  "description": "(Required) The unique identifier of the project"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"<string>\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "3a387c94-7304-4904-a81a-7c7956acd5af",
-              "name": "Endpoint created successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "description": "Retrieves all endpoints configured in a project, organized by endpoint groups. Each endpoint includes its HTTP method, path, parameters, and response definitions."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"<string>\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"method\": \"PATCH\",\n  \"path\": \"string\",\n  \"group\": \"string\",\n  \"description\": \"string\",\n  \"parameters\": [\n    {\n      \"name\": \"string\",\n      \"location\": \"header\",\n      \"type\": \"string\",\n      \"required\": false,\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"location\": \"path\",\n      \"type\": \"string\",\n      \"required\": true,\n      \"description\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "21f8f456-845a-4e1b-819d-ab91e58ca47e",
-              "name": "Bad request - invalid endpoint configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"<string>\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "1a79b653-5d5d-4cbb-9051-2e0df6dc0d30",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"<string>\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "02a21786-16ca-4a12-8b2d-814362353eeb",
-              "name": "Project not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"<string>\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "49b3729b-8b37-4b3c-b231-816b18edbbe8",
-          "name": "Update an endpoint",
-          "request": {
-            "name": "Update an endpoint",
-            "description": {
-              "content": "Updates the configuration of an existing endpoint in the project.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "projects",
-                ":projectId",
-                "endpoints",
-                ":endpointId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectId",
-                  "description": "(Required) The unique identifier of the project"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "endpointId",
-                  "description": "(Required) The unique identifier of the endpoint"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"<string>\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "e4a10b63-140a-4ec5-af30-92cfa95bc43e",
-              "name": "Endpoint updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints",
-                    ":endpointId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
+                      "id": "374bd468-cd63-4980-8e65-921a5c4b1c5b",
+                      "name": "A list of endpoints",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "endpoints"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"endpoints\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"method\": \"PATCH\",\n      \"path\": \"<string>\",\n      \"group\": \"<string>\",\n      \"description\": \"<string>\",\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"location\": \"path\",\n          \"type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"location\": \"query\",\n          \"type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"description\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"method\": \"POST\",\n      \"path\": \"<string>\",\n      \"group\": \"<string>\",\n      \"description\": \"<string>\",\n      \"parameters\": [\n        {\n          \"name\": \"<string>\",\n          \"location\": \"query\",\n          \"type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"location\": \"query\",\n          \"type\": \"<string>\",\n          \"required\": \"<boolean>\",\n          \"description\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:51:18.000Z",
+                      "updatedAt": "2026-10-22T01:51:18.000Z",
+                      "uid": "35240-374bd468-cd63-4980-8e65-921a5c4b1c5b"
                     },
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "endpointId",
-                      "description": "(Required) The unique identifier of the endpoint"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
+                      "id": "42728d4e-7dc5-47a2-a331-5bb428f5336c",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "endpoints"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:51:18.000Z",
+                      "updatedAt": "2026-10-22T01:51:18.000Z",
+                      "uid": "35240-42728d4e-7dc5-47a2-a331-5bb428f5336c"
                     },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    {
+                      "id": "47e580f9-e58a-4bb2-91a5-30c18e38c645",
+                      "name": "Project not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "endpoints"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:51:18.000Z",
+                      "updatedAt": "2026-10-22T01:51:18.000Z",
+                      "uid": "35240-47e580f9-e58a-4bb2-91a5-30c18e38c645"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:51:18.000Z",
+                  "updatedAt": "2026-10-22T01:51:18.000Z",
+                  "uid": "35240-99662ff1-0747-4b2a-b7ec-3941d8757729"
+                },
+                {
+                  "name": "Create an endpoint",
+                  "id": "0f96c874-9669-434c-a371-19451d07a320",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"<string>\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"PUT\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/endpoints",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "endpoints"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b997547a-343e-4045-bd8b-330b428d24e7",
+                          "key": "projectId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the project"
+                        }
+                      ]
+                    },
+                    "description": "Creates a new endpoint in the project with the specified HTTP method, path, parameters, and response configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "1d42247b-584f-4ad4-b206-0662b1f59e87",
+                      "name": "Endpoint created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"PUT\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "endpoints"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"method\": \"PATCH\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\",\n  \"parameters\": [\n    {\n      \"name\": \"<string>\",\n      \"location\": \"body\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"location\": \"path\",\n      \"type\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:51:18.000Z",
+                      "updatedAt": "2026-10-22T01:51:18.000Z",
+                      "uid": "35240-1d42247b-584f-4ad4-b206-0662b1f59e87"
+                    },
+                    {
+                      "id": "7d09986e-1ed9-49ed-adc0-03ed57eeb51b",
+                      "name": "Bad request - invalid endpoint configuration",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"PUT\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "endpoints"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:51:18.000Z",
+                      "updatedAt": "2026-10-22T01:51:18.000Z",
+                      "uid": "35240-7d09986e-1ed9-49ed-adc0-03ed57eeb51b"
+                    },
+                    {
+                      "id": "9b3396eb-39ec-4875-9f3c-41973c779032",
+                      "name": "Unauthorized - invalid or missing API key",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"PUT\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "endpoints"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:51:18.000Z",
+                      "updatedAt": "2026-10-22T01:51:18.000Z",
+                      "uid": "35240-9b3396eb-39ec-4875-9f3c-41973c779032"
+                    },
+                    {
+                      "id": "015e2bb6-e32a-45b2-bc52-f951af1c6793",
+                      "name": "Project not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-RapidAPI-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"PUT\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/endpoints",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "endpoints"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:51:18.000Z",
+                      "updatedAt": "2026-10-22T01:51:18.000Z",
+                      "uid": "35240-015e2bb6-e32a-45b2-bc52-f951af1c6793"
                     }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "createdAt": "2026-10-22T01:51:18.000Z",
+                  "updatedAt": "2026-10-22T01:51:18.000Z",
+                  "uid": "35240-0f96c874-9669-434c-a371-19451d07a320"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"method\": \"PATCH\",\n  \"path\": \"string\",\n  \"group\": \"string\",\n  \"description\": \"string\",\n  \"parameters\": [\n    {\n      \"name\": \"string\",\n      \"location\": \"header\",\n      \"type\": \"string\",\n      \"required\": false,\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"location\": \"path\",\n      \"type\": \"string\",\n      \"required\": true,\n      \"description\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "149b8fa1-c3e5-4685-ab1f-d60a8dff72e8",
-              "name": "Bad request - invalid endpoint configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints",
-                    ":endpointId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "endpointId",
-                      "description": "(Required) The unique identifier of the endpoint"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"<string>\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "bbfff0af-0c67-4a75-a457-2555b9448956",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints",
-                    ":endpointId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "endpointId",
-                      "description": "(Required) The unique identifier of the endpoint"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"<string>\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "c8304eb4-dc9d-408e-a4ed-9214a8865c70",
-              "name": "Endpoint not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints",
-                    ":endpointId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "endpointId",
-                      "description": "(Required) The unique identifier of the endpoint"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"method\": \"<string>\",\n  \"path\": \"<string>\",\n  \"group\": \"<string>\",\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "3f652891-ac40-4ef8-9c78-bba07234a5c3",
+              "createdAt": "2026-10-22T01:51:18.000Z",
+              "updatedAt": "2026-10-22T01:51:18.000Z",
+              "uid": "35240-3f652891-ac40-4ef8-9c78-bba07234a5c3"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1a42e0cd-8dca-4f4f-bd38-22f345ffef3d",
-          "name": "Delete an endpoint",
-          "request": {
-            "name": "Delete an endpoint",
-            "description": {
-              "content": "Deletes an endpoint from the project.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "projects",
-                ":projectId",
-                "endpoints",
-                ":endpointId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectId",
-                  "description": "(Required) The unique identifier of the project"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "endpointId",
-                  "description": "(Required) The unique identifier of the endpoint"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "489efa9b-5736-4f32-96e1-0f5d2ed19759",
-              "name": "Endpoint deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints",
-                    ":endpointId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "endpointId",
-                      "description": "(Required) The unique identifier of the endpoint"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "5edbd2d2-41a5-4035-82ef-481b7dbcbe49",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints",
-                    ":endpointId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "endpointId",
-                      "description": "(Required) The unique identifier of the endpoint"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "b1df9603-dd37-4fb2-88a5-ffbe1c971fa1",
-              "name": "Endpoint not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "projects",
-                    ":projectId",
-                    "endpoints",
-                    ":endpointId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectId",
-                      "description": "(Required) The unique identifier of the project"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "endpointId",
-                      "description": "(Required) The unique identifier of the endpoint"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "556e7a2b-9305-416b-9c28-993cce70f6fb",
+          "createdAt": "2026-10-22T01:51:18.000Z",
+          "updatedAt": "2026-10-22T01:51:18.000Z",
+          "uid": "35240-556e7a2b-9305-416b-9c28-993cce70f6fb"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "c40f53bd-31e4-4322-9905-5dff846d9cb0",
+      "createdAt": "2026-10-22T01:51:18.000Z",
+      "updatedAt": "2026-10-22T01:51:18.000Z",
+      "uid": "35240-c40f53bd-31e4-4322-9905-5dff846d9cb0"
     }
   ],
   "auth": {
@@ -1059,25 +980,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "ee1aebf1-ed11-4c20-b99e-c2aefc4d1851",
-    "name": "RapidAPI Gateway Alerts Endpoints API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://studio.rapidapi.com/v1"
     }
-  }
+  ]
 }

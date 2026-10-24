@@ -1,149 +1,293 @@
 {
+  "info": {
+    "_postman_id": "efe8eea5-8f64-4462-b71c-86eac3aa60a8",
+    "name": "RapidAPI Testing Alerts API",
+    "description": "RapidAPI Testing provides a comprehensive API testing and monitoring solution that supports REST, SOAP, and GraphQL APIs. It offers an intuitive interface for creating and running functional tests, performance tests, and automated monitoring checks. The testing platform integrates with CI/CD pipelines, enabling teams to verify API behavior as part of their development workflow. Tests can be scheduled to run periodically across 9 AWS regions to monitor API health and detect regressions.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:50:23.000Z",
+    "updatedAt": "2026-10-22T01:50:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-efe8eea5-8f64-4462-b71c-86eac3aa60a8"
+  },
   "item": [
     {
-      "id": "ee2bcf93-c0ad-49f4-8223-8eea493be683",
-      "name": "Alerts",
-      "description": {
-        "content": "Endpoints for configuring alert notifications when tests fail, including integrations with PagerDuty, Slack, and Twilio.",
-        "type": "text/plain"
-      },
+      "name": "alerts",
       "item": [
         {
-          "id": "c19c5bc6-fa93-40ff-bb3a-83ac0db05471",
+          "name": "{alertId}",
+          "item": [
+            {
+              "name": "Delete an alert",
+              "id": "b008e725-ffa7-4d27-af68-776787794156",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/alerts/:alertId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alerts",
+                    ":alertId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "36fbbb18-61e0-4eca-90c8-23f88509b0ee",
+                      "key": "alertId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the alert"
+                    }
+                  ]
+                },
+                "description": "Deletes an alert configuration. Notifications will no longer be sent for the associated test failures."
+              },
+              "response": [
+                {
+                  "id": "254bc804-c4ed-4e23-8920-d4efc6bfd6ef",
+                  "name": "Alert deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/alerts/:alertId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "alerts",
+                        ":alertId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "alertId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:24.000Z",
+                  "updatedAt": "2026-10-22T01:50:24.000Z",
+                  "uid": "35240-254bc804-c4ed-4e23-8920-d4efc6bfd6ef"
+                },
+                {
+                  "id": "cda62eb0-470b-4722-9e15-6c093333b09b",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/alerts/:alertId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "alerts",
+                        ":alertId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "alertId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:24.000Z",
+                  "updatedAt": "2026-10-22T01:50:24.000Z",
+                  "uid": "35240-cda62eb0-470b-4722-9e15-6c093333b09b"
+                },
+                {
+                  "id": "eca859cd-f813-460e-a003-96c0827b1ea4",
+                  "name": "Alert not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/alerts/:alertId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "alerts",
+                        ":alertId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "alertId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:50:24.000Z",
+                  "updatedAt": "2026-10-22T01:50:24.000Z",
+                  "uid": "35240-eca859cd-f813-460e-a003-96c0827b1ea4"
+                }
+              ],
+              "createdAt": "2026-10-22T01:50:24.000Z",
+              "updatedAt": "2026-10-22T01:50:24.000Z",
+              "uid": "35240-b008e725-ffa7-4d27-af68-776787794156"
+            }
+          ],
+          "id": "0dc7d3ef-1111-4390-a9ae-577f0d1b5436",
+          "createdAt": "2026-10-22T01:50:23.000Z",
+          "updatedAt": "2026-10-22T01:50:23.000Z",
+          "uid": "35240-0dc7d3ef-1111-4390-a9ae-577f0d1b5436"
+        },
+        {
           "name": "List alert configurations",
+          "id": "774ac05b-14d7-4059-a426-ec0db43e1c8a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "List alert configurations",
-            "description": {
-              "content": "Retrieves all configured alert notifications for test failures, including integration settings for PagerDuty, Slack, and Twilio.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "alerts"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/alerts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "alerts"
+              ]
+            },
+            "description": "Retrieves all configured alert notifications for test failures, including integration settings for PagerDuty, Slack, and Twilio."
           },
           "response": [
             {
-              "id": "66d6427b-0038-4225-8a5e-b4a12d18329f",
+              "id": "156d87b7-0b2b-42c8-ac52-f9397062e3cd",
               "name": "A list of alert configurations",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "alerts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/alerts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alerts"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"alerts\": [\n    {\n      \"id\": \"string\",\n      \"testId\": \"string\",\n      \"channel\": \"twilio\",\n      \"configuration\": {\n        \"key_0\": 1576.138010767807\n      },\n      \"enabled\": true,\n      \"createdAt\": \"1995-10-27T02:24:45.527Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"testId\": \"string\",\n      \"channel\": \"twilio\",\n      \"configuration\": {\n        \"key_0\": false,\n        \"key_1\": 6096,\n        \"key_2\": 4157\n      },\n      \"enabled\": true,\n      \"createdAt\": \"2020-06-14T16:42:12.982Z\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"alerts\": [\n    {\n      \"id\": \"<string>\",\n      \"testId\": \"<string>\",\n      \"channel\": \"slack\",\n      \"configuration\": {\n        \"ullamco_531\": \"esse officia\",\n        \"reprehenderita\": -77304375\n      },\n      \"enabled\": \"<boolean>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"testId\": \"<string>\",\n      \"channel\": \"twilio\",\n      \"configuration\": {\n        \"consecteturf\": 87770915.22200221\n      },\n      \"enabled\": \"<boolean>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:50:24.000Z",
+              "updatedAt": "2026-10-22T01:50:24.000Z",
+              "uid": "35240-156d87b7-0b2b-42c8-ac52-f9397062e3cd"
             },
             {
-              "id": "f1c9cefc-be52-4954-a80b-2224a489ed30",
+              "id": "a998a7f5-aa50-4ad9-8589-711e0cfc53b4",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "alerts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/alerts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alerts"
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:50:24.000Z",
+              "updatedAt": "2026-10-22T01:50:24.000Z",
+              "uid": "35240-a998a7f5-aa50-4ad9-8589-711e0cfc53b4"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:50:24.000Z",
+          "updatedAt": "2026-10-22T01:50:24.000Z",
+          "uid": "35240-774ac05b-14d7-4059-a426-ec0db43e1c8a"
         },
         {
-          "id": "0cc73ed5-e188-447f-87fb-f3a14c894d3f",
           "name": "Create an alert",
+          "id": "94f06d6b-fe09-4c71-ae5b-4876d5767b7c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Create an alert",
-            "description": {
-              "content": "Creates a new alert configuration that sends notifications when a specified test fails. Supports integration with PagerDuty, Slack, Twilio, and email.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "alerts"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -154,362 +298,188 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"testId\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"configuration\": {\n    \"key_0\": false\n  },\n  \"enabled\": true\n}",
+              "raw": "{\n  \"testId\": \"<string>\",\n  \"channel\": \"twilio\",\n  \"configuration\": {\n    \"dolore_fe0\": -92462414.88918456\n  },\n  \"enabled\": true\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/alerts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "alerts"
+              ]
+            },
+            "description": "Creates a new alert configuration that sends notifications when a specified test fails. Supports integration with PagerDuty, Slack, Twilio, and email."
           },
           "response": [
             {
-              "id": "36ccc5a4-5cc5-4a97-b6b8-a305d178eafa",
+              "id": "f24749a6-64a1-4d21-a0ac-fa9ebe1511f9",
               "name": "Alert created successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "alerts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"testId\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"configuration\": {\n    \"key_0\": true,\n    \"key_1\": 5586.10568956381,\n    \"key_2\": 3491\n  },\n  \"enabled\": true\n}",
+                  "raw": "{\n  \"testId\": \"<string>\",\n  \"channel\": \"twilio\",\n  \"configuration\": {\n    \"dolore_fe0\": -92462414.88918456\n  },\n  \"enabled\": true\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/alerts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alerts"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"testId\": \"string\",\n  \"channel\": \"slack\",\n  \"configuration\": {\n    \"key_0\": true\n  },\n  \"enabled\": true,\n  \"createdAt\": \"1973-02-10T14:50:40.801Z\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"testId\": \"<string>\",\n  \"channel\": \"email\",\n  \"configuration\": {\n    \"esse_7b_\": 71348737.1985972\n  },\n  \"enabled\": \"<boolean>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-10-22T01:50:24.000Z",
+              "updatedAt": "2026-10-22T01:50:24.000Z",
+              "uid": "35240-f24749a6-64a1-4d21-a0ac-fa9ebe1511f9"
             },
             {
-              "id": "57957a7c-8f97-484b-a434-365fe624dd1f",
+              "id": "53575f22-0bd0-41db-8ef3-a4bd9357e81d",
               "name": "Bad request - invalid alert configuration",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "alerts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"testId\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"configuration\": {\n    \"key_0\": true,\n    \"key_1\": 5586.10568956381,\n    \"key_2\": 3491\n  },\n  \"enabled\": true\n}",
+                  "raw": "{\n  \"testId\": \"<string>\",\n  \"channel\": \"twilio\",\n  \"configuration\": {\n    \"dolore_fe0\": -92462414.88918456\n  },\n  \"enabled\": true\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/alerts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alerts"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:50:24.000Z",
+              "updatedAt": "2026-10-22T01:50:24.000Z",
+              "uid": "35240-53575f22-0bd0-41db-8ef3-a4bd9357e81d"
             },
             {
-              "id": "4acf60f2-d207-41a8-a7b7-603f8dac36c0",
+              "id": "a982fc1d-7e46-49b1-9ff2-074fb67c5aaa",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "alerts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"testId\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"configuration\": {\n    \"key_0\": true,\n    \"key_1\": 5586.10568956381,\n    \"key_2\": 3491\n  },\n  \"enabled\": true\n}",
+                  "raw": "{\n  \"testId\": \"<string>\",\n  \"channel\": \"twilio\",\n  \"configuration\": {\n    \"dolore_fe0\": -92462414.88918456\n  },\n  \"enabled\": true\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/alerts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alerts"
+                  ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:50:24.000Z",
+              "updatedAt": "2026-10-22T01:50:24.000Z",
+              "uid": "35240-a982fc1d-7e46-49b1-9ff2-074fb67c5aaa"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8459f6e3-87cc-42ea-8e8d-9893ff9926d6",
-          "name": "Delete an alert",
-          "request": {
-            "name": "Delete an alert",
-            "description": {
-              "content": "Deletes an alert configuration. Notifications will no longer be sent for the associated test failures.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "alerts",
-                ":alertId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "alertId",
-                  "description": "(Required) The unique identifier of the alert"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "c285d01c-2a9a-43e0-89c6-72b191fb002f",
-              "name": "Alert deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "alerts",
-                    ":alertId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "alertId",
-                      "description": "(Required) The unique identifier of the alert"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "415b49ae-7df3-4d23-9dec-e71599ed2c4c",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "alerts",
-                    ":alertId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "alertId",
-                      "description": "(Required) The unique identifier of the alert"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "1171f988-3f5d-40a1-9d02-177b3b1ed70f",
-              "name": "Alert not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "alerts",
-                    ":alertId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "alertId",
-                      "description": "(Required) The unique identifier of the alert"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:50:24.000Z",
+          "updatedAt": "2026-10-22T01:50:24.000Z",
+          "uid": "35240-94f06d6b-fe09-4c71-ae5b-4876d5767b7c"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "93ffaf42-dda8-448f-b5ac-b9c44acd2027",
+      "createdAt": "2026-10-22T01:50:23.000Z",
+      "updatedAt": "2026-10-22T01:50:23.000Z",
+      "uid": "35240-93ffaf42-dda8-448f-b5ac-b9c44acd2027"
     }
   ],
   "auth": {
@@ -517,25 +487,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "88a16856-eb99-47d8-830e-f563f602e159",
-    "name": "RapidAPI Gateway Alerts API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://testing.rapidapi.com/v1"
     }
-  }
+  ]
 }

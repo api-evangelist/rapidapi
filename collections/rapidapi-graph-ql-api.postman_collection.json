@@ -1,0 +1,291 @@
+{
+  "info": {
+    "_postman_id": "cac239e0-60b1-4d9a-a24e-85452e774b56",
+    "name": "RapidAPI Platform GraphQL API",
+    "description": "The RapidAPI GraphQL Platform API exposes the same queries and mutations that RapidAPI uses internally, providing enterprise users with a powerful interface for managing their API hub. It supports creating and updating APIs, managing collections, configuring hub settings, and automating API lifecycle management through GraphQL queries and mutations. The API uses a single POST endpoint and is the recommended approach for Enterprise Hub administration over the REST Platform API.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:53:32.000Z",
+    "updatedAt": "2026-10-22T01:53:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cac239e0-60b1-4d9a-a24e-85452e774b56"
+  },
+  "item": [
+    {
+      "name": "graphql",
+      "item": [
+        {
+          "name": "Execute a GraphQL query or mutation",
+          "id": "f4aa0dea-992f-4dc5-af09-6c501776c13e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"Ut1de\": \"amet volu\",\n    \"nisib\": 109643.75089122355,\n    \"minim9\": -59958497.90336352\n  },\n  \"operationName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            },
+            "description": "Executes a GraphQL query or mutation against the RapidAPI Platform API. Queries are used to read data such as listing APIs, organizations, users, and collections. Mutations are used to create, update, or delete resources. The request body must contain a valid GraphQL query string and optional variables. Mutation input types follow the naming convention of CreateInput, UpdateInput, or DeleteInput. Queries support where and orderBy arguments for filtering and sorting results."
+          },
+          "response": [
+            {
+              "id": "064521f3-9f2a-4396-9b04-4405dc0e8f1c",
+              "name": "GraphQL response containing the requested data or mutation result. Errors are returned in the errors array alongside any partial data.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"Ut1de\": \"amet volu\",\n    \"nisib\": 109643.75089122355,\n    \"minim9\": -59958497.90336352\n  },\n  \"operationName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphql"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"et060\": -83455095,\n    \"ida6\": -44921011,\n    \"aute8b\": \"Duis dolore q\",\n    \"in_2\": \"qui ad adipisicing ex aliqua\"\n  },\n  \"errors\": [\n    {\n      \"message\": \"<string>\",\n      \"locations\": [\n        {\n          \"line\": \"<integer>\",\n          \"column\": \"<integer>\"\n        },\n        {\n          \"line\": \"<integer>\",\n          \"column\": \"<integer>\"\n        }\n      ],\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"extensions\": {\n        \"reprehenderit646\": 87289344,\n        \"cillum31b\": -46263447,\n        \"magna6\": \"nostrud\"\n      }\n    },\n    {\n      \"message\": \"<string>\",\n      \"locations\": [\n        {\n          \"line\": \"<integer>\",\n          \"column\": \"<integer>\"\n        },\n        {\n          \"line\": \"<integer>\",\n          \"column\": \"<integer>\"\n        }\n      ],\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"extensions\": {\n        \"dolor_2c\": 61512918\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:53:32.000Z",
+              "updatedAt": "2026-10-22T01:53:32.000Z",
+              "uid": "35240-064521f3-9f2a-4396-9b04-4405dc0e8f1c"
+            },
+            {
+              "id": "de32930a-17bf-4a38-8901-6f4d26129741",
+              "name": "Bad request - malformed GraphQL query",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"Ut1de\": \"amet volu\",\n    \"nisib\": 109643.75089122355,\n    \"minim9\": -59958497.90336352\n  },\n  \"operationName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphql"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:53:32.000Z",
+              "updatedAt": "2026-10-22T01:53:32.000Z",
+              "uid": "35240-de32930a-17bf-4a38-8901-6f4d26129741"
+            },
+            {
+              "id": "c33e74c2-ffa2-4d79-a851-6bcba6144245",
+              "name": "Unauthorized - invalid or missing API key or authorization header",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"Ut1de\": \"amet volu\",\n    \"nisib\": 109643.75089122355,\n    \"minim9\": -59958497.90336352\n  },\n  \"operationName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphql"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:53:32.000Z",
+              "updatedAt": "2026-10-22T01:53:32.000Z",
+              "uid": "35240-c33e74c2-ffa2-4d79-a851-6bcba6144245"
+            },
+            {
+              "id": "0a93d41e-075f-42b0-88e1-6c3ac529d783",
+              "name": "Forbidden - insufficient permissions for the requested operation",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"Ut1de\": \"amet volu\",\n    \"nisib\": 109643.75089122355,\n    \"minim9\": -59958497.90336352\n  },\n  \"operationName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphql"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:53:32.000Z",
+              "updatedAt": "2026-10-22T01:53:32.000Z",
+              "uid": "35240-0a93d41e-075f-42b0-88e1-6c3ac529d783"
+            }
+          ],
+          "createdAt": "2026-10-22T01:53:32.000Z",
+          "updatedAt": "2026-10-22T01:53:32.000Z",
+          "uid": "35240-f4aa0dea-992f-4dc5-af09-6c501776c13e"
+        }
+      ],
+      "id": "972c043d-3316-4fb9-b1ce-5554c48a5760",
+      "createdAt": "2026-10-22T01:53:32.000Z",
+      "updatedAt": "2026-10-22T01:53:32.000Z",
+      "uid": "35240-972c043d-3316-4fb9-b1ce-5554c48a5760"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://platform.rapidapi.com"
+    }
+  ]
+}

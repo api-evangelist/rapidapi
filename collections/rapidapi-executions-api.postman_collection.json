@@ -1,391 +1,370 @@
 {
+  "info": {
+    "_postman_id": "bcb88bd1-61b8-4241-a903-ff55857e57e7",
+    "name": "RapidAPI Testing Executions API",
+    "description": "RapidAPI Testing provides a comprehensive API testing and monitoring solution that supports REST, SOAP, and GraphQL APIs. It offers an intuitive interface for creating and running functional tests, performance tests, and automated monitoring checks. The testing platform integrates with CI/CD pipelines, enabling teams to verify API behavior as part of their development workflow. Tests can be scheduled to run periodically across 9 AWS regions to monitor API health and detect regressions.\n\nContact Support:\n Name: RapidAPI Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:51:29.000Z",
+    "updatedAt": "2026-10-22T01:51:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bcb88bd1-61b8-4241-a903-ff55857e57e7"
+  },
   "item": [
     {
-      "id": "bb9ba59d-7c7e-4b80-a860-d8c0dd403501",
-      "name": "Executions",
-      "description": {
-        "content": "Endpoints for viewing test execution results, including pass/fail statuses, response times, and detailed assertion outcomes.",
-        "type": "text/plain"
-      },
+      "name": "executions",
       "item": [
         {
-          "id": "dea25edf-f695-42e2-9283-8a44ad4e1482",
+          "name": "{executionId}",
+          "item": [
+            {
+              "name": "Get execution details",
+              "id": "47de6780-6c0b-41a7-bb8f-6e67f34ea811",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/executions/:executionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "executions",
+                    ":executionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ae07afb9-a8bc-4b19-8e7d-3abbba1ced93",
+                      "key": "executionId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the test execution"
+                    }
+                  ]
+                },
+                "description": "Retrieves the detailed results of a specific test execution, including per-step results, response times, assertion outcomes, and any errors."
+              },
+              "response": [
+                {
+                  "id": "798122cf-c57f-45bc-a19a-5979630f58e1",
+                  "name": "Execution details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/executions/:executionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "executions",
+                        ":executionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "executionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"testId\": \"<string>\",\n  \"testName\": \"<string>\",\n  \"status\": \"running\",\n  \"duration\": \"<integer>\",\n  \"location\": \"<string>\",\n  \"steps\": [\n    {\n      \"stepId\": \"<string>\",\n      \"stepName\": \"<string>\",\n      \"status\": \"error\",\n      \"responseTime\": \"<integer>\",\n      \"statusCode\": \"<integer>\",\n      \"assertions\": [\n        {\n          \"target\": \"<string>\",\n          \"passed\": \"<boolean>\",\n          \"expected\": \"<string>\",\n          \"actual\": \"<string>\"\n        },\n        {\n          \"target\": \"<string>\",\n          \"passed\": \"<boolean>\",\n          \"expected\": \"<string>\",\n          \"actual\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"stepId\": \"<string>\",\n      \"stepName\": \"<string>\",\n      \"status\": \"error\",\n      \"responseTime\": \"<integer>\",\n      \"statusCode\": \"<integer>\",\n      \"assertions\": [\n        {\n          \"target\": \"<string>\",\n          \"passed\": \"<boolean>\",\n          \"expected\": \"<string>\",\n          \"actual\": \"<string>\"\n        },\n        {\n          \"target\": \"<string>\",\n          \"passed\": \"<boolean>\",\n          \"expected\": \"<string>\",\n          \"actual\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"startedAt\": \"<dateTime>\",\n  \"completedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:51:29.000Z",
+                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                  "uid": "35240-798122cf-c57f-45bc-a19a-5979630f58e1"
+                },
+                {
+                  "id": "7bfd8d53-165e-4b2c-97c7-a586ec05a663",
+                  "name": "Unauthorized - invalid or missing API key",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/executions/:executionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "executions",
+                        ":executionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "executionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:51:29.000Z",
+                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                  "uid": "35240-7bfd8d53-165e-4b2c-97c7-a586ec05a663"
+                },
+                {
+                  "id": "5b04c360-b777-4f17-8627-cafb24f12bd1",
+                  "name": "Execution not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-RapidAPI-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/executions/:executionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "executions",
+                        ":executionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "executionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:51:29.000Z",
+                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                  "uid": "35240-5b04c360-b777-4f17-8627-cafb24f12bd1"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:29.000Z",
+              "updatedAt": "2026-10-22T01:51:29.000Z",
+              "uid": "35240-47de6780-6c0b-41a7-bb8f-6e67f34ea811"
+            }
+          ],
+          "id": "11e2d439-fbe8-4861-a722-525ee859cdaf",
+          "createdAt": "2026-10-22T01:51:29.000Z",
+          "updatedAt": "2026-10-22T01:51:29.000Z",
+          "uid": "35240-11e2d439-fbe8-4861-a722-525ee859cdaf"
+        },
+        {
           "name": "List test executions",
+          "id": "f6d8cb4e-ff0e-481a-85e3-06e098589822",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "List test executions",
-            "description": {
-              "content": "Retrieves a list of test execution results, optionally filtered by test identifier, status, or date range.",
-              "type": "text/plain"
-            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/executions?testId=<string>&status=failed&offset=0&limit=25",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "executions"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "Filter executions by test identifier",
                   "key": "testId",
-                  "value": "<string>",
-                  "description": "Filter executions by test identifier"
+                  "value": "<string>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Filter executions by result status",
                   "key": "status",
-                  "value": "<string>",
-                  "description": "Filter executions by result status"
+                  "value": "failed"
                 },
                 {
-                  "disabled": false,
+                  "description": "The number of items to skip for pagination",
                   "key": "offset",
-                  "value": "0",
-                  "description": "The number of items to skip for pagination"
+                  "value": "0"
                 },
                 {
-                  "disabled": false,
+                  "description": "The maximum number of items to return",
                   "key": "limit",
-                  "value": "25",
-                  "description": "The maximum number of items to return"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f801fb42-e470-470d-bb3b-ca3c3c38b8fd",
-              "name": "A list of test executions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "executions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "testId",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"executions\": [\n    {\n      \"id\": \"string\",\n      \"testId\": \"string\",\n      \"status\": \"error\",\n      \"duration\": 9668,\n      \"location\": \"string\",\n      \"startedAt\": \"1978-09-27T17:15:50.150Z\",\n      \"completedAt\": \"1977-09-19T09:33:52.476Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"testId\": \"string\",\n      \"status\": \"passed\",\n      \"duration\": 293,\n      \"location\": \"string\",\n      \"startedAt\": \"1976-04-21T09:24:41.561Z\",\n      \"completedAt\": \"2014-01-06T02:37:30.696Z\"\n    }\n  ],\n  \"totalCount\": 2813\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "7013d2cf-26bd-4891-baab-70c2f6064f59",
-              "name": "Unauthorized - invalid or missing API key",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "executions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "testId",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "status",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "01b96416-f9de-4be3-80ed-410f9b681853",
-          "name": "Get execution details",
-          "request": {
-            "name": "Get execution details",
-            "description": {
-              "content": "Retrieves the detailed results of a specific test execution, including per-step results, response times, assertion outcomes, and any errors.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "executions",
-                ":executionId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "executionId",
-                  "description": "(Required) The unique identifier of the test execution"
+                  "value": "25"
                 }
               ]
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            "description": "Retrieves a list of test execution results, optionally filtered by test identifier, status, or date range."
           },
           "response": [
             {
-              "id": "166caa28-05a7-45a8-a50a-88585b10c6dc",
-              "name": "Execution details",
+              "id": "0b872e48-f206-4eaf-b414-336be4c09d5a",
+              "name": "A list of test executions",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "executions",
-                    ":executionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "executionId",
-                      "description": "(Required) The unique identifier of the test execution"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/executions?testId=<string>&status=failed&offset=0&limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "executions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter executions by test identifier",
+                      "key": "testId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter executions by result status",
+                      "key": "status",
+                      "value": "failed"
+                    },
+                    {
+                      "description": "The number of items to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "The maximum number of items to return",
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"testId\": \"string\",\n  \"testName\": \"string\",\n  \"status\": \"passed\",\n  \"duration\": 8213,\n  \"location\": \"string\",\n  \"steps\": [\n    {\n      \"stepId\": \"string\",\n      \"stepName\": \"string\",\n      \"status\": \"passed\",\n      \"responseTime\": 3015,\n      \"statusCode\": 2802,\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"passed\": false,\n          \"expected\": \"string\",\n          \"actual\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"passed\": false,\n          \"expected\": \"string\",\n          \"actual\": \"string\"\n        }\n      ]\n    },\n    {\n      \"stepId\": \"string\",\n      \"stepName\": \"string\",\n      \"status\": \"skipped\",\n      \"responseTime\": 666,\n      \"statusCode\": 7305,\n      \"assertions\": [\n        {\n          \"target\": \"string\",\n          \"passed\": false,\n          \"expected\": \"string\",\n          \"actual\": \"string\"\n        },\n        {\n          \"target\": \"string\",\n          \"passed\": true,\n          \"expected\": \"string\",\n          \"actual\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"startedAt\": \"2000-08-27T10:08:08.339Z\",\n  \"completedAt\": \"1989-12-09T12:41:07.648Z\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"executions\": [\n    {\n      \"id\": \"<string>\",\n      \"testId\": \"<string>\",\n      \"status\": \"running\",\n      \"duration\": \"<integer>\",\n      \"location\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"testId\": \"<string>\",\n      \"status\": \"running\",\n      \"duration\": \"<integer>\",\n      \"location\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"completedAt\": \"<dateTime>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+              "createdAt": "2026-10-22T01:51:29.000Z",
+              "updatedAt": "2026-10-22T01:51:29.000Z",
+              "uid": "35240-0b872e48-f206-4eaf-b414-336be4c09d5a"
             },
             {
-              "id": "67b1e676-6da4-4aaf-bb3e-e9c100e0d4d2",
+              "id": "721ced5b-eccd-4f03-95f1-6e98d5ac8dc3",
               "name": "Unauthorized - invalid or missing API key",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "executions",
-                    ":executionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "executionId",
-                      "description": "(Required) The unique identifier of the test execution"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
+                    "description": "Added as a part of security scheme: apikey",
                     "key": "X-RapidAPI-Key",
                     "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/executions?testId=<string>&status=failed&offset=0&limit=25",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "executions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter executions by test identifier",
+                      "key": "testId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter executions by result status",
+                      "key": "status",
+                      "value": "failed"
+                    },
+                    {
+                      "description": "The number of items to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "The maximum number of items to return",
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "c49ec7f2-d34c-4d4f-8f7a-945f60ad438b",
-              "name": "Execution not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "executions",
-                    ":executionId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "executionId",
-                      "description": "(Required) The unique identifier of the test execution"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-RapidAPI-Key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:51:29.000Z",
+              "updatedAt": "2026-10-22T01:51:29.000Z",
+              "uid": "35240-721ced5b-eccd-4f03-95f1-6e98d5ac8dc3"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:51:29.000Z",
+          "updatedAt": "2026-10-22T01:51:29.000Z",
+          "uid": "35240-f6d8cb4e-ff0e-481a-85e3-06e098589822"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://gateway.rapidapi.com/v1",
-      "key": "baseUrl"
+      "id": "06e130a9-d7e1-4267-9107-abad19ea61f4",
+      "createdAt": "2026-10-22T01:51:29.000Z",
+      "updatedAt": "2026-10-22T01:51:29.000Z",
+      "uid": "35240-06e130a9-d7e1-4267-9107-abad19ea61f4"
     }
   ],
   "auth": {
@@ -393,25 +372,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-RapidAPI-Key"
+        "value": "X-RapidAPI-Key",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "3dd0fab4-ce5e-48d8-8389-4ec7cc726837",
-    "name": "RapidAPI Gateway Alerts Executions API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs. The gateway supports multiple deployment models and can be configured to work with existing infrastructure, providing a centralized point of control for all API traffic flowing through the RapidAPI platform. The Rapid Runtime proxies requests between consumers and providers, adding authentication verification, usage tracking, and billing data collection.\n\nContact Support:\n Name: RapidAPI Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://testing.rapidapi.com/v1"
     }
-  }
+  ]
 }
