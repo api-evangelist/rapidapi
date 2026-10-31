@@ -1,4 +1,4 @@
-# RapidAPI (rapidapi)
+# RapidAPI
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,181 +66,249 @@
 
 RapidAPI operates the world's largest API marketplace, connecting developers to thousands of APIs through a single platform. Their developer platform provides tools for API discovery, testing, management, design, and gateway configuration, enabling both individual developers and enterprises to build, consume, and manage APIs at scale.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/rapidapi/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/rapidapi/refs/heads/main/apis.yml)
+**Areas:** API Marketplace · API Management · API Testing · API Gateway · API Design · Enterprise · Developer Tools · RapidAPI
 
-## Scope
+## RapidAPI on APIs.io
 
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for RapidAPI is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/rapidapi/](https://apis.io/providers/rapidapi/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (29)
 
-- API Marketplace
-- API Management
-- API Testing
-- API Gateway
-- API Design
-- Enterprise
+- [RapidAPI Alerts API](https://apis.io/apis/rapidapi/rapidapi-alerts-api/) — Endpoints for configuring alert notifications when tests fail, including integrations with PagerDuty, Slack, and Twilio.
+- [RapidAPI Analytics API](https://apis.io/apis/rapidapi/rapidapi-analytics-api/) — Endpoints for retrieving gateway traffic analytics, including request counts, response times, error rates, and usage patterns.
+- [RapidAPI Applications API](https://apis.io/apis/rapidapi/rapidapi-applications-api/) — Endpoints for creating, updating, and deleting applications and their associated authorizations within the Enterprise Hub.
+- [RapidAPI Authentication API](https://apis.io/apis/rapidapi/rapidapi-authentication-api/) — Endpoints for configuring authentication schemes on gateways, including OAuth2, API key, header-based, and basic authentication.
+- [RapidAPI Categories API](https://apis.io/apis/rapidapi/rapidapi-categories-api/) — Endpoints for browsing API categories available on the marketplace, including Data, Sports, Finance, Travel, and Entertainment.
+- [RapidAPI Collections API](https://apis.io/apis/rapidapi/rapidapi-collections-api/) — Endpoints for browsing curated API collections organized around themes such as Top Meme APIs, Top Geocoding APIs, and other groupings.
+- [RapidAPI Definitions API](https://apis.io/apis/rapidapi/rapidapi-definitions-api/) — Endpoints for importing, exporting, and managing API definitions such as OpenAPI specifications and Postman Collections.
+- [RapidAPI Documentation API](https://apis.io/apis/rapidapi/rapidapi-documentation-api/) — Endpoints for generating and managing API documentation from project definitions and endpoint configurations.
+- [RapidAPI Endpoints API](https://apis.io/apis/rapidapi/rapidapi-endpoints-api/) — Endpoints for managing API endpoint configurations within a project, including creating, updating, and organizing endpoint groups.
+- [RapidAPI Environments API](https://apis.io/apis/rapidapi/rapidapi-environments-api/) — Endpoints for managing test environments with variable sets that can be used across tests for different deployment stages.
+- [RapidAPI Executions API](https://apis.io/apis/rapidapi/rapidapi-executions-api/) — Endpoints for viewing test execution results, including pass/fail statuses, response times, and detailed assertion outcomes.
+- [RapidAPI Gateways API](https://apis.io/apis/rapidapi/rapidapi-gateways-api/) — Endpoints for managing gateway instances, including creating, configuring, and monitoring custom API gateways.
+- [RapidAPI Locations API](https://apis.io/apis/rapidapi/rapidapi-locations-api/) — Endpoints for listing available monitoring locations across global AWS regions where tests can be executed.
+- [RapidAPI Organizations API](https://apis.io/apis/rapidapi/rapidapi-organizations-api/) — Endpoints for managing organizations within the Enterprise Hub, including listing, creating, and updating organization configurations.
+- [RapidAPI Projects API](https://apis.io/apis/rapidapi/rapidapi-projects-api/) — Endpoints for managing API projects within Studio, including creating, listing, updating, and deleting projects.
+- [RapidAPI Rate Limiting API](https://apis.io/apis/rapidapi/rapidapi-rate-limiting-api/) — Endpoints for configuring rate limiting policies to protect APIs from overuse, including request limits, quota management, and request size limits.
+- [RapidAPI Requests API](https://apis.io/apis/rapidapi/rapidapi-requests-api/) — Endpoints for managing saved API requests within a project, including importing from spec files and organizing into groups.
+- [RapidAPI Routes API](https://apis.io/apis/rapidapi/rapidapi-routes-api/) — Endpoints for configuring request routing rules that determine how incoming API requests are forwarded to backend services.
+- [RapidAPI Schedules API](https://apis.io/apis/rapidapi/rapidapi-schedules-api/) — Endpoints for managing test schedules, including frequency, environment, and location settings for automated monitoring.
+- [RapidAPI Search API](https://apis.io/apis/rapidapi/rapidapi-search-api/) — Endpoints for searching and discovering APIs by keyword, category, collection, or advanced filters across the RapidAPI marketplace.
+- [RapidAPI Security API](https://apis.io/apis/rapidapi/rapidapi-security-api/) — Endpoints for configuring security policies such as IP allow and deny lists, CORS settings, and proxy secret validation.
+- [RapidAPI Snippets API](https://apis.io/apis/rapidapi/rapidapi-snippets-api/) — Endpoints for generating code snippets for API calls in multiple programming languages and libraries.
+- [RapidAPI Subscriptions API](https://apis.io/apis/rapidapi/rapidapi-subscriptions-api/) — Endpoints for managing API subscriptions, including subscribing to API plans, viewing active subscriptions, and usage analytics.
+- [RapidAPI Tags API](https://apis.io/apis/rapidapi/rapidapi-tags-api/) — The Tags API from RapidAPI — 2 operation(s) for tags.
+- [RapidAPI Tests API](https://apis.io/apis/rapidapi/rapidapi-tests-api/) — Endpoints for creating, reading, updating, deleting, and executing API tests, including functional and performance test flows.
+- [RapidAPI Transactions API](https://apis.io/apis/rapidapi/rapidapi-transactions-api/) — Endpoints for viewing and managing API transaction records, including usage data and billing information.
+- [RapidAPI Users API](https://apis.io/apis/rapidapi/rapidapi-users-api/) — Endpoints for managing users within the Enterprise Hub, including user roles, permissions, and account configurations.
+- [RapidAPI APIS API](https://apis.io/apis/rapidapi/rapidapi-apis-api/) — The Apis API from RapidAPI — 6 operation(s) for apis.
+- [RapidAPI Graph QL API](https://apis.io/apis/rapidapi/rapidapi-graph-ql-api/) — The single GraphQL endpoint that accepts all queries and mutations for managing the Enterprise Hub, including APIs, collections, organizations, users, and…
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-20
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### RapidAPI REST Platform API
+GraphQL schemas.
 
-The RapidAPI REST Platform API allows developers and administrators to programmatically manage their API hub configurations through RESTful endpoints. It provides CRUD operations for organizations, categories, tags, collections, transactions, subscriptions, and users, enabling automation of tasks normally performed through the Enterprise Hub Admin Panel and integration of hub management into CI/CD pipelines and custom workflows.
+- [RapidAPI GraphQL API](https://apis.io/graphqls/rapidapi/rapidapi-graphql/)
 
-- **Human URL:** [https://docs.rapidapi.com/docs/platform-api-overview](https://docs.rapidapi.com/docs/platform-api-overview)
+#### MCP servers (1)
 
-#### Tags
+Model Context Protocol servers that expose the API to agents.
 
-- API Management
-- Platform
-- Administration
-- Marketplace
-- Enterprise
+- [rapidapi](https://apis.io/servers/rapidapi/rapidapi/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://docs.rapidapi.com/docs/platform-api-overview)
-- [OpenAPI](openapi/rapidapi-rest-platform-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/rapidapi-rest-platform-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/rapidapi-rest-platform-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Structure](json-structure/rapidapi-subscription-structure.json)
-- [Example](examples/rapidapi-list-apis-example.json)
-- [Example](examples/rapidapi-list-subscriptions-example.json)
-- [Spectral Rules](rules/rapidapi-rules.yml)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### RapidAPI GraphQL Platform API
+- [Rapidapi Agentic Access](https://apis.io/agentic-access/rapidapi/rapidapi-agentic-access/)
 
-The RapidAPI GraphQL Platform API exposes the same queries and mutations that RapidAPI uses internally, providing enterprise users with a powerful interface for managing their API hub. It supports creating and updating APIs, managing collections, and configuring hub settings through GraphQL queries and mutations, including integration with GitHub Actions for continuous deployment of API configurations.
+#### JSON Schema (66)
 
-- **Human URL:** [https://docs.rapidapi.com/docs/graphql-platform-api-overview](https://docs.rapidapi.com/docs/graphql-platform-api-overview)
+The data models the API reads and writes.
 
-#### Tags
+- [Alert](https://apis.io/schemas/rapidapi/rapidapi-alert/)
+- [AlertInput](https://apis.io/schemas/rapidapi/rapidapi-alertinput/)
+- [Api](https://apis.io/schemas/rapidapi/rapidapi-api/)
+- [RapidAPI API Listing](https://apis.io/schemas/rapidapi/rapidapi-api-listing/)
+- [ApiCreateInput](https://apis.io/schemas/rapidapi/rapidapi-apicreateinput/)
+- [ApiDetails](https://apis.io/schemas/rapidapi/rapidapi-apidetails/)
+- [ApiEndpoint](https://apis.io/schemas/rapidapi/rapidapi-apiendpoint/)
+- [ApiSummary](https://apis.io/schemas/rapidapi/rapidapi-apisummary/)
+- [ApiUpdateInput](https://apis.io/schemas/rapidapi/rapidapi-apiupdateinput/)
+- [ApiVersion](https://apis.io/schemas/rapidapi/rapidapi-apiversion/)
+- [ApiVersionUpdateInput](https://apis.io/schemas/rapidapi/rapidapi-apiversionupdateinput/)
+- [Application](https://apis.io/schemas/rapidapi/rapidapi-application/)
+- [ApplicationInput](https://apis.io/schemas/rapidapi/rapidapi-applicationinput/)
+- [Assertion](https://apis.io/schemas/rapidapi/rapidapi-assertion/)
+- [AssertionInput](https://apis.io/schemas/rapidapi/rapidapi-assertioninput/)
+- [AuthenticationConfig](https://apis.io/schemas/rapidapi/rapidapi-authenticationconfig/)
+- [AuthenticationConfigInput](https://apis.io/schemas/rapidapi/rapidapi-authenticationconfiginput/)
+- [Category](https://apis.io/schemas/rapidapi/rapidapi-category/)
+- [CategoryInput](https://apis.io/schemas/rapidapi/rapidapi-categoryinput/)
+- [CodeSnippet](https://apis.io/schemas/rapidapi/rapidapi-codesnippet/)
+- [Collection](https://apis.io/schemas/rapidapi/rapidapi-collection/)
+- [CollectionInput](https://apis.io/schemas/rapidapi/rapidapi-collectioninput/)
+- [Definition](https://apis.io/schemas/rapidapi/rapidapi-definition/)
+- [Endpoint](https://apis.io/schemas/rapidapi/rapidapi-endpoint/)
+- [EndpointInput](https://apis.io/schemas/rapidapi/rapidapi-endpointinput/)
+- …and 41 more published on APIs.io
 
-- GraphQL
-- Platform
-- API Management
-- Enterprise
-- Administration
+#### JSON Structure (4)
 
-#### Properties
+Data models expressed in JSON Structure.
 
-- [Documentation](https://docs.rapidapi.com/docs/graphql-platform-api-overview)
-- [OpenAPI](openapi/rapidapi-graphql-platform-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/rapidapi-graphql-platform-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/rapidapi-graphql-platform-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Rapidapi Api Listing Structure](https://apis.io/json-structure/rapidapi/rapidapi-api-listing-structure/)
+- [Rapidapi Structure](https://apis.io/json-structure/rapidapi/rapidapi-structure/)
+- [Rapidapi Subscription Structure](https://apis.io/json-structure/rapidapi/rapidapi-subscription-structure/)
+- [Rapidapi Test Structure](https://apis.io/json-structure/rapidapi/rapidapi-test-structure/)
 
-### RapidAPI Hub API
+#### JSON-LD (1)
 
-The RapidAPI Hub is the world's largest API marketplace, enabling developers to discover, test, and connect to thousands of APIs using a single API key. The hub provides a unified interface for browsing APIs across categories such as weather, social media, e-commerce, and finance, with auto-generated code snippets in multiple programming languages and a single dashboard for managing subscriptions and usage analytics.
+Linked-data contexts for the provider's vocabulary.
 
-- **Human URL:** [https://docs.rapidapi.com/docs/consumer-quick-start-guide](https://docs.rapidapi.com/docs/consumer-quick-start-guide)
+- [Rapidapi Context](https://apis.io/jsonld/rapidapi/rapidapi-context/)
 
-#### Tags
+#### Vocabulary (1)
 
-- API Discovery
-- API Marketplace
-- API Testing
-- Integration
-- Search
+The provider's domain terms, defined.
 
-#### Properties
+- [RapidAPI Vocabulary](https://apis.io/vocabularies/rapidapi/rapidapi-vocabulary/)
 
-- [Documentation](https://docs.rapidapi.com/docs/consumer-quick-start-guide)
-- [OpenAPI](openapi/rapidapi-hub-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/rapidapi-hub-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/rapidapi-hub-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Examples (3)
 
-### RapidAPI Testing API
+Example requests and responses.
 
-RapidAPI Testing provides a comprehensive API testing and monitoring solution that supports REST, SOAP, and GraphQL APIs. It offers an interface for creating and running functional tests, performance tests, and automated monitoring checks, integrating with CI/CD pipelines and scheduling tests across multiple regions to monitor API health and detect regressions.
+- [Rapidapi List Apis Example](https://apis.io/examples/rapidapi/rapidapi-list-apis-example/)
+- [Rapidapi List Subscriptions Example](https://apis.io/examples/rapidapi/rapidapi-list-subscriptions-example/)
+- [Rapidapi List Tests Example](https://apis.io/examples/rapidapi/rapidapi-list-tests-example/)
 
-- **Human URL:** [https://docs.rapidapi.com/docs/testing-getting-started](https://docs.rapidapi.com/docs/testing-getting-started)
+#### Collections (35)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- API Testing
-- Monitoring
-- Quality Assurance
-- Automation
-- CI/CD
+- [RapidAPI Gateway Alerts API](https://apis.io/collections/rapidapi/open-rapidapi-alerts-api/)
+- [RapidAPI Gateway Alerts Analytics API](https://apis.io/collections/rapidapi/open-rapidapi-analytics-api/)
+- [RapidAPI Gateway Alerts Apis API](https://apis.io/collections/rapidapi/open-rapidapi-apis-api/)
+- [RapidAPI Gateway Alerts Applications API](https://apis.io/collections/rapidapi/open-rapidapi-applications-api/)
+- [RapidAPI Gateway Alerts Authentication API](https://apis.io/collections/rapidapi/open-rapidapi-authentication-api/)
+- [RapidAPI Gateway Alerts Categories API](https://apis.io/collections/rapidapi/open-rapidapi-categories-api/)
+- [RapidAPI Gateway Alerts Collections API](https://apis.io/collections/rapidapi/open-rapidapi-collections-api/)
+- [RapidAPI Gateway Alerts Definitions API](https://apis.io/collections/rapidapi/open-rapidapi-definitions-api/)
+- [RapidAPI Gateway Alerts Documentation API](https://apis.io/collections/rapidapi/open-rapidapi-documentation-api/)
+- [RapidAPI Gateway Alerts Endpoints API](https://apis.io/collections/rapidapi/open-rapidapi-endpoints-api/)
+- [RapidAPI Gateway Alerts Environments API](https://apis.io/collections/rapidapi/open-rapidapi-environments-api/)
+- [RapidAPI Gateway Alerts Executions API](https://apis.io/collections/rapidapi/open-rapidapi-executions-api/)
+- [RapidAPI Gateway API](https://apis.io/collections/rapidapi/open-rapidapi-gateway-api/)
+- [RapidAPI Gateway Alerts Gateways API](https://apis.io/collections/rapidapi/open-rapidapi-gateways-api/)
+- [RapidAPI Gateway Alerts GraphQL API](https://apis.io/collections/rapidapi/open-rapidapi-graphql-api/)
+- [RapidAPI GraphQL Platform API](https://apis.io/collections/rapidapi/open-rapidapi-graphql-platform-api/)
+- [RapidAPI Hub API](https://apis.io/collections/rapidapi/open-rapidapi-hub-api/)
+- [RapidAPI Gateway Alerts Locations API](https://apis.io/collections/rapidapi/open-rapidapi-locations-api/)
+- [RapidAPI Gateway Alerts Organizations API](https://apis.io/collections/rapidapi/open-rapidapi-organizations-api/)
+- [RapidAPI Gateway Alerts Projects API](https://apis.io/collections/rapidapi/open-rapidapi-projects-api/)
+- [RapidAPI Gateway Alerts Rate Limiting API](https://apis.io/collections/rapidapi/open-rapidapi-rate-limiting-api/)
+- [RapidAPI Gateway Alerts Requests API](https://apis.io/collections/rapidapi/open-rapidapi-requests-api/)
+- [RapidAPI REST Platform API](https://apis.io/collections/rapidapi/open-rapidapi-rest-platform-api/)
+- [RapidAPI Gateway Alerts Routes API](https://apis.io/collections/rapidapi/open-rapidapi-routes-api/)
+- [RapidAPI Gateway Alerts Schedules API](https://apis.io/collections/rapidapi/open-rapidapi-schedules-api/)
+- …and 10 more published on APIs.io
 
-#### Properties
+#### Governance rules (2)
 
-- [Documentation](https://docs.rapidapi.com/docs/testing-getting-started)
-- [OpenAPI](openapi/rapidapi-testing-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/rapidapi-testing-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/rapidapi-testing-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/rapidapi-test-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/rapidapi-test-structure.json)
-- [Example](examples/rapidapi-list-tests-example.json)
+Spectral rulesets for the provider's contracts.
 
-### RapidAPI Studio API
+- [RapidAPI — jsonschema rules](https://apis.io/rules/rapidapi/rapidapi-jsonschema-spectral-rules/)
+- [RapidAPI API Rules](https://apis.io/rules/rapidapi/rapidapi-rules/)
 
-RapidAPI Studio is an API design and development environment that enables teams to design, build, and document APIs collaboratively. It supports importing and editing OpenAPI specifications and Postman Collections, providing a visual interface for defining endpoints, parameters, and response schemas, and integrates with the broader RapidAPI platform to publish designed APIs directly to the hub.
+#### Security (2)
 
-- **Human URL:** [https://docs.rapidapi.com/docs/studio-overview](https://docs.rapidapi.com/docs/studio-overview)
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Rapidapi Authentication](https://apis.io/security/rapidapi/rapidapi-authentication/)
+- [Rapidapi Domain Security](https://apis.io/security/rapidapi/rapidapi-domain-security/)
 
-- API Design
-- API Development
-- OpenAPI
-- Studio
+#### Plans and pricing (1)
 
-#### Properties
+Published plans, tiers and prices.
 
-- [Documentation](https://docs.rapidapi.com/docs/studio-overview)
-- [OpenAPI](openapi/rapidapi-studio-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/rapidapi-studio-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/rapidapi-studio-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/rapidapi-api-listing-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/rapidapi-api-listing-structure.json)
+- [Rapidapi Plans Pricing](https://apis.io/plans/rapidapi/rapidapi-plans-pricing/)
 
-### RapidAPI Gateway API
+#### Rate limits (1)
 
-The RapidAPI Gateway provides enterprise-grade API gateway capabilities for managing API traffic, security, and routing. It enables organizations to configure custom gateways that handle authentication, rate limiting, and request routing for their APIs, providing a centralized point of control for all API traffic flowing through the RapidAPI platform.
+Published request limits.
 
-- **Human URL:** [https://docs.rapidapi.com/docs/gateway-configuration](https://docs.rapidapi.com/docs/gateway-configuration)
+- [Rapidapi Rate Limits](https://apis.io/rate-limits/rapidapi/rapidapi-rate-limits/)
 
-#### Tags
+#### FinOps (1)
 
-- API Gateway
-- Traffic Management
-- Security
-- Enterprise
-- Routing
+What the API costs to run, by operation.
 
-#### Properties
+- [Rapidapi Finops](https://apis.io/finops/rapidapi/rapidapi-finops/)
 
-- [Documentation](https://docs.rapidapi.com/docs/gateway-configuration)
-- [OpenAPI](openapi/rapidapi-gateway-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/rapidapi-gateway-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/rapidapi-gateway-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/rapidapi-gateway-config-schema.json) — [JSON Schema](https://json-schema.org/specification)
+## Where to find this API
 
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [GitHub Organization](https://github.com/RapidAPI)
-- [LinkedIn](https://www.linkedin.com/company/rapidapi)
-- [Portal](https://rapidapi.com/hub)
-- [Documentation](https://docs.rapidapi.com/)
 - [Website](https://rapidapi.com/)
-- [Privacy Policy](https://rapidapi.com/privacy/)
-- [Terms of Service](https://rapidapi.com/terms-of-service/)
-- [Support](https://rapidapi.com/support/)
-- [Blog](https://rapidapi.com/blog/)
-- [Sign Up](https://rapidapi.com/auth/sign-up)
-- [JSON-LD](json-ld/rapidapi-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Vocabulary](vocabulary/rapidapi-vocabulary.yml)
-- [L L Ms Txt](https://docs.rapidapi.com/llms.txt)
+- [Documentation](https://docs.rapidapi.com/)
+- [Privacy policy](https://rapidapi.com/privacy/)
+- [GitHub](https://github.com/RapidAPI)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** API Evangelist
-**Email:** info@apievangelist.com
+**Kin Score 40.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.7 |
+| Contract quality | 67.4 |
+| Contract governance | 31.8 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 28.0 |
+| Access clarity | 28.9 |
+
+**Agent readiness 33.2** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 20.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/rapidapi/](https://apis.io/providers/rapidapi/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for RapidAPI: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/rapidapi/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
